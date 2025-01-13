@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdsGram Integration Example</title>
+    <!-- AdsGram SDK -->
+    <script src="https://sad.adsgram.ai/js/sad.min.js"></script>
+    <style>
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        .btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .status {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AdsGram Integration Demo</h1>
+        
+        <div>
+            <button class="btn" onclick="showRewardedAd()">Show Rewarded Ad</button>
+            <button class="btn" onclick="showInterstitialAd()">Show Interstitial Ad</button>
+        </div>
+        
+        <div id="status" class="status"></div>
+    </div>
+
+    <script>
+        // Initialize AdsGram SDK with your specific block ID
+        const AdController = window.Adsgram.init({ 
+            blockId: "int-7064"
+        });
+
+        // Function to show rewarded ad
+        function showRewardedAd() {
+            AdController.show()
+                .then((result) => {
+                    if (result.done) {
+                        updateStatus('Success: User completed watching the rewarded ad!', 'success');
+                        // Add your reward logic here
+                    } else {
+                        updateStatus('Info: Ad was not completed', 'error');
+                    }
+                })
+                .catch((result) => {
+                    updateStatus(`Error: ${result.description}`, 'error');
+                });
+        }
+
+        // Function to show interstitial ad
+        function showInterstitialAd() {
+            AdController.show()
+                .then((result) => {
+                    updateStatus('Success: Interstitial ad was shown', 'success');
+                })
+                .catch((result) => {
+                    updateStatus(`Error: ${result.description}`, 'error');
+                });
+        }
+
+        // Helper function to update status display
+        function updateStatus(message, type) {
+            const statusElement = document.getElementById('status');
+            statusElement.textContent = message;
+            statusElement.className = `status ${type}`;
+        }
+
+        // Check if running in Telegram WebApp environment
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!window.Telegram?.WebApp) {
+                updateStatus('Warning: This page should be run as a Telegram Mini App', 'error');
+            }
+        });
+    </script>
+</body>
+              </html>
