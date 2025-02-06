@@ -3,101 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AdsGram Integration Example</title>
-    <!-- AdsGram SDK -->
-    <script src="https://sad.adsgram.ai/js/sad.min.js"></script>
-    <style>
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            font-family: Arial, sans-serif;
-        }
-        .btn {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 10px;
-        }
-        .btn:hover {
-            background-color: #0056b3;
-        }
-        .status {
-            margin-top: 20px;
-            padding: 10px;
-            border-radius: 5px;
-        }
-        .success {
-            background-color: #d4edda;
-            color: #155724;
-        }
-        .error {
-            background-color: #f8d7da;
-            color: #721c24;
-        }
-    </style>
+    <title>Dev - Professional Web Developer</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>AdsGram Integration Demo</h1>
-        
-        <div>
-            <button class="btn" onclick="showRewardedAd()">Show Rewarded Ad</button>
-            <button class="btn" onclick="showInterstitialAd()">Show Interstitial Ad</button>
+    <header>
+        <h1>Dev</h1>
+        <p>Full Stack Developer & Freelancer</p>
+        <p class="cta">You can ask me to build websites for you!</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="policy.html">Policy</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <div class="social-links">
+            <a href="https://t.me/nub_coder_s" target="_blank"><i class="fab fa-telegram"></i></a>
+            <a href="https://github.com/ankitkr23835/" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://youtube.com/@nub-coder" target="_blank"><i class="fab fa-youtube"></i></a>
         </div>
-        
-        <div id="status" class="status"></div>
-    </div>
+    </section>
 
-    <script>
-        // Initialize AdsGram SDK with your specific block ID
-        const AdController = window.Adsgram.init({ 
-            blockId: "int-7083"
-        });
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>Professional Details</h3>
+                <p>Full-stack developer specializing in modern web technologies with 5+ years of experience. I transform ideas into professional websites.</p>
+            </div>
+            <div class="card">
+                <h3>Skills</h3>
+                <ul>
+                    <li>MERN Stack Development</li>
+                    <li>Responsive Web Design</li>
+                    <li>REST API Development</li>
+                    <li>Cloud Integration</li>
+                    <li>SEO Optimization</li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
-        // Function to show rewarded ad
-        function showRewardedAd() {
-            AdController.show()
-                .then((result) => {
-                    if (result.done) {
-                        updateStatus('Success: User completed watching the rewarded ad!', 'success');
-                        // Add your reward logic here
-                    } else {
-                        updateStatus('Info: Ad was not completed', 'error');
-                    }
-                })
-                .catch((result) => {
-                    updateStatus(`Error: ${result.description}`, 'error');
-                });
-        }
-
-        // Function to show interstitial ad
-        function showInterstitialAd() {
-            AdController.show()
-                .then((result) => {
-                    updateStatus('Success: Interstitial ad was shown', 'success');
-                })
-                .catch((result) => {
-                    updateStatus(`Error: ${result.description}`, 'error');
-                });
-        }
-
-        // Helper function to update status display
-        function updateStatus(message, type) {
-            const statusElement = document.getElementById('status');
-            statusElement.textContent = message;
-            statusElement.className = `status ${type}`;
-        }
-
-        // Check if running in Telegram WebApp environment
-        document.addEventListener('DOMContentLoaded', () => {
-            if (!window.Telegram?.WebApp) {
-                updateStatus('Warning: This page should be run as a Telegram Mini App', 'error');
-            }
-        });
-    </script>
+    <footer>
+        <p>&copy; 2023 Dev. All rights reserved. <a href="policy.html">Refund Policy</a></p>
+    </footer>
 </body>
-              </html>
+</html>
