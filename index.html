@@ -3,55 +3,368 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dev - Professional Web Developer</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Dev | Full Stack Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #7c3aed;
+            --secondary: #10b981;
+            --dark: #0f172a;
+            --darker: #020617;
+            --light: #f8fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: var(--darker);
+            color: var(--light);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(124, 58, 237, 0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid var(--primary);
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: rgba(124, 58, 237, 0.1);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .main-content {
+            padding: 6rem 2rem 2rem;
+        }
+
+        .hero {
+            min-height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            background: rgba(124, 58, 237, 0.1);
+            color: var(--light);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+            background: rgba(124, 58, 237, 0.2);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .project-card {
+            background: var(--dark);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid rgba(124, 58, 237, 0.2);
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.2);
+        }
+
+        .contact-section {
+            background: var(--dark);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 1rem;
+            background: var(--darker);
+            border: 1px solid rgba(124, 58, 237, 0.2);
+            border-radius: 8px;
+            color: var(--light);
+            transition: all 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2);
+        }
+
+        .btn {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(124, 58, 237, 0.3);
+        }
+
+        .footer {
+            background: var(--dark);
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(124, 58, 237, 0.2);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--dark);
+                padding: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Dev</h1>
-        <p>Full Stack Developer & Freelancer</p>
-        <p class="cta">You can ask me to build websites for you!</p>
-    </header>
-
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="policy.html">Policy</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="profile.jpg" alt="Dev's Profile">
+            <div class="logo-text">DEV</div>
+        </div>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="nav-links" id="navLinks">
+            <a href="#home"><i class="fas fa-home"></i> Home</a>
+            <a href="#about"><i class="fas fa-user"></i> About</a>
+            <a href="#services"><i class="fas fa-cogs"></i> Services</a>
+            <a href="#portfolio"><i class="fas fa-briefcase"></i> Portfolio</a>
+            <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+        </div>
     </nav>
 
-    <section class="hero">
-        <div class="social-links">
-            <a href="https://t.me/nub_coder_s" target="_blank"><i class="fab fa-telegram"></i></a>
-            <a href="https://github.com/ankitkr23835/" target="_blank"><i class="fab fa-github"></i></a>
-            <a href="https://youtube.com/@nub-coder" target="_blank"><i class="fab fa-youtube"></i></a>
-        </div>
-    </section>
-
-    <section id="about">
-        <h2>About Me</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Professional Details</h3>
-                <p>Full-stack developer specializing in modern web technologies with 5+ years of experience. I transform ideas into professional websites.</p>
+    <main class="main-content">
+        <section class="hero" id="home">
+            <h1 class="section-title">Full Stack Developer</h1>
+            <p>Building digital experiences that combine creativity with technical excellence</p>
+            <div class="social-links">
+                <a href="https://t.me/nub_coder_s" target="_blank">
+                    <i class="fab fa-telegram"></i>
+                    Telegram
+                </a>
+                <a href="https://github.com/ankitkr23835/" target="_blank">
+                    <i class="fab fa-github"></i>
+                    GitHub
+                </a>
+                <a href="https://youtube.com/@nub-coder" target="_blank">
+                    <i class="fab fa-youtube"></i>
+                    YouTube
+                </a>
             </div>
-            <div class="card">
-                <h3>Skills</h3>
-                <ul>
-                    <li>MERN Stack Development</li>
-                    <li>Responsive Web Design</li>
-                    <li>REST API Development</li>
-                    <li>Cloud Integration</li>
-                    <li>SEO Optimization</li>
-                </ul>
+        </section>
+
+        <section id="about">
+            <h2 class="section-title">About Me</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <i class="fas fa-code fa-3x"></i>
+                    <h3>5+ Years Experience</h3>
+                    <p>Delivering high-quality web solutions across various industries</p>
+                </div>
+                <div class="project-card">
+                    <i class="fas fa-project-diagram fa-3x"></i>
+                    <h3>50+ Projects</h3>
+                    <p>Successfully completed projects ranging from startups to enterprises</p>
+                </div>
+                <div class="project-card">
+                    <i class="fas fa-users fa-3x"></i>
+                    <h3>Client Focused</h3>
+                    <p>Dedicated to understanding and exceeding client expectations</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="services">
+            <h2 class="section-title">Services</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <i class="fas fa-laptop-code fa-3x"></i>
+                    <h3>Web Development</h3>
+                    <p>Custom website development from concept to deployment</p>
+                </div>
+                <div class="project-card">
+                    <i class="fas fa-mobile-alt fa-3x"></i>
+                    <h3>Responsive Design</h3>
+                    <p>Mobile-first approach for all devices</p>
+                </div>
+                <div class="project-card">
+                    <i class="fas fa-rocket fa-3x"></i>
+                    <h3>Performance Optimization</h3>
+                    <p>Speed optimization and SEO-friendly solutions</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2 class="section-title">Contact</h2>
+            <div class="contact-section">
+                <form>
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea rows="5" placeholder="Your Message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Dev</h3>
+                <p>Professional web developer creating impactful digital experiences</p>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <a href="https://github.com/ankitkr23835/" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                <a href="https://t.me/nub_coder_s" target="_blank"><i class="fab fa-telegram"></i> Telegram</a>
+                <a href="https://youtube.com/@nub-coder" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p><i class="fas fa-envelope"></i> ankitkr23835@gmail.com</p>
             </div>
         </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2023 Dev. All rights reserved. <a href="policy.html">Refund Policy</a></p>
+        <p class="text-center" style="margin-top: 2rem;">&copy; 2023 Dev. All rights reserved.</p>
     </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+    </script>
 </body>
 </html>
