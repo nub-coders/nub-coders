@@ -100,14 +100,22 @@
             padding: 6rem 2rem 2rem;
         }
 
-        .hero {
-            min-height: calc(100vh - 80px);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
+     .hero {
+    min-height: auto; /* Remove 100vh calculation */
+    padding: 8rem 0 4rem; /* Add vertical padding */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        min-height: 80vh; /* Keep full height only for mobile */
+        padding: 2rem 0;
+    }
+}
 
         .section-title {
             font-size: 2.5rem;
@@ -219,7 +227,138 @@
             gap: 2rem;
         }
 
+        /* Terminal Styles */
+        .ide-container {
+            display: flex;
+            width: 100%;
+            max-width: 800px;
+            background-color: #1e1e1e;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin: 2rem auto;
+        }
+
+        .sidebar {
+            width: 48px;
+            background-color: #252526;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem 0;
+            gap: 1.5rem;
+        }
+
+        .sidebar-icon {
+            color: #6e7681;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .sidebar-icon.active,
+        .sidebar-icon:hover {
+            color: var(--primary);
+        }
+
+        .terminal-header {
+            background-color: #252526;
+            padding: 0.8rem 1.2rem;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid rgba(124, 58, 237, 0.1);
+        }
+
+        .file-tab {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: var(--light);
+            font-size: 0.9rem;
+        }
+
+        .close-button {
+            color: #6e7681;
+            cursor: pointer;
+            margin-left: 1rem;
+            transition: all 0.3s;
+        }
+
+        .close-button:hover {
+            color: var(--light);
+        }
+
+        .code-container {
+            padding: 1.2rem;
+            overflow-x: auto;
+            min-height: 300px;
+        }
+
+        .code-line {
+            display: flex;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            min-height: 21px;
+            white-space: pre;
+        }
+
+        .line-number {
+            color: #6e7681;
+            text-align: right;
+            padding-right: 1.2rem;
+            min-width: 40px;
+            user-select: none;
+            border-right: 1px solid rgba(124, 58, 237, 0.1);
+            margin-right: 1.2rem;
+        }
+
+        .code-content {
+            color: #d4d4d4;
+            flex: 1;
+            opacity: 0;
+            animation: fadeIn 0.3s forwards;
+        }
+
+        .cursor {
+            display: inline-block;
+            width: 2px;
+            height: 14px;
+            background-color: var(--primary);
+            animation: blink 1s infinite;
+            vertical-align: middle;
+            margin-left: 2px;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .python-keyword { color: #569cd6; }
+        .python-string { color: #ce9178; }
+        .python-comment { color: #6a9955; }
+        .python-function { color: #dcdcaa; }
+        .python-class { color: #4ec9b0; }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .hero {
+                min-height: 80vh;
+                padding: 2rem 0;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+
             .nav-links {
                 display: none;
                 flex-direction: column;
@@ -238,6 +377,67 @@
             .menu-toggle {
                 display: block;
             }
+
+            .ide-container {
+                margin: 1rem auto;
+                border-radius: 8px;
+            }
+
+            .sidebar {
+                width: 40px;
+                padding: 0.5rem 0;
+                gap: 1rem;
+            }
+
+            .sidebar-icon {
+                font-size: 1rem;
+            }
+
+            .code-container {
+                padding: 0.8rem;
+                min-height: 250px;
+            }
+
+            .code-line {
+                font-size: 0.8rem;
+            }
+
+            .line-number {
+                min-width: 30px;
+                padding-right: 0.8rem;
+                margin-right: 0.8rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 1rem;
+            }
+
+            .logo-text {
+                font-size: 1.2rem;
+            }
+
+            .social-links {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .terminal-header {
+                padding: 0.6rem 1rem;
+            }
+
+            .file-tab {
+                font-size: 0.8rem;
+            }
+
+            .close-button {
+                margin-left: 0.5rem;
+            }
         }
     </style>
 </head>
@@ -254,8 +454,6 @@
             <a href="#home"><i class="fas fa-home"></i> Home</a>
             <a href="#about"><i class="fas fa-user"></i> About</a>
             <a href="#services"><i class="fas fa-cogs"></i> Services</a>
-            <a href="#portfolio"><i class="fas fa-briefcase"></i> Portfolio</a>
-            <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
         </div>
     </nav>
 
@@ -276,6 +474,27 @@
                     <i class="fab fa-youtube"></i>
                     YouTube
                 </a>
+            </div>
+        </section>
+
+        <section id="terminal">
+            <div class="ide-container" id="terminalContainer">
+                <div class="sidebar">
+                    <i class="fas fa-folder-open sidebar-icon active"></i>
+                    <i class="fas fa-bug sidebar-icon"></i>
+                    <i class="fas fa-search sidebar-icon"></i>
+                    <i class="fas fa-window-maximize sidebar-icon"></i>
+                </div>
+                <div class="terminal-container">
+                    <div class="terminal-header">
+                        <div class="file-tab">
+                            <i class="fab fa-python"></i>
+                            main.py
+                            <span class="close-button">✕</span>
+                        </div>
+                    </div>
+                    <div class="code-container" id="codeContainer"></div>
+                </div>
             </div>
         </section>
 
@@ -320,24 +539,6 @@
                 </div>
             </div>
         </section>
-
-        <section id="contact">
-            <h2 class="section-title">Contact</h2>
-            <div class="contact-section">
-                <form>
-                    <div class="form-group">
-                        <input type="text" placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" placeholder="Your Email" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea rows="5" placeholder="Your Message" required></textarea>
-                    </div>
-                    <button type="submit" class="btn">Send Message</button>
-                </form>
-            </div>
-        </section>
     </main>
 
     <footer class="footer">
@@ -365,6 +566,91 @@
             const navLinks = document.getElementById('navLinks');
             navLinks.classList.toggle('active');
         }
+
+        // Terminal Animation
+        const terminalCode = [
+            `<span class="python-comment"># Terminal Example in Python</span>`,
+            `<span class="python-keyword">class</span> <span class="python-class">Terminal</span>:`,
+            `    <span class="python-keyword">def</span> <span class="python-function">__init__</span>(self):`,
+            `        self.commands = []`,
+            `        self.history = []`,
+            ``,
+            `    <span class="python-keyword">def</span> <span class="python-function">execute</span>(self, command):`,
+            `        self.history.append(command)`,
+            `        <span class="python-keyword">if</span> command == <span class="python-string">'clear'</span>:`,
+            `            self.clear_screen()`,
+            `        <span class="python-keyword">elif</span> command == <span class="python-string">'exit'</span>:`,
+            `            <span class="python-keyword">return</span> <span class="python-keyword">False</span>`,
+            `        <span class="python-keyword">return</span> <span class="python-keyword">True</span>`,
+            ``,
+            `terminal = Terminal()`,
+            `terminal.execute(<span class="python-string">'clear'</span>)`
+        ];
+
+        const codeContainer = document.getElementById('codeContainer');
+        let hasAnimated = false;
+
+        // Initialize code lines
+        terminalCode.forEach((_, index) => {
+            const line = document.createElement('div');
+            line.className = 'code-line';
+            
+            const lineNumber = document.createElement('div');
+            lineNumber.className = 'line-number';
+            lineNumber.textContent = (index + 1).toString();
+            
+            const codeContent = document.createElement('div');
+            codeContent.className = 'code-content';
+            
+            line.appendChild(lineNumber);
+            line.appendChild(codeContent);
+            codeContainer.appendChild(line);
+        });
+
+        function startTerminalAnimation() {
+            if (hasAnimated) return;
+            hasAnimated = true;
+            
+            let lineIndex = 0;
+            
+            function typeLine() {
+                if (lineIndex < terminalCode.length) {
+                    const codeContent = codeContainer.children[lineIndex].querySelector('.code-content');
+                    codeContent.innerHTML = terminalCode[lineIndex];
+                    
+                    lineIndex++;
+                    setTimeout(typeLine, 100);
+                } else {
+                    const cursor = document.createElement('span');
+                    cursor.className = 'cursor';
+                    codeContainer.lastElementChild.querySelector('.code-content').appendChild(cursor);
+                }
+            }
+            
+            typeLine();
+        }
+
+        // Intersection Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    startTerminalAnimation();
+                }
+            });
+        }, {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.5
+        });
+
+        observer.observe(document.getElementById('terminalContainer'));
+
+        // Close mobile menu on resize
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                document.getElementById('navLinks').classList.remove('active');
+            }
+        });
     </script>
 </body>
 </html>
