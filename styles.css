@@ -349,30 +349,7 @@ input:focus, textarea:focus {
     opacity: 1;
 }
 
-/* Floating Action Button */
-.fab {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    width: 56px;
-    height: 56px;
-    background: linear-gradient(45deg, #2496ed, #1c7cd6);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: 1.5rem;
-    box-shadow: 0 4px 20px rgba(36, 150, 237, 0.3);
-    cursor: pointer;
-    z-index: 1000;
-    animation: float 3s ease-in-out infinite;
-}
 
-.fab:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 30px rgba(36, 150, 237, 0.4);
-}
 
 /* Scroll Progress */
 .scroll-progress {
