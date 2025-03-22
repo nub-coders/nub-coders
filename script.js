@@ -96,6 +96,33 @@ document.getElementById('overlay').addEventListener('click', function() {
     toggleMenu();
 });
 
+// Scroll Progress Indicator
+window.addEventListener('scroll', () => {
+    const scrollProgress = document.querySelector('.scroll-progress');
+    const scrollTop = document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight;
+    const clientHeight = document.documentElement.clientHeight;
+    const scrollPercent = (scrollTop / (scrollHeight - clientHeight)) * 100;
+    scrollProgress.style.width = scrollPercent + '%';
+});
+
+// Back to Top Button
+const backToTopButton = document.querySelector('.back-to-top');
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+        backToTopButton.classList.add('visible');
+    } else {
+        backToTopButton.classList.remove('visible');
+    }
+});
+
+backToTopButton.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
 // Close mobile menu on resize
 window.addEventListener('resize', () => {
     if (window.innerWidth > 768) {
