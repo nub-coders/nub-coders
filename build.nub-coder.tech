@@ -1,0 +1,40 @@
+server {
+    listen 80;
+    server_name build.nub-coder.tech;
+
+    # Redirect HTTP to HTTPS
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    server_name build.nub-coder.tech;
+
+    # SSL configuration
+    ssl_certificate /etc/nginx/ssl/build.nub-coder.tech.crt;
+    ssl_certificate_key /etc/nginx/ssl/build.nub-coder.tech.key;
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_prefer_server_ciphers on;
+    ssl_ciphers 'EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH';
+
+    # Proxy headers
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+
+    # WebSocket support
+    proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+    proxy_read_timeout 86400;
+
+    # Proxy location
+    location / {
+        proxy_pass http://localhost:3000;
+    }
+
+    # Error logs
+    error_log /var/log/nginx/build.nub-coder.tech.error.log;
+    access_log /var/log/nginx/build.nub-coder.tech.access.log;
+}
