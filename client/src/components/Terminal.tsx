@@ -26,7 +26,7 @@ const terminalCode = [
   `        }`,
   ``,
   `<span class="python-comment"># Initialize developer profile</span>`,
-  `developer = FullStackDeveloper(<span class="python-string">"Your Name"</span>, [<span class="python-string">"JavaScript"</span>, <span class="python-string">"React"</span>, <span class="python-string">"Node.js"</span>, <span class="python-string">"Python"</span>])`,
+  `developer = FullStackDeveloper(<span class="python-string">"Nub Coder"</span>, [<span class="python-string">"JavaScript"</span>, <span class="python-string">"React"</span>, <span class="python-string">"Node.js"</span>, <span class="python-string">"Python"</span>])`,
   `portfolio = developer.build_project(<span class="python-string">"Portfolio Website"</span>, [<span class="python-string">"React"</span>, <span class="python-string">"TypeScript"</span>, <span class="python-string">"Tailwind"</span>])`
 ];
 
@@ -45,7 +45,7 @@ export default function Terminal() {
           }
         });
       },
-      { threshold: 0.3 }
+      { threshold: 0.1 } // Lower threshold to start animation earlier
     );
 
     if (terminalRef.current) {
@@ -111,20 +111,20 @@ export default function Terminal() {
           // Create a single character span for animation
           const charSpan = document.createElement("span");
           charSpan.className = "typed-character";
-          charSpan.style.animationDelay = `${charIndex * 0.015}s`;
+          charSpan.style.animationDelay = `${charIndex * 0.005}s`; // Faster animation delay
           charSpan.innerText = char;
           codeContent.appendChild(charSpan);
         }
 
         charIndex++;
-        // Type faster if inside tag, slower if printing visible characters
-        setTimeout(typeCharacter, isInTag ? 0 : Math.random() * 30 + 20);
+        // Type faster if inside tag, faster for visible characters too
+        setTimeout(typeCharacter, isInTag ? 0 : Math.random() * 10 + 5);
       } else {
         // Line completed, move to next line
         lineIndex++;
         charIndex = 0;
         currentLine = "";
-        setTimeout(typeCharacter, 200); // Small pause between lines
+        setTimeout(typeCharacter, 100); // Smaller pause between lines
       }
     }
 
