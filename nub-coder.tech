@@ -14,3 +14,4 @@ server {
         proxy_buffering off;
         proxy_cache off;
     }
+}
