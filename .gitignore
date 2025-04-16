@@ -20,3 +20,7 @@ yarn-error.log*
 .idea/
 .secrets
 attached_assets/
+package-lock.json
+.replit
+.replit.*
+replit.nix
