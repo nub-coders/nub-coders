@@ -5,9 +5,18 @@ import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import Testimonials from "@/components/Testimonials";
 import ContactForm from "@/components/ContactForm";
-import GitHubStats from "@/components/GitHubStats";
 import { useScrollProgress } from "@/hooks/useScrollProgress";
 import profileImage from "@assets/profile.jpg";
+
+// Placeholder GitHubStats component
+function GitHubStats() {
+  return (
+    <section id="github-stats" className="py-16">
+      <h2 className="section-title">GitHub Stats</h2>
+      <p>Loading GitHub stats...</p> {/* Replace with actual stats once API call is implemented */}
+    </section>
+  );
+}
 
 
 export default function Home() {
@@ -154,12 +163,7 @@ export default function Home() {
         <Projects />
 
         {/* GitHub Stats Section */}
-        <section id="github-stats" className="py-16 max-w-5xl mx-auto">
-          <h2 className="section-title">GitHub Stats</h2>
-          <div className="mt-8">
-            <GitHubStats />
-          </div>
-        </section>
+        <GitHubStats />
 
         {/* Testimonials Section */}
         <Testimonials />
