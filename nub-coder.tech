@@ -1,6 +1,6 @@
 server {
     listen 80;
-    server_name nub-coder.tech;
+    server_name nub-coder.tech www.nub-coder.tech;
 
     location / {
         proxy_pass http://localhost:8080;
