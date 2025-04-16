@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-// Define terminal code with syntax highlighting
+// Define terminal code with proper Python indentation and syntax highlighting
 const terminalCode = [
   `<span class="python-keyword">class</span> <span class="python-class">FullStackDeveloper</span>:`,
   `    <span class="python-keyword">def</span> <span class="python-function">__init__</span>(self, name, skills):`,
@@ -33,19 +33,23 @@ const terminalCode = [
 export default function Terminal() {
   const [hasAnimated, setHasAnimated] = useState(false);
   const terminalRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   // Observe when terminal comes into view
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && !hasAnimated) {
-            startTerminalAnimation();
-            setHasAnimated(true);
+          if (entry.isIntersecting) {
+            setIsVisible(true);
+            if (!hasAnimated) {
+              startTerminalAnimation();
+              setHasAnimated(true);
+            }
           }
         });
       },
-      { threshold: 0.1 } // Lower threshold to start animation earlier
+      { threshold: 0.05 } // Even lower threshold for earlier animation trigger
     );
 
     if (terminalRef.current) {
@@ -59,36 +63,48 @@ export default function Terminal() {
     };
   }, [hasAnimated]);
 
-  // Letter-by-letter animation function
+  // Optimized and faster letter-by-letter animation
   const startTerminalAnimation = () => {
     const codeContainer = document.getElementById("codeContainer");
     if (!codeContainer) return;
 
+    // Pre-create all line elements first for better performance
+    terminalCode.forEach((line, index) => {
+      const lineDiv = codeContainer.children[index];
+      if (!lineDiv) return;
+      
+      const codeContent = lineDiv.querySelector(".code-content");
+      if (!codeContent) return;
+      
+      // Clear any existing content
+      codeContent.innerHTML = '';
+    });
+
     let lineIndex = 0;
     let charIndex = 0;
-    let currentLine = "";
-    let rawCurrentLine = "";
     let isInTag = false;
     let currentTag = "";
+    const TYPING_SPEED = 1.5; // Speed multiplier - higher value = faster typing
 
-    // Type character by character
+    // Type character by character with improved speed
     function typeCharacter() {
       if (!codeContainer || lineIndex >= terminalCode.length) {
-        // Animation completed or container not found
-        return;
+        return; // Animation completed or container not found
       }
 
-      const codeContent = codeContainer.children[lineIndex]?.querySelector(".code-content") as HTMLElement;
+      const lineDiv = codeContainer.children[lineIndex];
+      if (!lineDiv) return;
+      
+      const codeContent = lineDiv.querySelector(".code-content");
       if (!codeContent) return;
 
-      // If we're at the start of a new line
-      if (charIndex === 0) {
-        rawCurrentLine = terminalCode[lineIndex];
-        codeContent.innerHTML = '';
-      }
+      const rawCurrentLine = terminalCode[lineIndex];
 
-      // Handle HTML tags and render character by character
-      if (charIndex < rawCurrentLine.length) {
+      // Process multiple characters per frame for faster animation
+      const charsPerFrame = Math.floor(3 * TYPING_SPEED);
+      for (let i = 0; i < charsPerFrame; i++) {
+        if (charIndex >= rawCurrentLine.length) break;
+        
         const char = rawCurrentLine[charIndex];
 
         if (char === "<" && !isInTag) {
@@ -97,7 +113,6 @@ export default function Terminal() {
         } else if (char === ">" && isInTag) {
           isInTag = false;
           currentTag += char;
-          currentLine += currentTag;
           
           // Add the tag directly to the content
           const tagSpan = document.createElement("span");
@@ -111,20 +126,29 @@ export default function Terminal() {
           // Create a single character span for animation
           const charSpan = document.createElement("span");
           charSpan.className = "typed-character";
-          charSpan.style.animationDelay = `${charIndex * 0.005}s`; // Faster animation delay
+          // Much faster animation delay
+          charSpan.style.animationDelay = `${charIndex * 0.001}s`;
           charSpan.innerText = char;
           codeContent.appendChild(charSpan);
         }
 
         charIndex++;
-        // Type faster if inside tag, faster for visible characters too
-        setTimeout(typeCharacter, isInTag ? 0 : Math.random() * 10 + 5);
-      } else {
-        // Line completed, move to next line
+      }
+
+      // Check if we should move to the next line
+      if (charIndex >= rawCurrentLine.length) {
         lineIndex++;
         charIndex = 0;
-        currentLine = "";
-        setTimeout(typeCharacter, 100); // Smaller pause between lines
+        currentTag = "";
+        isInTag = false;
+        
+        // Shorter delay between lines
+        setTimeout(typeCharacter, 20); 
+      } else {
+        // Process the next batch of characters
+        // Skip delay completely for tags, use minimal delay for visible text
+        const nextDelay = isInTag ? 0 : Math.min(10 / TYPING_SPEED, 5);
+        setTimeout(typeCharacter, nextDelay);
       }
     }
 
@@ -132,18 +156,40 @@ export default function Terminal() {
     typeCharacter();
   };
 
+  // Optional: Add a way to replay the animation
+  const replayAnimation = () => {
+    const codeContainer = document.getElementById("codeContainer");
+    if (codeContainer) {
+      // Clear all content
+      Array.from(codeContainer.children).forEach(line => {
+        const codeContent = line.querySelector(".code-content");
+        if (codeContent) codeContent.innerHTML = '';
+      });
+      
+      // Restart animation
+      startTerminalAnimation();
+    }
+  };
+
   return (
     <div className="terminal-container w-full max-w-3xl mx-auto" ref={terminalRef}>
-      <div className="terminal-header">
+      <div className="terminal-header flex items-center px-4 py-2 bg-gray-800 rounded-t-lg">
         <div className="flex items-center gap-2">
-          <div className="terminal-btn terminal-btn-red"></div>
-          <div className="terminal-btn terminal-btn-yellow"></div>
-          <div className="terminal-btn terminal-btn-green"></div>
+          <div className="terminal-btn terminal-btn-red h-3 w-3 rounded-full bg-red-500"></div>
+          <div className="terminal-btn terminal-btn-yellow h-3 w-3 rounded-full bg-yellow-500"></div>
+          <div className="terminal-btn terminal-btn-green h-3 w-3 rounded-full bg-green-500"></div>
         </div>
-        <div className="terminal-title font-mono">main.py - Python</div>
-        <div className="flex-1"></div>
+        <div className="terminal-title font-mono text-gray-300 mx-auto">main.py - Python</div>
+        {isVisible && hasAnimated && (
+          <button 
+            onClick={replayAnimation} 
+            className="text-gray-400 hover:text-white text-xs"
+          >
+            Replay
+          </button>
+        )}
       </div>
-      <div className="terminal-content" id="codeContainer">
+      <div className="terminal-content p-4 bg-gray-900 rounded-b-lg text-gray-200" id="codeContainer">
         {terminalCode.map((_, index) => (
           <div key={index} className="flex mb-1">
             <div className="text-gray-500 text-right pr-4 min-w-[40px] select-none border-r border-primary/10 mr-4 font-mono">
@@ -153,6 +199,25 @@ export default function Terminal() {
           </div>
         ))}
       </div>
+      <style jsx>{`
+        .typed-character {
+          display: inline-block;
+          opacity: 0;
+          animation: fadeIn 0.01s forwards;
+        }
+        
+        @keyframes fadeIn {
+          to {
+            opacity: 1;
+          }
+        }
+        
+        .python-keyword { color: #ff79c6; }
+        .python-class { color: #8be9fd; }
+        .python-function { color: #50fa7b; }
+        .python-string { color: #f1fa8c; }
+        .python-comment { color: #6272a4; }
+      `}</style>
     </div>
   );
 }
