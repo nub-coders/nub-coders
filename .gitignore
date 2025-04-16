@@ -19,3 +19,4 @@ yarn-error.log*
 *.sqlite3
 .idea/
 .secrets
+attached_assets/
