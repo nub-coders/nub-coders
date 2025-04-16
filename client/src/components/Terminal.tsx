@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-// Define terminal code with proper Python indentation and syntax highlighting
+// Define terminal code with PROPER Python indentation and syntax highlighting
 const terminalCode = [
   `<span class="python-keyword">class</span> <span class="python-class">FullStackDeveloper</span>:`,
   `    <span class="python-keyword">def</span> <span class="python-function">__init__</span>(self, name, skills):`,
@@ -49,7 +49,7 @@ export default function Terminal() {
           }
         });
       },
-      { threshold: 0.05 } // Even lower threshold for earlier animation trigger
+      { threshold: 0.05 }
     );
 
     if (terminalRef.current) {
@@ -84,7 +84,7 @@ export default function Terminal() {
     let charIndex = 0;
     let isInTag = false;
     let currentTag = "";
-    const TYPING_SPEED = 1.5; // Speed multiplier - higher value = faster typing
+    const TYPING_SPEED = 2; // Even faster typing speed
 
     // Type character by character with improved speed
     function typeCharacter() {
@@ -101,7 +101,7 @@ export default function Terminal() {
       const rawCurrentLine = terminalCode[lineIndex];
 
       // Process multiple characters per frame for faster animation
-      const charsPerFrame = Math.floor(3 * TYPING_SPEED);
+      const charsPerFrame = Math.floor(4 * TYPING_SPEED);
       for (let i = 0; i < charsPerFrame; i++) {
         if (charIndex >= rawCurrentLine.length) break;
         
@@ -126,8 +126,8 @@ export default function Terminal() {
           // Create a single character span for animation
           const charSpan = document.createElement("span");
           charSpan.className = "typed-character";
-          // Much faster animation delay
-          charSpan.style.animationDelay = `${charIndex * 0.001}s`;
+          // Super fast animation delay
+          charSpan.style.animationDelay = `${charIndex * 0.0005}s`;
           charSpan.innerText = char;
           codeContent.appendChild(charSpan);
         }
@@ -142,12 +142,12 @@ export default function Terminal() {
         currentTag = "";
         isInTag = false;
         
-        // Shorter delay between lines
-        setTimeout(typeCharacter, 20); 
+        // Even shorter delay between lines
+        setTimeout(typeCharacter, 10); 
       } else {
         // Process the next batch of characters
         // Skip delay completely for tags, use minimal delay for visible text
-        const nextDelay = isInTag ? 0 : Math.min(10 / TYPING_SPEED, 5);
+        const nextDelay = isInTag ? 0 : 2;
         setTimeout(typeCharacter, nextDelay);
       }
     }
@@ -156,7 +156,7 @@ export default function Terminal() {
     typeCharacter();
   };
 
-  // Optional: Add a way to replay the animation
+  // Option to replay the animation
   const replayAnimation = () => {
     const codeContainer = document.getElementById("codeContainer");
     if (codeContainer) {
@@ -172,8 +172,8 @@ export default function Terminal() {
   };
 
   return (
-    <div className="terminal-container w-full max-w-3xl mx-auto" ref={terminalRef}>
-      <div className="terminal-header flex items-center px-4 py-2 bg-gray-800 rounded-t-lg">
+    <div className="terminal-container w-full max-w-3xl mx-auto rounded-lg overflow-hidden border border-purple-700 shadow-lg shadow-purple-500/20" ref={terminalRef}>
+      <div className="terminal-header flex items-center px-4 py-2 bg-gray-900 border-b border-purple-700">
         <div className="flex items-center gap-2">
           <div className="terminal-btn terminal-btn-red h-3 w-3 rounded-full bg-red-500"></div>
           <div className="terminal-btn terminal-btn-yellow h-3 w-3 rounded-full bg-yellow-500"></div>
@@ -183,19 +183,19 @@ export default function Terminal() {
         {isVisible && hasAnimated && (
           <button 
             onClick={replayAnimation} 
-            className="text-gray-400 hover:text-white text-xs"
+            className="text-gray-400 hover:text-white text-xs bg-gray-800 px-2 py-1 rounded"
           >
             Replay
           </button>
         )}
       </div>
-      <div className="terminal-content p-4 bg-gray-900 rounded-b-lg text-gray-200" id="codeContainer">
+      <div className="terminal-content p-4 bg-gray-950 text-gray-200 overflow-x-auto" id="codeContainer">
         {terminalCode.map((_, index) => (
           <div key={index} className="flex mb-1">
-            <div className="text-gray-500 text-right pr-4 min-w-[40px] select-none border-r border-primary/10 mr-4 font-mono">
+            <div className="text-gray-500 text-right pr-4 min-w-[30px] select-none border-r border-gray-800 mr-4 font-mono">
               {index + 1}
             </div>
-            <div className="code-content font-mono"></div>
+            <div className="code-content font-mono text-base"></div>
           </div>
         ))}
       </div>
@@ -212,11 +212,11 @@ export default function Terminal() {
           }
         }
         
-        .python-keyword { color: #ff79c6; }
-        .python-class { color: #8be9fd; }
+        .python-keyword { color: #ff79c6; font-weight: bold; }
+        .python-class { color: #8be9fd; font-weight: bold; }
         .python-function { color: #50fa7b; }
         .python-string { color: #f1fa8c; }
-        .python-comment { color: #6272a4; }
+        .python-comment { color: #6272a4; font-style: italic; }
       `}</style>
     </div>
   );
