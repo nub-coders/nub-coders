@@ -90,7 +90,7 @@ A messaging platform with instant communication capabilities for teams and organ
     <tr>
       <td>
         <div>
-          <h3>Ankit Kumar's GitHub Stats</h3>
+          <h3>NUB CODER's GitHub Stats</h3>
           <ul>
             <li>✅ Total Stars Earned: 14</li>
             <li>📝 Total Commits (2025): 84</li>
