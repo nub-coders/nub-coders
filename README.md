@@ -90,12 +90,19 @@ A messaging platform with instant communication capabilities for teams and organ
     <tr>
       <td>
         <div>
-          <img src="https://github-readme-stats.vercel.app/api?username=nub-coders&show_icons=true&theme=tokyonight" alt="GitHub Stats" />
+          <h3>Ankit Kumar's GitHub Stats</h3>
+          <ul>
+            <li>✅ Total Stars Earned: 14</li>
+            <li>📝 Total Commits (2025): 84</li>
+            <li>🔄 Total PRs: 5</li>
+            <li>⚠️ Total Issues: 0</li>
+            <li>🤝 Contributed to (last year): 2</li>
+          </ul>
         </div>
       </td>
       <td>
         <div>
-          <img src="https://github-readme-streak-stats.herokuapp.com/?user=nub-coders&theme=tokyonight" alt="GitHub Streak" />
+          <img src="https://github-readme-stats.vercel.app/api?username=nub-coders&show_icons=true&theme=tokyonight" alt="GitHub Stats" />
         </div>
       </td>
     </tr>
@@ -106,13 +113,13 @@ A messaging platform with instant communication capabilities for teams and organ
   <table>
     <tr>
       <td align="center">
-        <img src="https://img.shields.io/badge/Total%20Commits-34-blue" alt="Total Commits" />
+        <img src="https://img.shields.io/badge/Total%20Commits-84-blue" alt="Total Commits" />
       </td>
       <td align="center">
-        <img src="https://img.shields.io/badge/Total%20Commits%20(2025)-14-brightgreen" alt="Total Commits (2025)" />
+        <img src="https://img.shields.io/badge/Total%20Commits%20(2025)-84-brightgreen" alt="Total Commits (2025)" />
       </td>
       <td align="center">
-        <img src="https://img.shields.io/badge/Total%20PRs-1-blueviolet" alt="Total PRs" />
+        <img src="https://img.shields.io/badge/Total%20PRs-5-blueviolet" alt="Total PRs" />
       </td>
     </tr>
     <tr>
@@ -120,7 +127,7 @@ A messaging platform with instant communication capabilities for teams and organ
         <img src="https://img.shields.io/badge/Total%20Issues-0-red" alt="Total Issues" />
       </td>
       <td align="center">
-        <img src="https://img.shields.io/badge/Contributed%20to%20(last%20year)-0-orange" alt="Contributed to (last year)" />
+        <img src="https://img.shields.io/badge/Contributed%20to%20(last%20year)-2-orange" alt="Contributed to (last year)" />
       </td>
       <td align="center">
         <!-- Placeholder for additional stats -->
