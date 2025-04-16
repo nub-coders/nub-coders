@@ -8,9 +8,20 @@ import ContactForm from "@/components/ContactForm";
 import { useScrollProgress } from "@/hooks/useScrollProgress";
 import profileImage from "@assets/profile.jpg";
 
+// Placeholder GitHubStats component
+function GitHubStats() {
+  return (
+    <section id="github-stats" className="py-16">
+      <h2 className="section-title">GitHub Stats</h2>
+      <p>Loading GitHub stats...</p> {/* Replace with actual stats once API call is implemented */}
+    </section>
+  );
+}
+
+
 export default function Home() {
   const { showBackToTop, scrollToTop } = useScrollProgress();
-  
+
   useEffect(() => {
     // Smooth scrolling for anchor links
     const handleAnchorClick = (e: MouseEvent) => {
@@ -26,7 +37,7 @@ export default function Home() {
         }
       }
     };
-    
+
     document.addEventListener('click', handleAnchorClick);
     return () => document.removeEventListener('click', handleAnchorClick);
   }, []);
@@ -34,7 +45,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      
+
       <main className="pt-24 px-4 md:px-10 lg:px-20">
         {/* Hero Section */}
         <section id="home" className="min-h-[80vh] flex flex-col justify-center items-center text-center max-w-4xl mx-auto py-16">
@@ -45,19 +56,19 @@ export default function Home() {
               className="w-32 h-32 rounded-full border-4 border-[var(--primary)] shadow-lg shadow-[var(--primary)]/20"
             />
           </div>
-          
+
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
             <span className="bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] bg-clip-text text-transparent">
               Full Stack Developer
             </span>
           </h1>
-          
+
           <div className="h-16">
             <p id="typingText" className="typed-text text-xl md:text-2xl mb-8 inline-block">
               Building digital experiences that combine creativity with technical excellence
             </p>
           </div>
-          
+
           <div className="flex flex-wrap justify-center gap-4 mt-8">
             <a 
               href="https://t.me/nub_coder_s" 
@@ -87,7 +98,7 @@ export default function Home() {
               YouTube
             </a>
           </div>
-          
+
           <div className="mt-16 w-full">
             <Terminal />
           </div>
@@ -96,7 +107,7 @@ export default function Home() {
         {/* About Section */}
         <section id="about" className="py-16 max-w-6xl mx-auto">
           <h2 className="section-title">About Me</h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="project-card">
               <i className="fas fa-code text-5xl text-[var(--primary)] mb-4"></i>
@@ -114,7 +125,7 @@ export default function Home() {
               <p className="text-[var(--light)]/70">Dedicated to understanding and exceeding client expectations</p>
             </div>
           </div>
-          
+
           <div className="mt-16 bg-[var(--dark)] rounded-xl p-8 border border-[var(--primary)]/20">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               <div>
@@ -144,20 +155,23 @@ export default function Home() {
             </div>
           </div>
         </section>
-        
+
         {/* Skills Section */}
         <Skills />
-        
+
         {/* Projects Section */}
         <Projects />
-        
+
+        {/* GitHub Stats Section */}
+        <GitHubStats />
+
         {/* Testimonials Section */}
         <Testimonials />
-        
+
         {/* Contact Section */}
         <ContactForm />
       </main>
-      
+
       <footer className="bg-[var(--dark)] border-t border-[var(--primary)]/10 py-10">
         <div className="container mx-auto px-4 md:px-10">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -168,7 +182,7 @@ export default function Home() {
               </div>
               <p className="text-[var(--light)]/70 mb-6">Professional web developer creating impactful digital experiences</p>
             </div>
-            
+
             <div className="md:col-span-1">
               <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
               <div className="grid grid-cols-2 gap-2">
@@ -180,7 +194,7 @@ export default function Home() {
                 <a href="#contact" className="text-[var(--light)]/70 hover:text-[var(--light)] transition-colors duration-300">Contact</a>
               </div>
             </div>
-            
+
             <div className="md:col-span-1">
               <h3 className="text-xl font-semibold mb-4">Connect</h3>
               <div className="space-y-3">
@@ -199,13 +213,13 @@ export default function Home() {
               </div>
             </div>
           </div>
-          
+
           <div className="border-t border-[var(--primary)]/10 mt-8 pt-8 text-center text-[var(--light)]/60">
             <p>&copy; {new Date().getFullYear()} Dev. All rights reserved.</p>
           </div>
         </div>
       </footer>
-      
+
       {/* Back to Top Button */}
       <button 
         onClick={scrollToTop}
