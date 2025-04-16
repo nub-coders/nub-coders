@@ -1,0 +1,31 @@
+server {
+    listen 80;
+    server_name nub-coder.tech www.nub-coder.tech;
+
+    # This uses port 8080 internally, different from 3000 or 5000
+    location / {
+        proxy_pass http://localhost:8080;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        
+        # Handle static assets with appropriate caching
+        location ~* \.(jpg|jpeg|png|gif|ico|css|js|svg)$ {
+            expires 7d;
+            add_header Cache-Control "public, max-age=604800";
+        }
+    }
+
+    # Security headers
+    add_header X-Frame-Options "SAMEORIGIN";
+    add_header X-XSS-Protection "1; mode=block";
+    add_header X-Content-Type-Options "nosniff";
+    
+    # Compression for better performance
+    gzip on;
+    gzip_types text/plain text/css application/json application/javascript text/xml application/xml application/xml+rss text/javascript;
+}

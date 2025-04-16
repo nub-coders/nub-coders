@@ -86,47 +86,8 @@ A messaging platform with instant communication capabilities for teams and organ
 ## 📊 GitHub Stats
 
 <div align="center">
-  <table>
-    <tr>
-      <td>
-        <div>
-          <img src="https://github-readme-stats.vercel.app/api?username=nub-coders&show_icons=true&theme=tokyonight" alt="GitHub Stats" />
-        </div>
-      </td>
-      <td>
-        <div>
-          <img src="https://github-readme-streak-stats.herokuapp.com/?user=nub-coders&theme=tokyonight" alt="GitHub Streak" />
-        </div>
-      </td>
-    </tr>
-  </table>
-</div>
-
-<div align="center">
-  <table>
-    <tr>
-      <td align="center">
-        <img src="https://img.shields.io/badge/Total%20Commits-34-blue" alt="Total Commits" />
-      </td>
-      <td align="center">
-        <img src="https://img.shields.io/badge/Total%20Commits%20(2025)-14-brightgreen" alt="Total Commits (2025)" />
-      </td>
-      <td align="center">
-        <img src="https://img.shields.io/badge/Total%20PRs-1-blueviolet" alt="Total PRs" />
-      </td>
-    </tr>
-    <tr>
-      <td align="center">
-        <img src="https://img.shields.io/badge/Total%20Issues-0-red" alt="Total Issues" />
-      </td>
-      <td align="center">
-        <img src="https://img.shields.io/badge/Contributed%20to%20(last%20year)-0-orange" alt="Contributed to (last year)" />
-      </td>
-      <td align="center">
-        <!-- Placeholder for additional stats -->
-      </td>
-    </tr>
-  </table>
+  <img src="https://github-readme-stats.vercel.app/api?username=nub-coders&show_icons=true&theme=tokyonight" alt="GitHub Stats" />
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=nub-coders&theme=tokyonight" alt="GitHub Streak" />
 </div>
 
 ## 🎓 Education & Certifications
@@ -135,7 +96,7 @@ A messaging platform with instant communication capabilities for teams and organ
 - **AWS Certified Developer**
 - **Hackathon Winner** - Best Innovation Category
 
-## 🔗 Let's Connect
+## 📫 Let's Connect
 
 I'm always open to interesting conversations and collaboration opportunities. Feel free to reach out!
 
@@ -148,5 +109,5 @@ I'm always open to interesting conversations and collaboration opportunities. Fe
 
 <div align="center">
   <img src="https://komarev.com/ghpvc/?username=nub-coders&style=flat-square&color=blueviolet" alt="Profile views" />
-  <p class="footer-badge">❇️ From <a href="https://github.com/nub-coders">nub-coders</a></p>
+  <p>⭐️ From <a href="https://github.com/nub-coders">nub-coders</a></p>
 </div>

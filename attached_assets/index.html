@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dev | Full Stack Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="profile.jpg" alt="Dev's Profile">
+            <div class="logo-text">DEV</div>
+        </div>
+        <div class="menu-toggle" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="nav-links" id="navLinks">
+            <a href="#home"><i class="fas fa-home"></i> Home</a>
+            <a href="#about"><i class="fas fa-user"></i> About</a>
+            <a href="#services"><i class="fas fa-cogs"></i> Services</a>
+<a href="https://dockers.nub-coder.tech/" target="_blank" class="docker-link">
+    <i class="fab fa-docker"></i> Docker Projects
+    <span class="link-badge">New</span>
+</a>
+        </div>
+    </nav>
+
+    <div id="overlay" class="overlay"></div>
+
+    <main class="main-content">
+        <section class="hero" id="home">
+            <h1 class="section-title">Full Stack Developer</h1>
+            <p>Building digital experiences that combine creativity with technical excellence</p>
+            <div class="social-links">
+                <a href="https://t.me/nub_coder_s" target="_blank">
+                    <i class="fab fa-telegram"></i>
+                    Telegram
+                </a>
+                <a href="https://github.com/nub-coders/" target="_blank">
+                    <i class="fab fa-github"></i>
+                    GitHub
+                </a>
+                <a href="https://youtube.com/@nub-coder" target="_blank">
+                    <i class="fab fa-youtube"></i>
+                    YouTube
+                </a>
+            </div>
+        </section>
+
+        <section id="terminal">
+            <div class="ide-container" id="terminalContainer">
+                <div class="sidebar">
+                    <i class="fas fa-folder-open sidebar-icon active"></i>
+                    <i class="fas fa-bug sidebar-icon"></i>
+                    <i class="fas fa-search sidebar-icon"></i>
+                    <i class="fas fa-window-maximize sidebar-icon"></i>
+                </div>
+                <div class="terminal-container">
+                    <div class="terminal-header">
+                        <div class="file-tab">
+                            <i class="fab fa-python"></i>
+                            main.py
+                            <span class="close-button">✕</span>
+                        </div>
+                    </div>
+                    <div class="code-container" id="codeContainer"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <h2 class="section-title">About Me</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <i class="fas fa-code fa-3x"></i>
+                    <h3>5+ Years Experience</h3>
+                    <p>Delivering high-quality web solutions across various industries</p>
+                </div>
+                <div class="project-card">
+                    <i class="fas fa-project-diagram fa-3x"></i>
+                    <h3>50+ Projects</h3>
+                    <p>Successfully completed projects ranging from startups to enterprises</p>
+                </div>
+                <div class="project-card">
+                    <i class="fas fa-users fa-3x"></i>
+                    <h3>Client Focused</h3>
+                    <p>Dedicated to understanding and exceeding client expectations</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="services">
+            <h2 class="section-title">Services</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <i class="fas fa-laptop-code fa-3x"></i>
+                    <h3>Web Development</h3>
+                    <p>Custom website development from concept to deployment</p>
+                </div>
+                <div class="project-card">
+                    <i class="fas fa-mobile-alt fa-3x"></i>
+                    <h3>Responsive Design</h3>
+                    <p>Mobile-first approach for all devices</p>
+                </div>
+                <div class="project-card">
+                    <i class="fas fa-rocket fa-3x"></i>
+                    <h3>Performance Optimization</h3>
+                    <p>Speed optimization and SEO-friendly solutions</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Dev</h3>
+                <p>Professional web developer creating impactful digital experiences</p>
+            </div>
+            <div class="footer-section">
+                <h3>Connect</h3>
+                <a href="https://github.com/nub-coders/" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                <a href="https://t.me/nub_coder_s" target="_blank"><i class="fab fa-telegram"></i> Telegram</a>
+                <a href="https://youtube.com/@nub-coder" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p><i class="fas fa-envelope"></i> ankitkr23835@gmail.com</p>
+            </div>
+        </div>
+        <p class="text-center" style="margin-top: 2rem;">&copy; 2023 Dev. All rights reserved.</p>
+    </footer>
+
+    
+
+<!-- Scroll Progress -->
+<div class="scroll-progress"></div>
+
+<!-- Back to Top Button -->
+<button class="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+<script src="script.js"></script>
+</body>
+</html>
