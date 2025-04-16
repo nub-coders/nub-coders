@@ -1,3 +1,4 @@
+
 # Use Alpine Linux as the base image (much smaller than Debian)
 FROM alpine:latest
 
@@ -18,10 +19,10 @@ WORKDIR /app
 # Clone the repository with authentication
 RUN echo "Force rebuild $(date)"
 ARG GITHUB_TOKEN
-RUN git clone https://${GITHUB_TOKEN}@github.com/nub-coders/portfolio . || echo "Repository already exists"
+RUN git clone https://${GITHUB_TOKEN}@github.com/nub-coders/portfolio .
 
 # Install Node.js dependencies and build frontend
-RUN npm ci && \
+RUN npm install && \
     npm run build
 
 # Copy nginx configuration
@@ -36,5 +37,5 @@ RUN mkdir -p /var/log/app
 # Expose port 8080
 EXPOSE 8080
 
-# Start script with auto-update and serve
-CMD ["bash", "-c", "cd /app && git reset --hard && git stash && git pull && nginx && npm run dev"]
+# Start script with auto-update, remove package-lock.json, install dependencies, and serve
+CMD ["bash", "-c", "cd /app && git reset --hard && git stash && git pull && rm -f package-lock.json && npm install && nginx && npm run dev"]
