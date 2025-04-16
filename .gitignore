@@ -24,3 +24,5 @@ package-lock.json
 .replit
 .replit.*
 replit.nix
+.cache
+.upm
