@@ -6,14 +6,76 @@ import Projects from "@/components/Projects";
 import Testimonials from "@/components/Testimonials";
 import ContactForm from "@/components/ContactForm";
 import { useScrollProgress } from "@/hooks/useScrollProgress";
-import profileImage from "@assets/profile.jpg";
+import profileImage from "/assets/profile.jpg";
 
-// Placeholder GitHubStats component
+// GitHub Stats component with actual data
 function GitHubStats() {
   return (
-    <section id="github-stats" className="py-16">
+    <section id="github-stats" className="py-16 max-w-6xl mx-auto">
       <h2 className="section-title">GitHub Stats</h2>
-      <p>Loading GitHub stats...</p> {/* Replace with actual stats once API call is implemented */}
+      
+      <div className="mt-8 bg-[var(--dark)] rounded-xl p-8 border border-[var(--primary)]/20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+          <div>
+            <h3 className="text-2xl font-semibold mb-4 bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] bg-clip-text text-transparent">
+              Ankit Kumar's GitHub Stats
+            </h3>
+            <ul className="space-y-4">
+              <li className="flex items-center gap-3">
+                <i className="fas fa-star text-yellow-400"></i>
+                <span className="font-medium">Total Stars Earned:</span> 
+                <span className="text-[var(--primary)]">14</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <i className="fas fa-code-commit text-green-400"></i>
+                <span className="font-medium">Total Commits (2025):</span> 
+                <span className="text-[var(--primary)]">84</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <i className="fas fa-code-branch text-purple-400"></i>
+                <span className="font-medium">Total PRs:</span> 
+                <span className="text-[var(--primary)]">5</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <i className="fas fa-exclamation-circle text-red-400"></i>
+                <span className="font-medium">Total Issues:</span> 
+                <span className="text-[var(--primary)]">0</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <i className="fas fa-users text-blue-400"></i>
+                <span className="font-medium">Contributed to (last year):</span> 
+                <span className="text-[var(--primary)]">2</span>
+              </li>
+            </ul>
+          </div>
+          <div className="hidden md:flex justify-center items-center">
+            <div className="w-48 h-48 bg-[var(--darker)] rounded-full flex items-center justify-center">
+              <div className="text-6xl font-bold bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] bg-clip-text text-transparent">
+                G+
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+          <div className="bg-[var(--darker)] rounded-lg p-4 border border-[var(--primary)]/10 flex flex-col items-center text-center">
+            <span className="text-sm text-[var(--light)]/70">Total Commits</span>
+            <span className="text-xl font-bold text-[var(--primary)]">84</span>
+          </div>
+          <div className="bg-[var(--darker)] rounded-lg p-4 border border-[var(--primary)]/10 flex flex-col items-center text-center">
+            <span className="text-sm text-[var(--light)]/70">Total Commits (2025)</span>
+            <span className="text-xl font-bold text-[var(--primary)]">84</span>
+          </div>
+          <div className="bg-[var(--darker)] rounded-lg p-4 border border-[var(--primary)]/10 flex flex-col items-center text-center">
+            <span className="text-sm text-[var(--light)]/70">Total PRs</span>
+            <span className="text-xl font-bold text-[var(--primary)]">5</span>
+          </div>
+          <div className="bg-[var(--darker)] rounded-lg p-4 border border-[var(--primary)]/10 flex flex-col items-center text-center">
+            <span className="text-sm text-[var(--light)]/70">Contributed to (last year)</span>
+            <span className="text-xl font-bold text-[var(--primary)]">2</span>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

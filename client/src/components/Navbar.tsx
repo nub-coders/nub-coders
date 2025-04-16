@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useTheme } from "@/hooks/useTheme";
-import profileImage from "@assets/profile.jpg";
+import profileImage from "/assets/profile.jpg";
 
 export default function Navbar() {
   const { theme, toggleTheme } = useTheme();
