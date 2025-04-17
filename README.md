@@ -136,12 +136,6 @@ A messaging platform with instant communication capabilities for teams and organ
   </table>
 </div>
 
-## 🎓 Education & Certifications
-
-- **B.Tech in Computer Science**
-- **AWS Certified Developer**
-- **Hackathon Winner** - Best Innovation Category
-
 ## 🔗 Let's Connect
 
 I'm always open to interesting conversations and collaboration opportunities. Feel free to reach out!
