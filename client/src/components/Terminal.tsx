@@ -10,7 +10,6 @@ const terminalCode = [
   `        self.passion = <span class="python-string">"Creating beautiful web experiences"</span>`,
   ``,
   `    <span class="python-keyword">def</span> <span class="python-function">build_project</span>(self, project_name, technologies):`,
-  `        <span class="python-comment"># Create amazing digital experiences</span>`,
   `        project = self._design_architecture(project_name)`,
   `        self._develop_frontend(project, technologies)`,
   `        self._develop_backend(project, technologies)`,
@@ -19,18 +18,20 @@ const terminalCode = [
   `        <span class="python-keyword">return</span> project`,
   ``,
   `    <span class="python-keyword">def</span> <span class="python-function">get_skills</span>(self):`,
-  `        <span class="python-keyword">return</span> {`,
-  `            <span class="python-string">"Frontend"</span>: [<span class="python-string">"React"</span>, <span class="python-string">"Next.js"</span>, <span class="python-string">"TypeScript"</span>, <span class="python-string">"Tailwind CSS"</span>],`,
-  `            <span class="python-string">"Backend"</span>: [<span class="python-string">"Node.js"</span>, <span class="python-string">"Express"</span>, <span class="python-string">"Python"</span>, <span class="python-string">"Django"</span>],`,
-  `            <span class="python-string">"Database"</span>: [<span class="python-string">"PostgreSQL"</span>, <span class="python-string">"MongoDB"</span>, <span class="python-string">"Redis"</span>]`,
-  `        }`,
+  `        <span class="python-keyword">return</span> self.skills`,
   ``,
-  `<span class="python-comment"># Initialize developer profile</span>`,
-  `developer = FullStackDeveloper(<span class="python-string">"Nub Coder"</span>, [<span class="python-string">"JavaScript"</span>, <span class="python-string">"React"</span>, <span class="python-string">"Node.js"</span>, <span class="python-string">"Python"</span>])`,
-  `portfolio = developer.build_project(<span class="python-string">"Portfolio Website"</span>, [<span class="python-string">"React"</span>, <span class="python-string">"TypeScript"</span>, <span class="python-string">"Tailwind"</span>])`
+  `developer = <span class="python-class">FullStackDeveloper</span>(<span class="python-string">"Nub Coder"</span>, {`,
+  `    <span class="python-string">"Frontend"</span>: [<span class="python-string">"React"</span>, <span class="python-string">"Next.js"</span>, <span class="python-string">"TypeScript"</span>, <span class="python-string">"Tailwind CSS"</span>],`,
+  `    <span class="python-string">"Backend"</span>: [<span class="python-string">"Node.js"</span>, <span class="python-string">"Express"</span>, <span class="python-string">"Python"</span>, <span class="python-string">"Django"</span>],`,
+  `    <span class="python-string">"Database"</span>: [<span class="python-string">"PostgreSQL"</span>, <span class="python-string">"MongoDB"</span>, <span class="python-string">"Redis"</span>]`,
+  `})`,
+  `portfolio = developer.build_project(<span class="python-string">"Portfolio Website"</span>, [<span class="python-string">"React"</span>, <span class="python-string">"TypeScript"</span>, <span class="python-string">"Tailwind"</span>])`,
+  `print(f<span class="python-string">"Developer: {developer.name}"</span>)`,
+  `print(<span class="python-string">"Skills:"</span>, developer.get_skills())`,
+  `print(f<span class="python-string">"Projects Completed: {developer.projects_completed}"</span>)`
 ];
 
-export default function Terminal() {
+export default function Terminal(): JSX.Element {
   const [hasAnimated, setHasAnimated] = useState(false);
   const terminalRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -62,7 +63,7 @@ export default function Terminal() {
       }
     };
   }, [hasAnimated]);
-
+  
   // Optimized and faster letter-by-letter animation
   const startTerminalAnimation = () => {
     const codeContainer = document.getElementById("codeContainer");
@@ -152,7 +153,7 @@ export default function Terminal() {
       }
     }
 
-    // Start the typing animation
+     // Start the typing animation
     typeCharacter();
   };
 
@@ -214,7 +215,7 @@ export default function Terminal() {
         
         .python-keyword { color: #ff79c6; font-weight: bold; }
         .python-class { color: #8be9fd; font-weight: bold; }
-        .python-function { color: #50fa7b; }
+        .python-function { color: #50fa7b; font-style: italic; }
         .python-string { color: #f1fa8c; }
         .python-comment { color: #6272a4; font-style: italic; }
       `}</style>
