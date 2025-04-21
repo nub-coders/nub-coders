@@ -2,36 +2,36 @@ import { useEffect, useRef, useState } from "react";
 
 // Define terminal code with PROPER Python indentation and syntax highlighting
 const terminalCode = [
-  `<span class="python-keyword">class</span> <span class="python-class">FullStackDeveloper</span>:`,
-  `    <span class="python-keyword">def</span> <span class="python-function">__init__</span>(self, name, skills):`, // 1 indent
-  `        self.name = name`, // 2 indent
-  `        self.skills = skills`, // 2 indent
-  `        self.projects_completed = 0`, // 2 indent
-  `        self.passion = <span class="python-string">"Creating beautiful web experiences"</span>`, // 2 indent
-  ``, // 1 indent
-  `    <span class="python-keyword">def</span> <span class="python-function">build_project</span>(self, project_name, technologies):`, // 1 indent
-  `        project = self._design_architecture(project_name)`, // 2 indent
-  `        self._develop_frontend(project, technologies)`, // 2 indent
-  `        self._develop_backend(project, technologies)`, // 2 indent
-  `        self._test_and_deploy(project)`, // 2 indent
-  `        self.projects_completed += 1`, // 2 indent
-  `        <span class="python-keyword">return</span> project`, // 2 indent
-  ``, // 1 indent
-  `    <span class="python-keyword">def</span> <span class="python-function">get_skills</span>(self):`, // 1 indent
-  `        <span class="python-keyword">return</span> self.skills`, // 2 indent
-  ``, // No indent
-  `developer = <span class="python-class">FullStackDeveloper</span>(<span class="python-string">"Nub Coder"</span>, {`, // No indent
-  `    <span class="python-string">"Frontend"</span>: [<span class="python-string">"React"</span>, <span class="python-string">"Next.js"</span>, <span class="python-string">"TypeScript"</span>, <span class="python-string">"Tailwind CSS"</span>],`, // 1 indent
-  `    <span class="python-string">"Backend"</span>: [<span class="python-string">"Node.js"</span>, <span class="python-string">"Express"</span>, <span class="python-string">"Python"</span>, <span class="python-string">"Django"</span>],`, // 1 indent
-  `    <span class="python-string">"Database"</span>: [<span class="python-string">"PostgreSQL"</span>, <span class="python-string">"MongoDB"</span>, <span class="python-string">"Redis"</span>]`, // 1 indent
-  `})`, // No indent
-  `portfolio = developer.build_project(<span class="python-string">"Portfolio Website"</span>, [<span class="python-string">"React"</span>, <span class="python-string">"TypeScript"</span>, <span class="python-string">"Tailwind"</span>])`, // No indent
-  `print(f<span class="python-string">"Developer: {developer.name}"</span>)`, // No indent
-  `print(<span class="python-string">"Skills:"</span>, developer.get_skills())`, // No indent
-  `print(f<span class="python-string">"Projects Completed: {developer.projects_completed}"</span>)` // No indent
+  `<span class="python-keyword">class</span> <span class="python-class">FullStackDeveloper</span>:`, // 0
+  `    <span class="python-keyword">def</span> <span class="python-function">__init__</span>(self, name, skills):`, // 1
+  `        self.name = name`, // 2
+  `        self.skills = skills`, // 2
+  `        self.projects_completed = 0`, // 2
+  `        self.passion = <span class="python-string">"Creating beautiful web experiences"</span>`, // 2
+  ``, // 1
+  `    <span class="python-keyword">def</span> <span class="python-function">build_project</span>(self, project_name, technologies):`, // 1
+  `        project = self._design_architecture(project_name)`, // 2
+  `        self._develop_frontend(project, technologies)`, // 2
+  `        self._develop_backend(project, technologies)`, // 2
+  `        self._test_and_deploy(project)`, // 2
+  `        self.projects_completed += 1`, // 2
+  `        <span class="python-keyword">return</span> project`, // 2
+  ``, // 1
+  `    <span class="python-keyword">def</span> <span class="python-function">get_skills</span>(self):`, // 1
+  `        <span class="python-keyword">return</span> self.skills`, // 2
+  ``,  // 0
+  `developer = <span class="python-class">FullStackDeveloper</span>(<span class="python-string">"Nub Coder"</span>, {`, // 0
+  `    <span class="python-string">"Frontend"</span>: [<span class="python-string">"React"</span>, <span class="python-string">"Next.js"</span>, <span class="python-string">"TypeScript"</span>, <span class="python-string">"Tailwind CSS"</span>],`, // 1
+  `    <span class="python-string">"Backend"</span>: [<span class="python-string">"Node.js"</span>, <span class="python-string">"Express"</span>, <span class="python-string">"Python"</span>, <span class="python-string">"Django"</span>],`, // 1
+  `    <span class="python-string">"Database"</span>: [<span class="python-string">"PostgreSQL"</span>, <span class="python-string">"MongoDB"</span>, <span class="python-string">"Redis"</span>]`, // 1
+  `})`, // 0
+  `portfolio = developer.build_project(<span class="python-string">"Portfolio Website"</span>, [<span class="python-string">"React"</span>, <span class="python-string">"TypeScript"</span>, <span class="python-string">"Tailwind"</span>])`, // 0
+  `print(f<span class="python-string">"Developer: {developer.name}"</span>)`, // 0
+  `print(<span class="python-string">"Skills:"</span>, developer.get_skills())`, // 0
+  `print(f<span class="python-string">"Projects Completed: {developer.projects_completed}"</span>)` // 0
 ];
 
-export default function Terminal(): JSX.Element {
+export default function Terminal() {
   const [hasAnimated, setHasAnimated] = useState(false);
   const terminalRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -63,7 +63,7 @@ export default function Terminal(): JSX.Element {
       }
     };
   }, [hasAnimated]);
-  
+
   // Optimized and faster letter-by-letter animation
   const startTerminalAnimation = () => {
     const codeContainer = document.getElementById("codeContainer");
@@ -73,12 +73,12 @@ export default function Terminal(): JSX.Element {
     terminalCode.forEach((line, index) => {
       const lineDiv = codeContainer.children[index];
       if (!lineDiv) return;
-      
+
       const codeContent = lineDiv.querySelector(".code-content");
       if (!codeContent) return;
-      
+
       // Clear any existing content
-      codeContent.innerHTML = '';
+      codeContent.innerHTML = "";
     });
 
     let lineIndex = 0;
@@ -95,7 +95,7 @@ export default function Terminal(): JSX.Element {
 
       const lineDiv = codeContainer.children[lineIndex];
       if (!lineDiv) return;
-      
+
       const codeContent = lineDiv.querySelector(".code-content");
       if (!codeContent) return;
 
@@ -104,8 +104,7 @@ export default function Terminal(): JSX.Element {
       // Process multiple characters per frame for faster animation
       const charsPerFrame = Math.floor(4 * TYPING_SPEED);
       for (let i = 0; i < charsPerFrame; i++) {
-        if (charIndex >= rawCurrentLine.length) break;
-        
+        if (charIndex >= rawCurrentLine.length) break; 
         const char = rawCurrentLine[charIndex];
 
         if (char === "<" && !isInTag) {
@@ -114,10 +113,10 @@ export default function Terminal(): JSX.Element {
         } else if (char === ">" && isInTag) {
           isInTag = false;
           currentTag += char;
-          
+
           // Add the tag directly to the content
           const tagSpan = document.createElement("span");
-          tagSpan.innerHTML = currentTag;
+          tagSpan.innerHTML = currentTag; 
           codeContent.appendChild(tagSpan);
           
           currentTag = "";
@@ -144,7 +143,7 @@ export default function Terminal(): JSX.Element {
         isInTag = false;
         
         // Even shorter delay between lines
-        setTimeout(typeCharacter, 10); 
+        setTimeout(typeCharacter, 10);
       } else {
         // Process the next batch of characters
         // Skip delay completely for tags, use minimal delay for visible text
@@ -164,7 +163,7 @@ export default function Terminal(): JSX.Element {
       // Clear all content
       Array.from(codeContainer.children).forEach(line => {
         const codeContent = line.querySelector(".code-content");
-        if (codeContent) codeContent.innerHTML = '';
+        if (codeContent) codeContent.innerHTML = "";
       });
       
       // Restart animation
@@ -212,7 +211,7 @@ export default function Terminal(): JSX.Element {
             opacity: 1;
           }
         }
-        
+
         .python-keyword { color: #ff79c6; font-weight: bold; }
         .python-class { color: #8be9fd; font-weight: bold; }
         .python-function { color: #50fa7b; font-style: italic; }
