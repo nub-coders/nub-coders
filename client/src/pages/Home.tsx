@@ -186,35 +186,6 @@ export default function Home() {
               <p className="text-[var(--light)]/70">Dedicated to understanding and exceeding client expectations</p>
             </div>
           </div>
-
-          <div className="mt-16 bg-[var(--dark)] rounded-xl p-8 border border-[var(--primary)]/20">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-              <div>
-                <h3 className="text-2xl font-semibold mb-4 bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] bg-clip-text text-transparent">My Journey</h3>
-                <p className="text-[var(--light)]/80 mb-4">I'm a passionate full-stack developer with expertise in modern web technologies. My journey began 5 years ago when I built my first web application, and I've been hooked ever since.</p>
-                <p className="text-[var(--light)]/80 mb-4">I specialize in creating robust, scalable applications with clean, maintainable code. My approach combines technical excellence with user-centered design to deliver exceptional digital experiences.</p>
-                <p className="text-[var(--light)]/80">When I'm not coding, you'll find me exploring new technologies, contributing to open-source projects, or sharing knowledge through my YouTube channel.</p>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-[var(--darker)] rounded-lg p-4 border border-[var(--primary)]/10 flex flex-col items-center text-center">
-                  <i className="fas fa-graduation-cap text-3xl text-[var(--secondary)] mb-3"></i>
-                  <h4 className="font-medium">B.Tech in Computer Science</h4>
-                </div>
-                <div className="bg-[var(--darker)] rounded-lg p-4 border border-[var(--primary)]/10 flex flex-col items-center text-center">
-                  <i className="fas fa-certificate text-3xl text-[var(--secondary)] mb-3"></i>
-                  <h4 className="font-medium">AWS Certified Developer</h4>
-                </div>
-                <div className="bg-[var(--darker)] rounded-lg p-4 border border-[var(--primary)]/10 flex flex-col items-center text-center">
-                  <i className="fas fa-award text-3xl text-[var(--secondary)] mb-3"></i>
-                  <h4 className="font-medium">Hackathon Winner</h4>
-                </div>
-                <div className="bg-[var(--darker)] rounded-lg p-4 border border-[var(--primary)]/10 flex flex-col items-center text-center">
-                  <i className="fas fa-book text-3xl text-[var(--secondary)] mb-3"></i>
-                  <h4 className="font-medium">Tech Blogger</h4>
-                </div>
-              </div>
-            </div>
-          </div>
         </section>
 
         {/* Skills Section */}
