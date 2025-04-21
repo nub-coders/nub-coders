@@ -1,9 +1,8 @@
 import { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import Terminal from "@/components/Terminal";
-import Skills from "@/components/Skills";
-import Projects from "@/components/Projects";
 import Testimonials from "@/components/Testimonials";
+import Skills from "@/components/Skills";
 import ContactForm from "@/components/ContactForm";
 import { useScrollProgress } from "@/hooks/useScrollProgress";
 import profileImage from "/assets/profile.jpg";
@@ -220,9 +219,6 @@ export default function Home() {
 
         {/* Skills Section */}
         <Skills />
-
-        {/* Projects Section */}
-        <Projects />
 
         {/* GitHub Stats Section */}
         <GitHubStats />
