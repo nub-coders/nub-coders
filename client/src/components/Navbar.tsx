@@ -41,13 +41,6 @@ export default function Navbar() {
           <div className="text-2xl font-semibold bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] bg-clip-text text-transparent">DEV</div>
         </div>
         
-        {/* Theme Toggle Button */}
-        <button 
-          onClick={toggleTheme} 
-          className="absolute left-1/2 -translate-x-1/2 bg-[var(--dark)]/80 border border-[var(--primary)]/20 rounded-full p-2 hidden md:flex items-center justify-center transition-all duration-300 hover:border-[var(--primary)]/50"
-        >
-          <i className={`fas ${theme === "dark" ? "fa-sun text-yellow-400" : "fa-moon text-[var(--primary)]"}`}></i>
-        </button>
         
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-6">
@@ -59,15 +52,6 @@ export default function Navbar() {
           </a>
           <a href="#skills" className="text-[var(--light)]/90 hover:text-[var(--light)] flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-[var(--primary)]/10 transition-all duration-300">
             <i className="fas fa-code"></i> Skills
-          </a>
-          <a href="#projects" className="text-[var(--light)]/90 hover:text-[var(--light)] flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-[var(--primary)]/10 transition-all duration-300">
-            <i className="fas fa-project-diagram"></i> Projects
-          </a>
-          <a href="#testimonials" className="text-[var(--light)]/90 hover:text-[var(--light)] flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-[var(--primary)]/10 transition-all duration-300">
-            <i className="fas fa-star"></i> Testimonials
-          </a>
-          <a href="#contact" className="text-[var(--light)]/90 hover:text-[var(--light)] flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-[var(--primary)]/10 transition-all duration-300">
-            <i className="fas fa-envelope"></i> Contact
           </a>
           <a 
             href="https://dockers.nub-coder.tech/" 
@@ -101,24 +85,7 @@ export default function Navbar() {
         <a href="#skills" onClick={closeMobileMenu} className="text-xl flex items-center gap-3">
           <i className="fas fa-code"></i> Skills
         </a>
-        <a href="#projects" onClick={closeMobileMenu} className="text-xl flex items-center gap-3">
-          <i className="fas fa-project-diagram"></i> Projects
-        </a>
-        <a href="#testimonials" onClick={closeMobileMenu} className="text-xl flex items-center gap-3">
-          <i className="fas fa-star"></i> Testimonials
-        </a>
-        <a href="#contact" onClick={closeMobileMenu} className="text-xl flex items-center gap-3">
-          <i className="fas fa-envelope"></i> Contact
-        </a>
-        <a href="https://dockers.nub-coder.tech/" target="_blank" rel="noreferrer" className="text-xl flex items-center gap-3">
-          <i className="fab fa-docker"></i> Docker Projects
-          <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[var(--secondary)] text-[var(--darker)]">New</span>
-        </a>
         
-        {/* Mobile Theme Toggle */}
-        <button onClick={toggleTheme} className="mt-6 bg-[var(--dark)]/80 border border-[var(--primary)]/20 rounded-full p-3 flex items-center justify-center">
-          <i className={`fas ${theme === "dark" ? "fa-sun text-yellow-400" : "fa-moon text-[var(--primary)]"} text-xl`}></i>
-        </button>
       </div>
     </>
   );
