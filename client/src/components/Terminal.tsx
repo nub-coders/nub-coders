@@ -2,33 +2,33 @@ import { useEffect, useRef, useState } from "react";
 
 // Define terminal code with PROPER Python indentation and syntax highlighting
 const terminalCode = [
-  `<span class="python-keyword">class</span> <span class="python-class">FullStackDeveloper</span>:`, // 0
-  `    <span class="python-keyword">def</span> <span class="python-function">__init__</span>(self, name, skills):`, // 1
-  `        self.name = name`, // 2
-  `        self.skills = skills`, // 2
-  `        self.projects_completed = 0`, // 2
-  `        self.passion = <span class="python-string">"Creating beautiful web experiences"</span>`, // 2
-  ``, // 1
-  `    <span class="python-keyword">def</span> <span class="python-function">build_project</span>(self, project_name, technologies):`, // 1
-  `        project = self._design_architecture(project_name)`, // 2
-  `        self._develop_frontend(project, technologies)`, // 2
-  `        self._develop_backend(project, technologies)`, // 2
-  `        self._test_and_deploy(project)`, // 2
-  `        self.projects_completed += 1`, // 2
-  `        <span class="python-keyword">return</span> project`, // 2
-  ``, // 1
-  `    <span class="python-keyword">def</span> <span class="python-function">get_skills</span>(self):`, // 1
-  `        <span class="python-keyword">return</span> self.skills`, // 2
-  ``,  // 0
-  `developer = <span class="python-class">FullStackDeveloper</span>(<span class="python-string">"Nub Coder"</span>, {`, // 0
-  `    <span class="python-string">"Frontend"</span>: [<span class="python-string">"React"</span>, <span class="python-string">"Next.js"</span>, <span class="python-string">"TypeScript"</span>, <span class="python-string">"Tailwind CSS"</span>],`, // 1
-  `    <span class="python-string">"Backend"</span>: [<span class="python-string">"Node.js"</span>, <span class="python-string">"Express"</span>, <span class="python-string">"Python"</span>, <span class="python-string">"Django"</span>],`, // 1
-  `    <span class="python-string">"Database"</span>: [<span class="python-string">"PostgreSQL"</span>, <span class="python-string">"MongoDB"</span>, <span class="python-string">"Redis"</span>]`, // 1
-  `})`, // 0
-  `portfolio = developer.build_project(<span class="python-string">"Portfolio Website"</span>, [<span class="python-string">"React"</span>, <span class="python-string">"TypeScript"</span>, <span class="python-string">"Tailwind"</span>])`, // 0
-  `print(f<span class="python-string">"Developer: {developer.name}"</span>)`, // 0
-  `print(<span class="python-string">"Skills:"</span>, developer.get_skills())`, // 0
-  `print(f<span class="python-string">"Projects Completed: {developer.projects_completed}"</span>)` // 0
+  `<span class="python-keyword">class</span> <span class="python-class">FullStackDeveloper</span>:`,
+  `  <span class="python-keyword">def</span> <span class="python-function">__init__</span>(self, name, skills):`,
+  `    self.name = name`,
+  `    self.skills = skills`,
+  `    self.projects_completed = 0`,
+  `    self.passion = <span class="python-string">"Creating beautiful web experiences"</span>`,
+  ``,
+  `  <span class="python-keyword">def</span> <span class="python-function">build_project</span>(self, project_name, technologies):`,
+  `    project = self._design_architecture(project_name)`,
+  `    self._develop_frontend(project, technologies)`,
+  `    self._develop_backend(project, technologies)`,
+  `    self._test_and_deploy(project)`,
+  `    self.projects_completed += 1`,
+  `    <span class="python-keyword">return</span> project`,
+  ``,
+  `  <span class="python-keyword">def</span> <span class="python-function">get_skills</span>(self):`,
+  `    <span class="python-keyword">return</span> self.skills`,
+  ``,
+  `developer = <span class="python-class">FullStackDeveloper</span>(<span class="python-string">"Nub Coder"</span>, {`,
+  `  <span class="python-string">"Frontend"</span>: [<span class="python-string">"React"</span>, <span class="python-string">"Next.js"</span>, <span class="python-string">"TypeScript"</span>, <span class="python-string">"Tailwind CSS"</span>],`,
+  `  <span class="python-string">"Backend"</span>: [<span class="python-string">"Node.js"</span>, <span class="python-string">"Express"</span>, <span class="python-string">"Python"</span>, <span class="python-string">"Django"</span>],`,
+  `  <span class="python-string">"Database"</span>: [<span class="python-string">"PostgreSQL"</span>, <span class="python-string">"MongoDB"</span>, <span class="python-string">"Redis"</span>]`,
+  `})`,
+  `portfolio = developer.build_project(<span class="python-string">"Portfolio Website"</span>, [<span class="python-string">"React"</span>, <span class="python-string">"TypeScript"</span>, <span class="python-string">"Tailwind"</span>])`,
+  `print(f<span class="python-string">"Developer: {developer.name}"</span>)`,
+  `print(<span class="python-string">"Skills:"</span>, developer.get_skills())`,
+  `print(f<span class="python-string">"Projects Completed: {developer.projects_completed}"</span>)`
 ];
 
 export default function Terminal() {
