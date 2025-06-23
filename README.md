@@ -1,4 +1,4 @@
-# Full Stack Developer Portfolio
+# Full Stack Developer
 
 <div align="center">
   
