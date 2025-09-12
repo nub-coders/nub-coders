@@ -155,32 +155,20 @@ npm start
 
 #### Build Docker Image
 ```bash
-docker build -t portfolio-website .
+docker build -t portfolio .
 ```
 
 #### Run Docker Container
 ```bash
-docker run -d -p 8080:8080 --name portfolio portfolio-website
+docker run -d \
+  --name portfolio \
+  --network web \
+  -e VIRTUAL_HOST=dev.nub-coder.tech \
+  -e LETSENCRYPT_HOST=dev.nub-coder.tech \
+  portfolio
 ```
 
-#### Docker Compose (Optional)
-Create a `docker-compose.yml`:
-```yaml
-version: '3.8'
-services:
-  portfolio:
-    build: .
-    ports:
-      - "8080:8080"
-    environment:
-      - NODE_ENV=production
-    restart: unless-stopped
-```
-
-Run with Docker Compose:
-```bash
-docker-compose up -d
-```
+This setup assumes you have an nginx-proxy with Let's Encrypt companion running on the `web` network for automatic SSL certificate generation and reverse proxy handling.
 
 ### Replit Deployment
 This project is optimized for Replit deployment:
