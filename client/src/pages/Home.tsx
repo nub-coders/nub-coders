@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import Navbar from "@/components/Navbar";
-import Terminal from "@/components/Terminal";
 import Testimonials from "@/components/Testimonials";
 import Skills from "@/components/Skills";
 import ContactForm from "@/components/ContactForm";
@@ -160,9 +159,6 @@ export default function Home() {
             </a>
           </div>
 
-          <div className="mt-16 w-full">
-            <Terminal />
-          </div>
         </section>
 
         {/* About Section */}
