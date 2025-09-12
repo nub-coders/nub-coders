@@ -21,8 +21,8 @@ const projects: Project[] = [
     category: "web",
     image: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     tags: ["React", "Node.js", "MongoDB", "Stripe API"],
-    demoLink: "#",
-    codeLink: "#",
+    demoLink: "https://ecommerce-demo.nub-coder.tech",
+    codeLink: "https://github.com/nub-coders/ecommerce-platform",
     badgeText: "Web App",
     badgeClass: "bg-[var(--primary)]/20 text-[var(--primary)]"
   },
@@ -32,8 +32,8 @@ const projects: Project[] = [
     category: "mobile",
     image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     tags: ["React Native", "Firebase", "Redux", "Health API"],
-    demoLink: "#",
-    codeLink: "#",
+    demoLink: "https://fitness-tracker-demo.nub-coder.tech",
+    codeLink: "https://github.com/nub-coders/fitness-tracker-app",
     badgeText: "Mobile App",
     badgeClass: "bg-[var(--secondary)]/20 text-[var(--secondary)]"
   },
@@ -43,8 +43,8 @@ const projects: Project[] = [
     category: "api",
     image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     tags: ["Node.js", "Express", "PostgreSQL", "JWT"],
-    demoLink: "#",
-    codeLink: "#",
+    demoLink: "https://api-docs.nub-coder.tech/banking",
+    codeLink: "https://github.com/nub-coders/banking-api-service",
     badgeText: "API",
     badgeClass: "bg-blue-500/20 text-blue-400"
   },
@@ -54,8 +54,8 @@ const projects: Project[] = [
     category: "web",
     image: "https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     tags: ["Vue.js", "Django", "PostgreSQL", "Google Maps API"],
-    demoLink: "#",
-    codeLink: "#",
+    demoLink: "https://realestate-demo.nub-coder.tech",
+    codeLink: "https://github.com/nub-coders/real-estate-platform",
     badgeText: "Web App",
     badgeClass: "bg-[var(--primary)]/20 text-[var(--primary)]"
   },
@@ -65,8 +65,8 @@ const projects: Project[] = [
     category: "mobile",
     image: "https://images.unsplash.com/photo-1522199755839-a2bacb67c546?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     tags: ["Flutter", "Firebase", "Google Places API", "Mapbox"],
-    demoLink: "#",
-    codeLink: "#",
+    demoLink: "https://travel-companion-demo.nub-coder.tech",
+    codeLink: "https://github.com/nub-coders/travel-companion-app",
     badgeText: "Mobile App",
     badgeClass: "bg-[var(--secondary)]/20 text-[var(--secondary)]"
   },
@@ -76,8 +76,8 @@ const projects: Project[] = [
     category: "api",
     image: "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     tags: ["Python", "FastAPI", "Redis", "Docker"],
-    demoLink: "#",
-    codeLink: "#",
+    demoLink: "https://api-docs.nub-coder.tech/weather",
+    codeLink: "https://github.com/nub-coders/weather-data-api",
     badgeText: "API",
     badgeClass: "bg-blue-500/20 text-blue-400"
   }
