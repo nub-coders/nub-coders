@@ -115,9 +115,18 @@ async function processReadme(readmePath) {
   let content = await readFile(readmePath, 'utf8');
   const original = content;
 
+  // Determine owner/repo if not provided via env
+  if (!owner) {
+    const { detectedOwner, detectedRepo } = detectOwnerRepoFromContent(content);
+    if (detectedOwner) owner = detectedOwner;
+    if (!repo && detectedRepo) repo = detectedRepo;
+  }
+
   // Replace usernames and repo paths in badges/images/links
-  const replace = replacerFactory(owner, repo);
-  content = replace(content);
+  if (owner) {
+    const replace = replacerFactory(owner, repo);
+    content = replace(content);
+  }
 
   // Update the STATS block if markers exist
   const startTag = '<!-- STATS_START -->';
