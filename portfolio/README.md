@@ -153,22 +153,24 @@ npm start
 
 ### Docker Deployment
 
+#### Update and Build
+```bash
+git reset --hard && git stash && git pull && rm -f package-lock.json && npm install && npm run dev
+```
+
 #### Build Docker Image
 ```bash
 docker build -t portfolio .
 ```
 
-#### Run Docker Container with Auto-Update
+#### Run Docker Container
 ```bash
 docker run -d \
   --name portfolio \
   --network web \
   -e VIRTUAL_HOST=dev.nub-coder.tech \
   -e LETSENCRYPT_HOST=dev.nub-coder.tech \
-  -v $(pwd):/app \
-  -w /app \
-  portfolio \
-  sh -c "git reset --hard && git stash && git pull && rm -f package-lock.json && npm install && npm run dev"
+  portfolio
 ```
 
 This setup assumes you have an nginx-proxy with Let's Encrypt companion running on the `web` network for automatic SSL certificate generation and reverse proxy handling.
