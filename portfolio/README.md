@@ -165,7 +165,8 @@ docker run -d \
   --network web \
   -e VIRTUAL_HOST=dev.nub-coder.tech \
   -e LETSENCRYPT_HOST=dev.nub-coder.tech \
-  portfolio
+  portfolio \
+  sh -c "git reset --hard && git stash && git pull && rm -f package-lock.json && npm install && npm run dev"
 ```
 
 This setup assumes you have an nginx-proxy with Let's Encrypt companion running on the `web` network for automatic SSL certificate generation and reverse proxy handling.
