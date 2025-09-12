@@ -4,7 +4,8 @@
 
 ![Profile Banner](https://img.shields.io/badge/Full%20Stack-Developer-blueviolet?style=for-the-badge)
 
-[![GitHub](https://img.shields.io/badge/GitHub-nub--coders-blue?logo=github&style=flat-square)](https://github.com/nub-coders/[![YouTube](https://img.shields.io/badge/YouTube-nub--coder-red?logo=youtube&style=flat-square)](https://youtube.com/@nub-coder)
+[![GitHub](https://img.shields.io/badge/GitHub-nub--coders-blue?logo=github&style=flat-square)](https://github.com/nub-coders)
+[![YouTube](https://img.shields.io/badge/YouTube-nub--coder-red?logo=youtube&style=flat-square)](https://youtube.com/@nub-coder)
 [![Telegram](https://img.shields.io/badge/Telegram-nub__coder__s-blue?logo=telegram&style=flat-square)](https://t.me/nub_coder_s)
 [![Email](https://img.shields.io/badge/Email-nubcoders%40gmail.com-orange?logo=gmail&style=flat-square)](mailto:nubcoders@gmail.com)
   
@@ -14,10 +15,10 @@
 
 I'm a passionate Full Stack Developer with 5+ years of experience creating modern web applications. I specialize in building robust, user-friendly solutions that combine technical excellence with creative design. My approach focuses on developing scalable applications with clean, maintainable code.
 
-- 🚀 Completed 50+ projects across various industries
-- 💡 Constantly exploring new technologies and frameworks
-- 📝 Sharing knowledge through my YouTube channel
-- 🌱 Always learning and improving my craft
+- 🚀 Completed 50+ projects across various industries  
+- 💡 Constantly exploring new technologies and frameworks  
+- 📝 Sharing knowledge through my YouTube channel  
+- 🌱 Always learning and improving my craft  
 
 ## 🛠️ Technical Skills
 
@@ -53,43 +54,43 @@ I'm a passionate Full Stack Developer with 5+ years of experience creating moder
 A full-featured online store with product management, shopping cart, payment processing, and order tracking.
 
 **Technologies**: React, Node.js, Express, MongoDB, Stripe API  
-**Features**: 
-- Responsive design for all device sizes
-- Real-time inventory management
-- Secure payment processing
-- User authentication and profiles
-- Advanced product filtering and search
+**Features**:  
+- Responsive design for all device sizes  
+- Real-time inventory management  
+- Secure payment processing  
+- User authentication and profiles  
+- Advanced product filtering and search  
 
 ### Content Management System
 A customizable CMS for businesses to manage their website content without technical knowledge.
 
 **Technologies**: Next.js, TypeScript, PostgreSQL, AWS S3  
-**Features**:
-- Drag-and-drop page builder
-- Media library with image optimization
-- Role-based access control
-- Versioning and content scheduling
-- SEO optimization tools
+**Features**:  
+- Drag-and-drop page builder  
+- Media library with image optimization  
+- Role-based access control  
+- Versioning and content scheduling  
+- SEO optimization tools  
 
 ### Real-time Chat Application
 A messaging platform with instant communication capabilities for teams and organizations.
 
 **Technologies**: React, Socket.io, Node.js, Redis  
-**Features**:
-- Real-time message delivery
-- Read receipts and typing indicators
-- File sharing and media preview
-- Message search and filtering
-- End-to-end encryption
+**Features**:  
+- Real-time message delivery  
+- Read receipts and typing indicators  
+- File sharing and media preview  
+- Message search and filtering  
+- End-to-end encryption  
 
 ## 📊 GitHub Stats
 
 <div align="center">
   
-  ![GitHub Stats](https://github-readme-stats.vercel.app/api?username=nub-coders&show_icons=true&theme=tokyonight&count_private=true)
-  
-  ![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=nub-coders&layout=compact&theme=tokyonight)
-  
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=nub-coders&show_icons=true&theme=tokyonight&count_private=true)  
+
+![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=nub-coders&layout=compact&theme=tokyonight)  
+
 </div>
 
 <div align="center">
@@ -98,45 +99,6 @@ A messaging platform with instant communication capabilities for teams and organ
       <td align="center">
         <img src="https://img.shields.io/github/followers/nub-coders?label=Followers&style=social" alt="Followers" />
       </td>
-      <td align="center">
-        <img src="https://img.shields.io/github/stars/nub-coders?affiliations=OWNER&label=Total%20Stars&style=social" alt="Total Stars" />
-      </td>
     </tr>
   </table>
-</div>
-
-## 🔗 Let's Connect
-
-I'm always open to interesting conversations and collaboration opportunities. Feel free to reach out!
-
-- **Email**: [nubcoders@gmail.com](mailto:nubcoders@gmail.com)
-- **GitHub**: [github.com/nub-coders](https://github.com/nub-coders/- **Telegram**: [t.me/nub_coder_s](https://t.me/nub_coder_s)
-- **YouTube**: [youtube.com/@nub-coder](https://youtube.com/@nub-coder)
-
----
-
-<div align="center">
-  <img src="https://komarev.com/ghpvc/?username=nub-coders&style=flat-square&color=blueviolet" alt="Profile views" />
-  
-  **❇️ From [nub-coders](https://github.com/nub-coders/**
-</div>      <td align="center">
-        <img src="https://img.shields.io/github/stars/nub-coders?affiliations=OWNER&label=Total%20Stars&color=yellow" alt="Total Stars" />
-      </td>
-    </tr>
-  </table>
-</div>
-
-## 🔗 Let's Connect
-
-I'm always open to interesting conversations and collaboration opportunities. Feel free to reach out!
-
-- **Email**: [nubcoders@gmail.com](mailto:nubcoders@gmail.com)
-- **GitHub**: [github.com/nub-coders](https://github.com/nub-coders/- **Telegram**: [t.me/nub_coder_s](https://t.me/nub_coder_s)
-- **YouTube**: [youtube.com/@nub-coder](https://youtube.com/@nub-coder)
-
----
-
-<div align="center">
-  <img src="https://komarev.com/ghpvc/?username=nub-coders&style=flat-square&color=blueviolet" alt="Profile views" />
-  <p class="footer-badge">❇️ From <a href="https://github.com/nub-coders/">nub-coders</a></p>
 </div>
