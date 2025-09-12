@@ -1,142 +1,356 @@
-# Full Stack Developer
+# Portfolio Website - Professional Full Stack Developer
 
-<div align="center">
-  
-  ![Profile Banner](https://img.shields.io/badge/Full%20Stack-Developer-blueviolet?style=for-the-badge)
-  
-  [![GitHub](https://img.shields.io/badge/GitHub-nub--coders-blue?logo=github&style=flat-square)](https://github.com/nub-coders/[![YouTube](https://img.shields.io/badge/YouTube-nub--coder-red?logo=youtube&style=flat-square)](https://youtube.com/@nub-coder)
-  [![Telegram](https://img.shields.io/badge/Telegram-nub__coder__s-blue?logo=telegram&style=flat-square)](https://t.me/nub_coder_s)
-  [![Email](https://img.shields.io/badge/Email-nubcoders%40gmail.com-orange?logo=gmail&style=flat-square)](mailto:nubcoders@gmail.com)
-  
-</div>
+A modern, responsive portfolio website built with React, TypeScript, and Express.js, showcasing professional projects and technical expertise.
 
-## 👨‍💻 About Me
+![Portfolio Banner](https://img.shields.io/badge/Portfolio-Full%20Stack%20Developer-blueviolet?style=for-the-badge)
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](https://choosealicense.com/licenses/mit/)
+[![Node.js](https://img.shields.io/badge/Node.js-20+-green?style=for-the-badge&logo=node.js)](https://nodejs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.6+-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
 
-I'm a passionate Full Stack Developer with 5+ years of experience creating modern web applications. I specialize in building robust, user-friendly solutions that combine technical excellence with creative design. My approach focuses on developing scalable applications with clean, maintainable code.
+## ✨ Features
 
-- 🚀 Completed 50+ projects across various industries
-- 💡 Constantly exploring new technologies and frameworks
-- 📝 Sharing knowledge through my YouTube channel
-- 🌱 Always learning and improving my craft
+- **Modern Design**: Clean, professional interface with smooth animations
+- **Responsive Layout**: Optimized for all devices (mobile, tablet, desktop)
+- **Interactive Components**: Dynamic project filtering, terminal animation, contact forms
+- **Real-time Updates**: Hot module replacement for development
+- **SEO Optimized**: Meta tags and semantic HTML structure
+- **Fast Performance**: Optimized builds with Vite and modern web technologies
+- **Type Safe**: Full TypeScript implementation
+- **Accessible**: WCAG compliant with proper ARIA labels and keyboard navigation
 
-## 🛠️ Technical Skills
+## 🚀 Live Demo
+
+Visit the live portfolio: **[https://portfolio.nub-coder.tech](https://portfolio.nub-coder.tech)**
+
+## 🛠️ Technology Stack
 
 ### Frontend
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+- **React 18** - Modern React with hooks and functional components
+- **TypeScript** - Type-safe JavaScript development
+- **Tailwind CSS** - Utility-first CSS framework
+- **Framer Motion** - Smooth animations and transitions
+- **Radix UI** - Accessible component primitives
+- **React Query** - Server state management
+- **Wouter** - Lightweight routing
 
 ### Backend
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
-![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)
+- **Express.js** - Fast, minimalist web framework
+- **Node.js 20+** - JavaScript runtime
+- **TypeScript** - Server-side type safety
+- **Drizzle ORM** - Type-safe database operations
+- **PostgreSQL** - Reliable relational database
+- **Session Management** - Express sessions with Redis/Memory store
 
-### Database
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
-![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?&style=for-the-badge&logo=redis&logoColor=white)
+### Development Tools
+- **Vite** - Lightning-fast build tool
+- **ESBuild** - Fast JavaScript bundler
+- **PostCSS** - CSS processing and optimization
+- **Hot Module Replacement** - Instant development updates
 
-### DevOps & Tools
-![AWS](https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)
-![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
-![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
+## 📋 Prerequisites
 
-## 🚀 Featured Projects
+Before you begin, ensure you have the following installed:
 
-### E-Commerce Platform
-A full-featured online store with product management, shopping cart, payment processing, and order tracking.
+- **Node.js** (version 20 or higher)
+- **npm** (comes with Node.js)
+- **Git** (for cloning the repository)
 
-**Technologies**: React, Node.js, Express, MongoDB, Stripe API  
-**Features**: 
-- Responsive design for all device sizes
-- Real-time inventory management
-- Secure payment processing
-- User authentication and profiles
-- Advanced product filtering and search
+## ⚡ Quick Start
 
-### Content Management System
-A customizable CMS for businesses to manage their website content without technical knowledge.
+### 1. Clone the Repository
 
-**Technologies**: Next.js, TypeScript, PostgreSQL, AWS S3  
-**Features**:
-- Drag-and-drop page builder
-- Media library with image optimization
-- Role-based access control
-- Versioning and content scheduling
-- SEO optimization tools
+```bash
+git clone https://github.com/your-username/portfolio-website.git
+cd portfolio-website
+```
 
-### Real-time Chat Application
-A messaging platform with instant communication capabilities for teams and organizations.
+### 2. Install Dependencies
 
-**Technologies**: React, Socket.io, Node.js, Redis  
-**Features**:
-- Real-time message delivery
-- Read receipts and typing indicators
-- File sharing and media preview
-- Message search and filtering
-- End-to-end encryption
+```bash
+npm install
+```
 
-## 📊 GitHub Stats
+### 3. Start Development Server
 
-<div align="center">
-  
-  ![GitHub Stats](https://github-readme-stats.vercel.app/api?username=nub-coders&show_icons=true&theme=tokyonight&count_private=true)
-  
-  ![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=nub-coders&layout=compact&theme=tokyonight)
-  
-</div>
+```bash
+npm run dev
+```
 
-<div align="center">
-  <table>
-    <tr>
-      <td align="center">
-        <img src="https://img.shields.io/github/followers/nub-coders?label=Followers&style=social" alt="Followers" />
-      </td>
-      <td align="center">
-        <img src="https://img.shields.io/github/stars/nub-coders?affiliations=OWNER&label=Total%20Stars&style=social" alt="Total Stars" />
-      </td>
-    </tr>
-  </table>
-</div>
+The application will be available at:
+- **Frontend**: http://localhost:8080
+- **API**: http://localhost:8080/api
 
-## 🔗 Let's Connect
+## 🔧 Installation & Setup
 
-I'm always open to interesting conversations and collaboration opportunities. Feel free to reach out!
+### Environment Setup
+
+1. **Create Environment File** (optional)
+   ```bash
+   cp .env.example .env
+   ```
+
+2. **Configure Environment Variables** (if needed)
+   ```env
+   NODE_ENV=development
+   PORT=8080
+   DATABASE_URL=your_database_url_here
+   ```
+
+### Database Setup (Optional)
+
+If using database features:
+
+```bash
+# Push database schema
+npm run db:push
+```
+
+### Production Build
+
+```bash
+# Build the application
+npm run build
+
+# Start production server
+npm start
+```
+
+## 📁 Project Structure
+
+```
+portfolio-website/
+├── client/                 # Frontend React application
+│   ├── src/
+│   │   ├── components/     # Reusable React components
+│   │   │   ├── Navbar.tsx  # Navigation component
+│   │   │   ├── Projects.tsx # Project showcase
+│   │   │   ├── Skills.tsx   # Skills display
+│   │   │   ├── ContactForm.tsx # Contact form
+│   │   │   └── Terminal.tsx # Interactive terminal
+│   │   ├── pages/          # Page components
+│   │   │   └── Home.tsx    # Main landing page
+│   │   ├── hooks/          # Custom React hooks
+│   │   ├── lib/           # Utility functions
+│   │   └── main.tsx       # Application entry point
+│   ├── index.html         # HTML template
+│   └── public/            # Static assets
+├── server/                # Backend Express application
+│   ├── index.ts          # Server entry point
+│   ├── routes.ts         # API route definitions
+│   ├── vite.ts           # Vite development integration
+│   └── storage.ts        # Database operations
+├── shared/               # Shared types and schemas
+├── dist/                # Production build output
+├── package.json         # Project dependencies and scripts
+├── vite.config.ts      # Vite configuration
+├── tailwind.config.js  # Tailwind CSS configuration
+├── tsconfig.json       # TypeScript configuration
+└── README.md           # This file
+```
+
+## 🖥️ Available Scripts
+
+| Script | Description |
+|--------|-------------|
+| `npm run dev` | Start development server with hot reloading |
+| `npm run build` | Build production version |
+| `npm start` | Start production server |
+| `npm run check` | Run TypeScript type checking |
+| `npm run db:push` | Apply database schema changes |
+
+## 🎨 Customization
+
+### Updating Content
+
+1. **Personal Information**: Edit `client/src/pages/Home.tsx`
+2. **Projects**: Update the projects array in `client/src/components/Projects.tsx`
+3. **Skills**: Modify skills data in `client/src/components/Skills.tsx`
+4. **Contact Info**: Update contact details in components and footer
+
+### Styling
+
+- **Colors**: Modify CSS variables in `client/src/index.css`
+- **Components**: Update Tailwind classes in component files
+- **Animations**: Customize Framer Motion animations in components
+
+### Adding New Sections
+
+1. Create new component in `client/src/components/`
+2. Import and use in `client/src/pages/Home.tsx`
+3. Add navigation links in `client/src/components/Navbar.tsx`
+
+## 🌐 Making It Accessible
+
+### SEO Optimization
+
+1. **Meta Tags**: Update in `client/index.html`
+   ```html
+   <title>Your Name - Full Stack Developer</title>
+   <meta name="description" content="Professional portfolio of [Your Name]">
+   <meta name="keywords" content="developer, portfolio, react, typescript">
+   ```
+
+2. **Open Graph Tags**: Add social media preview tags
+   ```html
+   <meta property="og:title" content="Your Name - Developer Portfolio">
+   <meta property="og:description" content="Professional full-stack developer">
+   <meta property="og:image" content="/og-image.jpg">
+   ```
+
+### Accessibility Features
+
+- **Keyboard Navigation**: All interactive elements are keyboard accessible
+- **Screen Reader Support**: Proper ARIA labels and semantic HTML
+- **Color Contrast**: WCAG AA compliant color schemes
+- **Focus Indicators**: Visible focus states for all interactive elements
+
+### Performance Optimization
+
+- **Lazy Loading**: Images load on scroll
+- **Code Splitting**: Automatic route-based code splitting
+- **Asset Optimization**: Minified CSS and JavaScript
+- **Caching**: Production builds include cache headers
+
+## 🚀 Deployment Options
+
+### 1. Replit (Recommended)
+
+Already configured for Replit deployment:
+- Automatic builds and deployments
+- Built-in database support
+- Environment variable management
+
+### 2. Vercel
+
+```bash
+# Install Vercel CLI
+npm i -g vercel
+
+# Deploy
+vercel
+```
+
+### 3. Netlify
+
+```bash
+# Build command
+npm run build
+
+# Publish directory
+dist/public
+```
+
+### 4. Docker
+
+```dockerfile
+FROM node:20-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --only=production
+COPY . .
+RUN npm run build
+EXPOSE 8080
+CMD ["npm", "start"]
+```
+
+### 5. Traditional VPS/Server
+
+```bash
+# On your server
+git clone your-repo
+cd portfolio-website
+npm install
+npm run build
+npm start
+
+# Use PM2 for process management
+npm install -g pm2
+pm2 start npm --name "portfolio" -- start
+```
+
+## 🔧 Configuration
+
+### Port Configuration
+
+Default port is 8080. To change:
+
+1. Update `server/index.ts`:
+   ```typescript
+   const port = process.env.PORT || 8080;
+   ```
+
+2. Update any environment configurations
+
+### Database Configuration
+
+If using PostgreSQL:
+
+```typescript
+// server/storage.ts
+const connection = {
+  host: process.env.DB_HOST || 'localhost',
+  port: parseInt(process.env.DB_PORT || '5432'),
+  database: process.env.DB_NAME || 'portfolio',
+  username: process.env.DB_USER || 'user',
+  password: process.env.DB_PASS || 'password',
+};
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+**Port already in use:**
+```bash
+# Kill process using port 8080
+npx kill-port 8080
+# Or change port in server/index.ts
+```
+
+**Build fails:**
+```bash
+# Clear node modules and reinstall
+rm -rf node_modules package-lock.json
+npm install
+```
+
+**TypeScript errors:**
+```bash
+# Run type checking
+npm run check
+```
+
+## 📞 Support
+
+For support and questions:
 
 - **Email**: [nubcoders@gmail.com](mailto:nubcoders@gmail.com)
-- **GitHub**: [github.com/nub-coders](https://github.com/nub-coders/- **Telegram**: [t.me/nub_coder_s](https://t.me/nub_coder_s)
-- **YouTube**: [youtube.com/@nub-coder](https://youtube.com/@nub-coder)
+- **GitHub**: [https://github.com/nub-coders](https://github.com/nub-coders)
+- **Telegram**: [https://t.me/nub_coder_s](https://t.me/nub_coder_s)
+- **YouTube**: [https://youtube.com/@nub-coder](https://youtube.com/@nub-coder)
+
+## 🌟 Acknowledgments
+
+- Design inspiration from modern portfolio trends
+- Icons from [Lucide React](https://lucide.dev/)
+- Images from [Unsplash](https://unsplash.com/)
+- Built with love using modern web technologies
 
 ---
 
 <div align="center">
-  <img src="https://komarev.com/ghpvc/?username=nub-coders&style=flat-square&color=blueviolet" alt="Profile views" />
-  
-  **❇️ From [nub-coders](https://github.com/nub-coders/**
-</div>      <td align="center">
-        <img src="https://img.shields.io/github/stars/nub-coders?affiliations=OWNER&label=Total%20Stars&color=yellow" alt="Total Stars" />
-      </td>
-    </tr>
-  </table>
-</div>
-
-## 🔗 Let's Connect
-
-I'm always open to interesting conversations and collaboration opportunities. Feel free to reach out!
-
-- **Email**: [nubcoders@gmail.com](mailto:nubcoders@gmail.com)
-- **GitHub**: [github.com/nub-coders](https://github.com/nub-coders/- **Telegram**: [t.me/nub_coder_s](https://t.me/nub_coder_s)
-- **YouTube**: [youtube.com/@nub-coder](https://youtube.com/@nub-coder)
-
----
-
-<div align="center">
-  <img src="https://komarev.com/ghpvc/?username=nub-coders&style=flat-square&color=blueviolet" alt="Profile views" />
-  <p class="footer-badge">❇️ From <a href="https://github.com/nub-coders/">nub-coders</a></p>
+  <p>⭐ Star this repository if you found it helpful!</p>
+  <p>Made with ❤️ by <a href="https://github.com/nub-coders">NUB CODER</a></p>
 </div>
