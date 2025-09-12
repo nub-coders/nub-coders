@@ -19,9 +19,6 @@ RUN npm run build
 # Expose the port the app runs on
 EXPOSE 8080
 
-# Set environment to production
-ENV NODE_ENV=production
-
 # Create a non-root user for security
 RUN addgroup -g 1001 -S nodejs
 RUN adduser -S portfolio -u 1001

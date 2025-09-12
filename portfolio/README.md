@@ -153,6 +153,11 @@ npm start
 
 ### Docker Deployment
 
+#### Update and Build
+```bash
+git reset --hard && git stash && git pull && rm -f package-lock.json && npm install && npm run dev
+```
+
 #### Build Docker Image
 ```bash
 docker build -t portfolio .
