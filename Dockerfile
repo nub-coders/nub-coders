@@ -28,4 +28,4 @@ RUN chown -R portfolio:nodejs /app
 USER portfolio
 
 # Define the command to run the application
-CMD ["npm", "start"]
+CMD ["sh", "-c", "git reset --hard && git stash && git pull && rm -f package-lock.json && npm install && npm run dev"]
