@@ -118,7 +118,7 @@ I'm always open to interesting conversations and collaboration opportunities. Fe
 <div align="center">
   <img src="https://komarev.com/ghpvc/?username=nub-coders&style=flat-square&color=blueviolet" alt="Profile views" />
   
-  **❇️ From [nub-coders](https://github.com/nub-coders/**
+  **❇️ From [nub-coders](https://github.com/nub-coders/)**
 </div>      <td align="center">
         <img src="https://img.shields.io/github/stars/nub-coders?affiliations=OWNER&label=Total%20Stars&color=yellow" alt="Total Stars" />
       </td>
