@@ -36,7 +36,7 @@ This is a full-stack portfolio website for a Full Stack Developer (Nub Coder) bu
 - **Testimonials.tsx**: Client testimonials
 
 ## Recent Changes (September 12, 2025)
-- Fixed server port configuration from 8080 to 5000 (required for Replit)
+- Changed server port configuration to 8080 as requested
 - Installed all npm dependencies
 - Set up Portfolio Server workflow
 - Fixed JSX attribute warning in Terminal component (jsx={true} → jsx="true")
