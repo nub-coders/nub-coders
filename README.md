@@ -4,7 +4,8 @@
   
   ![Profile Banner](https://img.shields.io/badge/Full%20Stack-Developer-blueviolet?style=for-the-badge)
   
-  [![GitHub](https://img.shields.io/badge/GitHub-nub--coders-blue?logo=github&style=flat-square)](https://github.com//[![YouTube](https://img.shields.io/badge/YouTube-nub--coder-red?logo=youtube&style=flat-square)](https://youtube.com/@nub-coder)
+  [![GitHub](https://img.shields.io/badge/GitHub-nub--coders-blue?logo=github&style=flat-square)](https://github.com/nub-coders/)
+  [![YouTube](https://img.shields.io/badge/YouTube-nub--coder-red?logo=youtube&style=flat-square)](https://youtube.com/@nub-coder)
   [![Telegram](https://img.shields.io/badge/Telegram-nub__coder__s-blue?logo=telegram&style=flat-square)](https://t.me/nub_coder_s)
   [![Email](https://img.shields.io/badge/Email-nubcoders%40gmail.com-orange?logo=gmail&style=flat-square)](mailto:nubcoders@gmail.com)
   
@@ -92,19 +93,17 @@ A messaging platform with instant communication capabilities for teams and organ
           <h3>My GitHub Stats</h3>
           <!-- This will be populated by GitHub Actions -->
           <!-- STATS_START -->
-          <ul>
-            <li>✅ Total Stars Earned: <!-- TOTAL_STARS --></li>
-            <li>📝 Total Commits (2025): <!-- TOTAL_COMMITS_2025 --></li>
-            <li>🔄 Total PRs: <!-- TOTAL_PRS --></li>
-            <li>⚠️ Total Issues: <!-- TOTAL_ISSUES --></li>
-            <li>🤝 Contributed to (last year): <!-- CONTRIBUTED_TO --></li>
-          </ul>
+          - ![Total Stars](https://img.shields.io/github/stars/nub-coders?affiliations=OWNER&label=Total%20Stars&color=yellow)
+          - ![Total Commits (last 12 months)](https://img.shields.io/github/commit-activity/y/nub-coders/nub-coders?label=Total%20Commits&color=blue)
+          - ![PRs](https://img.shields.io/github/issues-pr/nub-coders/nub-coders?label=PRs&color=blueviolet)
+          - ![Issues](https://img.shields.io/github/issues/nub-coders/nub-coders?label=Issues&color=red)
+          - ![Contributed to](https://img.shields.io/badge/dynamic/json?color=orange&label=Contributed%20to&query=%24.total&url=https%3A//api.github.com/users/nub-coders/repos)
           <!-- STATS_END -->
         </div>
       </td>
       <td>
         <div>
-          <img src="https://github-readme-stats.vercel.app/api?username=&show_icons=true&theme=tokyonight&count_private=true" alt="GitHub Stats" />
+          <img src="https://github-readme-stats.vercel.app/api?username=nub-coders&show_icons=true&theme=tokyonight&count_private=true" alt="GitHub Stats" />
         </div>
       </td>
     </tr>
@@ -115,24 +114,24 @@ A messaging platform with instant communication capabilities for teams and organ
   <table>
     <tr>
       <td align="center">
-        <img src="https://img.shields.io/github/commit-activity/y//?label=Total%20Commits&color=blue" alt="Total Commits" />
+        <img src="https://img.shields.io/github/commit-activity/y/nub-coders/nub-coders?label=Total%20Commits&color=blue" alt="Total Commits" />
       </td>
       <td align="center">
-        <img src="https://img.shields.io/github/commit-activity/y//?label=Total%20Commits%20(2025)&color=brightgreen" alt="Total Commits (2025)" />
+        <img src="https://img.shields.io/github/commit-activity/y/nub-coders/nub-coders?label=Total%20Commits%20(Last%2012m)&color=brightgreen" alt="Total Commits (Last 12m)" />
       </td>
       <td align="center">
-        <img src="https://img.shields.io/github/issues-pr//?label=Total%20PRs&color=blueviolet" alt="Total PRs" />
+        <img src="https://img.shields.io/github/issues-pr/nub-coders/nub-coders?label=PRs&color=blueviolet" alt="PRs" />
       </td>
     </tr>
     <tr>
       <td align="center">
-        <img src="https://img.shields.io/github/issues//?label=Total%20Issues&color=red" alt="Total Issues" />
+        <img src="https://img.shields.io/github/issues/nub-coders/nub-coders?label=Issues&color=red" alt="Issues" />
       </td>
       <td align="center">
         <img src="https://img.shields.io/badge/dynamic/json?color=orange&label=Contributed%20to&query=%24.total&url=https%3A//api.github.com/users/nub-coders/repos" alt="Contributed to" />
       </td>
       <td align="center">
-        <img src="https://img.shields.io/github/stars/?affiliations=OWNER&label=Total%20Stars&color=yellow" alt="Total Stars" />
+        <img src="https://img.shields.io/github/stars/nub-coders?affiliations=OWNER&label=Total%20Stars&color=yellow" alt="Total Stars" />
       </td>
     </tr>
   </table>
@@ -143,12 +142,13 @@ A messaging platform with instant communication capabilities for teams and organ
 I'm always open to interesting conversations and collaboration opportunities. Feel free to reach out!
 
 - **Email**: [nubcoders@gmail.com](mailto:nubcoders@gmail.com)
-- **GitHub**: [github.com/nub-coders](https://github.com//- **Telegram**: [t.me/nub_coder_s](https://t.me/nub_coder_s)
+- **GitHub**: [github.com/nub-coders](https://github.com/nub-coders/)
+- **Telegram**: [t.me/nub_coder_s](https://t.me/nub_coder_s)
 - **YouTube**: [youtube.com/@nub-coder](https://youtube.com/@nub-coder)
 
 ---
 
 <div align="center">
-  <img src="https://komarev.com/ghpvc/?username=&style=flat-square&color=blueviolet" alt="Profile views" />
-  <p class="footer-badge">❇️ From <a href="https://github.com//">nub-coders</a></p>
+  <img src="https://komarev.com/ghpvc/?username=nub-coders&style=flat-square&color=blueviolet" alt="Profile views" />
+  <p class="footer-badge">❇️ From <a href="https://github.com/nub-coders">nub-coders</a></p>
 </div>
