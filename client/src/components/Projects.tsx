@@ -91,6 +91,17 @@ const projects: Project[] = [
     codeLink: "https://github.com/nub-coders/yt-dlp-api",
     badgeText: "API",
     badgeClass: "bg-blue-500/20 text-blue-400"
+  },
+  {
+    title: "Docker PaaS Platform",
+    description: "Telegram Mini App for Docker container management with GitHub integration and real-time monitoring.",
+    category: "web",
+    image: "https://images.unsplash.com/photo-1605745341112-85968b19335a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    tags: ["React", "TypeScript", "Docker API", "MongoDB", "Telegram"],
+    demoLink: "https://dockers.nub-coder.tech",
+    codeLink: "https://github.com/nub-coders/docker-paas",
+    badgeText: "Web App",
+    badgeClass: "bg-[var(--primary)]/20 text-[var(--primary)]"
   }
 ];
 
