@@ -4,8 +4,7 @@
   
   ![Profile Banner](https://img.shields.io/badge/Full%20Stack-Developer-blueviolet?style=for-the-badge)
   
-  [![GitHub](https://img.shields.io/badge/GitHub-nub--coders-blue?logo=github&style=flat-square)](https://github.com/nub-coders/)
-  [![YouTube](https://img.shields.io/badge/YouTube-nub--coder-red?logo=youtube&style=flat-square)](https://youtube.com/@nub-coder)
+  [![GitHub](https://img.shields.io/badge/GitHub-nub--coders-blue?logo=github&style=flat-square)](https://github.com/nub-coders/[![YouTube](https://img.shields.io/badge/YouTube-nub--coder-red?logo=youtube&style=flat-square)](https://youtube.com/@nub-coder)
   [![Telegram](https://img.shields.io/badge/Telegram-nub__coder__s-blue?logo=telegram&style=flat-square)](https://t.me/nub_coder_s)
   [![Email](https://img.shields.io/badge/Email-nubcoders%40gmail.com-orange?logo=gmail&style=flat-square)](mailto:nubcoders@gmail.com)
   
@@ -111,8 +110,7 @@ A messaging platform with instant communication capabilities for teams and organ
 I'm always open to interesting conversations and collaboration opportunities. Feel free to reach out!
 
 - **Email**: [nubcoders@gmail.com](mailto:nubcoders@gmail.com)
-- **GitHub**: [github.com/nub-coders](https://github.com/nub-coders/)
-- **Telegram**: [t.me/nub_coder_s](https://t.me/nub_coder_s)
+- **GitHub**: [github.com/nub-coders](https://github.com/nub-coders/- **Telegram**: [t.me/nub_coder_s](https://t.me/nub_coder_s)
 - **YouTube**: [youtube.com/@nub-coder](https://youtube.com/@nub-coder)
 
 ---
@@ -120,7 +118,7 @@ I'm always open to interesting conversations and collaboration opportunities. Fe
 <div align="center">
   <img src="https://komarev.com/ghpvc/?username=nub-coders&style=flat-square&color=blueviolet" alt="Profile views" />
   
-  **❇️ From [nub-coders](https://github.com/nub-coders/)**
+  **❇️ From [nub-coders](https://github.com/nub-coders/**
 </div>      <td align="center">
         <img src="https://img.shields.io/github/stars/nub-coders?affiliations=OWNER&label=Total%20Stars&color=yellow" alt="Total Stars" />
       </td>
