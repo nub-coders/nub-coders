@@ -45,7 +45,7 @@ This is a full-stack portfolio website for a Full Stack Developer (Nub Coder) bu
 ## Technologies Used
 ### Frontend
 - React, Next.js, TypeScript
-- Tailwind CSS, HTML5, CSS3
+- Tailwind CSS, HTML5
 - Radix UI components
 - Framer Motion animations
 - React Hook Form
