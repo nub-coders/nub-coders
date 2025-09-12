@@ -286,7 +286,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 If you have any questions or need assistance:
 
-- **Email**: [nubcoders@gmail.com](mailto:nubcoders@gmail.com)
+- **Email**: [dev@nub-coder.tech](mailto:dev@nub-coder.tech)
 - **GitHub Issues**: [Create an issue](https://github.com/nub-coders/portfolio-website/issues)
 - **Telegram**: [t.me/nub_coder_s](https://t.me/nub_coder_s)
 

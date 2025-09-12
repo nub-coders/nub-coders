@@ -233,7 +233,7 @@ export default function Home() {
                   <i className="fab fa-youtube"></i> YouTube
                 </a>
                 <p className="flex items-center gap-3 text-[var(--light)]/70">
-                  <i className="fas fa-envelope"></i> nubcoders@gmail.com
+                  <i className="fas fa-envelope"></i> dev@nub-coder.tech
                 </p>
               </div>
             </div>
