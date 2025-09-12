@@ -1,142 +1,268 @@
-# Full Stack Developer
+# Full Stack Developer Portfolio
 
-<div align="center">
-  
-  ![Profile Banner](https://img.shields.io/badge/Full%20Stack-Developer-blueviolet?style=for-the-badge)
-  
-  [![GitHub](https://img.shields.io/badge/GitHub-nub--coders-blue?logo=github&style=flat-square)](https://github.com/nub-coders/[![YouTube](https://img.shields.io/badge/YouTube-nub--coder-red?logo=youtube&style=flat-square)](https://youtube.com/@nub-coder)
-  [![Telegram](https://img.shields.io/badge/Telegram-nub__coder__s-blue?logo=telegram&style=flat-square)](https://t.me/nub_coder_s)
-  [![Email](https://img.shields.io/badge/Email-nubcoders%40gmail.com-orange?logo=gmail&style=flat-square)](mailto:nubcoders@gmail.com)
-  
-</div>
+A modern, responsive portfolio website showcasing web applications, mobile apps, and API services built with React, TypeScript, and Express.js.
 
-## 👨‍💻 About Me
+![Portfolio Preview](https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80)
 
-I'm a passionate Full Stack Developer with 5+ years of experience creating modern web applications. I specialize in building robust, user-friendly solutions that combine technical excellence with creative design. My approach focuses on developing scalable applications with clean, maintainable code.
+## 🚀 Live Demo
 
-- 🚀 Completed 50+ projects across various industries
-- 💡 Constantly exploring new technologies and frameworks
-- 📝 Sharing knowledge through my YouTube channel
-- 🌱 Always learning and improving my craft
+Visit the live portfolio: [https://portfolio.nub-coder.tech](https://portfolio.nub-coder.tech)
 
-## 🛠️ Technical Skills
+## ✨ Features
+
+- **Responsive Design**: Optimized for all device sizes (mobile, tablet, desktop)
+- **Interactive Terminal**: Python code demonstration with typing animation
+- **Project Showcase**: 11+ projects across web apps, mobile apps, and APIs
+- **GitHub Integration**: Real-time GitHub statistics and repository links
+- **Contact Form**: Working contact form with validation
+- **Dark/Light Theme**: Modern theme with smooth transitions
+- **Accessibility**: WCAG 2.1 AA compliant with keyboard navigation
+- **Performance Optimized**: Fast loading with code splitting and optimization
+
+## 🛠 Tech Stack
 
 ### Frontend
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+- **React 18** - Modern React with hooks and functional components
+- **TypeScript** - Type-safe development
+- **Tailwind CSS** - Utility-first CSS framework
+- **Radix UI** - Accessible component library
+- **Framer Motion** - Smooth animations and transitions
+- **React Query** - Data fetching and state management
+- **Wouter** - Lightweight routing solution
 
 ### Backend
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
-![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)
+- **Node.js** - JavaScript runtime environment
+- **Express.js** - Web application framework
+- **TypeScript** - Server-side type safety
+- **Drizzle ORM** - Type-safe database operations
+- **PostgreSQL** - Production database
 
-### Database
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
-![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?&style=for-the-badge&logo=redis&logoColor=white)
+### Development Tools
+- **Vite** - Fast build tool and development server
+- **ESLint** - Code linting and formatting
+- **PostCSS** - CSS processing
+- **Hot Module Replacement** - Instant development updates
 
-### DevOps & Tools
-![AWS](https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)
-![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
-![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
+## 📦 Installation
 
-## 🚀 Featured Projects
+### Prerequisites
 
-### E-Commerce Platform
-A full-featured online store with product management, shopping cart, payment processing, and order tracking.
+- **Node.js** (v18 or higher)
+- **npm** or **yarn** package manager
+- **PostgreSQL** (for database features)
 
-**Technologies**: React, Node.js, Express, MongoDB, Stripe API  
-**Features**: 
-- Responsive design for all device sizes
-- Real-time inventory management
-- Secure payment processing
-- User authentication and profiles
-- Advanced product filtering and search
+### Quick Start
 
-### Content Management System
-A customizable CMS for businesses to manage their website content without technical knowledge.
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/nub-coders/portfolio.git
+   cd portfolio
+   ```
 
-**Technologies**: Next.js, TypeScript, PostgreSQL, AWS S3  
-**Features**:
-- Drag-and-drop page builder
-- Media library with image optimization
-- Role-based access control
-- Versioning and content scheduling
-- SEO optimization tools
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-### Real-time Chat Application
-A messaging platform with instant communication capabilities for teams and organizations.
+3. **Environment Setup**
+   ```bash
+   # Copy environment template
+   cp .env.example .env.local
+   
+   # Edit environment variables
+   nano .env.local
+   ```
 
-**Technologies**: React, Socket.io, Node.js, Redis  
-**Features**:
-- Real-time message delivery
-- Read receipts and typing indicators
-- File sharing and media preview
-- Message search and filtering
-- End-to-end encryption
+4. **Database Setup** (Optional)
+   ```bash
+   # Set up PostgreSQL database
+   npm run db:setup
+   
+   # Run migrations
+   npm run db:push
+   ```
 
-## 📊 GitHub Stats
+5. **Start Development Server**
+   ```bash
+   npm run dev
+   ```
 
-<div align="center">
-  
-  ![GitHub Stats](https://github-readme-stats.vercel.app/api?username=nub-coders&show_icons=true&theme=tokyonight&count_private=true)
-  
-  ![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=nub-coders&layout=compact&theme=tokyonight)
-  
-</div>
+6. **Open in Browser**
+   
+   Visit `http://localhost:8080` to view the portfolio
 
-<div align="center">
-  <table>
-    <tr>
-      <td align="center">
-        <img src="https://img.shields.io/github/followers/nub-coders?label=Followers&style=social" alt="Followers" />
-      </td>
-      <td align="center">
-        <img src="https://img.shields.io/github/stars/nub-coders?affiliations=OWNER&label=Total%20Stars&style=social" alt="Total Stars" />
-      </td>
-    </tr>
-  </table>
-</div>
+### Production Build
 
-## 🔗 Let's Connect
+```bash
+# Build for production
+npm run build
 
-I'm always open to interesting conversations and collaboration opportunities. Feel free to reach out!
+# Start production server
+npm start
+```
 
-- **Email**: [nubcoders@gmail.com](mailto:nubcoders@gmail.com)
-- **GitHub**: [github.com/nub-coders](https://github.com/nub-coders/- **Telegram**: [t.me/nub_coder_s](https://t.me/nub_coder_s)
-- **YouTube**: [youtube.com/@nub-coder](https://youtube.com/@nub-coder)
+## 🏗 Project Structure
+
+```
+portfolio/
+├── client/                 # React frontend application
+│   ├── src/
+│   │   ├── components/     # Reusable UI components
+│   │   │   ├── Terminal.tsx       # Interactive terminal
+│   │   │   ├── Projects.tsx       # Project showcase
+│   │   │   ├── ContactForm.tsx    # Contact form
+│   │   │   └── ...
+│   │   ├── pages/          # Page components
+│   │   ├── hooks/          # Custom React hooks
+│   │   ├── lib/            # Utilities and helpers
+│   │   └── styles/         # Global styles
+├── server/                 # Express.js backend
+│   ├── src/
+│   │   ├── routes/         # API routes
+│   │   ├── middleware/     # Express middleware
+│   │   └── database/       # Database configuration
+├── shared/                 # Shared types and schemas
+├── public/                 # Static assets
+├── package.json           # Dependencies and scripts
+└── README.md              # This file
+```
+
+## 🚀 Available Scripts
+
+| Script | Description |
+|--------|-------------|
+| `npm run dev` | Start development server with hot reload |
+| `npm run build` | Build for production |
+| `npm start` | Start production server |
+| `npm run check` | Run TypeScript type checking |
+| `npm run lint` | Run ESLint code linting |
+| `npm run db:push` | Run database migrations |
+| `npm run db:studio` | Open database GUI |
+
+## ♿ Accessibility Features
+
+This portfolio is built with accessibility as a core principle:
+
+### WCAG 2.1 AA Compliance
+- **Keyboard Navigation**: Full keyboard support for all interactive elements
+- **Screen Reader Support**: Semantic HTML and ARIA labels
+- **Color Contrast**: Meets WCAG AA contrast requirements (4.5:1)
+- **Focus Management**: Clear focus indicators and logical tab order
+- **Alt Text**: Descriptive alternative text for all images
+
+### Inclusive Design
+- **Responsive Typography**: Scalable text that respects user preferences
+- **Reduced Motion**: Respects `prefers-reduced-motion` settings
+- **High Contrast Mode**: Compatible with system high contrast themes
+- **Touch Targets**: Minimum 44px touch target size for mobile
+- **Error Prevention**: Clear form validation and error messages
+
+### Assistive Technology Support
+- **NVDA**: Tested with NVDA screen reader
+- **JAWS**: Compatible with JAWS screen reader
+- **VoiceOver**: Full VoiceOver support on macOS/iOS
+- **Dragon**: Voice control software compatible
+
+## 🔧 Configuration
+
+### Environment Variables
+
+Create a `.env.local` file in the root directory:
+
+```env
+# Server Configuration
+PORT=8080
+NODE_ENV=development
+
+# Database (Optional)
+DATABASE_URL="postgresql://username:password@localhost:5432/portfolio"
+
+# API Keys (Optional)
+GITHUB_TOKEN="your_github_token"
+EMAIL_SERVICE_KEY="your_email_key"
+```
+
+### Customization
+
+1. **Update Personal Information**
+   - Edit `client/src/data/personal.ts`
+   - Replace contact information and social links
+
+2. **Add Your Projects**
+   - Update `client/src/components/Projects.tsx`
+   - Add your project details and links
+
+3. **Modify Styling**
+   - Edit `tailwind.config.js` for theme customization
+   - Update CSS variables in `client/src/styles/globals.css`
+
+## 🧪 Testing
+
+```bash
+# Run unit tests
+npm run test
+
+# Run end-to-end tests
+npm run test:e2e
+
+# Generate coverage report
+npm run test:coverage
+```
+
+## 📱 Browser Support
+
+- **Chrome** (last 2 versions)
+- **Firefox** (last 2 versions)
+- **Safari** (last 2 versions)
+- **Edge** (last 2 versions)
+- **Mobile browsers** (iOS Safari, Chrome Mobile)
+
+## 🚀 Deployment
+
+### Replit Deployment
+
+This project is optimized for Replit deployment:
+
+1. **Fork the repository** to your Replit account
+2. **Install dependencies** automatically
+3. **Configure environment** variables in Replit Secrets
+4. **Deploy** using Replit's one-click deployment
+
+### Other Platforms
+
+- **Vercel**: `npm run build && vercel deploy`
+- **Netlify**: Connect repository and deploy
+- **Heroku**: Use included `Procfile` for deployment
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👨‍💻 Author
+
+**Nub Coder**
+- Website: [nub-coder.tech](https://www.nub-coder.tech)
+- GitHub: [@nub-coders](https://github.com/nub-coders)
+- Telegram: [@nub_coder_s](https://t.me/nub_coder_s)
+- YouTube: [@nub-coder](https://youtube.com/@nub-coder)
+- Email: nubcoders@gmail.com
+
+## 🙏 Acknowledgments
+
+- [React](https://reactjs.org/) - UI library
+- [Tailwind CSS](https://tailwindcss.com/) - CSS framework
+- [Radix UI](https://www.radix-ui.com/) - Accessible components
+- [Framer Motion](https://www.framer.com/motion/) - Animation library
+- [Unsplash](https://unsplash.com/) - Beautiful stock photos
 
 ---
 
-<div align="center">
-  <img src="https://komarev.com/ghpvc/?username=nub-coders&style=flat-square&color=blueviolet" alt="Profile views" />
-  
-  **❇️ From [nub-coders](https://github.com/nub-coders/**
-</div>      <td align="center">
-        <img src="https://img.shields.io/github/stars/nub-coders?affiliations=OWNER&label=Total%20Stars&color=yellow" alt="Total Stars" />
-      </td>
-    </tr>
-  </table>
-</div>
-
-## 🔗 Let's Connect
-
-I'm always open to interesting conversations and collaboration opportunities. Feel free to reach out!
-
-- **Email**: [nubcoders@gmail.com](mailto:nubcoders@gmail.com)
-- **GitHub**: [github.com/nub-coders](https://github.com/nub-coders/- **Telegram**: [t.me/nub_coder_s](https://t.me/nub_coder_s)
-- **YouTube**: [youtube.com/@nub-coder](https://youtube.com/@nub-coder)
-
----
-
-<div align="center">
-  <img src="https://komarev.com/ghpvc/?username=nub-coders&style=flat-square&color=blueviolet" alt="Profile views" />
-  <p class="footer-badge">❇️ From <a href="https://github.com/nub-coders/">nub-coders</a></p>
-</div>
+⭐ Star this repository if you found it helpful!

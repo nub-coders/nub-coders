@@ -41,6 +41,9 @@ This is a full-stack portfolio website for a Full Stack Developer (Nub Coder) bu
 - Set up Portfolio Server workflow
 - Fixed JSX attribute warning in Terminal component (jsx={true} → jsx="true")
 - Verified hot module replacement is working correctly
+- Added all projects from nub-coders GitHub organization (11 total projects)
+- Created comprehensive project README with installation instructions and accessibility features
+- Removed GitHub URLs for private repositories (Docker PaaS, YT-DLP API) while keeping demo links
 
 ## Technologies Used
 ### Frontend
