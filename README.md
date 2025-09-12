@@ -131,7 +131,8 @@ I'm always open to interesting conversations and collaboration opportunities. Fe
 I'm always open to interesting conversations and collaboration opportunities. Feel free to reach out!
 
 - **Email**: [nubcoders@gmail.com](mailto:nubcoders@gmail.com)
-- **GitHub**: [github.com/nub-coders](https://github.com/nub-coders/- **Telegram**: [t.me/nub_coder_s](https://t.me/nub_coder_s)
+- **GitHub**: [github.com/nub-coders](https://github.com/nub-coders)
+- **Telegram**: [t.me/nub_coder_s](https://t.me/nub_coder_s)
 - **YouTube**: [youtube.com/@nub-coder](https://youtube.com/@nub-coder)
 
 ---
