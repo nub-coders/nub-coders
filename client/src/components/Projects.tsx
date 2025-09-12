@@ -80,6 +80,17 @@ const projects: Project[] = [
     codeLink: "https://github.com/nub-coders/weather-data-api",
     badgeText: "API",
     badgeClass: "bg-blue-500/20 text-blue-400"
+  },
+  {
+    title: "YT-DLP API Service",
+    description: "FastAPI service for YouTube video extraction with integrated Telegram bot and token-based authentication.",
+    category: "api",
+    image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    tags: ["FastAPI", "Python", "yt-dlp", "Telegram Bot", "Redis"],
+    demoLink: "https://api-docs.nub-coder.tech/ytdlp",
+    codeLink: "https://github.com/nub-coders/yt-dlp-api",
+    badgeText: "API",
+    badgeClass: "bg-blue-500/20 text-blue-400"
   }
 ];
 
