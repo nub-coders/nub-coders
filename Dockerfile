@@ -14,7 +14,8 @@ RUN npm ci --only=production
 COPY . .
 
 # Build the application
-RUN npm run build
+RUN npm install && \
+    npm run build
 
 # Expose the port the app runs on
 EXPOSE 8080
