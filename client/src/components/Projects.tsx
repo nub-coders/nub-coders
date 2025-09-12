@@ -88,7 +88,7 @@ const projects: Project[] = [
     image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     tags: ["FastAPI", "Python", "yt-dlp", "Telegram Bot", "Redis"],
     demoLink: "https://api.nub-coder.tech",
-    codeLink: "https://github.com/nub-coders/yt-dlp-api",
+    codeLink: "#",
     badgeText: "API",
     badgeClass: "bg-blue-500/20 text-blue-400"
   },
@@ -99,9 +99,42 @@ const projects: Project[] = [
     image: "https://images.unsplash.com/photo-1605745341112-85968b19335a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
     tags: ["React", "TypeScript", "Docker API", "MongoDB", "Telegram"],
     demoLink: "https://dockers.nub-coder.tech",
-    codeLink: "https://github.com/nub-coders/docker-paas",
+    codeLink: "#",
     badgeText: "Web App",
     badgeClass: "bg-[var(--primary)]/20 text-[var(--primary)]"
+  },
+  {
+    title: "Music Bot",
+    description: "Python-based Telegram music bot with advanced playback features and playlist management.",
+    category: "api",
+    image: "https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    tags: ["Python", "Telegram Bot", "Music API", "Audio Processing"],
+    demoLink: "https://t.me/nub_music_bot",
+    codeLink: "https://github.com/nub-coders/nub-music-bot",
+    badgeText: "API",
+    badgeClass: "bg-blue-500/20 text-blue-400"
+  },
+  {
+    title: "MAGISK Flasher V2",
+    description: "Android tool for Magisk installation and management with automated flashing capabilities.",
+    category: "mobile",
+    image: "https://images.unsplash.com/photo-1607252650355-f7fd0460ccdb?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    tags: ["Python", "Android", "Magisk", "Mobile Tools"],
+    demoLink: "https://github.com/nub-coders/MAGISK-FLASHER-V2/releases",
+    codeLink: "https://github.com/nub-coders/MAGISK-FLASHER-V2",
+    badgeText: "Mobile App",
+    badgeClass: "bg-[var(--secondary)]/20 text-[var(--secondary)]"
+  },
+  {
+    title: "Kixer Password Tool",
+    description: "Python tool for generating all possible password combinations with customizable parameters.",
+    category: "api",
+    image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80",
+    tags: ["Python", "Security", "Password Generator", "CLI Tool"],
+    demoLink: "https://github.com/nub-coders/kixer#usage",
+    codeLink: "https://github.com/nub-coders/kixer",
+    badgeText: "API",
+    badgeClass: "bg-blue-500/20 text-blue-400"
   }
 ];
 
