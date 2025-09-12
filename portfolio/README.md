@@ -52,8 +52,8 @@ Before running this project, make sure you have:
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/nub-coders/portfolio-website.git
-cd portfolio-website
+git clone https://github.com/nub-coders/nub-coders/
+cd nub-coders
 ```
 
 ### 2. Install Dependencies
