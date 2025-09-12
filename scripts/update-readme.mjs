@@ -122,6 +122,10 @@ async function processReadme(readmePath) {
     if (!repo && detectedRepo) repo = detectedRepo;
   }
 
+  // Safe fallbacks if detection failed
+  if (!owner) owner = 'nub-coders';
+  if (!repo) repo = 'nub-coders';
+
   // Replace usernames and repo paths in badges/images/links
   if (owner) {
     const replace = replacerFactory(owner, repo);
