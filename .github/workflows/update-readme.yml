@@ -1,0 +1,41 @@
+name: Update README GitHub Stats
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */12 * * *" # every 12 hours
+  push:
+    paths:
+      - "README.md"
+      - "portfolio/README.md"
+      - "scripts/update-readme.mjs"
+      - ".github/workflows/update-readme.yml"
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Update READMEs
+        run: node scripts/update-readme.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_REPOSITORY_OWNER: ${{ github.repository_owner }}
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(readme): auto-update GitHub stats and links"
+          file_pattern: |
+            README.md
+            portfolio/README.md
