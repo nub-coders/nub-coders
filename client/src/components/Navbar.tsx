@@ -53,14 +53,8 @@ export default function Navbar() {
           <a href="#skills" className="text-[var(--light)]/90 hover:text-[var(--light)] flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-[var(--primary)]/10 transition-all duration-300">
             <i className="fas fa-code"></i> Skills
           </a>
-          <a 
-            href="https://dockers.nub-coder.tech/" 
-            target="_blank" 
-            rel="noreferrer" 
-            className="flex items-center gap-2 px-3 py-2 rounded-lg bg-[var(--primary)]/10 hover:bg-[var(--primary)]/20 transition-all duration-300 text-[var(--light)]/90 hover:text-[var(--light)]"
-          >
-            <i className="fab fa-docker"></i> Docker Projects
-            <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-[var(--secondary)] text-[var(--darker)]">New</span>
+          <a href="#projects" className="text-[var(--light)]/90 hover:text-[var(--light)] flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-[var(--primary)]/10 transition-all duration-300">
+            <i className="fas fa-briefcase"></i> Projects
           </a>
         </div>
         
