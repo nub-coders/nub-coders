@@ -1,113 +1,260 @@
-# Full Stack Developer Portfolio
+# Portfolio Website Project
 
-<div align="center">
-  
-  ![Profile Banner](https://img.shields.io/badge/Full%20Stack-Developer-blueviolet?style=for-the-badge)
-  
-  [![GitHub](https://img.shields.io/badge/GitHub-nub--coders-blue?logo=github&style=flat-square)](https://github.com/nub-coders/)
-  [![YouTube](https://img.shields.io/badge/YouTube-nub--coder-red?logo=youtube&style=flat-square)](https://youtube.com/@nub-coder)
-  [![Telegram](https://img.shields.io/badge/Telegram-nub__coder__s-blue?logo=telegram&style=flat-square)](https://t.me/nub_coder_s)
-  [![Email](https://img.shields.io/badge/Email-nubcoders%40gmail.com-orange?logo=gmail&style=flat-square)](mailto:nubcoders@gmail.com)
-  
-</div>
+A modern, responsive full-stack portfolio website built with React, TypeScript, and Express. This project showcases professional skills, projects, and provides an interactive experience with animated terminal and project filtering.
 
-## 👨‍💻 About Me
+![Portfolio Website](https://img.shields.io/badge/Portfolio-Website-blue?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Active-success?style=for-the-badge)
+![Version](https://img.shields.io/badge/Version-1.0.0-blueviolet?style=for-the-badge)
 
-I'm a passionate Full Stack Developer with 5+ years of experience creating modern web applications. I specialize in building robust, user-friendly solutions that combine technical excellence with creative design. My approach focuses on developing scalable applications with clean, maintainable code.
+## 🚀 Features
 
-- 🚀 Completed 50+ projects across various industries
-- 💡 Constantly exploring new technologies and frameworks
-- 📝 Sharing knowledge through my YouTube channel
-- 🌱 Always learning and improving my craft
+- **Modern UI/UX**: Clean, professional design with smooth animations
+- **Interactive Terminal**: Python code terminal with typing animation
+- **Project Showcase**: Filterable project gallery with categories (Web Apps, Mobile Apps, API Services)
+- **Responsive Design**: Optimized for all device sizes
+- **Real-time Updates**: Hot module replacement for development
+- **Fast Loading**: Vite build system for optimal performance
+- **TypeScript**: Full type safety across frontend and backend
+- **Component Library**: Radix UI components with custom styling
 
-## 🛠️ Technical Skills
+## 🛠️ Tech Stack
 
 ### Frontend
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+- **React 18** - Modern React with hooks
+- **TypeScript** - Type-safe JavaScript
+- **Vite** - Fast build tool and dev server
+- **Tailwind CSS** - Utility-first CSS framework
+- **Radix UI** - Accessible component primitives
+- **Framer Motion** - Animation library
+- **React Query** - Data fetching and state management
+- **Wouter** - Lightweight routing
 
 ### Backend
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
-![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)
+- **Node.js** - JavaScript runtime
+- **Express.js** - Web application framework
+- **TypeScript** - Type-safe backend code
 
-### Database
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white)
-![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?&style=for-the-badge&logo=redis&logoColor=white)
+### Development Tools
+- **ESBuild** - Fast JavaScript bundler
+- **PostCSS** - CSS processing
+- **Drizzle ORM** - Type-safe database toolkit
+- **PostgreSQL** - Database (ready for integration)
 
-### DevOps & Tools
-![AWS](https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)
-![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
-![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
+## 📋 Prerequisites
 
-## 🚀 Featured Projects
+Before running this project, make sure you have:
 
-### E-Commerce Platform
-A full-featured online store with product management, shopping cart, payment processing, and order tracking.
+- **Node.js** (v18 or higher)
+- **npm** or **yarn** package manager
+- **Git** for version control
 
-**Technologies**: React, Node.js, Express, MongoDB, Stripe API  
-**Features**: 
-- Responsive design for all device sizes
-- Real-time inventory management
-- Secure payment processing
-- User authentication and profiles
-- Advanced product filtering and search
+## 🔧 Installation
 
-### Content Management System
-A customizable CMS for businesses to manage their website content without technical knowledge.
+### 1. Clone the Repository
+```bash
+git clone https://github.com/nub-coders/portfolio-website.git
+cd portfolio-website
+```
 
-**Technologies**: Next.js, TypeScript, PostgreSQL, AWS S3  
-**Features**:
-- Drag-and-drop page builder
-- Media library with image optimization
-- Role-based access control
-- Versioning and content scheduling
-- SEO optimization tools
+### 2. Install Dependencies
+```bash
+npm install
+```
 
-### Real-time Chat Application
-A messaging platform with instant communication capabilities for teams and organizations.
+### 3. Environment Setup
+The project is configured to run without additional environment variables for basic functionality.
 
-**Technologies**: React, Socket.io, Node.js, Redis  
-**Features**:
-- Real-time message delivery
-- Read receipts and typing indicators
-- File sharing and media preview
-- Message search and filtering
-- End-to-end encryption
+### 4. Start Development Server
+```bash
+npm run dev
+```
 
-## 📊 GitHub Stats
+The application will be available at: **http://localhost:8080**
 
-<div align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=nub-coders&show_icons=true&theme=tokyonight" alt="GitHub Stats" />
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=nub-coders&theme=tokyonight" alt="GitHub Streak" />
-</div>
+## 📁 Project Structure
 
-## 🎓 Education & Certifications
+```
+portfolio/
+├── client/                 # Frontend React application
+│   ├── src/
+│   │   ├── components/     # Reusable UI components
+│   │   │   ├── ui/        # Radix UI components
+│   │   │   ├── ContactForm.tsx
+│   │   │   ├── Navbar.tsx
+│   │   │   ├── Projects.tsx
+│   │   │   ├── Skills.tsx
+│   │   │   ├── Terminal.tsx
+│   │   │   └── Testimonials.tsx
+│   │   ├── hooks/         # Custom React hooks
+│   │   ├── lib/          # Utility functions
+│   │   ├── pages/        # Page components
+│   │   ├── App.tsx       # Main app component
+│   │   └── main.tsx      # Entry point
+│   └── index.html        # HTML template
+├── server/               # Backend Express application
+│   ├── index.ts         # Server entry point
+│   ├── routes.ts        # API routes
+│   ├── storage.ts       # Data storage utilities
+│   └── vite.ts          # Vite integration
+├── shared/              # Shared TypeScript types
+│   └── schema.ts        # Data schemas
+├── package.json         # Dependencies and scripts
+├── vite.config.ts      # Vite configuration
+├── tailwind.config.ts  # Tailwind CSS configuration
+└── tsconfig.json       # TypeScript configuration
+```
 
-- **B.Tech in Computer Science**
-- **AWS Certified Developer**
-- **Hackathon Winner** - Best Innovation Category
+## 🚦 Available Scripts
 
-## 📫 Let's Connect
+| Script | Description |
+|--------|-------------|
+| `npm run dev` | Start development server on port 8080 |
+| `npm run build` | Build for production |
+| `npm start` | Start production server |
+| `npm run check` | Run TypeScript type checking |
+| `npm run db:push` | Push database schema changes |
 
-I'm always open to interesting conversations and collaboration opportunities. Feel free to reach out!
+## 🎯 Key Components
+
+### Terminal Component
+Interactive Python code terminal with typing animation:
+- Simulates real Python REPL experience
+- Animated typing effect
+- Syntax highlighting
+- Professional coding demonstration
+
+### Projects Component  
+Dynamic project showcase with filtering:
+- **11 Real Projects** from GitHub repositories
+- **3 Categories**: Web Apps, Mobile Apps, API Services
+- Live demo links and GitHub repository links
+- Responsive grid layout with hover effects
+
+### Skills Component
+Technical skills display with:
+- Frontend technologies (React, TypeScript, etc.)
+- Backend technologies (Node.js, Python, etc.)
+- Database technologies (PostgreSQL, MongoDB)
+- DevOps tools and methodologies
+
+## 🌐 Deployment
+
+### Development
+```bash
+npm run dev
+```
+Runs on port 8080 with hot module replacement.
+
+### Production Build
+```bash
+npm run build
+npm start
+```
+
+### Replit Deployment
+This project is optimized for Replit deployment:
+- Configured workflows for automatic server management  
+- Port 8080 configuration for Replit environment
+- No additional setup required
+
+## 🔍 Configuration
+
+### Port Configuration
+The server runs on port **8080** as configured in `server/index.ts`. This is optimized for Replit deployment.
+
+### Vite Configuration
+Hot module replacement and build optimizations are configured in `vite.config.ts` with:
+- React plugin for JSX support
+- TypeScript support
+- Asset optimization
+- Development server proxy
+
+### Tailwind Configuration
+Custom styling and theme configuration in `tailwind.config.ts` with:
+- Custom color palette
+- Responsive breakpoints
+- Animation utilities
+- Component-specific styles
+
+## 🎨 Customization
+
+### Adding New Projects
+Edit `client/src/components/Projects.tsx`:
+```typescript
+{
+  title: "Your Project Name",
+  description: "Short description of your project",
+  category: "web" | "mobile" | "api",
+  image: "https://your-image-url.com",
+  tags: ["Technology", "Stack"],
+  demoLink: "https://your-demo.com",
+  codeLink: "https://github.com/your-repo",
+  badgeText: "Web App",
+  badgeClass: "bg-[var(--primary)]/20 text-[var(--primary)]"
+}
+```
+
+### Updating Skills
+Modify `client/src/components/Skills.tsx` to add or update technical skills.
+
+### Changing Theme
+Update colors and styling in:
+- `tailwind.config.ts` - Theme configuration
+- `client/src/index.css` - Global styles
+- `theme.json` - Component theme settings
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+**Server won't start:**
+- Ensure port 8080 is available
+- Check Node.js version (18+)
+- Verify all dependencies are installed
+
+**Hot reload not working:**
+- Restart the development server
+- Clear browser cache
+- Check console for build errors
+
+**TypeScript errors:**
+- Run `npm run check` to identify issues
+- Update type definitions if needed
+- Ensure all imports have proper extensions
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🔗 Links
+
+- **Live Demo**: [Portfolio Website](https://nub-coder.tech)
+- **GitHub**: [github.com/nub-coders](https://github.com/nub-coders)
+- **YouTube**: [youtube.com/@nub-coder](https://youtube.com/@nub-coder)
+- **Telegram**: [t.me/nub_coder_s](https://t.me/nub_coder_s)
+
+## 📞 Support
+
+If you have any questions or need assistance:
 
 - **Email**: [nubcoders@gmail.com](mailto:nubcoders@gmail.com)
-- **GitHub**: [github.com/nub-coders](https://github.com/nub-coders/)
+- **GitHub Issues**: [Create an issue](https://github.com/nub-coders/portfolio-website/issues)
 - **Telegram**: [t.me/nub_coder_s](https://t.me/nub_coder_s)
-- **YouTube**: [youtube.com/@nub-coder](https://youtube.com/@nub-coder)
 
 ---
 
 <div align="center">
-  <img src="https://komarev.com/ghpvc/?username=nub-coders&style=flat-square&color=blueviolet" alt="Profile views" />
-  <p>⭐️ From <a href="https://github.com/nub-coders">nub-coders</a></p>
+  
+**⭐ Give this project a star if you found it helpful!**
+
+Made with ❤️ by [nub-coders](https://github.com/nub-coders)
+
 </div>
