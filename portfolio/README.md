@@ -151,6 +151,37 @@ npm run build
 npm start
 ```
 
+### Docker Deployment
+
+#### Build Docker Image
+```bash
+docker build -t portfolio-website .
+```
+
+#### Run Docker Container
+```bash
+docker run -d -p 8080:8080 --name portfolio portfolio-website
+```
+
+#### Docker Compose (Optional)
+Create a `docker-compose.yml`:
+```yaml
+version: '3.8'
+services:
+  portfolio:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+```
+
+Run with Docker Compose:
+```bash
+docker-compose up -d
+```
+
 ### Replit Deployment
 This project is optimized for Replit deployment:
 - Configured workflows for automatic server management  
@@ -221,6 +252,23 @@ Update colors and styling in:
 - Run `npm run check` to identify issues
 - Update type definitions if needed
 - Ensure all imports have proper extensions
+
+**Docker Issues:**
+
+*Build fails:*
+- Ensure Docker is installed and running
+- Check available disk space
+- Verify Dockerfile syntax
+
+*Container won't start:*
+- Check container logs: `docker logs portfolio`
+- Verify port 8080 is not in use: `docker ps`
+- Restart Docker service if needed
+
+*Permission errors:*
+- The Dockerfile creates a non-root user for security
+- Check file permissions on host system
+- Use `docker exec -it portfolio sh` to debug
 
 ## 🤝 Contributing
 
