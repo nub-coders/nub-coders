@@ -5,7 +5,29 @@ import path from 'node:path';
 
 const repoEnv = process.env.GITHUB_REPOSITORY || '';
 const ownerEnv = process.env.GITHUB_REPOSITORY_OWNER || (repoEnv.split('/')[0] || '');
-const [owner, repo] = repoEnv.includes('/') ? repoEnv.split('/') : [ownerEnv, ''];
+let [owner, repo] = repoEnv.includes('/') ? repoEnv.split('/') : [ownerEnv, ''];
+
+function detectOwnerRepoFromContent(content) {
+  let detectedOwner = '';
+  let detectedRepo = '';
+
+  const profileMatch = content.match(/https:\/\/github\.com\/([\w-]+)/);
+  if (profileMatch) detectedOwner = profileMatch[1];
+
+  const repoBadgeMatch = content.match(/img\.shields\.io\/github\/(?:issues|issues-pr|commit-activity)\/y?\/([\w-]+)\/([\w.-]+)/);
+  if (repoBadgeMatch) {
+    detectedOwner = repoBadgeMatch[1] || detectedOwner;
+    detectedRepo = repoBadgeMatch[2] || detectedRepo;
+  }
+
+  const statsUserMatch = content.match(/github-readme-stats\.vercel\.app\/api\?[^\s\"]*?username=([^&\s\"]+)/);
+  if (statsUserMatch && !detectedOwner) detectedOwner = statsUserMatch[1];
+
+  const streakUserMatch = content.match(/github-readme-streak-stats\.herokuapp\.com\/\?[^\s\"]*?user=([^&\s\"]+)/);
+  if (streakUserMatch && !detectedOwner) detectedOwner = streakUserMatch[1];
+
+  return { detectedOwner, detectedRepo };
+}
 
 function replacerFactory(owner, repo) {
   const patterns = [
