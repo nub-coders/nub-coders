@@ -131,7 +131,7 @@ async function processReadme(readmePath) {
   // Update the STATS block if markers exist
   const startTag = '<!-- STATS_START -->';
   const endTag = '<!-- STATS_END -->';
-  if (content.includes(startTag) && content.includes(endTag)) {
+  if (content.includes(startTag) && content.includes(endTag) && owner) {
     const block = buildDynamicStatsBlock(owner, repo);
     const blockRe = new RegExp(
       `${startTag.replace(/[.*+?^${}()|[\]\\]/g, r => `\\${r}`)}[\s\S]*?${endTag.replace(/[.*+?^${}()|[\]\\]/g, r => `\\${r}`)}`,
