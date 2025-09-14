@@ -1,35 +1,34 @@
 # Use the official Node.js runtime as the base image
-FROM node:20-alpine
-
-# Install git (required for git commands)
-RUN apk add --no-cache git
+FROM node:current-alpine
 
 # Set the working directory in the container
 WORKDIR /app
 
+# Create a non-root user for security (do this early)
+RUN addgroup -g 1001 -S nodejs && \
+    adduser -S portfolio -u 1001 -G nodejs
+
+# Change ownership of the app directory to the portfolio user
+RUN chown -R portfolio:nodejs /app
+
+# Switch to non-root user early
+USER portfolio
+
 # Copy package.json and package-lock.json (if available)
-COPY package*.json ./
+COPY --chown=portfolio:nodejs package*.json ./
 
 # Install dependencies
-RUN npm ci --only=production
+RUN npm install && \
+    npm cache clean --force
 
 # Copy the entire application code
-COPY . .
+COPY --chown=portfolio:nodejs . .
 
 # Build the application
-RUN npm install && \
-    npm run build
+RUN npm run build
 
 # Expose the port the app runs on
 EXPOSE 8080
 
-# Create a non-root user for security
-RUN addgroup -g 1001 -S nodejs
-RUN adduser -S portfolio -u 1001
-
-# Change ownership of the app directory to the nodejs user
-RUN chown -R portfolio:nodejs /app
-USER portfolio
-
 # Define the command to run the application
-CMD ["sh", "-c", "git reset --hard && git stash && git pull && rm -f package-lock.json && npm install && npm run dev"]
+CMD ["npm", "run", "dev"]
