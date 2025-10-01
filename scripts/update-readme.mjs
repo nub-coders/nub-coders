@@ -2,6 +2,7 @@
 import { readFile, writeFile, access } from 'node:fs/promises';
 import { constants } from 'node:fs';
 import path from 'node:path';
+import https from 'node:https';
 
 const repoEnv = process.env.GITHUB_REPOSITORY || '';
 const ownerEnv = process.env.GITHUB_REPOSITORY_OWNER || (repoEnv.split('/')[0] || '');
@@ -76,28 +77,113 @@ function replacerFactory(owner, repo) {
   return (content) => patterns.reduce((acc, { re, replace }) => acc.replace(re, replace), content);
 }
 
-function buildDynamicStatsBlock(owner, repo) {
-  const starsBadge = `![Total Stars](https://img.shields.io/github/stars/${owner}?affiliations=OWNER&label=Total%20Stars&color=yellow)`;
-  const commitsBadge = repo
-    ? `![Total Commits (last 12 months)](https://img.shields.io/github/commit-activity/y/${owner}/${repo}?label=Total%20Commits&color=blue)`
-    : '';
-  const prsBadge = repo
-    ? `![PRs](https://img.shields.io/github/issues-pr/${owner}/${repo}?label=PRs&color=blueviolet)`
-    : '';
-  const issuesBadge = repo
-    ? `![Issues](https://img.shields.io/github/issues/${owner}/${repo}?label=Issues&color=red)`
-    : '';
-  const contributedBadge = `![Contributed to](https://img.shields.io/badge/dynamic/json?color=orange&label=Contributed%20to&query=%24.total&url=https%3A%2F%2Fapi.github.com%2Fusers%2F${owner}%2Frepos)`;
+async function fetchPrivateInclusiveStats(owner) {
+  const token = process.env.GH_STATS_TOKEN || process.env.GITHUB_TOKEN || '';
+  if (!token) return undefined;
 
+  const query = `
+    query {
+      viewer {
+        login
+        contributionsCollection {
+          totalCommitContributions
+          restrictedContributionsCount
+          totalIssueContributions
+          totalPullRequestContributions
+          totalPullRequestReviewContributions
+          contributionCalendar { totalContributions }
+        }
+        repositories(ownerAffiliations: OWNER, isFork: false, privacy: PUBLIC, first: 100) {
+          totalCount
+          nodes { stargazerCount primaryLanguage { name } }
+        }
+        privateRepos: repositories(ownerAffiliations: OWNER, isFork: false, privacy: PRIVATE, first: 100) {
+          totalCount
+          nodes { stargazerCount }
+        }
+      }
+    }
+  `;
+
+  const postData = JSON.stringify({ query });
+
+  const options = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+      'User-Agent': 'nub-coders-stats-script',
+      'Content-Length': Buffer.byteLength(postData),
+    },
+  };
+
+  const body = await new Promise((resolve, reject) => {
+    const req = https.request('https://api.github.com/graphql', options, (res) => {
+      let data = '';
+      res.on('data', (chunk) => { data += chunk; });
+      res.on('end', () => resolve(data));
+    });
+    req.on('error', reject);
+    req.write(postData);
+    req.end();
+  });
+
+  const json = JSON.parse(body);
+  if (json.errors) return undefined;
+  const v = json.data?.viewer;
+  if (!v) return undefined;
+
+  const publicStars = (v.repositories.nodes || []).reduce((sum, r) => sum + (r?.stargazerCount || 0), 0);
+  const privateStars = (v.privateRepos.nodes || []).reduce((sum, r) => sum + (r?.stargazerCount || 0), 0);
+  const totalStars = publicStars + privateStars;
+  const totalRepos = (v.repositories.totalCount || 0) + (v.privateRepos.totalCount || 0);
+  const commitsPublic = v.contributionsCollection.totalCommitContributions || 0;
+  const commitsPrivate = v.contributionsCollection.restrictedContributionsCount || 0;
+  const totalCommits = commitsPublic + commitsPrivate;
+  const totalIssues = v.contributionsCollection.totalIssueContributions || 0;
+  const totalPRs = v.contributionsCollection.totalPullRequestContributions || 0;
+  const totalReviews = v.contributionsCollection.totalPullRequestReviewContributions || 0;
+  const totalContributions = v.contributionCalendar.totalContributions || 0;
+
+  return {
+    login: v.login,
+    totalStars,
+    totalRepos,
+    totalCommits,
+    totalIssues,
+    totalPRs,
+    totalReviews,
+    totalContributions,
+  };
+}
+
+function formatNumber(n) {
+  try { return Intl.NumberFormat('en-US').format(n); } catch { return String(n); }
+}
+
+async function buildDynamicStatsBlock(owner, repo) {
+  const stats = await fetchPrivateInclusiveStats(owner);
+  if (stats) {
+    const lines = [
+      `- Total Stars (all repos): ${formatNumber(stats.totalStars)}`,
+      `- Total Repositories: ${formatNumber(stats.totalRepos)}`,
+      `- Total Commits (incl. private): ${formatNumber(stats.totalCommits)}`,
+      `- Total PRs: ${formatNumber(stats.totalPRs)}`,
+      `- Total Issues: ${formatNumber(stats.totalIssues)}`,
+      `- Code Reviews: ${formatNumber(stats.totalReviews)}`,
+      `- Contributions (last year): ${formatNumber(stats.totalContributions)}`,
+    ];
+    return ['<!-- STATS_START -->', ...lines, '<!-- STATS_END -->'].join('\n');
+  }
+
+  // Fallback (no token): use badges/cards (public-only aggregation by providers)
+  const starsBadge = `![Total Stars](https://img.shields.io/github/stars/${owner}?affiliations=OWNER&label=Total%20Stars&color=yellow)`;
+  const topLangs = `![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=${owner}&layout=compact&theme=tokyonight)`;
   const lines = [
     '- ' + starsBadge,
+    '- ' + topLangs,
   ];
-  if (commitsBadge) lines.push('- ' + commitsBadge);
-  if (prsBadge) lines.push('- ' + prsBadge);
-  if (issuesBadge) lines.push('- ' + issuesBadge);
-  lines.push('- ' + contributedBadge);
-
-  return ['<!-- STATS_START -->', ...lines, '<!-- STATS_END -->'].join('\n');
+  return ['<!-- STATS_START -->', ...lines, '', '<!-- STATS_END -->'].join('\n');
 }
 
 async function fileExists(p) {
@@ -136,7 +222,7 @@ async function processReadme(readmePath) {
   const startTag = '<!-- STATS_START -->';
   const endTag = '<!-- STATS_END -->';
   if (content.includes(startTag) && content.includes(endTag) && owner) {
-    const block = buildDynamicStatsBlock(owner, repo);
+    const block = await buildDynamicStatsBlock(owner, repo);
     const blockRe = new RegExp(
       `${startTag.replace(/[.*+?^${}()|[\]\\]/g, r => `\\${r}`)}[\s\S]*?${endTag.replace(/[.*+?^${}()|[\]\\]/g, r => `\\${r}`)}`,
       'm'

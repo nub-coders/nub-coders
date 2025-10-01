@@ -83,20 +83,6 @@ A messaging platform with instant communication capabilities for teams and organ
 
 ## 📊 GitHub Stats
 
-<div align="center">
-  
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=nub-coders&show_icons=true&theme=tokyonight&count_private=true)  
-
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=nub-coders&layout=compact&theme=tokyonight)  
-
-</div>
-
-<div align="center">
-  <table>
-    <tr>
-      <td align="center">
-        <img src="https://img.shields.io/github/followers/nub-coders?label=Followers&style=social" alt="Followers" />
-      </td>
-    </tr>
-  </table>
-</div>
+<!-- STATS_START -->
+- Loading stats...
+<!-- STATS_END -->
