@@ -212,7 +212,7 @@ Edit `client/src/components/Projects.tsx`:
   image: "https://your-image-url.com",
   tags: ["Technology", "Stack"],
   demoLink: "https://your-demo.com",
-  codeLink: "https://github.com/your-repo",
+  codeLink: "https://github.com/nub-coders/",
   badgeText: "Web App",
   badgeClass: "bg-[var(--primary)]/20 text-[var(--primary)]"
 }
@@ -278,8 +278,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🔗 Links
 
 - **Live Demo**: [Portfolio Website](https://nub-coder.tech)
-- **GitHub**: [github.com/nub-coders](https://github.com/nub-coders)
-- **YouTube**: [youtube.com/@nub-coder](https://youtube.com/@nub-coder)
+- **GitHub**: [github.com/nub-coders](https://github.com/nub-coders/- **YouTube**: [youtube.com/@nub-coder](https://youtube.com/@nub-coder)
 - **Telegram**: [t.me/nub_coder_s](https://t.me/nub_coder_s)
 
 ## 📞 Support
@@ -296,6 +295,4 @@ If you have any questions or need assistance:
   
 **⭐ Give this project a star if you found it helpful!**
 
-Made with ❤️ by [nub-coders](https://github.com/nub-coders)
-
-</div>
+Made with ❤️ by [nub-coders](https://github.com/nub-coders/</div>

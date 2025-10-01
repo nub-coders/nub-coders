@@ -2,7 +2,8 @@
 import { readFile, writeFile, access } from 'node:fs/promises';
 import { constants } from 'node:fs';
 import path from 'node:path';
-import https from 'node:https';
+import process from 'node:process';
+// Node 18+ has global fetch; if not present, user should run on Node 18+
 
 const repoEnv = process.env.GITHUB_REPOSITORY || '';
 const ownerEnv = process.env.GITHUB_REPOSITORY_OWNER || (repoEnv.split('/')[0] || '');
@@ -77,113 +78,123 @@ function replacerFactory(owner, repo) {
   return (content) => patterns.reduce((acc, { re, replace }) => acc.replace(re, replace), content);
 }
 
-async function fetchPrivateInclusiveStats(owner) {
-  const token = process.env.GH_STATS_TOKEN || process.env.GITHUB_TOKEN || '';
-  if (!token) return undefined;
-
-  const query = `
-    query {
-      viewer {
-        login
-        contributionsCollection {
-          totalCommitContributions
-          restrictedContributionsCount
-          totalIssueContributions
-          totalPullRequestContributions
-          totalPullRequestReviewContributions
-          contributionCalendar { totalContributions }
-        }
-        repositories(ownerAffiliations: OWNER, isFork: false, privacy: PUBLIC, first: 100) {
-          totalCount
-          nodes { stargazerCount primaryLanguage { name } }
-        }
-        privateRepos: repositories(ownerAffiliations: OWNER, isFork: false, privacy: PRIVATE, first: 100) {
-          totalCount
-          nodes { stargazerCount }
-        }
-      }
-    }
-  `;
-
-  const postData = JSON.stringify({ query });
-
-  const options = {
+async function fetchGraphQL(token, query, variables = {}) {
+  const res = await fetch('https://api.github.com/graphql', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${token}`,
-      'User-Agent': 'nub-coders-stats-script',
-      'Content-Length': Buffer.byteLength(postData),
+      Authorization: `Bearer ${token}`,
     },
-  };
-
-  const body = await new Promise((resolve, reject) => {
-    const req = https.request('https://api.github.com/graphql', options, (res) => {
-      let data = '';
-      res.on('data', (chunk) => { data += chunk; });
-      res.on('end', () => resolve(data));
-    });
-    req.on('error', reject);
-    req.write(postData);
-    req.end();
+    body: JSON.stringify({ query, variables }),
   });
+  if (!res.ok) {
+    const text = await res.text().catch(() => '');
+    throw new Error(`GitHub GraphQL error: ${res.status} ${res.statusText} - ${text}`);
+  }
+  const json = await res.json();
+  if (json.errors) {
+    throw new Error(`GitHub GraphQL errors: ${JSON.stringify(json.errors)}`);
+  }
+  return json.data;
+}
 
-  const json = JSON.parse(body);
-  if (json.errors) return undefined;
-  const v = json.data?.viewer;
-  if (!v) return undefined;
+async function collectOwnerWideStats(owner) {
+  const token = process.env.GITHUB_TOKEN || process.env.GH_TOKEN || '';
+  if (!token) return null;
 
-  const publicStars = (v.repositories.nodes || []).reduce((sum, r) => sum + (r?.stargazerCount || 0), 0);
-  const privateStars = (v.privateRepos.nodes || []).reduce((sum, r) => sum + (r?.stargazerCount || 0), 0);
-  const totalStars = publicStars + privateStars;
-  const totalRepos = (v.repositories.totalCount || 0) + (v.privateRepos.totalCount || 0);
-  const commitsPublic = v.contributionsCollection.totalCommitContributions || 0;
-  const commitsPrivate = v.contributionsCollection.restrictedContributionsCount || 0;
-  const totalCommits = commitsPublic + commitsPrivate;
-  const totalIssues = v.contributionsCollection.totalIssueContributions || 0;
-  const totalPRs = v.contributionsCollection.totalPullRequestContributions || 0;
-  const totalReviews = v.contributionsCollection.totalPullRequestReviewContributions || 0;
-  const totalContributions = v.contributionCalendar.totalContributions || 0;
+  // We can only get private contributions if the token belongs to the same user
+  const viewerData = await fetchGraphQL(token, `query { viewer { login } }`);
+  const viewerLogin = viewerData?.viewer?.login || '';
+  const isSelf = viewerLogin.toLowerCase() === String(owner).toLowerCase();
+  if (!isSelf) return null;
 
-  return {
-    login: v.login,
-    totalStars,
-    totalRepos,
-    totalCommits,
-    totalIssues,
-    totalPRs,
-    totalReviews,
-    totalContributions,
+  const from = '2008-01-01T00:00:00Z';
+  const to = new Date().toISOString();
+
+  // Sum stars across all owned repositories (public + private), excluding forks
+  let starsTotal = 0;
+  let repoCountPublic = 0;
+  let repoCountPrivate = 0;
+  let cursor = null;
+  for (;;) {
+    const data = await fetchGraphQL(
+      token,
+      `query($owner: String!, $after: String) {
+        user(login: $owner) {
+          repositories(ownerAffiliations: OWNER, isFork: false, first: 100, after: $after) {
+            totalCount
+            pageInfo { hasNextPage endCursor }
+            nodes { stargazerCount isPrivate }
+          }
+        }
+      }`,
+      { owner, after: cursor }
+    );
+    const repos = data?.user?.repositories;
+    if (!repos) break;
+    for (const r of repos.nodes || []) {
+      starsTotal += Number(r.stargazerCount || 0);
+      if (r.isPrivate) repoCountPrivate += 1; else repoCountPublic += 1;
+    }
+    if (repos.pageInfo?.hasNextPage) {
+      cursor = repos.pageInfo.endCursor;
+    } else {
+      break;
+    }
+  }
+
+  // Contributions across entire timeline (approx) including private
+  const contrib = await fetchGraphQL(
+    token,
+    `query($owner: String!, $from: DateTime!, $to: DateTime!) {
+      user(login: $owner) {
+        contributionsCollection(from: $from, to: $to) {
+          totalCommitContributions
+          totalIssueContributions
+          totalPullRequestContributions
+          totalPullRequestReviewContributions
+          totalRepositoryContributions
+          restrictedContributionsCount
+        }
+      }
+    }`,
+    { owner, from, to }
+  );
+
+  const c = contrib?.user?.contributionsCollection || {};
+  const totals = {
+    starsTotal,
+    repositoriesTotal: repoCountPublic + repoCountPrivate,
+    repositoriesPrivate: repoCountPrivate,
+    repositoriesPublic: repoCountPublic,
+    totalCommitContributions: Number(c.totalCommitContributions || 0) + Number(c.restrictedContributionsCount || 0),
+    totalIssueContributions: Number(c.totalIssueContributions || 0),
+    totalPullRequestContributions: Number(c.totalPullRequestContributions || 0),
+    totalPullRequestReviewContributions: Number(c.totalPullRequestReviewContributions || 0),
+    totalRepositoryContributions: Number(c.totalRepositoryContributions || 0),
   };
+  return totals;
 }
 
-function formatNumber(n) {
-  try { return Intl.NumberFormat('en-US').format(n); } catch { return String(n); }
-}
-
-async function buildDynamicStatsBlock(owner, repo) {
-  const stats = await fetchPrivateInclusiveStats(owner);
+function buildDynamicStatsBlock(owner, repo, stats) {
+  // If authenticated owner-wide stats are available, render detailed figures
   if (stats) {
     const lines = [
-      `- Total Stars (all repos): ${formatNumber(stats.totalStars)}`,
-      `- Total Repositories: ${formatNumber(stats.totalRepos)}`,
-      `- Total Commits (incl. private): ${formatNumber(stats.totalCommits)}`,
-      `- Total PRs: ${formatNumber(stats.totalPRs)}`,
-      `- Total Issues: ${formatNumber(stats.totalIssues)}`,
-      `- Code Reviews: ${formatNumber(stats.totalReviews)}`,
-      `- Contributions (last year): ${formatNumber(stats.totalContributions)}`,
+      `- Total Stars (owned repos): ${stats.starsTotal}`,
+      `- Repositories: ${stats.repositoriesTotal} (public: ${stats.repositoriesPublic}, private: ${stats.repositoriesPrivate})`,
+      `- Commits (incl. private): ${stats.totalCommitContributions}`,
+      `- Pull Requests: ${stats.totalPullRequestContributions}`,
+      `- Issues: ${stats.totalIssueContributions}`,
+      `- Code Reviews: ${stats.totalPullRequestReviewContributions}`,
+      `- Repos Created: ${stats.totalRepositoryContributions}`,
     ];
     return ['<!-- STATS_START -->', ...lines, '<!-- STATS_END -->'].join('\n');
   }
 
-  // Fallback (no token): use badges/cards (public-only aggregation by providers)
-  const starsBadge = `![Total Stars](https://img.shields.io/github/stars/${owner}?affiliations=OWNER&label=Total%20Stars&color=yellow)`;
-  const topLangs = `![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=${owner}&layout=compact&theme=tokyonight)`;
-  const lines = [
-    '- ' + starsBadge,
-    '- ' + topLangs,
-  ];
-  return ['<!-- STATS_START -->', ...lines, '', '<!-- STATS_END -->'].join('\n');
+  // Fallback: public badges/cards
+  const statsCard = `![GitHub Stats](https://github-readme-stats.vercel.app/api?username=${owner}&show_icons=true&theme=tokyonight&count_private=true)`;
+  const langsCard = `![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=${owner}&layout=compact&theme=tokyonight)`;
+  return ['<!-- STATS_START -->', statsCard, langsCard, '<!-- STATS_END -->'].join('\n');
 }
 
 async function fileExists(p) {
@@ -222,7 +233,13 @@ async function processReadme(readmePath) {
   const startTag = '<!-- STATS_START -->';
   const endTag = '<!-- STATS_END -->';
   if (content.includes(startTag) && content.includes(endTag) && owner) {
-    const block = await buildDynamicStatsBlock(owner, repo);
+    let stats = null;
+    try {
+      stats = await collectOwnerWideStats(owner);
+    } catch (e) {
+      // ignore and fall back to public cards
+    }
+    const block = buildDynamicStatsBlock(owner, repo, stats);
     const blockRe = new RegExp(
       `${startTag.replace(/[.*+?^${}()|[\]\\]/g, r => `\\${r}`)}[\s\S]*?${endTag.replace(/[.*+?^${}()|[\]\\]/g, r => `\\${r}`)}`,
       'm'
