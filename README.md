@@ -13,9 +13,9 @@
 
 ## 👨‍💻 About Me
 
-I'm a passionate Full Stack Developer with 5+ years of experience creating modern web applications. I specialize in building robust, user-friendly solutions that combine technical excellence with creative design. My approach focuses on developing scalable applications with clean, maintainable code.
+I'm a passionate Full Stack Developer with 3+ years of experience creating modern web applications. I specialize in building robust, user-friendly solutions that combine technical excellence with creative design. My approach focuses on developing scalable applications with clean, maintainable code.
 
-- 🚀 Completed 50+ projects across various industries  
+- 🚀 Completed 30+ projects across various industries  
 - 💡 Constantly exploring new technologies and frameworks  
 - 📝 Sharing knowledge through my YouTube channel  
 - 🌱 Always learning and improving my craft  
