@@ -27,15 +27,34 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Geist', 'Poppins', sans-serif;
-    outline: none;
+    outline: none !important;
   }
 
   *:focus {
-    outline: none;
+    outline: none !important;
+    box-shadow: none !important;
   }
 
   *:focus-visible {
-    outline: none;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  button:focus,
+  a:focus,
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Remove Radix UI focus rings */
+  [data-radix-focus-guard],
+  [data-state="open"]:focus,
+  [data-state="closed"]:focus {
+    outline: none !important;
+    box-shadow: none !important;
   }
 
   body {
