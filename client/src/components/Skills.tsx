@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ScrollRevealText from "./ScrollRevealText";
 
 type SkillTab = "frontend" | "backend" | "database" | "devops" | "other";
 
@@ -43,7 +44,9 @@ export default function Skills() {
 
   return (
     <section id="skills" className="py-16 max-w-6xl mx-auto">
-      <h2 className="section-title">Skills & Expertise</h2>
+      <h2 className="section-title">
+        <ScrollRevealText text="Skills & Expertise" />
+      </h2>
       
       <div className="tabs flex flex-wrap justify-center gap-4 mb-12">
         {(Object.keys(skillsData) as SkillTab[]).map((tab) => {

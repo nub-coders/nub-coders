@@ -5,6 +5,7 @@ import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import ContactForm from "@/components/ContactForm";
 import AnimationWrapper from "@/components/AnimationWrapper";
+import ScrollRevealText from "@/components/ScrollRevealText";
 import { useScrollProgress } from "@/hooks/useScrollProgress";
 import profileImage from "/assets/profile.jpg";
 
@@ -12,13 +13,18 @@ import profileImage from "/assets/profile.jpg";
 function GitHubStats() {
   return (
     <section id="github-stats" className="py-16 max-w-6xl mx-auto">
-      <h2 className="section-title">GitHub Stats</h2>
+      <h2 className="section-title">
+        <ScrollRevealText text="GitHub Stats" />
+      </h2>
       
       <div className="mt-8 bg-[var(--dark)] rounded-xl p-8 border border-[var(--primary)]/20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
           <div>
-            <h3 className="text-2xl font-semibold mb-4 bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] bg-clip-text text-transparent">
-              Ankit Kumar's GitHub Stats
+            <h3 className="text-2xl font-semibold mb-4">
+              <ScrollRevealText 
+                text="Ankit Kumar's GitHub Stats"
+                className="bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] bg-clip-text text-transparent"
+              />
             </h3>
             <ul className="space-y-4">
               <li className="flex items-center gap-3">
@@ -123,17 +129,20 @@ export default function Home() {
 
           <AnimationWrapper animation="left" delay={700}>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] bg-clip-text text-transparent">
-                Full Stack Developer
-              </span>
+              <ScrollRevealText 
+                text="Full Stack Developer" 
+                className="bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] bg-clip-text text-transparent"
+              />
             </h1>
           </AnimationWrapper>
 
           <AnimationWrapper animation="right" delay={1100}>
             <div className="h-16">
-              <p id="typingText" className="typed-text text-xl md:text-2xl mb-8 inline-block">
-                Building digital experiences that combine creativity with technical excellence
-              </p>
+              <ScrollRevealText 
+                text="Building digital experiences that combine creativity with technical excellence"
+                className="text-xl md:text-2xl mb-8 inline-block"
+                delay={0.5}
+              />
             </div>
           </AnimationWrapper>
 
@@ -165,7 +174,9 @@ export default function Home() {
         {/* About Section */}
         <section id="about" className="py-16 max-w-6xl mx-auto">
           <AnimationWrapper animation="zoom" delay={1900}>
-            <h2 className="section-title">About Me</h2>
+            <h2 className="section-title">
+              <ScrollRevealText text="About Me" />
+            </h2>
           </AnimationWrapper>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

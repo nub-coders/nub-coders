@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import ScrollRevealText from "./ScrollRevealText";
 
 type ProjectCategory = "all" | "web" | "mobile" | "api";
 
@@ -85,7 +86,9 @@ export default function Projects() {
 
   return (
     <section id="projects" className="py-16 max-w-6xl mx-auto">
-      <h2 className="section-title">Projects</h2>
+      <h2 className="section-title">
+        <ScrollRevealText text="Projects" />
+      </h2>
       
       <div className="tabs flex flex-wrap justify-center gap-4 mb-12">
         <button 
