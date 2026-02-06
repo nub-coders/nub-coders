@@ -64,18 +64,6 @@ A powerful Telegram Mini App that simplifies Docker container deployment and man
 
 ---
 
-### nginx-proxy - Automatic Reverse Proxy
-Automatic virtual host reverse proxy for Docker with Let's Encrypt SSL certificate management. Production-ready solution for routing multiple containerized applications.
-
-**Technologies**: NGINX, Docker, ACME Protocol, Let's Encrypt  
-**Features**:
-- Automatic virtual host configuration
-- SSL certificate provisioning and renewal
-- Wildcard DNS support
-- Zero-downtime deployments
-- Network isolation with Docker networks
-
----
 
 ### NubMail - Email Management System
 A lightweight, self-hosted email management system with custom domain support, built-in SMTP server, and comprehensive email operations.
