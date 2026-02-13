@@ -21,15 +21,23 @@ export default function ScrollRevealText({
 
   const words = text.split(" ");
 
+  // Pre-calculate delays for each word
+  let accumulatedDelay = delay;
+  const wordDelays = words.map(word => {
+    const current = accumulatedDelay;
+    accumulatedDelay += (word.length + 1) * staggerDelay;
+    return current;
+  });
+
   return (
     <motion.span ref={ref} className={className}>
       {words.map((word, wordIndex) => {
-        const wordDelay = delay + (wordIndex * word.length * staggerDelay);
+        const wordStartDelay = wordDelays[wordIndex];
         
         return (
           <span key={wordIndex} className="inline-block whitespace-nowrap mr-[0.25em]">
             {word.split("").map((char, charIndex) => {
-              const charDelay = wordDelay + (charIndex * staggerDelay);
+              const charDelay = wordStartDelay + (charIndex * staggerDelay);
               
               return (
                 <motion.span
