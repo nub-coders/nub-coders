@@ -1,11 +1,32 @@
 import express from 'express';
 import fetch from 'node-fetch';
+import { z } from 'zod';
+
 const router = express.Router();
 
-const EMAIL_API_URL = process.env.EMAIL_API_URL || 'https://mails.nubcoder.com/api/emails/send-api';
-const EMAIL_API_KEY = process.env.EMAIL_API_KEY;
-const FROM_EMAIL = process.env.EMAIL_FROM || 'support@nubcoder.com';
-const TO_EMAIL = process.env.EMAIL_TO || 'nubcoders@gmail.com';
+const envSchema = z.object({
+  EMAIL_API_URL: z.string().url().default('https://mails.nubcoder.com/api/emails/send-api'),
+  EMAIL_API_KEY: z.string({
+    required_error: "EMAIL_API_KEY is required",
+  }).min(1, "EMAIL_API_KEY cannot be empty"),
+  EMAIL_FROM: z.string().email().default('support@nubcoder.com'),
+  EMAIL_TO: z.string().email().default('nubcoders@gmail.com'),
+});
+
+const envResult = envSchema.safeParse(process.env);
+
+if (!envResult.success) {
+  const errors = envResult.error.flatten().fieldErrors;
+  console.error('❌ Invalid environment variables in server/contact.js:', errors);
+  throw new Error(`Invalid environment variables for email API: ${JSON.stringify(errors)}`);
+}
+
+const {
+  EMAIL_API_URL,
+  EMAIL_API_KEY,
+  EMAIL_FROM: FROM_EMAIL,
+  EMAIL_TO: TO_EMAIL,
+} = envResult.data;
 
 router.post('/api/contact', async (req, res) => {
   const { name, email, subject, message } = req.body;
