@@ -1,0 +1,5 @@
+[test]
+preload = ["./setup.ts"]
+
+[resolve.alias]
+"@" = "./client/src"
