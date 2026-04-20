@@ -336,7 +336,6 @@
       0 0 40px var(--glow-primary),
       0 0 80px var(--glow-secondary);
     position: relative;
-    filter: drop-shadow(0 0 24px rgba(245, 246, 247, 0.18));
   }
 
   /* Elite skill progress bars */
