@@ -6,6 +6,12 @@ export interface LanguageStat {
   percentage: number;
 }
 
+export interface SkillEntry {
+  name: string;
+  proficiency: number;
+  category: "frontend" | "backend" | "devops" | "database" | "other";
+}
+
 export interface GitHubStats {
   username: string;
   name: string | null;
@@ -25,6 +31,7 @@ export interface GitHubStats {
   issuesClosed: number;
   gists: number;
   topLanguages: LanguageStat[];
+  skillsMap: SkillEntry[];
   fetchedAt: string;
 }
 
