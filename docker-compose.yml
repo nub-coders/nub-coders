@@ -1,0 +1,31 @@
+networks:
+  web:
+    external: true
+
+services:
+  portfolio:
+    container_name: portfolio
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: portfolio:latest
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+      VIRTUAL_HOST: nubcoder.com
+      LETSENCRYPT_HOST: nubcoder.com
+      VIRTUAL_PORT: "8080"
+    expose:
+      - "8080"
+    networks:
+      - web
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+        reservations:
+          cpus: '0.25'
+          memory: 256M
