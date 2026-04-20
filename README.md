@@ -4,6 +4,7 @@
 
 ![Profile Banner](https://img.shields.io/badge/Full%20Stack-Developer-blueviolet?style=for-the-badge)
 
+[![Portfolio](https://img.shields.io/badge/Portfolio-nubcoder.com-blueviolet?logo=vercel&style=flat-square)](https://nubcoder.com)
 [![GitHub](https://img.shields.io/badge/GitHub-nub--coders-blue?logo=github&style=flat-square)](https://github.com/nub-coders)
 [![YouTube](https://img.shields.io/badge/YouTube-nub--coder-red?logo=youtube&style=flat-square)](https://youtube.com/@nub-coder)
 [![Telegram](https://img.shields.io/badge/Telegram-nub__coder__s-blue?logo=telegram&style=flat-square)](https://t.me/nub_coder_s)
@@ -83,6 +84,7 @@ I share what I learn, document what works, and enjoy building tools that help ot
 
 ## Contact
 
+- Website: [nubcoder.com](https://nubcoder.com)
 - Channel: [Telegram](https://t.me/nub_coder_s)
 - Email: [dev@nubcoder.com](mailto:dev@nubcoder.com)
 - GitHub: [github.com/nub-coders](https://github.com/nub-coders)

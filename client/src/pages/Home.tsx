@@ -6,12 +6,53 @@ import ContactForm from "@/components/ContactForm";
 import AnimationWrapper from "@/components/AnimationWrapper";
 import ScrollRevealText from "@/components/ScrollRevealText";
 import { useScrollProgress } from "@/hooks/useScrollProgress";
+import { useGitHubStats } from "@/hooks/useGitHubStats";
 import profileImage from "/assets/profile.jpg";
 
 type TabType = "home" | "about" | "skills" | "projects" | "github" | "contact";
 
-// Coding Stats component with actual data
+// ── Language bar ───────────────────────────────────────────────────────────────
+const LANG_COLORS: Record<string, string> = {
+  TypeScript: "#3178c6", JavaScript: "#f1e05a", Python: "#3572A5",
+  HTML: "#e34c26", CSS: "#563d7c", Shell: "#89e051", Dockerfile: "#384d54",
+  Go: "#00ADD8", Rust: "#dea584", Java: "#b07219", "C++": "#f34b7d",
+  C: "#555555", Ruby: "#701516", Swift: "#ffac45", Kotlin: "#A97BFF",
+  Vue: "#41b883", Svelte: "#ff3e00", Dart: "#00B4AB",
+};
+function langColor(name: string) {
+  return LANG_COLORS[name] ?? "#8b8fa8";
+}
+
+// ── Stat card ──────────────────────────────────────────────────────────────────
+function StatCard({ icon, label, value }: { icon: string; label: string; value: string | number }) {
+  return (
+    <div
+      className="rounded-2xl p-4 border border-[var(--glass-border)] flex flex-col items-center text-center gap-1"
+      style={{ background: "linear-gradient(145deg, rgba(245,246,247,0.05) 0%, rgba(43,46,51,0.88) 100%)" }}
+    >
+      <i className={`fas ${icon} text-[var(--secondary)] text-lg`} />
+      <span className="text-xs text-[var(--text-secondary)] leading-tight">{label}</span>
+      <span className="text-xl font-bold text-[var(--primary)]">{value}</span>
+    </div>
+  );
+}
+
+// ── Skeleton pulse ─────────────────────────────────────────────────────────────
+function Skeleton({ className = "" }: { className?: string }) {
+  return (
+    <div
+      className={`rounded-lg animate-pulse ${className}`}
+      style={{ background: "rgba(255,255,255,0.07)" }}
+    />
+  );
+}
+
+// ── Main component ─────────────────────────────────────────────────────────────
 function GitHubStats() {
+  const { data, isLoading, isError, error, refetch, isFetching } = useGitHubStats();
+
+  const fetched = data?.fetchedAt ? new Date(data.fetchedAt).toLocaleString() : null;
+
   return (
     <section id="github-stats" className="py-16 max-w-6xl mx-auto">
       <h2 className="section-title">
@@ -21,98 +62,156 @@ function GitHubStats() {
       <div
         className="mt-8 rounded-[28px] p-8 border border-[var(--glass-border)]"
         style={{
-          background: 'linear-gradient(145deg, rgba(245, 246, 247, 0.08) 0%, rgba(43, 46, 51, 0.88) 100%)',
-          boxShadow: '0 18px 50px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 0 24px rgba(245, 246, 247, 0.05)'
+          background: "linear-gradient(145deg, rgba(245,246,247,0.08) 0%, rgba(43,46,51,0.88) 100%)",
+          boxShadow: "0 18px 50px rgba(0,0,0,0.42), inset 0 1px 0 rgba(255,255,255,0.08), 0 0 24px rgba(245,246,247,0.05)",
         }}
       >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div>
-            <h3 className="text-2xl font-semibold mb-4">
-              <ScrollRevealText
-                text="Development Activity"
-                className="bg-gradient-to-r from-[var(--primary)] via-[var(--secondary)] to-[var(--tertiary)] bg-clip-text text-transparent"
-              />
-            </h3>
-            <ul className="space-y-4">
-              <li className="flex items-center gap-3">
-                <i className="fas fa-star text-[var(--secondary)]"></i>
-                <span className="font-medium">Total Stars Earned:</span>
-                <span className="text-[var(--primary)]">14</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <i className="fas fa-code-commit text-[var(--secondary)]"></i>
-                <span className="font-medium">Total Commits (2025):</span>
-                <span className="text-[var(--primary)]">84</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <i className="fas fa-code-branch text-[var(--secondary)]"></i>
-                <span className="font-medium">Total PRs:</span>
-                <span className="text-[var(--primary)]">5</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <i className="fas fa-exclamation-circle text-[var(--secondary)]"></i>
-                <span className="font-medium">Total Issues:</span>
-                <span className="text-[var(--primary)]">0</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <i className="fas fa-users text-[var(--secondary)]"></i>
-                <span className="font-medium">Contributed to (last year):</span>
-                <span className="text-[var(--primary)]">2</span>
-              </li>
-            </ul>
-          </div>
-          <div className="hidden md:flex justify-center items-center">
-            <div
-              className="w-48 h-48 rounded-full flex items-center justify-center border border-[var(--glass-border)]"
-              style={{
-                background: 'linear-gradient(145deg, rgba(245, 246, 247, 0.08) 0%, rgba(43, 46, 51, 0.92) 100%)'
-              }}
+        {/* ── Error state ─────────────────────────────────────────────────── */}
+        {isError && (
+          <div className="flex flex-col items-center gap-4 py-10 text-center">
+            <i className="fas fa-triangle-exclamation text-4xl text-yellow-400" />
+            <p className="text-[var(--text-secondary)]">{(error as Error)?.message ?? "Failed to load GitHub stats."}</p>
+            <button
+              onClick={() => refetch()}
+              className="px-6 py-2 rounded-xl border border-[var(--glass-border)] text-sm hover:bg-white/10 transition"
             >
-              <div className="text-6xl font-bold bg-gradient-to-r from-[var(--primary)] via-[var(--secondary)] to-[var(--tertiary)] bg-clip-text text-transparent">
-                <i className="fas fa-chart-line"></i>
+              <i className="fas fa-rotate-right mr-2" />Retry
+            </button>
+          </div>
+        )}
+
+        {/* ── Loading skeleton ─────────────────────────────────────────────── */}
+        {isLoading && !isError && (
+          <div className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="space-y-4">
+                <Skeleton className="h-7 w-48" />
+                {[...Array(5)].map((_, i) => <Skeleton key={i} className="h-5 w-full" />)}
+              </div>
+              <div className="hidden md:flex justify-center items-center">
+                <Skeleton className="w-48 h-48 rounded-full" />
               </div>
             </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[...Array(4)].map((_, i) => <Skeleton key={i} className="h-24 rounded-2xl" />)}
+            </div>
           </div>
-        </div>
+        )}
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
-          <div
-            className="rounded-2xl p-4 border border-[var(--glass-border)] flex flex-col items-center text-center"
-            style={{
-              background: 'linear-gradient(145deg, rgba(245, 246, 247, 0.05) 0%, rgba(43, 46, 51, 0.88) 100%)'
-            }}
-          >
-            <span className="text-sm text-[var(--text-secondary)]">Total Commits</span>
-            <span className="text-xl font-bold text-[var(--primary)]">84</span>
-          </div>
-          <div
-            className="rounded-2xl p-4 border border-[var(--glass-border)] flex flex-col items-center text-center"
-            style={{
-              background: 'linear-gradient(145deg, rgba(245, 246, 247, 0.05) 0%, rgba(43, 46, 51, 0.88) 100%)'
-            }}
-          >
-            <span className="text-sm text-[var(--text-secondary)]">Total Commits (2025)</span>
-            <span className="text-xl font-bold text-[var(--primary)]">84</span>
-          </div>
-          <div
-            className="rounded-2xl p-4 border border-[var(--glass-border)] flex flex-col items-center text-center"
-            style={{
-              background: 'linear-gradient(145deg, rgba(245, 246, 247, 0.05) 0%, rgba(43, 46, 51, 0.88) 100%)'
-            }}
-          >
-            <span className="text-sm text-[var(--text-secondary)]">Total PRs</span>
-            <span className="text-xl font-bold text-[var(--primary)]">5</span>
-          </div>
-          <div
-            className="rounded-2xl p-4 border border-[var(--glass-border)] flex flex-col items-center text-center"
-            style={{
-              background: 'linear-gradient(145deg, rgba(245, 246, 247, 0.05) 0%, rgba(43, 46, 51, 0.88) 100%)'
-            }}
-          >
-            <span className="text-sm text-[var(--text-secondary)]">Contributed to (last year)</span>
-            <span className="text-xl font-bold text-[var(--primary)]">2</span>
-          </div>
-        </div>
+        {/* ── Loaded data ──────────────────────────────────────────────────── */}
+        {data && !isLoading && (
+          <>
+            {/* Header row */}
+            <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
+              <div className="flex items-center gap-3">
+                <img
+                  src={data.avatarUrl}
+                  alt={data.username}
+                  className="w-12 h-12 rounded-full border-2 border-[var(--primary)]"
+                />
+                <div>
+                  <a
+                    href={data.profileUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="font-bold text-lg hover:text-[var(--primary)] transition-colors"
+                  >
+                    @{data.username}
+                  </a>
+                  {data.name && <p className="text-sm text-[var(--text-secondary)]">{data.name}</p>}
+                </div>
+              </div>
+              <div className="flex items-center gap-2 text-xs text-[var(--text-secondary)]">
+                {isFetching && <i className="fas fa-rotate-right animate-spin text-[var(--primary)]" />}
+                {fetched && <span>Updated {fetched}</span>}
+                <button
+                  onClick={() => refetch()}
+                  title="Refresh"
+                  className="ml-1 w-7 h-7 rounded-full hover:bg-white/10 flex items-center justify-center transition"
+                >
+                  <i className="fas fa-arrows-rotate text-xs" />
+                </button>
+              </div>
+            </div>
+
+            {/* Activity list + orb */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              <div>
+                <h3 className="text-2xl font-semibold mb-4">
+                  <ScrollRevealText
+                    text="Development Activity"
+                    className="bg-gradient-to-r from-[var(--primary)] via-[var(--secondary)] to-[var(--tertiary)] bg-clip-text text-transparent"
+                  />
+                </h3>
+                <ul className="space-y-3">
+                  {[
+                    { icon: "fa-star", label: "Total Stars Earned", value: data.totalStars },
+                    { icon: "fa-code-commit", label: "Total Commits", value: data.totalCommits.toLocaleString() },
+                    { icon: "fa-code-branch", label: "PRs Merged", value: data.prsMerged },
+                    { icon: "fa-code-pull-request", label: "PRs Open", value: data.prsOpen },
+                    { icon: "fa-exclamation-circle", label: "Issues (open / closed)", value: `${data.issuesOpen} / ${data.issuesClosed}` },
+                    { icon: "fa-users", label: "Followers / Following", value: `${data.followers} / ${data.following}` },
+                  ].map(({ icon, label, value }) => (
+                    <li key={label} className="flex items-center gap-3">
+                      <i className={`fas ${icon} text-[var(--secondary)] w-4 text-center`} />
+                      <span className="font-medium text-sm">{label}:</span>
+                      <span className="text-[var(--primary)] font-semibold">{value}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="hidden md:flex justify-center items-center">
+                <div
+                  className="w-48 h-48 rounded-full flex items-center justify-center border border-[var(--glass-border)]"
+                  style={{ background: "linear-gradient(145deg, rgba(245,246,247,0.08) 0%, rgba(43,46,51,0.92) 100%)" }}
+                >
+                  <div className="text-6xl font-bold bg-gradient-to-r from-[var(--primary)] via-[var(--secondary)] to-[var(--tertiary)] bg-clip-text text-transparent">
+                    <i className="fas fa-chart-line" />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Summary cards */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+              <StatCard icon="fa-code-commit" label="Total Commits" value={data.totalCommits.toLocaleString()} />
+              <StatCard icon="fa-folder" label="Repositories" value={`${data.publicRepos} pub / ${data.privateRepos} priv`} />
+              <StatCard icon="fa-code-branch" label="PRs Merged" value={data.prsMerged} />
+              <StatCard icon="fa-star" label="Stars Earned" value={data.totalStars} />
+            </div>
+
+            {/* Language chart */}
+            {data.topLanguages.length > 0 && (
+              <div className="mt-8">
+                <h4 className="text-sm font-semibold text-[var(--text-secondary)] uppercase tracking-widest mb-4">
+                  Top Languages
+                </h4>
+                {/* Rainbow bar */}
+                <div className="flex h-3 rounded-full overflow-hidden mb-4">
+                  {data.topLanguages.map((l) => (
+                    <div
+                      key={l.name}
+                      title={`${l.name} ${l.percentage}%`}
+                      style={{ width: `${l.percentage}%`, background: langColor(l.name) }}
+                    />
+                  ))}
+                </div>
+                {/* Legend */}
+                <div className="flex flex-wrap gap-3">
+                  {data.topLanguages.map((l) => (
+                    <span key={l.name} className="flex items-center gap-1.5 text-xs text-[var(--text-secondary)]">
+                      <span
+                        className="inline-block w-2.5 h-2.5 rounded-full flex-shrink-0"
+                        style={{ background: langColor(l.name) }}
+                      />
+                      {l.name} <span className="text-[var(--primary)] font-semibold">{l.percentage}%</span>
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </>
+        )}
       </div>
     </section>
   );
