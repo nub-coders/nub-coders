@@ -23,6 +23,12 @@ export interface LanguageStat {
   percentage: number;
 }
 
+export interface SkillEntry {
+  name: string;
+  proficiency: number; // 0–100, GitHub-derived
+  category: "frontend" | "backend" | "devops" | "database" | "other";
+}
+
 export interface GitHubStats {
   username: string;
   name: string | null;
@@ -42,6 +48,7 @@ export interface GitHubStats {
   issuesClosed: number;
   gists: number;
   topLanguages: LanguageStat[];
+  skillsMap: SkillEntry[];  // derived from language bytes
   fetchedAt: string; // ISO timestamp
 }
 
@@ -282,6 +289,52 @@ export async function fetchGitHubStats(): Promise<GitHubStats> {
       percentage: Math.round((bytes / totalBytes) * 1000) / 10,
     }));
 
+  // ── 5. Skills map ─────────────────────────────────────────────────────────
+  // Normalize language percentages → proficiency score in [60, 98]
+  // Top language = 98, everything else scales linearly down to 60.
+  const PROF_MAX = 98;
+  const PROF_MIN = 60;
+  const topPct = topLanguages[0]?.percentage ?? 1;
+
+  // Language → category lookup
+  const LANG_CATEGORY: Record<string, SkillEntry["category"]> = {
+    // Frontend
+    JavaScript: "frontend", TypeScript: "frontend", HTML: "frontend",
+    CSS: "frontend", SCSS: "frontend", Sass: "frontend", Vue: "frontend",
+    Svelte: "frontend", Astro: "frontend", Handlebars: "frontend",
+    // Backend
+    Python: "backend", "C#": "backend", Ruby: "backend", Go: "backend",
+    Java: "backend", Kotlin: "backend", Rust: "backend", PHP: "backend",
+    Swift: "backend", Elixir: "backend", Scala: "backend", Dart: "backend",
+    "C++": "backend", C: "backend", Lua: "backend", Perl: "backend",
+    // DevOps / infra
+    Dockerfile: "devops", HCL: "devops", Shell: "devops",
+    Makefile: "devops", "Nix": "devops", Batchfile: "devops", PowerShell: "devops",
+    YAML: "devops",
+    // Database
+    PLpgSQL: "database", PLSQL: "database", SQL: "database",
+    TSQL: "database",
+  };
+
+  // Display name overrides (GitHub lang name → human-friendly)
+  const DISPLAY: Record<string, string> = {
+    JavaScript: "JavaScript", TypeScript: "TypeScript", Python: "Python",
+    HTML: "HTML/CSS", CSS: "CSS", Shell: "Shell Script", Dockerfile: "Docker",
+    "C++": "C++", "C#": "C#",
+  };
+
+  const skillsMap: SkillEntry[] = topLanguages.map((l) => {
+    const pct = l.percentage;
+    const proficiency = Math.round(
+      PROF_MIN + ((pct / topPct) * (PROF_MAX - PROF_MIN))
+    );
+    return {
+      name: DISPLAY[l.name] ?? l.name,
+      proficiency: Math.min(PROF_MAX, Math.max(PROF_MIN, proficiency)),
+      category: LANG_CATEGORY[l.name] ?? "other",
+    };
+  });
+
   const stats: GitHubStats = {
     username: user.login,
     name: user.name ?? null,
@@ -301,6 +354,7 @@ export async function fetchGitHubStats(): Promise<GitHubStats> {
     issuesClosed,
     gists,
     topLanguages,
+    skillsMap,
     fetchedAt: new Date().toISOString(),
   };
 
