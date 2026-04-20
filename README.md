@@ -94,18 +94,24 @@ I share what I learn, document what works, and enjoy building tools that help ot
 
 <div align="center">
 
-| Metric | Value |
-|---|---|
-| ⭐ Total Stars | 17 |
-| 📝 Total Commits | 109 |
-| ✅ PRs Merged | 45 |
-| 📁 Repositories | 8 public · 10 private |
-| 👥 Followers | 11 |
+![Stars](https://img.shields.io/badge/⭐%20Stars-17-FFD700?style=for-the-badge&labelColor=1a1a2e)
+![Commits](https://img.shields.io/badge/📝%20Commits-109-4FC3F7?style=for-the-badge&labelColor=1a1a2e)
+![PRs](https://img.shields.io/badge/✅%20PRs%20Merged-45-66BB6A?style=for-the-badge&labelColor=1a1a2e)
+![Repos](https://img.shields.io/badge/📁%20Repos-18-AB47BC?style=for-the-badge&labelColor=1a1a2e)
+![Followers](https://img.shields.io/github/followers/nub-coders?label=Followers&style=for-the-badge&color=EC407A&labelColor=1a1a2e)
 
-**Top Languages**
+</div>
 
-`TypeScript 59.6%` · `Python 33.1%` · `JavaScript 2.4%` · `HTML 2.2%` · `CSS 1.2%` · `Dockerfile 0.2%` · `Shell 0.1%`
+<div align="center">
 
-<img src="https://img.shields.io/github/followers/nub-coders?label=Followers&style=social" alt="Followers" />
+**🌐 Top Languages**
+
+![TypeScript](https://img.shields.io/badge/TypeScript-59.6%25-3178c6?style=flat-square)
+![Python](https://img.shields.io/badge/Python-33.1%25-3572A5?style=flat-square)
+![JavaScript](https://img.shields.io/badge/JavaScript-2.4%25-f1e05a?style=flat-square&labelColor=333)
+![HTML](https://img.shields.io/badge/HTML-2.2%25-e34c26?style=flat-square)
+![CSS](https://img.shields.io/badge/CSS-1.2%25-563d7c?style=flat-square)
+![Dockerfile](https://img.shields.io/badge/Dockerfile-0.2%25-384d54?style=flat-square)
+![Shell](https://img.shields.io/badge/Shell-0.1%25-89e051?style=flat-square&labelColor=333)
 
 </div>
