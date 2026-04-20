@@ -278,7 +278,7 @@ export default function Home() {
                   </div>
                   <div className="project-card">
                     <i className="fas fa-project-diagram text-5xl text-[var(--primary)] mb-4"></i>
-                    <h3 className="text-xl font-semibold mb-3">35+ Projects Delivered</h3>
+                    <h3 className="text-xl font-semibold mb-3">10+ Projects Delivered</h3>
                     <p className="text-[var(--text-secondary)]/70">From e-commerce platforms to API services, each project built with attention to performance, security, and user experience</p>
                   </div>
                   <div className="project-card">
