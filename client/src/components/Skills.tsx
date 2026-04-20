@@ -113,15 +113,6 @@ export default function Skills() {
         <ScrollRevealText text="Skills & Expertise" />
       </h2>
 
-      {/* Live badge */}
-      <div className="flex justify-center mb-6">
-        {data && (
-          <span className="flex items-center gap-1.5 text-xs text-[var(--text-secondary)] bg-[rgba(245,246,247,0.05)] border border-[var(--glass-border)] px-3 py-1 rounded-full">
-            <span className="inline-block w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-            Proficiency scores derived from GitHub usage data
-          </span>
-        )}
-      </div>
 
       {/* Tab bar */}
       <div className="tabs flex flex-wrap justify-center gap-4 mb-12">
@@ -165,14 +156,6 @@ export default function Skills() {
                 <div className="flex justify-between items-center mb-3">
                   <div className="flex items-center gap-2">
                     <h3 className="text-lg font-medium">{skill.name}</h3>
-                    {skill.isLive && (
-                      <span
-                        title="Score derived from GitHub usage"
-                        className="text-[10px] px-1.5 py-0.5 rounded-full border border-green-500/30 text-green-400 leading-none"
-                      >
-                        live
-                      </span>
-                    )}
                   </div>
                   <span className="text-sm font-semibold text-[var(--secondary)]">
                     {skill.proficiency}%
