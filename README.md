@@ -47,17 +47,17 @@ I enjoy turning rough ideas into production-ready systems, especially when the c
 ## Tech I Use Most
 
 ### Frontend
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 
 ### Backend
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
 ![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white)
 
 ### Database
@@ -66,10 +66,11 @@ I enjoy turning rough ideas into production-ready systems, especially when the c
 ![Redis](https://img.shields.io/badge/redis-%23DD0031.svg?&style=for-the-badge&logo=redis&logoColor=white)
 
 ### DevOps and Tools
-![AWS](https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)
+![AWS](https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
 ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
+![Shell Script](https://img.shields.io/badge/Shell_Script-121011?style=for-the-badge&logo=gnu-bash&logoColor=white)
 
 ## Selected Work
 
@@ -93,18 +94,18 @@ I share what I learn, document what works, and enjoy building tools that help ot
 
 <div align="center">
 
-<!-- STATS_START -->
-![GitHub Stats](https://github-readme-stats.vercel.app/api?username=nub-coders&show_icons=true&theme=radical&hide_border=true&bg_color=0D1117&title_color=8B5CF6&icon_color=06B6D4&text_color=FFFFFF)
-<!-- STATS_END -->
+| Metric | Value |
+|---|---|
+| ⭐ Total Stars | 17 |
+| 📝 Total Commits | 109 |
+| ✅ PRs Merged | 45 |
+| 📁 Repositories | 8 public · 10 private |
+| 👥 Followers | 11 |
 
-</div>
+**Top Languages**
 
-<div align="center">
-  <table>
-    <tr>
-      <td align="center">
-        <img src="https://img.shields.io/github/followers/nub-coders?label=Followers&style=social" alt="Followers" />
-      </td>
-    </tr>
-  </table>
+`TypeScript 59.6%` · `Python 33.1%` · `JavaScript 2.4%` · `HTML 2.2%` · `CSS 1.2%` · `Dockerfile 0.2%` · `Shell 0.1%`
+
+<img src="https://img.shields.io/github/followers/nub-coders?label=Followers&style=social" alt="Followers" />
+
 </div>
