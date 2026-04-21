@@ -58,18 +58,13 @@ export default function Projects() {
 
   useEffect(() => {
     setIsAnimating(true);
-
-    const filterProjects = () => {
+    const timer = setTimeout(() => {
       const filtered = activeFilter === "all"
         ? projects
         : projects.filter(project => project.category === activeFilter);
-
       setFilteredProjects(filtered);
       setIsAnimating(false);
-    };
-
-    // Add a small delay to allow animation to complete
-    const timer = setTimeout(filterProjects, 300);
+    }, 200);
     return () => clearTimeout(timer);
   }, [activeFilter]);
 
@@ -80,42 +75,23 @@ export default function Projects() {
       </h2>
 
       <div className="tabs flex flex-wrap justify-center gap-4 mb-12">
-        <button
-          className={`px-4 py-2 rounded-lg border transition-all duration-300 ${activeFilter === "all"
-            ? "bg-[var(--primary)]/10 border-[var(--glass-border)]"
-            : "border-[var(--glass-border)] hover:bg-[var(--primary)]/8"
-            }`}
-          style={{
-            background: activeFilter !== "all" ? 'linear-gradient(145deg, rgba(245, 246, 247, 0.04) 0%, rgba(43, 46, 51, 0.9) 100%)' : undefined
-          }}
-          onClick={() => setActiveFilter("all")}
-        >
-          All Projects
-        </button>
-        <button
-          className={`px-4 py-2 rounded-lg border transition-all duration-300 ${activeFilter === "web"
-            ? "bg-[var(--primary)]/10 border-[var(--glass-border)]"
-            : "border-[var(--glass-border)] hover:bg-[var(--primary)]/8"
-            }`}
-          style={{
-            background: activeFilter !== "web" ? 'linear-gradient(145deg, rgba(245, 246, 247, 0.04) 0%, rgba(43, 46, 51, 0.9) 100%)' : undefined
-          }}
-          onClick={() => setActiveFilter("web")}
-        >
-          Web Apps
-        </button>
-        <button
-          className={`px-4 py-2 rounded-lg border transition-all duration-300 ${activeFilter === "api"
-            ? "bg-[var(--primary)]/10 border-[var(--glass-border)]"
-            : "border-[var(--glass-border)] hover:bg-[var(--primary)]/8"
-            }`}
-          style={{
-            background: activeFilter !== "api" ? 'linear-gradient(145deg, rgba(245, 246, 247, 0.04) 0%, rgba(43, 46, 51, 0.9) 100%)' : undefined
-          }}
-          onClick={() => setActiveFilter("api")}
-        >
-          API Services
-        </button>
+        {(["all", "web", "api"] as ProjectCategory[]).map((filter) => {
+          const labels: Record<ProjectCategory, string> = { all: "All Projects", web: "Web Apps", api: "API Services" };
+          const isActive = activeFilter === filter;
+          return (
+            <button
+              key={filter}
+              className={`px-4 py-2 rounded-lg border transition-all duration-300 ${
+                isActive
+                  ? "border-[var(--primary)] text-[var(--primary)] bg-[rgba(245,246,247,0.10)]"
+                  : "border-[var(--glass-border)] text-[var(--text-secondary)] hover:bg-[rgba(245,246,247,0.06)]"
+              }`}
+              onClick={() => setActiveFilter(filter)}
+            >
+              {labels[filter]}
+            </button>
+          );
+        })}
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

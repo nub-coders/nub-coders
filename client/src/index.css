@@ -349,10 +349,10 @@
   .section-title {
     @apply text-6xl md:text-7xl font-black text-center mb-20;
     background: linear-gradient(135deg,
-        var(--primary) 0%,
-        var(--secondary) 40%,
-        var(--tertiary) 80%,
-        var(--accent) 100%);
+        #ffffff 0%,
+        #e0e3e8 30%,
+        #a8b0bc 60%,
+        #ffffff 100%);
     background-size: 300% 300%;
     -webkit-background-clip: text;
     background-clip: text;
@@ -360,9 +360,6 @@
     animation: megaGradientFlow 10s ease infinite;
     font-family: 'Outfit', sans-serif;
     letter-spacing: -0.04em;
-    text-shadow:
-      0 0 40px var(--glow-primary),
-      0 0 80px var(--glow-secondary);
     position: relative;
   }
 
