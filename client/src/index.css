@@ -4,6 +4,34 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Force override Replit shadcn-theme-json plugin injection ─────────────────
+   The plugin injects blue-tinted HSL vars via a <style data-vite-theme> tag.
+   We override ALL shadcn vars here (outside @layer) so our monochrome palette
+   always wins. :root:root has higher specificity than :root.
+────────────────────────────────────────────────────────────────────────────── */
+:root:root {
+  --background: 222 18% 6%;
+  --foreground: 220 10% 96%;
+  --muted: 220 8% 22%;
+  --muted-foreground: 220 8% 65%;
+  --popover: 222 18% 9%;
+  --popover-foreground: 220 10% 96%;
+  --card: 222 18% 9%;
+  --card-foreground: 220 10% 96%;
+  --border: 220 8% 18%;
+  --input: 220 8% 18%;
+  --primary: 220 10% 96%;
+  --primary-foreground: 222 18% 6%;
+  --secondary: 220 8% 22%;
+  --secondary-foreground: 220 10% 96%;
+  --accent: 220 8% 22%;
+  --accent-foreground: 220 10% 96%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --ring: 220 10% 96%;
+  --radius: 0.6rem;
+}
+
 @layer base {
   :root {
     --primary: #f5f6f7;
