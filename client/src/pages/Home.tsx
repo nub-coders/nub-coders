@@ -7,7 +7,7 @@ import AnimationWrapper from "@/components/AnimationWrapper";
 import ScrollRevealText from "@/components/ScrollRevealText";
 import { useScrollProgress } from "@/hooks/useScrollProgress";
 import { useGitHubStats } from "@/hooks/useGitHubStats";
-import profileImage from "/assets/profile.jpg";
+import profileImage from "/assets/profile.webp";
 
 type TabType = "home" | "about" | "skills" | "projects" | "github" | "contact";
 
