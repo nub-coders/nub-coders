@@ -2,7 +2,9 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
     
     <!-- Primary Meta Tags -->
     <title>Ankit Kumar | Full Stack Developer | React, Node.js & Docker Expert</title>
@@ -16,14 +18,14 @@
     <meta property="og:url" content="https://nubcoder.com/" />
     <meta property="og:title" content="Ankit Kumar | Full Stack Developer" />
     <meta property="og:description" content="Full Stack Developer specializing in React, Node.js, TypeScript, and Docker. 4+ years experience, 35+ projects delivered." />
-    <meta property="og:image" content="https://nubcoder.com/assets/profile.jpg" />
+    <meta property="og:image" content="https://nubcoder.com/assets/profile.webp" />
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://nubcoder.com/" />
     <meta property="twitter:title" content="Ankit Kumar | Full Stack Developer" />
     <meta property="twitter:description" content="Full Stack Developer specializing in React, Node.js, TypeScript, and Docker. 4+ years experience, 35+ projects delivered." />
-    <meta property="twitter:image" content="https://nubcoder.com/assets/profile.jpg" />
+    <meta property="twitter:image" content="https://nubcoder.com/assets/profile.webp" />
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />
@@ -35,7 +37,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Preload LCP Image -->
+    <link rel="preload" as="image" href="/assets/profile.webp" type="image/webp" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   </head>
   <body style="background-color: #020617;">
