@@ -124,7 +124,7 @@ export default function ContactForm() {
         <div className="rounded-[28px] p-8 border border-[var(--glass-border)] bg-[var(--bg-card)] shadow-[0_18px_48px_rgba(0,0,0,0.42),inset_0_1px_0_rgba(255,255,255,0.08),0_0_24px_rgba(245,246,247,0.04)]">
           <h3 className="text-xl font-semibold mb-6">Send a Message</h3>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4" noValidate>
             <div>
               <label htmlFor="name" className="block text-sm text-[var(--text-secondary)] mb-2">
                 Name
@@ -136,6 +136,7 @@ export default function ContactForm() {
                 value={formData.name}
                 onChange={handleChange}
                 required
+                autoComplete="name"
                 className="w-full rounded-xl border border-[var(--glass-border)] bg-[var(--bg-secondary)] px-4 py-3 text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:border-[var(--secondary)] transition-colors"
                 placeholder="Your name"
               />
@@ -152,6 +153,7 @@ export default function ContactForm() {
                 value={formData.email}
                 onChange={handleChange}
                 required
+                autoComplete="email"
                 className="w-full rounded-xl border border-[var(--glass-border)] bg-[var(--bg-secondary)] px-4 py-3 text-[var(--text-primary)] placeholder:text-[var(--text-muted)] focus:border-[var(--secondary)] transition-colors"
                 placeholder="you@example.com"
               />
