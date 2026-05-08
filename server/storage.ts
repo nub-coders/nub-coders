@@ -11,10 +11,12 @@ export interface IStorage {
 
 export class MemStorage implements IStorage {
   private users: Map<number, User>;
+  private usersByUsername: Map<string, User>;
   currentId: number;
 
   constructor() {
     this.users = new Map();
+    this.usersByUsername = new Map();
     this.currentId = 1;
   }
 
@@ -23,15 +25,14 @@ export class MemStorage implements IStorage {
   }
 
   async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
+    return this.usersByUsername.get(username);
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
     const id = this.currentId++;
     const user: User = { ...insertUser, id };
     this.users.set(id, user);
+    this.usersByUsername.set(user.username, user);
     return user;
   }
 }
