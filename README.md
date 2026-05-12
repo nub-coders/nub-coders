@@ -257,3 +257,31 @@ I share what I learn, document what works, and enjoy building tools that help ot
 <div align="center">
   <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12,14,20&height=120&section=footer&animation=fadeIn" width="100%" />
 </div>
+
+
+<!-- GITHUB_STATS_START -->
+
+**GitHub Stats for nub-coders**
+
+- Followers: 11
+- Public repos: 8
+- Total stars: 34
+- Total forks: 18
+- Total commits: 192
+
+**Top languages:**
+
+- TypeScript: 52.2% (3964507 bytes)
+- Python: 28.4% (2157936 bytes)
+- HTML: 12% (912721 bytes)
+- CSS: 3.8% (285205 bytes)
+- JavaScript: 2.3% (173696 bytes)
+- Zig: 0.7% (49929 bytes)
+- Dockerfile: 0.2% (13762 bytes)
+- Shell: 0.1% (7691 bytes)
+- Ruby: 0.1% (5921 bytes)
+- Java: 0.1% (4969 bytes)
+
+_Last updated: Tue, 12 May 2026 15:46:06 GMT_
+
+<!-- GITHUB_STATS_END -->
