@@ -361,3 +361,40 @@ export async function fetchGitHubStats(): Promise<GitHubStats> {
   cached = { data: stats, at: Date.now() };
   return stats;
 }
+
+let refresher: NodeJS.Timeout | null = null;
+
+/**
+ * Start a periodic background refresher that updates the in-memory cache
+ * every `minutes` minutes. Returns a stop function to cancel the refresher.
+ */
+export function startGitHubRefresher(minutes = Math.round(CACHE_TTL_MS / 60000)) {
+  const ms = Math.max(1, minutes) * 60 * 1000;
+  if (refresher) clearInterval(refresher);
+
+  const run = async () => {
+    try {
+      await fetchGitHubStats();
+      console.log(`[GitHub Refresher] cache refreshed at ${new Date().toISOString()}`);
+    } catch (err: any) {
+      console.error("[GitHub Refresher] failed to refresh cache:", err?.message ?? err);
+    }
+  };
+
+  // Run immediately, then on interval
+  run();
+  refresher = setInterval(run, ms);
+
+  const stop = () => {
+    if (refresher) {
+      clearInterval(refresher);
+      refresher = null;
+    }
+  };
+
+  process.on("exit", stop);
+  process.on("SIGINT", stop);
+  process.on("SIGTERM", stop);
+
+  return stop;
+}
