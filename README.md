@@ -261,27 +261,43 @@ I share what I learn, document what works, and enjoy building tools that help ot
 
 <!-- GITHUB_STATS_START -->
 
-**GitHub Stats for nub-coders**
+<div align="center">
 
-- Followers: 11
-- Public repos: 8
-- Total stars: 34
-- Total forks: 18
-- Total commits: 192
+## 📊 GITHUB STATS
 
-**Top languages:**
+</div>
 
-- TypeScript: 52.2% (3964507 bytes)
-- Python: 28.4% (2157936 bytes)
-- HTML: 12% (912721 bytes)
-- CSS: 3.8% (285205 bytes)
-- JavaScript: 2.3% (173696 bytes)
-- Zig: 0.7% (49929 bytes)
-- Dockerfile: 0.2% (13762 bytes)
-- Shell: 0.1% (7691 bytes)
-- Ruby: 0.1% (5921 bytes)
-- Java: 0.1% (4969 bytes)
+<div align="center">
+  <img src="https://capsule-render.vercel.app/api?type=rect&color=0:7C4DFF,100:536DFE&height=3&section=header&render=true" width="60%" />
+</div>
 
-_Last updated: Tue, 12 May 2026 15:46:06 GMT_
+
+<div align="center">
+
+![Stars](https://img.shields.io/badge/⭐%20Stars-34-FFD700?style=for-the-badge&labelColor=1a1a2e)
+![Commits](https://img.shields.io/badge/📝%20Commits-192-4FC3F7?style=for-the-badge&labelColor=1a1a2e)
+![PRs](https://img.shields.io/badge/✅%20PRs%20Merged-49-66BB6A?style=for-the-badge&labelColor=1a1a2e)
+![Repos](https://img.shields.io/badge/📁%20Repos-18-AB47BC?style=for-the-badge&labelColor=1a1a2e)
+![Followers](https://img.shields.io/github/followers/nub-coders?label=Followers&style=for-the-badge&color=EC407A&labelColor=1a1a2e)
+
+</div>
+
+<div align="center">
+
+**🌐 Top Languages**
+
+![TypeScript](https://img.shields.io/badge/TypeScript-52.3%25-3178c6?style=flat-square)
+![Python](https://img.shields.io/badge/Python-28.5%25-3572A5?style=flat-square)
+![HTML](https://img.shields.io/badge/HTML-12%25-e34c26?style=flat-square)
+![CSS](https://img.shields.io/badge/CSS-3.8%25-563d7c?style=flat-square)
+![JavaScript](https://img.shields.io/badge/JavaScript-2.2%25-f1e05a?style=flat-square)
+![Zig](https://img.shields.io/badge/Zig-0.7%25-333333?style=flat-square)
+![Dockerfile](https://img.shields.io/badge/Dockerfile-0.2%25-384d54?style=flat-square)
+
+</div>
+
+<div align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12,14,20&height=120&section=footer&animation=fadeIn" width="100%" />
+</div>
 
 <!-- GITHUB_STATS_END -->
