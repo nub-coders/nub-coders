@@ -74,7 +74,7 @@ I enjoy turning rough ideas into production-ready systems, especially when the c
 
 ## Selected Work
 
-- **Docker PaaS (Telegram Mini App):** Container deployment and monitoring platform with GitHub integration and live updates
+- **Deplio:** Application hosting platform with GitHub integration and live deployment updates
 - **NubMail:** Self-hosted email management system with API sending, domain tooling, and auth
 - **YT-DLP API:** High-performance extraction API with token management and rate limits
 - **nginx-proxy automation:** Production-ready reverse proxy and SSL automation for containerized apps

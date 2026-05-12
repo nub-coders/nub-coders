@@ -17,8 +17,8 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "Docker PaaS Platform",
-    description: "Built a complete Platform-as-a-Service for Docker container management. Enables teams to deploy, monitor, and scale applications with zero DevOps knowledge. Integrated GitHub webhooks for CI/CD automation and real-time WebSocket monitoring. Result: Reduced deployment time by 70% for client teams.",
+    title: "Deplio Application Hosting Platform",
+    description: "Built a complete application hosting platform with GitHub integration, live deployment updates, and real-time container management. Enables teams to deploy, monitor, and scale applications with zero DevOps knowledge. Integrated GitHub webhooks for CI/CD automation and real-time WebSocket monitoring. Result: Reduced deployment time by 70% for client teams.",
     category: "web",
     image: "/assets/projects/docker-paas.png",
     tags: ["React", "TypeScript", "Docker API", "MongoDB", "WebSocket"],
