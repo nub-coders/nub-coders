@@ -2,6 +2,7 @@ import 'dotenv/config';
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import { startGitHubRefresher } from "./github";
 import compression from "compression";
 
 const app = express();
@@ -69,6 +70,16 @@ app.use((req, res, next) => {
 
 (async () => {
   const server = await registerRoutes(app);
+
+  // Start periodic refresh of GitHub stats cache. Interval (minutes) can be
+  // configured via `GITHUB_STATS_REFRESH_MINUTES` (defaults to 10).
+  try {
+    const minutes = Number(process.env.GITHUB_STATS_REFRESH_MINUTES) || 10;
+    startGitHubRefresher(minutes);
+    log(`GitHub stats refresher started (every ${minutes}m)`);
+  } catch (err: any) {
+    console.error("Failed to start GitHub refresher:", err?.message ?? err);
+  }
 
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
     const status = err.status || err.statusCode || 500;

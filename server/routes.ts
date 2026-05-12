@@ -28,6 +28,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Expose a simple `/stats` JSON endpoint for external tooling or health checks
+  app.get("/stats", async (_req: Request, res: Response) => {
+    try {
+      const stats = await fetchGitHubStats();
+      res.json(stats);
+    } catch (err: any) {
+      console.error("[GitHub Stats /stats]", err?.message ?? err);
+      res.status(503).json({ message: "Failed to fetch GitHub stats." });
+    }
+  });
+
   app.use(contactRouter);
 
   const httpServer = createServer(app);
