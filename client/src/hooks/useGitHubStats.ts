@@ -35,6 +35,12 @@ export interface GitHubStats {
   fetchedAt: string;
 }
 
+declare global {
+  interface Window {
+    __GITHUB_STATS__?: GitHubStats | null;
+  }
+}
+
 async function fetchStats(): Promise<GitHubStats> {
   const res = await fetch("/api/github/stats");
   if (!res.ok) {
@@ -45,9 +51,14 @@ async function fetchStats(): Promise<GitHubStats> {
 }
 
 export function useGitHubStats() {
+  const serverStats = typeof window !== "undefined" ? window.__GITHUB_STATS__ ?? undefined : undefined;
+
   return useQuery<GitHubStats, Error>({
     queryKey: ["github-stats"],
     queryFn: fetchStats,
+    initialData: serverStats,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
     staleTime: 10 * 60 * 1000,   // treat as fresh for 10 min
     gcTime: 15 * 60 * 1000,      // keep in cache for 15 min
     retry: 2,                     // React Query level retries (network-level)

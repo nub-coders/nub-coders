@@ -5,8 +5,27 @@ import { createServer as createViteServer, createLogger } from "vite";
 import { type Server } from "http";
 import viteConfig from "../vite.config";
 import { nanoid } from "nanoid";
+import { fetchGitHubStats } from "./github";
 
 const viteLogger = createLogger();
+
+function escapeJsonForHtml(value: unknown) {
+  return JSON.stringify(value).replace(/</g, "\\u003c");
+}
+
+async function injectGitHubStats(template: string) {
+  try {
+    const stats = await fetchGitHubStats();
+    const payload = `<script>window.__GITHUB_STATS__ = ${escapeJsonForHtml(stats)};</script>`;
+    return template.replace("</head>", `${payload}</head>`);
+  } catch (error) {
+    viteLogger.warn(`Unable to inject GitHub stats: ${(error as Error).message}`);
+    return template.replace(
+      "</head>",
+      `<script>window.__GITHUB_STATS__ = null;</script></head>`,
+    );
+  }
+}
 
 export function log(message: string, source = "express") {
   const formattedTime = new Date().toLocaleTimeString("en-US", {
@@ -58,6 +77,7 @@ export async function setupVite(app: Express, server: Server) {
         `src="/src/main.tsx"`,
         `src="/src/main.tsx?v=${nanoid()}"`,
       );
+      template = await injectGitHubStats(template);
       const page = await vite.transformIndexHtml(url, template);
       res.status(200).set({ "Content-Type": "text/html" }).end(page);
     } catch (e) {
@@ -81,8 +101,14 @@ export function serveStatic(app: Express) {
     etag: true,
   }));
 
-  // fall through to index.html if the file doesn't exist
-  app.use("*", (_req, res) => {
-    res.sendFile(path.resolve(distPath, "index.html"));
+  app.use("*", async (_req, res, next) => {
+    try {
+      const indexPath = path.resolve(distPath, "index.html");
+      const template = await fs.promises.readFile(indexPath, "utf-8");
+      const html = await injectGitHubStats(template);
+      res.status(200).type("html").send(html);
+    } catch (error) {
+      next(error);
+    }
   });
 }
