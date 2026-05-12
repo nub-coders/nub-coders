@@ -232,7 +232,7 @@ I share what I learn, document what works, and enjoy building tools that help ot
 <div align="center">
 
 ![Stars](https://img.shields.io/badge/⭐%20Stars-34-FFD700?style=for-the-badge&labelColor=1a1a2e)
-![Commits](https://img.shields.io/badge/📝%20Commits-192-4FC3F7?style=for-the-badge&labelColor=1a1a2e)
+![Commits](https://img.shields.io/badge/📝%20Commits-193-4FC3F7?style=for-the-badge&labelColor=1a1a2e)
 ![PRs](https://img.shields.io/badge/✅%20PRs%20Merged-50-66BB6A?style=for-the-badge&labelColor=1a1a2e)
 ![Repos](https://img.shields.io/badge/📁%20Repos-18-AB47BC?style=for-the-badge&labelColor=1a1a2e)
 ![Followers](https://img.shields.io/github/followers/nub-coders?label=Followers&style=for-the-badge&color=EC407A&labelColor=1a1a2e)
@@ -244,7 +244,7 @@ I share what I learn, document what works, and enjoy building tools that help ot
 **🌐 Top Languages**
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-52.3%25-3178c6?style=flat-square)
-![Python](https://img.shields.io/badge/Python-28.5%25-3572A5?style=flat-square)
+![Python](https://img.shields.io/badge/Python-28.4%25-3572A5?style=flat-square)
 ![HTML](https://img.shields.io/badge/HTML-12%25-e34c26?style=flat-square)
 ![CSS](https://img.shields.io/badge/CSS-3.8%25-563d7c?style=flat-square)
 ![JavaScript](https://img.shields.io/badge/JavaScript-2.2%25-f1e05a?style=flat-square)
