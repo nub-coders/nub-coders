@@ -6,7 +6,7 @@
 
 [![Portfolio](https://img.shields.io/badge/Portfolio-nubcoder.com-blueviolet?logo=vercel&style=flat-square)](https://nubcoder.com)
 [![GitHub](https://img.shields.io/badge/GitHub-nub--coders-blue?logo=github&style=flat-square)](https://github.com/nub-coders)
-[![YouTube](https://img.shields.io/badge/YouTube-nub--coder-red?logo=youtube&style=flat-square)](https://youtube.com/@nub-coders)
+[![YouTube](https://img.shields.io/badge/YouTube-nub--coders-red?logo=youtube&style=flat-square)](https://youtube.com/@nub-coders)
 [![Telegram](https://img.shields.io/badge/Telegram-nub__coder__s-blue?logo=telegram&style=flat-square)](https://t.me/nub_coder_s)
 [![Email](https://img.shields.io/badge/Email-dev%40nubcoder.com-orange?logo=gmail&style=flat-square)](mailto:dev@nubcoder.com)
 
