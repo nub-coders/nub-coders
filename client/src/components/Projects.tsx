@@ -22,7 +22,7 @@ const projects: Project[] = [
     category: "web",
     image: "/assets/projects/docker-paas.png",
     tags: ["React", "TypeScript", "Docker API", "MongoDB", "WebSocket"],
-    demoLink: "https://dockers.nubcoder.com",
+    demoLink: "https://app.nubcoder.com",
     codeLink: "",
     badgeText: "Platform",
     badgeClass: "bg-[var(--primary)]/14 text-[var(--primary)]"
