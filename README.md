@@ -7,23 +7,8 @@
 
 <br/>
 
-<!-- Profile Views & Badges Row -->
-![Profile Views](https://komarev.com/ghpvc/?username=nub-coders&color=0078d4&style=for-the-badge&label=PROFILE+VIEWS)
-![GitHub followers](https://img.shields.io/github/followers/nub-coders?label=Followers&style=for-the-badge&color=4cc9f0&labelColor=1a1a2e)
-![GitHub stars](https://img.shields.io/github/stars/nub-coders?affiliations=OWNER%2CCOLLABORATOR&style=for-the-badge&color=f72585&labelColor=1a1a2e&label=Stars)
+<div align="center">
 
-<br/>
-
-<!-- Social Links -->
-[![Portfolio](https://img.shields.io/badge/Portfolio-nubcoder.com-0078d4?logo=vercel&style=flat-square)](https://nubcoder.com)
-[![GitHub](https://img.shields.io/badge/GitHub-nub--coders-4cc9f0?logo=github&style=flat-square)](https://github.com/nub-coders)
-[![YouTube](https://img.shields.io/badge/YouTube-nub--coders-f72585?logo=youtube&style=flat-square)](https://youtube.com/@nub-coders)
-[![Telegram](https://img.shields.io/badge/Telegram-nub__coder__s-a78bfa?logo=telegram&style=flat-square)](https://t.me/nub_coder_s)
-[![Email](https://img.shields.io/badge/Email-dev%40nubcoder.com-0078d4?logo=gmail&style=flat-square)](mailto:dev@nubcoder.com)
-
-</div>
-
-<br />
 
 <div align="center">
   <img src="https://capsule-render.vercel.app/api?type=rect&color=1a1b27&height=4&section=header&render=true" width="100%" />
@@ -74,7 +59,6 @@
 <div align="center">
 
 ![Role](https://img.shields.io/badge/🧑‍💻%20Role-Full--Stack%20%26%20Systems%20Dev-0078d4?style=for-the-badge&labelColor=0d1117)
-![Projects](https://img.shields.io/badge/🚀%20Shipped-10%2B%20Projects-4cc9f0?style=for-the-badge&labelColor=0d1117)
 ![Content](https://img.shields.io/badge/🎬%20Creator-YouTube%20%40nub--coders-f72585?style=for-the-badge&logo=youtube&logoColor=white&labelColor=0d1117)
 ![Quality](https://img.shields.io/badge/🔁%20Always-Iterating%20%26%20Improving-a78bfa?style=for-the-badge&labelColor=0d1117)
 
@@ -280,11 +264,9 @@
 
 
 
-<!-- GITHUB_STATS_START -->
-
 <div align="center">
 
-## 📊 GITHUB STATS
+## 📊 GITHUB ACTIVITY
 
 </div>
 
@@ -293,8 +275,6 @@
 </div>
 
 <br />
-
-
 
 <!-- Streak Stats -->
 <div align="center">
@@ -322,6 +302,8 @@
 </div>
 
 <br />
+
+<!-- GITHUB_STATS_START -->
 
 <!-- Manual Stats Badges -->
 <div align="center">
