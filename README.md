@@ -18,34 +18,6 @@
 
 <div align="center">
 
-## 👤 ABOUT ME
-
-</div>
-
-<div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=rect&color=1a1b27&height=3&section=header&render=true" width="60%" />
-</div>
-
-<br />
-
-<div align="center">
-
-<img src="https://capsule-render.vercel.app/api?type=soft&color=1a1b27&height=80&text=4%2B%20Years%20of%20Full-Stack%20Engineering&fontSize=22&fontColor=ffffff&animation=fadeIn" width="80%" />
-
-<br />
-
-![Experience](https://img.shields.io/badge/Experience-4%2B%20Years-0078d4?style=for-the-badge&logo=clock&logoColor=white&labelColor=0d1117)
-![Focus](https://img.shields.io/badge/Focus-Full%20Stack-4cc9f0?style=for-the-badge&logo=stackshare&logoColor=white&labelColor=0d1117)
-![Projects](https://img.shields.io/badge/Projects%20Shipped-10%2B-f72585?style=for-the-badge&logo=rocket&logoColor=white&labelColor=0d1117)
-![Mindset](https://img.shields.io/badge/Mindset-Builder-a78bfa?style=for-the-badge&logo=lightbulb&logoColor=white&labelColor=0d1117)
-
-
-</div>
-
-<br />
-
-<div align="center">
-
 ## 📸 PERSONAL SNAPSHOT
 
 </div>
