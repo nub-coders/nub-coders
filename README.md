@@ -43,9 +43,22 @@
 
 <br />
 
-I build products that solve real problems and stay maintainable as they grow. Over the last 4 years, I have shipped full-stack applications across infrastructure, automation, APIs, and SaaS workflows.
+<div align="center">
 
-I enjoy turning rough ideas into production-ready systems, especially when the challenge involves reliability, clean architecture, and developer experience.
+<img src="https://capsule-render.vercel.app/api?type=soft&color=0:6C63FF,100:3F3D99&height=80&text=4%2B%20Years%20of%20Full-Stack%20Engineering&fontSize=22&fontColor=ffffff&animation=fadeIn" width="80%" />
+
+<br />
+
+![Experience](https://img.shields.io/badge/Experience-4%2B%20Years-6C63FF?style=for-the-badge&logo=clock&logoColor=white&labelColor=0d1117)
+![Focus](https://img.shields.io/badge/Focus-Full%20Stack-3F3D99?style=for-the-badge&logo=stackshare&logoColor=white&labelColor=0d1117)
+![Projects](https://img.shields.io/badge/Projects%20Shipped-10%2B-FF6B6B?style=for-the-badge&logo=rocket&logoColor=white&labelColor=0d1117)
+![Mindset](https://img.shields.io/badge/Mindset-Builder-4FC3F7?style=for-the-badge&logo=lightbulb&logoColor=white&labelColor=0d1117)
+
+<br />
+
+<img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=tokyonight" width="70%" />
+
+</div>
 
 <br />
 
@@ -61,10 +74,14 @@ I enjoy turning rough ideas into production-ready systems, especially when the c
 
 <br />
 
-- Full-stack developer with strong backend and systems focus
-- Built and shipped 10+ projects
-- Creator sharing technical content on YouTube
-- Always iterating on code quality, speed, and product clarity
+<div align="center">
+
+![Role](https://img.shields.io/badge/🧑‍💻%20Role-Full--Stack%20%26%20Systems%20Dev-6C63FF?style=for-the-badge&labelColor=0d1117)
+![Projects](https://img.shields.io/badge/🚀%20Shipped-10%2B%20Projects-FF6B6B?style=for-the-badge&labelColor=0d1117)
+![Content](https://img.shields.io/badge/🎬%20Creator-YouTube%20%40nub--coders-FF0000?style=for-the-badge&logo=youtube&logoColor=white&labelColor=0d1117)
+![Quality](https://img.shields.io/badge/🔁%20Always-Iterating%20%26%20Improving-4FC3F7?style=for-the-badge&labelColor=0d1117)
+
+</div>
 
 <br />
 
@@ -80,10 +97,15 @@ I enjoy turning rough ideas into production-ready systems, especially when the c
 
 <br />
 
-- Clarity over cleverness
-- Ship fast, then harden with feedback
-- Build for long-term maintenance, not short-term hacks
-- Communicate early and document important decisions
+<div align="center">
+
+![P1](https://img.shields.io/badge/💡%20Clarity-Over%20Cleverness-4FC3F7?style=for-the-badge&labelColor=0d1117)
+![P2](https://img.shields.io/badge/🚀%20Ship%20Fast-Then%20Harden%20With%20Feedback-29B6F6?style=for-the-badge&labelColor=0d1117)
+
+![P3](https://img.shields.io/badge/🏗️%20Build%20For-Long--Term%20Maintenance-26C6DA?style=for-the-badge&labelColor=0d1117)
+![P4](https://img.shields.io/badge/📢%20Communicate-Early%20%26%20Document-00ACC1?style=for-the-badge&labelColor=0d1117)
+
+</div>
 
 <br />
 
@@ -99,9 +121,14 @@ I enjoy turning rough ideas into production-ready systems, especially when the c
 
 <br />
 
-- I like to scope first, then execute in tight iterations
-- I prefer async updates with clear ownership and deadlines
-- I optimize for dependable delivery and clean handover
+<div align="center">
+
+![W1](https://img.shields.io/badge/📐%20Scope%20First-Then%20Execute%20in%20Iterations-66BB6A?style=for-the-badge&labelColor=0d1117)
+![W2](https://img.shields.io/badge/🔄%20Async%20Updates-Clear%20Ownership%20%26%20Deadlines-43A047?style=for-the-badge&labelColor=0d1117)
+
+![W3](https://img.shields.io/badge/📦%20Dependable-Delivery%20%26%20Clean%20Handover-2E7D32?style=for-the-badge&labelColor=0d1117)
+
+</div>
 
 <br />
 
@@ -117,9 +144,14 @@ I enjoy turning rough ideas into production-ready systems, especially when the c
 
 <br />
 
-- Developer tools and internal automation
-- Better reliability patterns for production apps
-- Improving testing discipline in fast-moving projects
+<div align="center">
+
+![F1](https://img.shields.io/badge/🔧%20Developer%20Tools-Internal%20Automation-AB47BC?style=for-the-badge&labelColor=0d1117)
+![F2](https://img.shields.io/badge/⚡%20Reliability-Patterns%20for%20Production%20Apps-7B1FA2?style=for-the-badge&labelColor=0d1117)
+
+![F3](https://img.shields.io/badge/🧪%20Testing%20Discipline-Fast--Moving%20Projects-9C27B0?style=for-the-badge&labelColor=0d1117)
+
+</div>
 
 <br />
 
