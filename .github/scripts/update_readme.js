@@ -21,7 +21,7 @@ function buildMd(stats) {
   const repos = stats.totalRepos ?? 0;
 
   const langColor = {
-    TypeScript: '3178c6', Python: '3572A5', JavaScript: 'f1e05a', HTML: 'e34c26', CSS: '563d7c', Dockerfile: '384d54', Shell: '89e051'
+    TypeScript: '3178c6', Python: '3572A5', JavaScript: 'f7df1e', HTML: 'e34c26', CSS: '0284c7', Dockerfile: '2496ED', Shell: '4EAA25', Rust: 'b7410e', 'C++': '1572B6', React: '0891b2', Vue: '41b883', 'Next.js': '000000'
   };
 
   const lines = [];
@@ -32,17 +32,17 @@ function buildMd(stats) {
   lines.push('</div>');
   lines.push('');
   lines.push('<div align="center">');
-  lines.push("  <img src=\"https://capsule-render.vercel.app/api?type=rect&color=0:7C4DFF,100:536DFE&height=3&section=header&render=true\" width=\"60%\" />");
+  lines.push("  <img src=\"https://capsule-render.vercel.app/api?type=rect&color=0d1117&height=3&section=header&render=true\" width=\"60%\" />");
   lines.push('</div>');
   lines.push('');
   lines.push('');
   lines.push('<div align="center">');
   lines.push('');
-  lines.push(`![Stars](https://img.shields.io/badge/⭐%20Stars-${stars}-FFD700?style=for-the-badge&labelColor=1a1a2e)`);
-  lines.push(`![Commits](https://img.shields.io/badge/📝%20Commits-${commits}-4FC3F7?style=for-the-badge&labelColor=1a1a2e)`);
-  lines.push(`![PRs](https://img.shields.io/badge/✅%20PRs%20Merged-${prs}-66BB6A?style=for-the-badge&labelColor=1a1a2e)`);
-  lines.push(`![Repos](https://img.shields.io/badge/📁%20Repos-${repos}-AB47BC?style=for-the-badge&labelColor=1a1a2e)`);
-  lines.push(`![Followers](https://img.shields.io/github/followers/${user}?label=Followers&style=for-the-badge&color=EC407A&labelColor=1a1a2e)`);
+  lines.push(`![Stars](https://img.shields.io/badge/⭐%20Stars-${stars}-f72585?style=for-the-badge&labelColor=1a1a2e)`);
+  lines.push(`![Commits](https://img.shields.io/badge/📝%20Commits-${commits}-a78bfa?style=for-the-badge&labelColor=1a1a2e)`);
+  lines.push(`![PRs](https://img.shields.io/badge/✅%20PRs%20Merged-${prs}-0078d4?style=for-the-badge&labelColor=1a1a2e)`);
+  lines.push(`![Repos](https://img.shields.io/badge/📁%20Repos-${repos}-4cc9f0?style=for-the-badge&labelColor=1a1a2e)`);
+  lines.push(`![Followers](https://img.shields.io/github/followers/${user}?label=Followers&style=for-the-badge&color=4cc9f0&labelColor=1a1a2e)`);
   lines.push('');
   lines.push('</div>');
   lines.push('');
