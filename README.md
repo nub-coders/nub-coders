@@ -2,8 +2,19 @@
 
 <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12,14,20&height=200&section=header&text=Hi,%20I'm%20ANKIT%20KUMAR&fontSize=48&fontAlignY=35&animation=fadeIn&fontColor=ffffff" width="100%" />
 
-![Profile Banner](https://img.shields.io/badge/Full%20Stack-Developer-blueviolet?style=for-the-badge)
+<!-- Animated Typing Banner -->
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=28&pause=1000&color=6C63FF&center=true&vCenter=true&width=700&lines=Full+Stack+Developer+%F0%9F%9A%80;Backend+%26+Systems+Engineer+%F0%9F%94%A7;Open+Source+Contributor+%F0%9F%8C%9F;Building+Reliable+Products+%F0%9F%92%AA" alt="Typing SVG" />
 
+<br/>
+
+<!-- Profile Views & Badges Row -->
+![Profile Views](https://komarev.com/ghpvc/?username=nub-coders&color=blueviolet&style=for-the-badge&label=PROFILE+VIEWS)
+![GitHub followers](https://img.shields.io/github/followers/nub-coders?label=Followers&style=for-the-badge&color=EC407A&labelColor=1a1a2e)
+![GitHub stars](https://img.shields.io/github/stars/nub-coders?affiliations=OWNER%2CCOLLABORATOR&style=for-the-badge&color=FFD700&labelColor=1a1a2e&label=Stars)
+
+<br/>
+
+<!-- Social Links -->
 [![Portfolio](https://img.shields.io/badge/Portfolio-nubcoder.com-blueviolet?logo=vercel&style=flat-square)](https://nubcoder.com)
 [![GitHub](https://img.shields.io/badge/GitHub-nub--coders-blue?logo=github&style=flat-square)](https://github.com/nub-coders)
 [![YouTube](https://img.shields.io/badge/YouTube-nub--coders-red?logo=youtube&style=flat-square)](https://youtube.com/@nub-coders)
@@ -230,7 +241,46 @@ I share what I learn, document what works, and enjoy building tools that help ot
   <img src="https://capsule-render.vercel.app/api?type=rect&color=0:7C4DFF,100:536DFE&height=3&section=header&render=true" width="60%" />
 </div>
 
+<br />
 
+<!-- GitHub Stats Cards -->
+<div align="center">
+
+<img height="180em" src="https://github-readme-stats.vercel.app/api?username=nub-coders&show_icons=true&theme=tokyonight&include_all_commits=true&count_private=true&hide_border=true&bg_color=0d1117" />
+<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=nub-coders&layout=compact&langs_count=8&theme=tokyonight&hide_border=true&bg_color=0d1117" />
+
+</div>
+
+<br />
+
+<!-- Streak Stats -->
+<div align="center">
+
+<img src="https://github-readme-streak-stats.herokuapp.com?user=nub-coders&theme=tokyonight&hide_border=true&background=0d1117&ring=6C63FF&fire=FF6B6B&currStreakLabel=6C63FF" width="70%" />
+
+</div>
+
+<br />
+
+<!-- Activity Graph -->
+<div align="center">
+
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=nub-coders&theme=tokyo-night&bg_color=0d1117&color=6C63FF&line=6C63FF&point=FF6B6B&area=true&hide_border=true" width="95%" />
+
+</div>
+
+<br />
+
+<!-- Trophies -->
+<div align="center">
+
+<img src="https://github-profile-trophy.vercel.app/?username=nub-coders&theme=tokyonight&no-frame=true&no-bg=true&margin-w=4&row=1" width="95%" />
+
+</div>
+
+<br />
+
+<!-- Manual Stats Badges -->
 <div align="center">
 
 ![Stars](https://img.shields.io/badge/⭐%20Stars-34-FFD700?style=for-the-badge&labelColor=1a1a2e)
