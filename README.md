@@ -54,9 +54,6 @@
 ![Projects](https://img.shields.io/badge/Projects%20Shipped-10%2B-FF6B6B?style=for-the-badge&logo=rocket&logoColor=white&labelColor=0d1117)
 ![Mindset](https://img.shields.io/badge/Mindset-Builder-4FC3F7?style=for-the-badge&logo=lightbulb&logoColor=white&labelColor=0d1117)
 
-<br />
-
-<img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=tokyonight" width="70%" />
 
 </div>
 
