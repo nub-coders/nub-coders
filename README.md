@@ -206,8 +206,6 @@
 
 [![YT-DLP API](https://img.shields.io/badge/🎬%20YT--DLP%20API-High%20Performance%20%7C%20Token%20Mgmt%20%7C%20Rate%20Limits-f72585?style=for-the-badge&labelColor=1a1a2e)](https://github.com/nub-coders)
 
-[![nginx-proxy](https://img.shields.io/badge/🔧%20nginx--proxy-Reverse%20Proxy%20%7C%20SSL%20%7C%20Containerized-a78bfa?style=for-the-badge&labelColor=1a1a2e)](https://github.com/nub-coders)
-
 </div>
 
 <br />
