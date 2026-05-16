@@ -217,10 +217,17 @@
 
 <br />
 
-- **Deplio:** Application hosting platform with GitHub integration and live deployment updates
-- **NubMail:** Self-hosted email management system with API sending, domain tooling, and auth
-- **YT-DLP API:** High-performance extraction API with token management and rate limits
-- **nginx-proxy automation:** Production-ready reverse proxy and SSL automation for containerized apps
+<div align="center">
+
+[![Deplio](https://img.shields.io/badge/🚀%20Deplio-App%20Hosting%20%7C%20GitHub%20Integration%20%7C%20Live%20Deployments-FFD700?style=for-the-badge&labelColor=1a1a2e)](https://github.com/nub-coders)
+
+[![NubMail](https://img.shields.io/badge/📧%20NubMail-Self--Hosted%20Email%20%7C%20API%20Sending%20%7C%20Auth-FFA000?style=for-the-badge&labelColor=1a1a2e)](https://github.com/nub-coders)
+
+[![YT-DLP API](https://img.shields.io/badge/🎬%20YT--DLP%20API-High%20Performance%20%7C%20Token%20Mgmt%20%7C%20Rate%20Limits-FF6F00?style=for-the-badge&labelColor=1a1a2e)](https://github.com/nub-coders)
+
+[![nginx-proxy](https://img.shields.io/badge/🔧%20nginx--proxy-Reverse%20Proxy%20%7C%20SSL%20%7C%20Containerized-F57F17?style=for-the-badge&labelColor=1a1a2e)](https://github.com/nub-coders)
+
+</div>
 
 <br />
 
@@ -236,7 +243,17 @@
 
 <br />
 
-I share what I learn, document what works, and enjoy building tools that help other developers ship faster.
+<div align="center">
+
+<img src="https://capsule-render.vercel.app/api?type=soft&color=0:EC407A,100:C2185B&height=70&text=Sharing%20%7C%20Documenting%20%7C%20Building%20for%20Devs&fontSize=20&fontColor=ffffff&animation=fadeIn" width="80%" />
+
+<br />
+
+![Share](https://img.shields.io/badge/📖%20Share-What%20I%20Learn-EC407A?style=for-the-badge&labelColor=0d1117)
+![Document](https://img.shields.io/badge/📝%20Document-What%20Works-C2185B?style=for-the-badge&labelColor=0d1117)
+![Build](https://img.shields.io/badge/🛠️%20Build-Tools%20for%20Devs-AD1457?style=for-the-badge&labelColor=0d1117)
+
+</div>
 
 <br />
 
@@ -252,10 +269,15 @@ I share what I learn, document what works, and enjoy building tools that help ot
 
 <br />
 
-- Website: [nubcoder.com](https://nubcoder.com)
-- Channel: [Telegram](https://t.me/nub_coder_s)
-- Email: [dev@nubcoder.com](mailto:dev@nubcoder.com)
-- GitHub: [github.com/nub-coders](https://github.com/nub-coders)
+<div align="center">
+
+[![Website](https://img.shields.io/badge/🌐%20Website-nubcoder.com-26C6DA?style=for-the-badge&logo=vercel&logoColor=white&labelColor=0d1117)](https://nubcoder.com)
+[![Telegram](https://img.shields.io/badge/💬%20Telegram-nub__coder__s-26A5E4?style=for-the-badge&logo=telegram&logoColor=white&labelColor=0d1117)](https://t.me/nub_coder_s)
+[![Email](https://img.shields.io/badge/📧%20Email-dev%40nubcoder.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white&labelColor=0d1117)](mailto:dev@nubcoder.com)
+[![GitHub](https://img.shields.io/badge/🐙%20GitHub-nub--coders-181717?style=for-the-badge&logo=github&logoColor=white&labelColor=0d1117)](https://github.com/nub-coders)
+[![YouTube](https://img.shields.io/badge/▶️%20YouTube-nub--coders-FF0000?style=for-the-badge&logo=youtube&logoColor=white&labelColor=0d1117)](https://youtube.com/@nub-coders)
+
+</div>
 
 <br />
 
