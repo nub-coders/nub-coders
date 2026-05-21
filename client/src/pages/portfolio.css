@@ -194,7 +194,9 @@
 .tech-category h3 { font-size: 11px; color: #f0a500; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.25rem; }
 .tech-pills, .project-tags, .links-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .pill, .project-tag { font-size: 12px; font-weight: 400; padding: 0.35rem 0.75rem; border-radius: 2px; color: #8a8479; transition: border-color 0.2s, color 0.2s; cursor: default; }
-.pill:hover, .project-tag:hover { border-color: #9a6800; color: #f0ebe0; }
+.pill-link, .project-tag-link { display: inline-flex; align-items: center; text-decoration: none; cursor: pointer; }
+.pill:hover, .project-tag:hover, .pill-link:hover, .project-tag-link:hover { border-color: #9a6800; color: #f0ebe0; }
+.pill-link:focus-visible, .project-tag-link:focus-visible { outline: 2px solid #f0a500; outline-offset: 2px; }
 .projects-list { display: flex; flex-direction: column; }
 .project-item { display: grid; grid-template-columns: 80px 1fr auto; gap: 1.5rem; align-items: start; padding: 2rem 0; border-left: none; border-right: none; border-top: none; border-radius: 0; transition: background 0.2s; position: relative; }
 .project-live-link { position: absolute; inset: 0; z-index: 1; }
