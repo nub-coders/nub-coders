@@ -288,9 +288,9 @@
 <div align="center">
 
 ![Stars](https://img.shields.io/badge/⭐%20Stars-35-f72585?style=for-the-badge&labelColor=1a1a2e)
-![Commits](https://img.shields.io/badge/📝%20Commits-247-a78bfa?style=for-the-badge&labelColor=1a1a2e)
-![PRs](https://img.shields.io/badge/✅%20PRs%20Merged-50-0078d4?style=for-the-badge&labelColor=1a1a2e)
-![Repos](https://img.shields.io/badge/📁%20Repos-19-4cc9f0?style=for-the-badge&labelColor=1a1a2e)
+![Commits](https://img.shields.io/badge/📝%20Commits-136-a78bfa?style=for-the-badge&labelColor=1a1a2e)
+![PRs](https://img.shields.io/badge/✅%20PRs%20Merged-0-0078d4?style=for-the-badge&labelColor=1a1a2e)
+![Repos](https://img.shields.io/badge/📁%20Repos-20-4cc9f0?style=for-the-badge&labelColor=1a1a2e)
 ![Followers](https://img.shields.io/github/followers/nub-coders?label=Followers&style=for-the-badge&color=4cc9f0&labelColor=1a1a2e)
 
 </div>
@@ -299,13 +299,13 @@
 
 **🌐 Top Languages**
 
-![TypeScript](https://img.shields.io/badge/TypeScript-52.1%25-3178c6?style=flat-square)
-![Python](https://img.shields.io/badge/Python-28%25-3572A5?style=flat-square)
-![HTML](https://img.shields.io/badge/HTML-12%25-e34c26?style=flat-square)
-![CSS](https://img.shields.io/badge/CSS-3.8%25-0284c7?style=flat-square)
-![JavaScript](https://img.shields.io/badge/JavaScript-2.1%25-f7df1e?style=flat-square)
-![Zig](https://img.shields.io/badge/Zig-0.7%25-333333?style=flat-square)
-![C](https://img.shields.io/badge/C-0.4%25-333333?style=flat-square)
+![TypeScript](https://img.shields.io/badge/TypeScript-57.3%25-3178c6?style=flat-square)
+![Python](https://img.shields.io/badge/Python-20%25-3572A5?style=flat-square)
+![HTML](https://img.shields.io/badge/HTML-14%25-e34c26?style=flat-square)
+![CSS](https://img.shields.io/badge/CSS-3.9%25-0284c7?style=flat-square)
+![JavaScript](https://img.shields.io/badge/JavaScript-2.5%25-f7df1e?style=flat-square)
+![Zig](https://img.shields.io/badge/Zig-0.8%25-333333?style=flat-square)
+![C](https://img.shields.io/badge/C-0.5%25-333333?style=flat-square)
 
 </div>
 
