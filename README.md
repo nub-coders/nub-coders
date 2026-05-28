@@ -288,7 +288,7 @@
 <div align="center">
 
 ![Stars](https://img.shields.io/badge/⭐%20Stars-35-f72585?style=for-the-badge&labelColor=1a1a2e)
-![Commits](https://img.shields.io/badge/📝%20Commits-254-a78bfa?style=for-the-badge&labelColor=1a1a2e)
+![Commits](https://img.shields.io/badge/📝%20Commits-258-a78bfa?style=for-the-badge&labelColor=1a1a2e)
 ![PRs](https://img.shields.io/badge/✅%20PRs%20Merged-51-0078d4?style=for-the-badge&labelColor=1a1a2e)
 ![Repos](https://img.shields.io/badge/📁%20Repos-21-4cc9f0?style=for-the-badge&labelColor=1a1a2e)
 ![Followers](https://img.shields.io/github/followers/nub-coders?label=Followers&style=for-the-badge&color=4cc9f0&labelColor=1a1a2e)
@@ -299,8 +299,8 @@
 
 **🌐 Top Languages**
 
-![TypeScript](https://img.shields.io/badge/TypeScript-51.1%25-3178c6?style=flat-square)
-![Python](https://img.shields.io/badge/Python-28.1%25-3572A5?style=flat-square)
+![TypeScript](https://img.shields.io/badge/TypeScript-51%25-3178c6?style=flat-square)
+![Python](https://img.shields.io/badge/Python-28.2%25-3572A5?style=flat-square)
 ![HTML](https://img.shields.io/badge/HTML-13.1%25-e34c26?style=flat-square)
 ![CSS](https://img.shields.io/badge/CSS-3.7%25-0284c7?style=flat-square)
 ![JavaScript](https://img.shields.io/badge/JavaScript-2.1%25-f7df1e?style=flat-square)
