@@ -288,7 +288,7 @@
 <div align="center">
 
 ![Stars](https://img.shields.io/badge/⭐%20Stars-35-f72585?style=for-the-badge&labelColor=1a1a2e)
-![Commits](https://img.shields.io/badge/📝%20Commits-274-a78bfa?style=for-the-badge&labelColor=1a1a2e)
+![Commits](https://img.shields.io/badge/📝%20Commits-277-a78bfa?style=for-the-badge&labelColor=1a1a2e)
 ![PRs](https://img.shields.io/badge/✅%20PRs%20Merged-51-0078d4?style=for-the-badge&labelColor=1a1a2e)
 ![Repos](https://img.shields.io/badge/📁%20Repos-22-4cc9f0?style=for-the-badge&labelColor=1a1a2e)
 ![Followers](https://img.shields.io/github/followers/nub-coders?label=Followers&style=for-the-badge&color=4cc9f0&labelColor=1a1a2e)
