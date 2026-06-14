@@ -171,7 +171,7 @@
 
 <div align="center">
 
-[![Deplio](https://img.shields.io/badge/🚀%20Deplio-App%20Hosting%20%7C%20GitHub%20Integration%20%7C%20Live%20Deployments-0078d4?style=for-the-badge&labelColor=1a1a2e)](https://github.com/nub-coders)
+[![Deplox](https://img.shields.io/badge/🚀%20Deplox-App%20Hosting%20%7C%20GitHub%20Integration%20%7C%20Live%20Deployments-0078d4?style=for-the-badge&labelColor=1a1a2e)](https://github.com/nub-coders)
 
 [![NubMail](https://img.shields.io/badge/📧%20NubMail-Self--Hosted%20Email%20%7C%20API%20Sending%20%7C%20Auth-4cc9f0?style=for-the-badge&labelColor=1a1a2e)](https://github.com/nub-coders)
 
@@ -258,15 +258,6 @@
 <div align="center">
 
 <img src="https://github-readme-activity-graph.vercel.app/graph?username=nub-coders&theme=tokyo-night&bg_color=0d1117&color=a78bfa&line=6e40c9&point=f87171&area=true&hide_border=true" width="95%" />
-
-</div>
-
-<br />
-
-<!-- Trophies -->
-<div align="center">
-
-<img src="https://github-profile-trophy.vercel.app/?username=nub-coders&theme=tokyonight&no-frame=true&no-bg=true&margin-w=4&row=1" width="95%" />
 
 </div>
 
