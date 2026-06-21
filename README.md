@@ -290,13 +290,13 @@
 
 **🌐 Top Languages**
 
-![TypeScript](https://img.shields.io/badge/TypeScript-52.5%25-3178c6?style=flat-square)
-![Python](https://img.shields.io/badge/Python-31.6%25-3572A5?style=flat-square)
-![CSS](https://img.shields.io/badge/CSS-3.9%25-0284c7?style=flat-square)
-![C++](https://img.shields.io/badge/C%2B%2B-3.2%25-1572B6?style=flat-square)
-![JavaScript](https://img.shields.io/badge/JavaScript-2.6%25-f7df1e?style=flat-square)
-![HTML](https://img.shields.io/badge/HTML-2.3%25-e34c26?style=flat-square)
-![C](https://img.shields.io/badge/C-1%25-333333?style=flat-square)
+![TypeScript](https://img.shields.io/badge/TypeScript-49.7%25-3178c6?style=flat-square)
+![Python](https://img.shields.io/badge/Python-34.2%25-3572A5?style=flat-square)
+![CSS](https://img.shields.io/badge/CSS-4.1%25-0284c7?style=flat-square)
+![C++](https://img.shields.io/badge/C%2B%2B-3%25-1572B6?style=flat-square)
+![JavaScript](https://img.shields.io/badge/JavaScript-2.9%25-f7df1e?style=flat-square)
+![HTML](https://img.shields.io/badge/HTML-2.4%25-e34c26?style=flat-square)
+![C](https://img.shields.io/badge/C-0.9%25-333333?style=flat-square)
 
 </div>
 
