@@ -14,9 +14,12 @@ services:
       - .env
     environment:
       NODE_ENV: production
-      VIRTUAL_HOST: nubcoder.com
-      LETSENCRYPT_HOST: nubcoder.com
-      VIRTUAL_PORT: "8080"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.portfolio.rule=Host(`nubcoder.com`)"
+      - "traefik.http.routers.portfolio.entrypoints=websecure"
+      - "traefik.http.routers.portfolio.tls.certresolver=letsencrypt"
+      - "traefik.http.services.portfolio.loadbalancer.server.port=8080"
     expose:
       - "8080"
     networks:
