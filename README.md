@@ -290,12 +290,12 @@
 
 **🌐 Top Languages**
 
-![TypeScript](https://img.shields.io/badge/TypeScript-48%25-3178c6?style=flat-square)
-![Python](https://img.shields.io/badge/Python-35.8%25-3572A5?style=flat-square)
+![TypeScript](https://img.shields.io/badge/TypeScript-47.8%25-3178c6?style=flat-square)
+![Python](https://img.shields.io/badge/Python-35.7%25-3572A5?style=flat-square)
 ![CSS](https://img.shields.io/badge/CSS-4.3%25-0284c7?style=flat-square)
 ![C++](https://img.shields.io/badge/C%2B%2B-2.9%25-1572B6?style=flat-square)
 ![JavaScript](https://img.shields.io/badge/JavaScript-2.7%25-f7df1e?style=flat-square)
-![HTML](https://img.shields.io/badge/HTML-2.4%25-e34c26?style=flat-square)
+![HTML](https://img.shields.io/badge/HTML-2.7%25-e34c26?style=flat-square)
 ![C](https://img.shields.io/badge/C-0.9%25-333333?style=flat-square)
 
 </div>
