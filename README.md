@@ -248,7 +248,7 @@
 <!-- Streak Stats -->
 <div align="center">
 
-<img src="https://nubcoder.com/api/github/streak-stats.svg" width="70%" />
+<img src="https://deplox.nubcoder.com/api/github/streak-stats.svg" width="70%" />
 
 </div>
 
@@ -257,7 +257,7 @@
 <!-- Activity Graph -->
 <div align="center">
 
-<img src="https://nubcoder.com/api/github/contribution-graph.svg" width="95%" />
+<img src="https://deplox.nubcoder.com/api/github/contribution-graph.svg" width="95%" />
 
 </div>
 
