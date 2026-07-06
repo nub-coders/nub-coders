@@ -248,7 +248,7 @@
 <!-- Streak Stats -->
 <div align="center">
 
-<img src="https://streak-stats.demolab.com?user=nub-coders&theme=tokyonight&hide_border=true&background=0d1117&ring=6e40c9&fire=f87171&currStreakLabel=4ade80&sideLabels=8b949e" width="70%" />
+<img src="https://nubcoder.com/api/github/streak-stats.svg" width="70%" />
 
 </div>
 
