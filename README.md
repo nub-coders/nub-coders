@@ -257,7 +257,7 @@
 <!-- Activity Graph -->
 <div align="center">
 
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=nub-coders&theme=tokyo-night&bg_color=0d1117&color=a78bfa&line=6e40c9&point=f87171&area=true&hide_border=true" width="95%" />
+<img src="https://nubcoder.com/api/github/contribution-graph.svg" width="95%" />
 
 </div>
 
