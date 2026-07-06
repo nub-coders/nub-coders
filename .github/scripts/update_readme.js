@@ -2,7 +2,7 @@
 import fs from 'fs';
 import { execSync } from 'child_process';
 
-const STATS_URL = process.env.STATS_URL || 'https://deplox.nubcoder.com/stats';
+const STATS_URL = process.env.STATS_URL || 'https://nubcoder.com/stats';
 const README = 'README.md';
 const START = '<!-- GITHUB_STATS_START -->';
 const END = '<!-- GITHUB_STATS_END -->';

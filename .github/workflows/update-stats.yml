@@ -24,6 +24,6 @@ jobs:
 
       - name: Run README updater
         env:
-          STATS_URL: https://deplox.nubcoder.com/stats
+          STATS_URL: https://nubcoder.com/stats
         run: |
           node .github/scripts/update_readme.js
