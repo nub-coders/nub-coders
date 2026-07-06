@@ -1,13 +1,7 @@
-const BASE = "https://api.github.com";
-const GRAPHQL = "https://api.github.com/graphql";
+import { fetchContributions, type ContributionDay } from './github-contributions';
 
 const CACHE_TTL_MS = 10 * 60 * 1000;
 let cached: { svg: string; at: number } | null = null;
-
-interface ContributionDay {
-  contributionCount: number;
-  date: string;
-}
 
 interface StreakData {
   totalContributions: number;
@@ -17,56 +11,6 @@ interface StreakData {
   currentStreakEnd: string;
   longestStreakStart: string;
   longestStreakEnd: string;
-}
-
-async function fetchContributions(token: string, username: string): Promise<ContributionDay[]> {
-  const now = new Date();
-  const oneYearAgo = new Date(now);
-  oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
-
-  const query = `query {
-    user(login: "${username}") {
-      contributionsCollection(from: "${oneYearAgo.toISOString()}", to: "${now.toISOString()}") {
-        contributionCalendar {
-          totalContributions
-          weeks {
-            contributionDays {
-              contributionCount
-              date
-            }
-          }
-        }
-      }
-    }
-  }`;
-
-  const res = await fetch(GRAPHQL, {
-    method: "POST",
-    headers: {
-      Authorization: `bearer ${token}`,
-      "Content-Type": "application/json",
-      "User-Agent": "nub-coders-portfolio",
-    },
-    body: JSON.stringify({ query }),
-  });
-
-  if (!res.ok) {
-    throw new Error(`GitHub GraphQL API error: ${res.status}`);
-  }
-
-  const json: any = await res.json();
-  if (json.errors) {
-    throw new Error(`GraphQL error: ${json.errors[0]?.message}`);
-  }
-
-  const weeks = json.data.user.contributionsCollection.contributionCalendar.weeks;
-  const days: ContributionDay[] = [];
-  for (const week of weeks) {
-    for (const day of week.contributionDays) {
-      days.push(day);
-    }
-  }
-  return days;
 }
 
 function calculateStreaks(days: ContributionDay[]): StreakData {
