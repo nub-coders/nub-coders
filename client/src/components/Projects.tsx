@@ -34,7 +34,7 @@ const projects: Project[] = [
     image: "/assets/projects/nubmail.png",
     tags: ["Next.js", "PostgreSQL", "SMTP", "Microsoft Graph", "shadcn/ui"],
     demoLink: "https://mails.nubcoder.com",
-    codeLink: "",
+    codeLink: "https://github.com/nub-coders/nubmail",
     badgeText: "SaaS",
     badgeClass: "bg-[var(--primary)]/14 text-[var(--primary)]"
   },
@@ -109,7 +109,11 @@ export default function Projects() {
             <div className="p-8">
               <div className="flex justify-between items-start mb-6">
                 <h3 className="text-3xl font-bold bg-gradient-to-r from-[var(--primary)] via-[var(--secondary)] to-[var(--tertiary)] bg-clip-text text-transparent">
-                  {project.title}
+                  {project.demoLink ? (
+                    <a href={project.demoLink} target="_blank" rel="noopener noreferrer">
+                      {project.title}
+                    </a>
+                  ) : project.title}
                 </h3>
                 <span className={`px-3 py-1 text-xs rounded ${project.badgeClass} whitespace-nowrap`}>
                   {project.badgeText}
@@ -129,17 +133,30 @@ export default function Projects() {
                   </span>
                 ))}
               </div>
-              {project.demoLink && (
-                <a
-                  href={project.demoLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[var(--primary)] text-[var(--accent)] hover:bg-[var(--secondary)] transition-all duration-300 text-base font-medium shadow-lg shadow-[rgba(245,246,247,0.14)]"
-                >
-                  <i className="fas fa-external-link-alt"></i>
-                  View Live Demo
-                </a>
-              )}
+              <div className="flex gap-3">
+                {project.demoLink && (
+                  <a
+                    href={project.demoLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-[var(--primary)] text-[var(--accent)] hover:bg-[var(--secondary)] transition-all duration-300 text-base font-medium shadow-lg shadow-[rgba(245,246,247,0.14)]"
+                  >
+                    <i className="fas fa-external-link-alt"></i>
+                    View Live Demo
+                  </a>
+                )}
+                {project.codeLink && (
+                  <a
+                    href={project.codeLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-lg border border-[var(--glass-border)] text-[var(--text-secondary)] hover:bg-[rgba(245,246,247,0.06)] transition-all duration-300 text-base font-medium"
+                  >
+                    <i className="fab fa-github"></i>
+                    Source Code
+                  </a>
+                )}
+              </div>
             </div>
           </div>
         ))}
