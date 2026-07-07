@@ -21,10 +21,20 @@ app.use((req, res, next) => {
   // Enable XSS protection
   res.setHeader("X-XSS-Protection", "1; mode=block");
   
-  // Content Security Policy
+  // Content Security Policy — origins match what the page actually loads
+  // (Google Analytics, Google Fonts, cdnjs Font Awesome fallback).
   res.setHeader(
     "Content-Security-Policy",
-    "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' cdn.jsdelivr.net fonts.googleapis.com; font-src 'self' fonts.gstatic.com cdn.jsdelivr.net; img-src 'self' data: https:; connect-src 'self' https:; frame-ancestors 'self'; form-action 'self';"
+    [
+      "default-src 'self'",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' www.googletagmanager.com",
+      "style-src 'self' 'unsafe-inline' fonts.googleapis.com cdnjs.cloudflare.com",
+      "font-src 'self' fonts.gstatic.com cdnjs.cloudflare.com",
+      "img-src 'self' data: https:",
+      "connect-src 'self' https: www.google-analytics.com",
+      "frame-ancestors 'self'",
+      "form-action 'self'",
+    ].join("; ") + ";"
   );
   
   // Referrer policy
@@ -85,8 +95,12 @@ app.use((req, res, next) => {
     const status = err.status || err.statusCode || 500;
     const message = err.message || "Internal Server Error";
 
-    res.status(status).json({ message });
-    throw err;
+    // Log server-side; do NOT re-throw after responding (that crashes the process).
+    console.error("[Unhandled]", err?.stack ?? err?.message ?? err);
+
+    if (!res.headersSent) {
+      res.status(status).json({ message });
+    }
   });
 
   // importantly only setup vite in development and after

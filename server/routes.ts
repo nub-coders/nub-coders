@@ -7,6 +7,12 @@ import { getStreakStatsSVG } from './streak-stats';
 import { getContributionGraphSVG } from './contribution-graph';
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // ── Health check ──────────────────────────────────────────────────────────
+  // Lightweight liveness probe for Docker/orchestrators. No external calls.
+  app.get("/healthz", (_req: Request, res: Response) => {
+    res.status(200).json({ status: "ok", uptime: process.uptime() });
+  });
+
   // ── GitHub Stats ──────────────────────────────────────────────────────────
   app.get("/api/github/stats", async (_req: Request, res: Response) => {
     try {
