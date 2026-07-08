@@ -221,9 +221,9 @@
 
 <div align="center">
 
-[![Website](https://img.shields.io/badge/%20Website-nubcoder.com-0078d4?style=for-the-badge&logo=vercel&logoColor=white&labelColor=0d1117)](https://nubcoder.com)
+[![Website](https://img.shields.io/badge/%20Website-nubcoders.com-0078d4?style=for-the-badge&logo=vercel&logoColor=white&labelColor=0d1117)](https://nubcoders.com)
 [![Telegram](https://img.shields.io/badge/%20Telegram-nub__coder__s-4cc9f0?style=for-the-badge&logo=telegram&logoColor=white&labelColor=0d1117)](https://t.me/nub_coder_s)
-[![Email](https://img.shields.io/badge/%20Email-dev%40nubcoder.com-f72585?style=for-the-badge&logo=gmail&logoColor=white&labelColor=0d1117)](mailto:dev@nubcoder.com)
+[![Email](https://img.shields.io/badge/%20Email-dev%40nubcoders.com-f72585?style=for-the-badge&logo=gmail&logoColor=white&labelColor=0d1117)](mailto:dev@nubcoders.com)
 [![GitHub](https://img.shields.io/badge/%20GitHub-nub--coders-a78bfa?style=for-the-badge&logo=github&logoColor=white&labelColor=0d1117)](https://github.com/nub-coders)
 [![YouTube](https://img.shields.io/badge/%20YouTube-nub--coders-0078d4?style=for-the-badge&logo=youtube&logoColor=white&labelColor=0d1117)](https://youtube.com/@nub-coders)
 
@@ -248,7 +248,7 @@
 <!-- Streak Stats -->
 <div align="center">
 
-<img src="https://nubcoder.com/api/github/streak-stats.svg" width="70%" />
+<img src="https://nubcoders.com/api/github/streak-stats.svg" width="70%" />
 
 </div>
 
@@ -257,7 +257,7 @@
 <!-- Activity Graph -->
 <div align="center">
 
-<img src="https://nubcoder.com/api/github/contribution-graph.svg" width="95%" />
+<img src="https://nubcoders.com/api/github/contribution-graph.svg" width="95%" />
 
 </div>
 

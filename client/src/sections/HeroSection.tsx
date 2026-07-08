@@ -1,7 +1,7 @@
 export default function HeroSection() {
   return (
     <div className="hero">
-      <div className="hero-tag">Full Stack Developer · nubcoder.com</div>
+      <div className="hero-tag">Full Stack Developer · nubcoders.com</div>
       <h1 className="hero-name">Ankit<br /><em>Kumar</em></h1>
       <div className="hero-bottom">
         <p className="hero-desc">
