@@ -3,9 +3,9 @@ import fetch from "node-fetch";
 
 const router = express.Router();
 
-const EMAIL_API_URL = process.env.EMAIL_API_URL || "https://mails.nubcoder.com/api/emails/send-api";
+const EMAIL_API_URL = process.env.EMAIL_API_URL || "https://mails.nubcoders.com/api/emails/send-api";
 const EMAIL_API_KEY = process.env.EMAIL_API_KEY;
-const FROM_EMAIL = process.env.EMAIL_FROM || "support@nubcoder.com";
+const FROM_EMAIL = process.env.EMAIL_FROM || "support@nubcoders.com";
 const TO_EMAIL = process.env.EMAIL_TO || "nubcoders@gmail.com";
 
 // ── Minimal in-memory per-IP rate limiter (no external dependency) ──────────
