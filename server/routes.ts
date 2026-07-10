@@ -1,6 +1,5 @@
 import type { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
-import { storage } from "./storage";
 import contactRouter from './contact';
 import { fetchGitHubStats } from './github';
 import { getStreakStatsSVG } from './streak-stats';
@@ -14,7 +13,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // ── GitHub Stats ──────────────────────────────────────────────────────────
-  app.get("/api/github/stats", async (_req: Request, res: Response) => {
+  // Same handler on both paths: /api/github/stats (client) and /stats (external tooling).
+  app.get(["/api/github/stats", "/stats"], async (_req: Request, res: Response) => {
     try {
       const stats = await fetchGitHubStats();
       res.json(stats);
@@ -33,17 +33,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
       })();
 
       res.status(503).json({ message });
-    }
-  });
-
-  // Expose a simple `/stats` JSON endpoint for external tooling or health checks
-  app.get("/stats", async (_req: Request, res: Response) => {
-    try {
-      const stats = await fetchGitHubStats();
-      res.json(stats);
-    } catch (err: any) {
-      console.error("[GitHub Stats /stats]", err?.message ?? err);
-      res.status(503).json({ message: "Failed to fetch GitHub stats." });
     }
   });
 
