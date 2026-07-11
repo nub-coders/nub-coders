@@ -40,12 +40,25 @@ export async function fetchContributions(token: string, username: string): Promi
     throw new Error(`GitHub GraphQL API error: ${res.status}`);
   }
 
-  const json: any = await res.json();
+  interface ContributionsResponse {
+    data?: {
+      user: {
+        contributionsCollection: {
+          contributionCalendar: {
+            weeks: { contributionDays: ContributionDay[] }[];
+          };
+        };
+      };
+    };
+    errors?: { message: string }[];
+  }
+
+  const json = (await res.json()) as ContributionsResponse;
   if (json.errors) {
     throw new Error(`GraphQL error: ${json.errors[0]?.message}`);
   }
 
-  const weeks = json.data.user.contributionsCollection.contributionCalendar.weeks;
+  const weeks = json.data!.user.contributionsCollection.contributionCalendar.weeks;
   const days: ContributionDay[] = [];
   for (const week of weeks) {
     for (const day of week.contributionDays) {

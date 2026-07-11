@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nubcoder.com/sitemap.xml
+Sitemap: https://nubcoders.com/sitemap.xml

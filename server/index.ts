@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import { randomBytes } from "crypto";
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { serveStatic, log } from "./static";
@@ -11,23 +12,40 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Security headers middleware
-app.use((req, res, next) => {
+app.use((_req, res, next) => {
+  const isProd = process.env.NODE_ENV === "production";
+
   // Prevent clickjacking
   res.setHeader("X-Frame-Options", "SAMEORIGIN");
-  
+
   // Prevent MIME type sniffing
   res.setHeader("X-Content-Type-Options", "nosniff");
-  
+
   // Enable XSS protection
   res.setHeader("X-XSS-Protection", "1; mode=block");
-  
+
+  // Per-request nonce — attached to every inline <script> by serveStatic so the
+  // production CSP can drop 'unsafe-inline'/'unsafe-eval'. Dev keeps the loose
+  // policy because Vite's HMR client relies on eval + inline scripts.
+  const nonce = randomBytes(16).toString("base64");
+  res.locals.cspNonce = nonce;
+
+  // 'strict-dynamic' lets a nonce'd script (e.g. gtag loader) pull its own
+  // children without host allowlists; 'https:' is the fallback older browsers
+  // use when they ignore strict-dynamic.
+  const scriptSrc = isProd
+    ? `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https:`
+    : "script-src 'self' 'unsafe-inline' 'unsafe-eval' www.googletagmanager.com";
+
   // Content Security Policy — origins match what the page actually loads
   // (Google Analytics, Google Fonts, cdnjs Font Awesome fallback).
   res.setHeader(
     "Content-Security-Policy",
     [
       "default-src 'self'",
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' www.googletagmanager.com",
+      scriptSrc,
+      // style-src keeps 'unsafe-inline': React injects inline styles and nonces
+      // don't apply to style attributes. Style-injection XSS is low-severity.
       "style-src 'self' 'unsafe-inline' fonts.googleapis.com cdnjs.cloudflare.com",
       "font-src 'self' fonts.gstatic.com cdnjs.cloudflare.com",
       "img-src 'self' data: https:",
@@ -36,15 +54,15 @@ app.use((req, res, next) => {
       "form-action 'self'",
     ].join("; ") + ";"
   );
-  
+
   // Referrer policy
   res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
-  
+
   // Enforce HTTPS (only in production)
-  if (process.env.NODE_ENV === "production") {
+  if (isProd) {
     res.setHeader("Strict-Transport-Security", "max-age=31536000; includeSubDomains");
   }
-  
+
   next();
 });
 

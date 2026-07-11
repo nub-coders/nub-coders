@@ -1,39 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
+// API-contract types are owned by the server; import them (type-only, so no
+// server code is bundled) instead of re-declaring and risking drift.
+import type { GitHubStats } from "../../../server/github";
 
-export interface LanguageStat {
-  name: string;
-  bytes: number;
-  percentage: number;
-}
-
-export interface SkillEntry {
-  name: string;
-  proficiency: number;
-  category: "frontend" | "backend" | "devops" | "database" | "other";
-}
-
-export interface GitHubStats {
-  username: string;
-  name: string | null;
-  avatarUrl: string;
-  profileUrl: string;
-  followers: number;
-  following: number;
-  publicRepos: number;
-  privateRepos: number;
-  totalRepos: number;
-  totalStars: number;
-  totalForks: number;
-  totalCommits: number;
-  prsOpen: number;
-  prsMerged: number;
-  issuesOpen: number;
-  issuesClosed: number;
-  gists: number;
-  topLanguages: LanguageStat[];
-  skillsMap: SkillEntry[];
-  fetchedAt: string;
-}
+export type { GitHubStats, LanguageStat, SkillEntry } from "../../../server/github";
 
 declare global {
   interface Window {
