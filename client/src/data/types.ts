@@ -1,5 +1,7 @@
 export type Principle = { num: string; title: string; body: string };
 
+export type ProjectSignature = "terminal" | "mail" | "audio" | "download";
+
 export type Project = {
   idx: string;
   name: string;
@@ -7,6 +9,8 @@ export type Project = {
   tags: string[];
   liveUrl: string;
   codeUrl?: string;
+  /** Decorative per-card motif rendered in the title row + card entrance. */
+  signature?: ProjectSignature;
 };
 
 export type FocusCard = { icon: string; title: string; body: string };
