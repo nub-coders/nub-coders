@@ -29,6 +29,14 @@ export interface SkillEntry {
   category: "frontend" | "backend" | "devops" | "database" | "other";
 }
 
+// Minimal shape of the GitHub REST repo object — only the fields we read.
+interface GitHubRepo {
+  full_name: string;
+  private: boolean;
+  stargazers_count?: number;
+  forks_count?: number;
+}
+
 export interface GitHubStats {
   username: string;
   name: string | null;
@@ -234,7 +242,7 @@ export async function fetchGitHubStats(): Promise<GitHubStats> {
   const user = await userRes.json();
 
   // ── 2. All repositories ────────────────────────────────────────────────────
-  const repos: any[] = await paginate(
+  const repos: GitHubRepo[] = await paginate(
     `${BASE}/user/repos?visibility=all&affiliation=owner,collaborator,organization_member&sort=updated`,
     hdrs
   );
@@ -251,7 +259,7 @@ export async function fetchGitHubStats(): Promise<GitHubStats> {
   for (let i = 0; i < repos.length; i += BATCH) {
     const batch = repos.slice(i, i + BATCH);
     await Promise.all(
-      batch.map(async (repo: any) => {
+      batch.map(async (repo: GitHubRepo) => {
         if (repo.private) privateCount++; else publicCount++;
         totalStars += repo.stargazers_count ?? 0;
         totalForks += repo.forks_count ?? 0;

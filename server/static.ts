@@ -1,4 +1,4 @@
-import express, { type Express } from "express";
+import express, { type Express, type Response } from "express";
 import fs from "fs";
 import path from "path";
 import { fetchGitHubStats } from "./github";
@@ -7,16 +7,25 @@ function escapeJsonForHtml(value: unknown) {
   return JSON.stringify(value).replace(/</g, "\\u003c");
 }
 
-async function injectGitHubStats(template: string) {
+/**
+ * Stamp every <script> tag with the request's CSP nonce so the production
+ * policy (script-src 'nonce-…' 'strict-dynamic') allows the GA loader, the
+ * ld+json block, the injected stats, and the Vite module bundle to run.
+ */
+function applyNonce(html: string, nonce: string) {
+  return html.replace(/<script(?![^>]*\bnonce=)/g, `<script nonce="${nonce}"`);
+}
+
+async function injectGitHubStats(template: string, nonce: string) {
   try {
     const stats = await fetchGitHubStats();
-    const payload = `<script>window.__GITHUB_STATS__ = ${escapeJsonForHtml(stats)};</script>`;
+    const payload = `<script nonce="${nonce}">window.__GITHUB_STATS__ = ${escapeJsonForHtml(stats)};</script>`;
     return template.replace("</head>", `${payload}</head>`);
   } catch (error) {
     console.warn(`Unable to inject GitHub stats: ${(error as Error).message}`);
     return template.replace(
       "</head>",
-      `<script>window.__GITHUB_STATS__ = null;</script></head>`,
+      `<script nonce="${nonce}">window.__GITHUB_STATS__ = null;</script></head>`,
     );
   }
 }
@@ -41,16 +50,22 @@ export function serveStatic(app: Express) {
     );
   }
 
+  // `index: false` — never let express.static serve index.html directly. It
+  // must fall through to the catch-all below so every response gets the stats
+  // injection and a fresh per-request CSP nonce on its <script> tags.
   app.use(express.static(distPath, {
     maxAge: '1y',
     etag: true,
+    index: false,
   }));
 
-  app.use("*", async (_req, res, next) => {
+  app.use("*", async (_req, res: Response, next) => {
     try {
       const indexPath = path.resolve(distPath, "index.html");
       const template = await fs.promises.readFile(indexPath, "utf-8");
-      const html = await injectGitHubStats(template);
+      const nonce = res.locals.cspNonce as string;
+      const withStats = await injectGitHubStats(template, nonce);
+      const html = applyNonce(withStats, nonce);
       res.status(200).type("html").send(html);
     } catch (error) {
       next(error);
