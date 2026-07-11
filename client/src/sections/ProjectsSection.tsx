@@ -1,5 +1,7 @@
+import type { MouseEvent } from "react";
 import { projects } from "@/data/projects";
 import { getTechLink } from "@/data/techStack";
+import type { ProjectSignature } from "@/data/types";
 
 function GitHubIcon() {
   return (
@@ -9,13 +11,72 @@ function GitHubIcon() {
   );
 }
 
+/**
+ * Decorative per-project motif shown in the card's title row. Purely
+ * presentational — hidden from assistive tech; all motion is gated behind
+ * `prefers-reduced-motion` in portfolio.css.
+ */
+function SignatureGlyph({ kind }: { kind: ProjectSignature }) {
+  switch (kind) {
+    case "terminal":
+      return (
+        <div className="sig sig-terminal" aria-hidden="true">
+          <span className="sig-dot" />
+          <span>$</span>
+          <span className="sig-type">deploying</span>
+        </div>
+      );
+    case "mail":
+      return (
+        <div className="sig sig-mail" aria-hidden="true">
+          <span className="sig-env" />
+          <span className="sig-flap" />
+          <span className="sig-ping" />
+        </div>
+      );
+    case "audio":
+      return (
+        <div className="sig sig-audio" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+          <span />
+        </div>
+      );
+    case "download":
+      return (
+        <div className="sig sig-download" aria-hidden="true">
+          <span className="sig-mover">
+            <span className="sig-stem" />
+            <span className="sig-chevron" />
+          </span>
+          <span className="sig-tray" />
+        </div>
+      );
+  }
+}
+
 export default function ProjectsSection() {
+  // Feed the cursor position into CSS custom props so the radial hover glow
+  // tracks the pointer. Direct style writes — no React state on mousemove.
+  function handleMouseMove(event: MouseEvent<HTMLDivElement>) {
+    const el = event.currentTarget;
+    const rect = el.getBoundingClientRect();
+    el.style.setProperty("--mx", `${event.clientX - rect.left}px`);
+    el.style.setProperty("--my", `${event.clientY - rect.top}px`);
+  }
+
   return (
     <section id="work">
       <div className="section-head reveal"><span className="section-num">03</span><div className="section-line" /><h2 className="section-title">Selected Work</h2></div>
       <div className="projects-list">
         {projects.map((project) => (
-          <div key={project.idx} className="project-item reveal">
+          <div
+            key={project.idx}
+            className={`project-item reveal${project.signature ? ` sig-${project.signature}` : ""}`}
+            onMouseMove={handleMouseMove}
+          >
+            <span className="project-bar" aria-hidden="true" />
             <a
               href={project.liveUrl}
               target="_blank"
@@ -51,6 +112,7 @@ export default function ProjectsSection() {
               </div>
             </div>
             <div className="project-actions">
+              {project.signature && <SignatureGlyph kind={project.signature} />}
               {project.codeUrl && (
                 <a
                   href={project.codeUrl}
