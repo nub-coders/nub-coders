@@ -87,14 +87,11 @@ function formatDateRange(start: string, end: string): string {
 
 function generateSVG(data: StreakData): string {
   const bg = "#0d1117";
-  const border = "#6e40c9";
-  const fireColor = "#f87171";
   const labelColor = "#8b949e";
   const valueColor = "#e6edf3";
   const streakColor = "#4ade80";
   const ringColor = "#6e40c9";
 
-  const totalRange = formatDateRange(data.currentStreakStart || data.longestStreakStart, data.currentStreakEnd || data.longestStreakEnd);
   const longestRange = formatDateRange(data.longestStreakStart, data.longestStreakEnd);
   const currentRange = formatDateRange(data.currentStreakStart, data.currentStreakEnd);
 

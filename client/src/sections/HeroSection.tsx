@@ -1,6 +1,7 @@
 export default function HeroSection() {
   return (
     <div className="hero">
+      <div className="hero-glow" aria-hidden="true" />
       <div className="hero-tag">Full Stack Developer · nubcoders.com</div>
       <h1 className="hero-name">Ankit<br /><em>Kumar</em></h1>
       <div className="hero-bottom">

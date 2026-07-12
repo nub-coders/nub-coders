@@ -2,7 +2,7 @@
 import fs from 'fs';
 import { execSync } from 'child_process';
 
-const STATS_URL = process.env.STATS_URL || 'https://nubcoder.com/stats';
+const STATS_URL = process.env.STATS_URL || 'https://nubcoders.com/stats';
 const README = 'README.md';
 const START = '<!-- GITHUB_STATS_START -->';
 const END = '<!-- GITHUB_STATS_END -->';
@@ -14,53 +14,26 @@ async function fetchJson(url) {
 }
 
 function buildMd(stats) {
-  const user = stats.username || 'user';
   const stars = stats.totalStars ?? 0;
   const commits = stats.totalCommits ?? 0;
   const prs = stats.prsMerged ?? 0;
   const repos = stats.totalRepos ?? 0;
+  const followers = stats.followers ?? 0;
 
-  const langColor = {
-    TypeScript: '3178c6', Python: '3572A5', JavaScript: 'f7df1e', HTML: 'e34c26', CSS: '0284c7', Dockerfile: '2496ED', Shell: '4EAA25', Rust: 'b7410e', 'C++': '1572B6', React: '0891b2', Vue: '41b883', 'Next.js': '000000'
-  };
-
-  const lines = [];
-  lines.push('<div align="center">');
-  lines.push('');
-  lines.push('## 📊 GITHUB STATS');
-  lines.push('');
-  lines.push('</div>');
-  lines.push('');
-  lines.push('<div align="center">');
-  lines.push("  <img src=\"https://capsule-render.vercel.app/api?type=rect&color=0d1117&height=3&section=header&render=true\" width=\"60%\" />");
-  lines.push('</div>');
-  lines.push('');
-  lines.push('');
-  lines.push('<div align="center">');
-  lines.push('');
-  lines.push(`![Stars](https://img.shields.io/badge/⭐%20Stars-${stars}-f72585?style=for-the-badge&labelColor=1a1a2e)`);
-  lines.push(`![Commits](https://img.shields.io/badge/📝%20Commits-${commits}-a78bfa?style=for-the-badge&labelColor=1a1a2e)`);
-  lines.push(`![PRs](https://img.shields.io/badge/✅%20PRs%20Merged-${prs}-0078d4?style=for-the-badge&labelColor=1a1a2e)`);
-  lines.push(`![Repos](https://img.shields.io/badge/📁%20Repos-${repos}-4cc9f0?style=for-the-badge&labelColor=1a1a2e)`);
-  lines.push(`![Followers](https://img.shields.io/github/followers/${user}?label=Followers&style=for-the-badge&color=4cc9f0&labelColor=1a1a2e)`);
-  lines.push('');
-  lines.push('</div>');
-  lines.push('');
-  lines.push('<div align="center">');
-  lines.push('');
-  lines.push('**🌐 Top Languages**');
-  lines.push('');
   const top = Array.isArray(stats.topLanguages) ? stats.topLanguages.slice(0, 7) : [];
-  top.forEach((l) => {
-    const name = l.name;
-    const pct = (Math.round((l.percentage) * 10) / 10).toString();
-    const color = langColor[name] ?? '333333';
-    lines.push(`![${name}](https://img.shields.io/badge/${encodeURIComponent(name)}-${encodeURIComponent(pct)}%25-${color}?style=flat-square)`);
-  });
-  lines.push('');
-  lines.push('</div>');
-  lines.push('');
-  lines.push('<div align="center">\n  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=12,14,20&height=120&section=footer&animation=fadeIn" width="100%" />\n</div>');
+  const langs = top
+    .map((l) => `${l.name} ${Math.round((l.percentage) * 10) / 10}%`)
+    .join(' · ');
+
+  const lines = [
+    '### GitHub activity',
+    '',
+    `**⭐ Stars** ${stars} &nbsp;·&nbsp; **📝 Commits** ${commits} &nbsp;·&nbsp; **✅ PRs merged** ${prs} &nbsp;·&nbsp; **📁 Public repos** ${repos} &nbsp;·&nbsp; **👥 Followers** ${followers}`,
+  ];
+  if (langs) {
+    lines.push('');
+    lines.push(`**Top languages:** ${langs}`);
+  }
 
   return lines.join('\n');
 }

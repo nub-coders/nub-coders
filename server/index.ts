@@ -7,6 +7,9 @@ import { startGitHubRefresher } from "./github";
 import compression from "compression";
 
 const app = express();
+// Behind one reverse proxy (Traefik). Trust exactly one hop so req.ip is the
+// proxy-appended client IP — a client-supplied X-Forwarded-For can't spoof it.
+app.set("trust proxy", 1);
 app.use(compression());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

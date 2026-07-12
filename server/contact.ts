@@ -33,8 +33,9 @@ function apiHeaders(): Record<string, string> {
 }
 
 router.post("/api/contact", async (req: Request, res: Response) => {
-  const forwarded = (req.headers["x-forwarded-for"] as string | undefined)?.split(",")[0]?.trim();
-  const ip = forwarded || req.ip || "unknown";
+  // req.ip is the real client IP because the app sets `trust proxy: 1`.
+  // Never parse X-Forwarded-For directly — its leftmost entry is client-spoofable.
+  const ip = req.ip || "unknown";
 
   if (isRateLimited(ip)) {
     return res.status(429).json({ success: false, error: "Too many messages. Please try again later." });
@@ -55,7 +56,10 @@ router.post("/api/contact", async (req: Request, res: Response) => {
   }
 
   try {
-    const ownerEmailPromise = fetch(EMAIL_API_URL, {
+    // Only notify the site owner. We deliberately do NOT send an auto-reply to
+    // the submitted `email` — it's unverified, so doing so would let anyone use
+    // this endpoint as a spam relay pointed at arbitrary third-party addresses.
+    const ownerResponse = await fetch(EMAIL_API_URL, {
       method: "POST",
       headers: apiHeaders(),
       body: JSON.stringify({
@@ -66,20 +70,7 @@ router.post("/api/contact", async (req: Request, res: Response) => {
       }),
     });
 
-    const userEmailPromise = fetch(EMAIL_API_URL, {
-      method: "POST",
-      headers: apiHeaders(),
-      body: JSON.stringify({
-        from: FROM_EMAIL,
-        to: email,
-        subject: "Thank you for contacting Nub Coder!",
-        text: `Hi ${name},\n\nThank you for reaching out! We've received your message and will get back to you as soon as possible.\n\nSubject: ${subject}\n\nBest regards,\nNub Coder\n`,
-      }),
-    });
-
-    const [ownerResponse, userResponse] = await Promise.all([ownerEmailPromise, userEmailPromise]);
-
-    if (!ownerResponse.ok || !userResponse.ok) {
+    if (!ownerResponse.ok) {
       return res.status(502).json({ success: false, error: "Failed to send message. Please try again later." });
     }
 

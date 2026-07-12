@@ -45,7 +45,6 @@ export interface GitHubStats {
   followers: number;
   following: number;
   publicRepos: number;
-  privateRepos: number;
   totalRepos: number;
   totalStars: number;
   totalForks: number;
@@ -144,7 +143,7 @@ async function paginate<T = any>(
   headers: Record<string, string>
 ): Promise<T[]> {
   const results: T[] = [];
-  let nextUrl: string | null = url + (url.includes("?") ? "&" : "?") + "per_page=100&page=1";
+  const nextUrl: string | null = url + (url.includes("?") ? "&" : "?") + "per_page=100&page=1";
   let page = 1;
 
   while (nextUrl) {
@@ -242,16 +241,20 @@ export async function fetchGitHubStats(): Promise<GitHubStats> {
   const user = await userRes.json();
 
   // ── 2. All repositories ────────────────────────────────────────────────────
-  const repos: GitHubRepo[] = await paginate(
+  // We fetch `visibility=all` so the private/public split is accurate, but only
+  // PUBLIC repos feed the aggregate stats below — this endpoint is unauthenticated
+  // and must not leak stars/commits/languages derived from private work.
+  const allRepos: GitHubRepo[] = await paginate(
     `${BASE}/user/repos?visibility=all&affiliation=owner,collaborator,organization_member&sort=updated`,
     hdrs
   );
+  const privateCount = allRepos.filter((r) => r.private).length;
+  const publicCount = allRepos.length - privateCount;
+  const repos = allRepos.filter((r) => !r.private);
 
   let totalStars = 0;
   let totalForks = 0;
   let totalCommits = 0;
-  let publicCount = 0;
-  let privateCount = 0;
   const langBytes: Record<string, number> = {};
 
   // Process repos in small parallel batches to respect rate limits
@@ -260,7 +263,6 @@ export async function fetchGitHubStats(): Promise<GitHubStats> {
     const batch = repos.slice(i, i + BATCH);
     await Promise.all(
       batch.map(async (repo: GitHubRepo) => {
-        if (repo.private) privateCount++; else publicCount++;
         totalStars += repo.stargazers_count ?? 0;
         totalForks += repo.forks_count ?? 0;
 
@@ -351,8 +353,7 @@ export async function fetchGitHubStats(): Promise<GitHubStats> {
     followers: user.followers ?? 0,
     following: user.following ?? 0,
     publicRepos: publicCount,
-    privateRepos: privateCount,
-    totalRepos: repos.length,
+    totalRepos: publicCount,
     totalStars,
     totalForks,
     totalCommits,
