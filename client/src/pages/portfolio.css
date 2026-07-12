@@ -252,6 +252,9 @@ body.menu-open { overflow: hidden; }
 .tech-category h3 { font-size: 11px; color: #f0a500; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.25rem; }
 .tech-pills, .project-tags, .links-list { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .pill, .project-tag { font-size: 12px; font-weight: 400; padding: 0.35rem 0.75rem; border-radius: 2px; color: #a39d92; transition: border-color 0.2s, color 0.2s; cursor: default; }
+/* Tags stay hidden until the card is hovered or keyboard-focused. */
+.project-tag { opacity: 0; transform: translateY(4px); transition: opacity 0.35s ease, transform 0.35s ease, border-color 0.2s, color 0.2s; }
+.project-item:hover .project-tag, .project-item:focus-within .project-tag { opacity: 1; transform: none; }
 .pill-link, .project-tag-link { display: inline-flex; align-items: center; text-decoration: none; cursor: pointer; }
 .pill:hover, .project-tag:hover, .pill-link:hover, .project-tag-link:hover { border-color: #9a6800; color: #f0ebe0; }
 .pill-link:focus-visible, .project-tag-link:focus-visible { outline: 2px solid #f0a500; outline-offset: 2px; }
@@ -302,39 +305,74 @@ body.menu-open { overflow: hidden; }
 .project-item.sig-terminal:hover .sig-type { animation: sigType 0.9s steps(9) forwards; }
 @keyframes sigType { to { width: 9ch; } }
 
-/* 002 mail — envelope opening */
+/* 002 mail — envelope flap lifting */
 .sig.sig-mail { width: 28px; height: 20px; position: relative; perspective: 60px; }
-.sig.sig-mail .sig-env { position: absolute; inset: 0; border: 1.3px solid #a39d92; border-radius: 2px; transition: border-color 0.3s; }
-.project-item.sig-mail:hover .sig-env { border-color: #f0a500; }
 .sig.sig-mail .sig-flap { position: absolute; left: -1.3px; right: -1.3px; top: -1.3px; height: 12px; border-left: 1.3px solid #a39d92; border-right: 1.3px solid #a39d92; border-top: 1.3px solid #a39d92; background: #080808; clip-path: polygon(0 0, 100% 0, 50% 100%); transform-origin: top center; transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s; }
 .project-item.sig-mail:hover .sig-flap { transform: rotateX(150deg); border-color: #f0a500; }
 .sig.sig-mail .sig-ping { position: absolute; top: -3px; right: -3px; width: 6px; height: 6px; border-radius: 50%; background: #f0a500; opacity: 0; transform: scale(0); }
 .project-item.sig-mail:hover .sig-ping { animation: sigPing 0.5s ease 0.35s forwards; }
 @keyframes sigPing { 0% { opacity: 0; transform: scale(0); } 70% { opacity: 1; transform: scale(1.4); } 100% { opacity: 1; transform: scale(1); } }
 
-/* 003 audio — equalizer */
+/* 003 audio — equalizer removed; ambient rising notes carry the motif */
 .project-item.sig-audio .project-bar { display: none; }
-.sig.sig-audio { display: flex; align-items: flex-end; gap: 3px; height: 20px; }
-.sig.sig-audio span { width: 3px; background: #a39d92; border-radius: 1px; height: 30%; transition: background 0.3s ease; }
-.project-item.sig-audio:hover .sig-audio span { background: #f0a500; animation: sigEq 0.9s ease-in-out infinite; }
-.sig.sig-audio span:nth-child(1) { animation-delay: 0s; }
-.sig.sig-audio span:nth-child(2) { animation-delay: 0.15s; }
-.sig.sig-audio span:nth-child(3) { animation-delay: 0.3s; }
-.sig.sig-audio span:nth-child(4) { animation-delay: 0.1s; }
-@keyframes sigEq { 0%, 100% { height: 25%; } 50% { height: 100%; } }
 
-/* 004 download — chevron dropping into tray */
+/* 004 download — glyph removed; bar loads + ambient packet ping carry the motif */
 .project-item.sig-download:hover .project-bar { transition: none; animation: sigBarLoad 1.4s ease-in-out infinite; }
 @keyframes sigBarLoad { 0% { transform: scaleY(0); opacity: 0.35; } 50% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(0); opacity: 0.35; } }
-.sig.sig-download { position: relative; width: 20px; height: 26px; }
-.sig.sig-download .sig-mover { position: absolute; left: 50%; top: 0; transform: translate(-50%, -4px); opacity: 0.4; }
-.sig.sig-download .sig-stem { display: block; width: 1.6px; height: 9px; background: #a39d92; margin: 0 auto; }
-.sig.sig-download .sig-chevron { display: block; width: 7px; height: 7px; border-right: 1.6px solid #a39d92; border-bottom: 1.6px solid #a39d92; transform: rotate(45deg); margin: -3px auto 0; }
-.sig.sig-download .sig-tray { position: absolute; left: 1px; right: 1px; bottom: 0; height: 1.6px; background: #a39d92; transition: background 0.2s; }
-.project-item.sig-download:hover .sig-mover { animation: sigDrop 1.1s ease-in-out infinite; }
-.project-item.sig-download:hover .sig-tray { animation: sigFlash 1.1s ease-in-out infinite; }
-@keyframes sigDrop { 0% { transform: translate(-50%, -4px); opacity: 0.4; } 45% { transform: translate(-50%, 8px); opacity: 1; } 55% { opacity: 0; } 56% { transform: translate(-50%, -4px); opacity: 0; } 100% { transform: translate(-50%, -4px); opacity: 0.4; } }
-@keyframes sigFlash { 0%, 40% { background: #a39d92; } 48% { background: #f0a500; } 60%, 100% { background: #a39d92; } }
+
+
+/* ── Ambient per-card background layer (always on, intensifies on hover) ── */
+.card-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+
+/* 001 terminal — live uptime strip + pulsing status light */
+.bg-terminal .uptime-strip { position: absolute; left: 0; right: 60px; bottom: 20px; height: 30px; display: flex; align-items: flex-end; gap: 4px; }
+.bg-terminal .uptime-strip span { flex: 1; border-radius: 1px; background: #a39d92; opacity: 0.2; animation: uptimeTick 3.6s ease-in-out infinite; }
+.bg-terminal .uptime-strip span:nth-child(6n+1) { height: 42%; animation-delay: 0s; }
+.bg-terminal .uptime-strip span:nth-child(6n+2) { height: 72%; animation-delay: 0.3s; }
+.bg-terminal .uptime-strip span:nth-child(6n+3) { height: 30%; animation-delay: 0.6s; }
+.bg-terminal .uptime-strip span:nth-child(6n+4) { height: 88%; animation-delay: 0.9s; }
+.bg-terminal .uptime-strip span:nth-child(6n+5) { height: 54%; animation-delay: 1.2s; }
+.bg-terminal .uptime-strip span:nth-child(6n) { height: 38%; animation-delay: 1.5s; }
+@keyframes uptimeTick { 0%, 100% { opacity: 0.16; } 50% { opacity: 0.5; background: #f0a500; } }
+.bg-terminal .live { position: absolute; right: 22px; bottom: 23px; width: 8px; height: 8px; border-radius: 50%; background: #f0a500; opacity: 0.4; }
+.bg-terminal .live::after { content: ""; position: absolute; inset: -6px; border-radius: 50%; border: 1.5px solid #f0a500; opacity: 0.5; animation: liveRing 2.2s ease-out infinite; }
+@keyframes liveRing { 0% { transform: scale(0.4); opacity: 0.6; } 100% { transform: scale(1.9); opacity: 0; } }
+.project-item.sig-terminal:hover .uptime-strip span { opacity: 0.4; }
+.project-item.sig-terminal:hover .live { opacity: 0.75; }
+
+/* 002 mail — breathing envelope */
+.bg-mail .envelope { position: absolute; right: -16px; top: 50%; width: 112px; height: 76px; opacity: 0.13; transform: translateY(-50%); animation: envBreathe 4.2s ease-in-out infinite; }
+@keyframes envBreathe { 0%, 100% { transform: translateY(-50%) scale(1); opacity: 0.13; } 50% { transform: translateY(-50%) scale(1.035); opacity: 0.2; } }
+.bg-mail .env-body { position: absolute; inset: 0; background: #080808; border: 2px solid #a39d92; border-radius: 6px; transition: border-color 0.3s ease; }
+.bg-mail .env-seam { position: absolute; inset: 0; }
+.bg-mail .seam-line { fill: none; stroke: #a39d92; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.3s ease; }
+.project-item.sig-mail:hover .envelope { opacity: 0.4; animation-duration: 1.9s; }
+.project-item.sig-mail:hover .env-body { border-color: #f0a500; }
+.project-item.sig-mail:hover .seam-line { stroke: #f0a500; }
+
+/* 003 audio — musical notes rising and fading */
+.bg-audio .note { position: absolute; bottom: -14px; color: #a39d92; opacity: 0; animation: noteFloat 5s ease-in infinite; user-select: none; }
+.bg-audio .n1 { left: 14%; font-size: 20px; animation-delay: 0s; }
+.bg-audio .n2 { left: 34%; font-size: 27px; animation-delay: 1.1s; }
+.bg-audio .n3 { left: 56%; font-size: 17px; animation-delay: 2.3s; }
+.bg-audio .n4 { left: 73%; font-size: 24px; animation-delay: 0.6s; }
+.bg-audio .n5 { left: 89%; font-size: 19px; animation-delay: 3.1s; }
+@keyframes noteFloat { 0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; } 16% { opacity: 0.3; } 78% { opacity: 0.16; } 100% { transform: translateY(-140px) translateX(16px) rotate(14deg); opacity: 0; } }
+.project-item.sig-audio:hover .note { color: #f0a500; animation-duration: 2.4s; }
+
+/* 004 download — request/response packet ping between client and server */
+.bg-download .brace { position: absolute; right: 16px; bottom: -34px; font-family: "JetBrains Mono", monospace; font-weight: 500; font-size: 150px; line-height: 1; color: #f0a500; opacity: 0.045; user-select: none; }
+.bg-download .link { position: absolute; right: 66px; bottom: 35px; width: 116px; height: 1.5px; background: #a39d92; opacity: 0.2; }
+.bg-download .node { position: absolute; bottom: 30px; width: 8px; height: 8px; border-radius: 50%; background: #a39d92; opacity: 0.3; transition: background 0.3s ease; }
+.bg-download .node.client { right: 176px; }
+.bg-download .node.server { right: 58px; }
+.bg-download .packet { position: absolute; bottom: 32px; right: 174px; width: 5px; height: 5px; border-radius: 50%; background: #f0a500; opacity: 0; animation: apiPing 2.8s ease-in-out infinite; }
+@keyframes apiPing { 0% { right: 174px; opacity: 0; } 8% { opacity: 0.8; } 46% { right: 60px; opacity: 0.8; } 54% { opacity: 0; right: 60px; } 58% { opacity: 0.8; } 96% { right: 174px; opacity: 0.8; } 100% { right: 174px; opacity: 0; } }
+.project-item.sig-download:hover .bg-download .node { background: #f0a500; opacity: 0.55; }
+.project-item.sig-download:hover .bg-download .link { opacity: 0.35; }
+.project-item.sig-download:hover .bg-download .packet { animation-duration: 1.4s; }
+.project-item.sig-download:hover .bg-download .brace { opacity: 0.08; }
+
 .focus-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
 .focus-card { padding: 2rem; border-radius: 4px; position: relative; overflow: hidden; transition: border-color 0.3s; }
 .focus-card::after { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: #f0a500; transform: scaleX(0); transform-origin: left; transition: transform 0.3s; }
@@ -412,6 +450,7 @@ body.menu-open { overflow: hidden; }
   .reveal { opacity: 1 !important; transform: none !important; }
   .scroll-line, .hero-tag, .hero-name, .hero-bottom, .scroll-indicator { animation: none !important; opacity: 1 !important; }
   .portfolio-skin::before { display: none; }
+  .uptime-strip span, .live::after, .envelope, .note, .packet { animation: none !important; }
 }
 
 /* 404 page */
