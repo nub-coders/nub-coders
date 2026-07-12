@@ -19,7 +19,7 @@ Clarity over cleverness. Ship fast, then harden with feedback. Build for long-te
 
 ## Tech I reach for
 
-`TypeScript` · `React` · `Node.js` · `Express` · `Python` · `Docker` · `Nginx` · `PostgreSQL` · `Redis` · `GitHub Actions` · `Linux`
+<img src="https://skillicons.dev/icons?i=ts,react,nodejs,express,python,docker,nginx,postgres,redis,githubactions,linux&perline=11" alt="Tech Stack" />
 
 ---
 
