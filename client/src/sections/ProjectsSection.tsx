@@ -12,6 +12,58 @@ function GitHubIcon() {
 }
 
 /**
+ * Ambient, always-on background motif that fills the card behind its content
+ * and intensifies on hover. Purely presentational — hidden from assistive
+ * tech; all motion is gated behind `prefers-reduced-motion` in portfolio.css.
+ */
+function AmbientBackground({ kind }: { kind: ProjectSignature }) {
+  switch (kind) {
+    case "terminal":
+      return (
+        <div className="card-bg bg-terminal" aria-hidden="true">
+          <div className="uptime-strip">
+            {Array.from({ length: 24 }, (_, i) => (
+              <span key={i} />
+            ))}
+          </div>
+          <span className="live" />
+        </div>
+      );
+    case "mail":
+      return (
+        <div className="card-bg bg-mail" aria-hidden="true">
+          <div className="envelope">
+            <div className="env-body" />
+            <svg className="env-seam" viewBox="0 0 64 42" preserveAspectRatio="none">
+              <polyline className="seam-line" points="6,6 32,24 58,6" />
+            </svg>
+          </div>
+        </div>
+      );
+    case "audio":
+      return (
+        <div className="card-bg bg-audio" aria-hidden="true">
+          <span className="note n1">&#9834;</span>
+          <span className="note n2">&#9835;</span>
+          <span className="note n3">&#9834;</span>
+          <span className="note n4">&#9835;</span>
+          <span className="note n5">&#9834;</span>
+        </div>
+      );
+    case "download":
+      return (
+        <div className="card-bg bg-download" aria-hidden="true">
+          <span className="brace">{"{ }"}</span>
+          <span className="link" />
+          <span className="node client" />
+          <span className="node server" />
+          <span className="packet" />
+        </div>
+      );
+  }
+}
+
+/**
  * Decorative per-project motif shown in the card's title row. Purely
  * presentational — hidden from assistive tech; all motion is gated behind
  * `prefers-reduced-motion` in portfolio.css.
@@ -29,30 +81,13 @@ function SignatureGlyph({ kind }: { kind: ProjectSignature }) {
     case "mail":
       return (
         <div className="sig sig-mail" aria-hidden="true">
-          <span className="sig-env" />
           <span className="sig-flap" />
           <span className="sig-ping" />
         </div>
       );
     case "audio":
-      return (
-        <div className="sig sig-audio" aria-hidden="true">
-          <span />
-          <span />
-          <span />
-          <span />
-        </div>
-      );
     case "download":
-      return (
-        <div className="sig sig-download" aria-hidden="true">
-          <span className="sig-mover">
-            <span className="sig-stem" />
-            <span className="sig-chevron" />
-          </span>
-          <span className="sig-tray" />
-        </div>
-      );
+      return null;
   }
 }
 
@@ -77,6 +112,7 @@ export default function ProjectsSection() {
             onMouseMove={handleMouseMove}
           >
             <span className="project-bar" aria-hidden="true" />
+            {project.signature && <AmbientBackground kind={project.signature} />}
             <a
               href={project.liveUrl}
               target="_blank"
