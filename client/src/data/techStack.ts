@@ -1,30 +1,25 @@
 import type { TechCategory, TechLink } from "./types";
 
 export const techCategories: TechCategory[] = [
-  { title: "Frontend", pills: ["TypeScript", "React", "Next.js", "Tailwind", "HTML5", "JavaScript"] },
-  { title: "Backend", pills: ["Node.js", "Express", "Python", "Django", "REST APIs"] },
-  { title: "Database", pills: ["PostgreSQL", "MongoDB", "Redis", "Drizzle ORM"] },
-  { title: "DevOps", pills: ["Docker", "AWS", "GitHub Actions", "Nginx", "Shell", "Linux"] },
+  { title: "Frontend", pills: ["TypeScript", "React", "Tailwind", "HTML5", "JavaScript"] },
+  { title: "Backend", pills: ["Node.js", "Express", "Python", "REST APIs"] },
+  { title: "Database", pills: ["PostgreSQL", "Redis"] },
+  { title: "DevOps", pills: ["Docker", "GitHub Actions", "Nginx", "Shell", "Linux"] },
 ];
 
 export const techLinks: Record<string, TechLink> = {
   TypeScript: { label: "TypeScript", href: "https://www.typescriptlang.org/" },
   React: { label: "React", href: "https://react.dev/" },
-  "Next.js": { label: "Next.js", href: "https://nextjs.org/" },
   Tailwind: { label: "Tailwind CSS", href: "https://tailwindcss.com/" },
   HTML5: { label: "HTML", href: "https://developer.mozilla.org/en-US/docs/Web/HTML" },
   JavaScript: { label: "JavaScript", href: "https://developer.mozilla.org/en-US/docs/Web/JavaScript" },
   "Node.js": { label: "Node.js", href: "https://nodejs.org/" },
   Express: { label: "Express", href: "https://expressjs.com/" },
   Python: { label: "Python", href: "https://www.python.org/" },
-  Django: { label: "Django", href: "https://www.djangoproject.com/" },
   "REST APIs": { label: "REST", href: "https://developer.mozilla.org/en-US/docs/Glossary/REST" },
   PostgreSQL: { label: "PostgreSQL", href: "https://www.postgresql.org/" },
-  MongoDB: { label: "MongoDB", href: "https://www.mongodb.com/" },
   Redis: { label: "Redis", href: "https://redis.io/" },
-  "Drizzle ORM": { label: "Drizzle ORM", href: "https://orm.drizzle.team/" },
   Docker: { label: "Docker", href: "https://www.docker.com/" },
-  AWS: { label: "Amazon Web Services", href: "https://aws.amazon.com/" },
   "GitHub Actions": { label: "GitHub Actions", href: "https://github.com/features/actions" },
   Nginx: { label: "NGINX", href: "https://nginx.org/" },
   Shell: { label: "Bash", href: "https://www.gnu.org/software/bash/" },

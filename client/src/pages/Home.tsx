@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import "./portfolio.css";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import Splash from "@/sections/Splash";
 import Nav from "@/sections/Nav";
 import HeroSection from "@/sections/HeroSection";
 import AboutSection from "@/sections/AboutSection";
@@ -21,6 +22,7 @@ export default function Home() {
 
   return (
     <>
+      <Splash />
       <a href="#main" className="skip-link">Skip to content</a>
       <Nav />
       <main id="main">

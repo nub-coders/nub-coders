@@ -21,11 +21,6 @@ function AmbientBackground({ kind }: { kind: ProjectSignature }) {
     case "terminal":
       return (
         <div className="card-bg bg-terminal" aria-hidden="true">
-          <div className="uptime-strip">
-            {Array.from({ length: 24 }, (_, i) => (
-              <span key={i} />
-            ))}
-          </div>
           <span className="live" />
         </div>
       );

@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { contactLinks } from "@/data/contactLinks";
 
 type ContactFormState = {
   name: string;
@@ -15,6 +14,7 @@ export default function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [fieldError, setFieldError] = useState<string | null>(null);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
@@ -29,8 +29,18 @@ export default function ContactSection() {
     const subject = formData.subject.trim();
     const message = formData.message.trim();
 
-    if (!name || !email || !message) return;
+    if (!name || !email || !message) {
+      setFieldError("Please fill in your name, email, and a message.");
+      return;
+    }
 
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailPattern.test(email)) {
+      setFieldError("Please enter a valid email address.");
+      return;
+    }
+
+    setFieldError(null);
     setIsSubmitting(true);
     setShowSuccess(false);
     setSubmitError(null);
@@ -64,15 +74,7 @@ export default function ContactSection() {
       <div className="contact-new">
         <div className="reveal">
           <p className="contact-headline">Let&apos;s build<br />something<br /><em>real.</em></p>
-          <p className="contact-sub" style={{ marginBottom: "2rem" }}>Open to freelance projects, collaborations, and interesting problems. Fill the form or reach out directly — I reply fast.</p>
-          <div className="links-list">
-            {contactLinks.map((link) => (
-              <a key={link.label} href={link.href} target={link.href.startsWith("mailto:") ? undefined : "_blank"} rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"} className="contact-link">
-                <div className="contact-link-left"><span className="contact-link-label">{link.label}</span><span className="contact-link-value">{link.value}</span></div>
-                <span className="contact-link-arrow" aria-hidden="true">↗</span>
-              </a>
-            ))}
-          </div>
+          <p className="contact-sub">Open to freelance projects, collaborations, and interesting problems. Fill the form or reach out directly — I reply fast.</p>
         </div>
         <div className="reveal">
           <form id="contact-form" onSubmit={handleSubmit} noValidate>
@@ -82,6 +84,7 @@ export default function ContactSection() {
             <div className="form-group"><label className="form-label" htmlFor="cf-msg">Message</label><textarea className="form-textarea" id="cf-msg" name="message" placeholder="Tell me what you're working on..." required value={formData.message} onChange={handleChange} /></div>
             <button type="submit" className={`form-btn ${isSubmitting ? "sending" : ""}`} id="cf-btn" disabled={isSubmitting}>{isSubmitting ? "Sending…" : "Send Message →"}</button>
             {showSuccess && <div className="form-success" role="status">✓ Message sent — I&apos;ll get back to you soon.</div>}
+            {fieldError && <div className="form-error" role="alert">{fieldError}</div>}
             {submitError && <div className="form-error" role="alert">{submitError}</div>}
           </form>
         </div>

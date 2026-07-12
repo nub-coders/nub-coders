@@ -7,7 +7,6 @@ export default function NowSection() {
       <div className="focus-grid">
         {focusCards.map((card) => (
           <div key={card.title} className="focus-card reveal">
-            <div className="focus-icon" aria-hidden="true">{card.icon}</div>
             <h3 className="focus-title">{card.title}</h3>
             <p className="focus-body">{card.body}</p>
           </div>

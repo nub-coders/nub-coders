@@ -1,153 +1,70 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* ── Global base + decorative background ─────────────────────────────────────
+   Plain CSS (no Tailwind). Palette lives in portfolio.css; this file owns the
+   document-level background, the animated mesh/particle layers, and the app
+   shell + scroll-progress bar. */
 
-/* ── Force override Replit shadcn-theme-json plugin injection ─────────────────
-   The plugin injects blue-tinted HSL vars via a <style data-vite-theme> tag.
-   We override ALL shadcn vars here (outside @layer) so our monochrome palette
-   always wins. :root:root has higher specificity than :root.
-────────────────────────────────────────────────────────────────────────────── */
-:root:root {
-  --background: 222 18% 6%;
-  --foreground: 220 10% 96%;
-  --muted: 220 8% 22%;
-  --muted-foreground: 220 8% 65%;
-  --popover: 222 18% 9%;
-  --popover-foreground: 220 10% 96%;
-  --card: 222 18% 9%;
-  --card-foreground: 220 10% 96%;
-  --border: 220 8% 18%;
-  --input: 220 8% 18%;
-  --primary: 220 10% 96%;
-  --primary-foreground: 222 18% 6%;
-  --secondary: 220 8% 22%;
-  --secondary-foreground: 220 10% 96%;
-  --accent: 220 8% 22%;
-  --accent-foreground: 220 10% 96%;
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 0 0% 98%;
-  --ring: 220 10% 96%;
-  --radius: 0.6rem;
+:root {
+  --bg-primary: #0d1117;
+  --bg-secondary: #161a20;
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-muted: rgba(255, 255, 255, 0.6);
+  --border: rgba(93, 106, 129, 0.2);
 }
 
-@layer base {
-  :root {
-    --primary: #f5f6f7;
-    --secondary: #c1c4c8;
-    --tertiary: #7b7f85;
-    --accent: #2b2e33;
-
-    --bg-primary: #0b0d10;
-    --bg-secondary: #101317;
-
-    --text-primary: #f5f6f7;
-    --text-secondary: #d4d7db;
-    --text-muted: #a0a5ab;
-
-    --border: rgba(245, 246, 247, 0.12);
-  }
-
-  * {
-    @apply border-border;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
-  body {
-    @apply font-sans antialiased;
-    background:
-      radial-gradient(circle at top left, rgba(245, 246, 247, 0.08), transparent 28%),
-      radial-gradient(circle at 80% 15%, rgba(193, 196, 200, 0.08), transparent 24%),
-      radial-gradient(circle at 50% 90%, rgba(43, 46, 51, 0.9), transparent 34%),
-      linear-gradient(180deg, #0b0d10 0%, #0f1216 44%, #0b0d10 100%);
-    color: var(--text-primary);
-    line-height: 1.7;
-    overflow-x: hidden;
-    position: relative;
-  }
-
-  /* Animated mesh gradient background (decorative; disabled under reduced-motion) */
-  body::before {
-    content: '';
-    position: fixed;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    z-index: 0;
-    opacity: 0.5;
-    background:
-      radial-gradient(circle at 15% 25%, rgba(245, 246, 247, 0.15) 0%, transparent 38%),
-      radial-gradient(circle at 85% 75%, rgba(193, 196, 200, 0.14) 0%, transparent 36%),
-      radial-gradient(circle at 50% 50%, rgba(123, 127, 133, 0.1) 0%, transparent 44%),
-      radial-gradient(circle at 70% 20%, rgba(43, 46, 51, 0.45) 0%, transparent 34%);
-    animation: megaMeshMove 25s ease-in-out infinite;
-    pointer-events: none;
-  }
-
-  /* Floating particles effect (decorative; disabled under reduced-motion) */
-  body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    opacity: 0.1;
-    background-image:
-      radial-gradient(2px 2px at 20% 30%, rgba(245, 246, 247, 0.9), transparent),
-      radial-gradient(2px 2px at 60% 70%, rgba(245, 246, 247, 0.8), transparent),
-      radial-gradient(1px 1px at 50% 50%, rgba(193, 196, 200, 0.8), transparent),
-      radial-gradient(1px 1px at 80% 10%, rgba(245, 246, 247, 0.75), transparent),
-      radial-gradient(2px 2px at 90% 60%, rgba(245, 246, 247, 0.8), transparent),
-      radial-gradient(1px 1px at 33% 80%, rgba(193, 196, 200, 0.75), transparent);
-    background-size: 200% 200%;
-    background-position: 0% 0%;
-    animation: particleFloat 20s ease-in-out infinite;
-    pointer-events: none;
-  }
-
-  img {
-    max-width: 100%;
-    height: auto;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-@keyframes megaMeshMove {
-  0%, 100% {
-    transform: translate(0, 0) scale(1) rotate(0deg);
-  }
-  33% {
-    transform: translate(50px, -70px) scale(1.15) rotate(5deg);
-  }
-  66% {
-    transform: translate(-40px, 30px) scale(0.95) rotate(-5deg);
-  }
+body {
+  font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  background: #0d1117;
+  color: var(--text-primary);
+  line-height: 1.7;
+  overflow-x: hidden;
+  position: relative;
 }
 
-@keyframes particleFloat {
-  0%, 100% {
-    background-position: 0% 0%;
-    opacity: 0.08;
-  }
-  50% {
-    background-position: 100% 100%;
-    opacity: 0.12;
-  }
+/* PyTgCalls uses a flat dark surface — the animated mesh + particle layers are
+   retired to match. Kept as no-ops so the reduced-motion block below stays valid. */
+body::before,
+body::after { content: none; }
+
+img {
+  max-width: 100%;
+  height: auto;
 }
 
-/* Respect users who prefer reduced motion: kill the decorative background
-   animations and neutralize all transitions/animations across the app. */
+/* ── App shell + scroll-progress bar (moved off Tailwind utilities) ── */
+.app-shell {
+  position: relative;
+  min-height: 100vh;
+  background: var(--bg-primary);
+}
+.app-content {
+  position: relative;
+  z-index: 10;
+}
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  z-index: 50;
+  background: linear-gradient(to right, #8750fd 20%, #3735f1 40%, #2ec594 90%);
+  will-change: transform;
+}
+
+/* Respect users who prefer reduced motion: neutralize all transitions and
+   animations across the app. (The splash intro is also gated on this in JS.) */
 @media (prefers-reduced-motion: reduce) {
-  body::before,
-  body::after {
-    animation: none;
-  }
-
   *,
   *::before,
   *::after {
