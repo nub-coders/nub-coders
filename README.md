@@ -19,7 +19,41 @@ Clarity over cleverness. Ship fast, then harden with feedback. Build for long-te
 
 ## Tech I reach for
 
-<img src="https://skillicons.dev/icons?i=ts,react,nodejs,express,python,docker,nginx,postgres,redis,githubactions,linux&perline=11" alt="Tech Stack" />
+<p>
+  <a href="https://www.typescriptlang.org">
+    <img src="https://skillicons.dev/icons?i=ts" />
+  </a>
+  <a href="https://react.dev">
+    <img src="https://skillicons.dev/icons?i=react" />
+  </a>
+  <a href="https://nodejs.org">
+    <img src="https://skillicons.dev/icons?i=nodejs" />
+  </a>
+  <a href="https://expressjs.com">
+    <img src="https://skillicons.dev/icons?i=express" />
+  </a>
+  <a href="https://www.python.org">
+    <img src="https://skillicons.dev/icons?i=py" />
+  </a>
+  <a href="https://www.docker.com">
+    <img src="https://skillicons.dev/icons?i=docker" />
+  </a>
+  <a href="https://nginx.org">
+    <img src="https://skillicons.dev/icons?i=nginx" />
+  </a>
+  <a href="https://www.postgresql.org">
+    <img src="https://skillicons.dev/icons?i=postgres" />
+  </a>
+  <a href="https://redis.io">
+    <img src="https://skillicons.dev/icons?i=redis" />
+  </a>
+  <a href="https://github.com/features/actions">
+    <img src="https://skillicons.dev/icons?i=githubactions" />
+  </a>
+  <a href="https://www.linux.org">
+    <img src="https://skillicons.dev/icons?i=linux" />
+  </a>
+</p>
 
 ---
 
