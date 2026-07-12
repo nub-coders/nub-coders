@@ -14,7 +14,7 @@ export default function GitHubStatsSection() {
         <div className="stats-grid reveal">
           <div className="stats-card">
             {isLoading ? (
-              <div className="skeleton h-24" role="status" aria-label="Loading GitHub profile" />
+              <div className="skeleton" role="status" aria-label="Loading GitHub profile" />
             ) : data ? (
               <a href={data.profileUrl} target="_blank" rel="noopener noreferrer" className="gh-profile-link">
                 <img src={data.avatarUrl} alt={`${data.username} avatar`} className="gh-avatar" loading="lazy" decoding="async" />
@@ -30,7 +30,7 @@ export default function GitHubStatsSection() {
 
           <div className="stats-card">
             {isLoading ? (
-              <div className="skeleton h-24" role="status" aria-label="Loading top languages" />
+              <div className="skeleton" role="status" aria-label="Loading top languages" />
             ) : data ? (
               <div className="top-langs">
                 {data.topLanguages.slice(0, 6).map((l) => (

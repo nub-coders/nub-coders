@@ -59,14 +59,18 @@ export function serveStatic(app: Express) {
     index: false,
   }));
 
-  app.use("*", async (_req, res: Response, next) => {
+  app.use("*", async (req, res: Response, next) => {
     try {
       const indexPath = path.resolve(distPath, "index.html");
       const template = await fs.promises.readFile(indexPath, "utf-8");
       const nonce = res.locals.cspNonce as string;
       const withStats = await injectGitHubStats(template, nonce);
       const html = applyNonce(withStats, nonce);
-      res.status(200).type("html").send(html);
+      // Real assets are served by express.static above; anything else reaching
+      // here is a client route. Only "/" exists — everything else renders the
+      // NotFound page, so send a real 404 (not a soft-200) for crawlers.
+      const status = req.originalUrl.split("?")[0] === "/" ? 200 : 404;
+      res.status(status).type("html").send(html);
     } catch (error) {
       next(error);
     }
