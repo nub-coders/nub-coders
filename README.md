@@ -13,9 +13,6 @@ Building production web apps and API services with **TypeScript, React, Node.js,
 - **[Nub Music Bot](https://github.com/nub-coders/nub-music-bot)** — open-source Telegram voice-chat music bot with queue management and streaming. *Python · Pyrogram · pytgcalls*
 - **[YT-DLP API](https://api.nubcoders.com)** — high-performance media-extraction API with token auth, rate limiting, and containerized nginx/SSL automation. *Python · yt-dlp · Docker*
 
-## How I work
-
-Clarity over cleverness. Ship fast, then harden with feedback. Build for long-term maintenance — future you is a different person. Communicate early, document decisions, keep ownership clear.
 
 ## Tech I reach for
 
