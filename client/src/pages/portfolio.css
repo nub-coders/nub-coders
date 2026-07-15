@@ -200,6 +200,11 @@ body.menu-open { overflow: hidden; }
 }
 /* Keep hero content above the glow layer. */
 .hero > :not(.hero-glow) { position: relative; z-index: 1; }
+/* The glow is 100vh tall but the hero is only 85vh (70vh mobile), so its
+   opaque bottom fade bleeds past the hero — and, being positioned at
+   z-index 0, it paints OVER the non-positioned divider and "01 About"
+   section head below. Lift everything after the hero above it. */
+.portfolio-skin main > :not(.hero) { position: relative; z-index: 1; }
 
 .hero-tag, .section-num, .stat-label, .principle-num, .tech-category h3, .pill, .project-idx, .project-tag, .focus-body, .contact-link-label, .contact-sub, .stat-box-label, .form-label, .form-success {
   font-family: "JetBrains Mono", monospace;
