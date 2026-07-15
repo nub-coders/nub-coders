@@ -3,10 +3,10 @@ import type { Project } from "./types";
 export const projects: Project[] = [
   {
     idx: "001",
-    name: "Deplox",
+    name: "Halvo",
     desc: "Application deployment platform with GitHub integration, live updates, cyberpunk terminal UI, and real-time container management to help ship apps faster.",
     tags: ["TypeScript", "Docker", "Node.js", "React"],
-    liveUrl: "https://deplox.nubcoders.com",
+    liveUrl: "https://halvo.nubcoders.com",
     signature: "terminal",
   },
   {
