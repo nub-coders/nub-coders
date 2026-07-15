@@ -21,3 +21,5 @@ yarn-error.log*
 .idea/
 .secrets
 attached_assets/
+settings.json
+settings.local.json
