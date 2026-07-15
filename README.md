@@ -8,7 +8,7 @@ Building production web apps and API services with **TypeScript, React, Node.js,
 
 ## Selected work
 
-- **[Deplox](https://deplox.nubcoders.com)** — application deployment platform with GitHub integration, live container management, and a terminal-style UI. *TypeScript · Docker · Node.js · React*
+- **[Halvo](https://halvo.nubcoders.com)** — application deployment platform with GitHub integration, live container management, and a terminal-style UI. *TypeScript · Docker · Node.js · React*
 - **[NubMail](https://mails.nubcoders.com)** — self-hosted email platform with API-based sending, IMAP/SMTP/POP3, and automated wildcard SSL via DNS-01. *Docker · Nginx · SMTP*
 - **[Nub Music Bot](https://github.com/nub-coders/nub-music-bot)** — open-source Telegram voice-chat music bot with queue management and streaming. *Python · Pyrogram · pytgcalls*
 - **[YT-DLP API](https://api.nubcoders.com)** — high-performance media-extraction API with token auth, rate limiting, and containerized nginx/SSL automation. *Python · yt-dlp · Docker*
