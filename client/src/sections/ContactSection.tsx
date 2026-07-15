@@ -85,7 +85,12 @@ export default function ContactSection() {
             <button type="submit" className={`form-btn ${isSubmitting ? "sending" : ""}`} id="cf-btn" disabled={isSubmitting}>{isSubmitting ? "Sending…" : "Send Message →"}</button>
             {showSuccess && <div className="form-success" role="status">✓ Message sent — I&apos;ll get back to you soon.</div>}
             {fieldError && <div className="form-error" role="alert">{fieldError}</div>}
-            {submitError && <div className="form-error" role="alert">{submitError}</div>}
+            {submitError && (
+              <div className="form-error" role="alert">
+                {submitError} — or email me directly at{" "}
+                <a href="mailto:dev@nubcoders.com">dev@nubcoders.com</a>.
+              </div>
+            )}
           </form>
         </div>
       </div>
