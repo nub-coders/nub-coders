@@ -1,6 +1,7 @@
 {
-  "name": "rest-express",
+  "name": "nubcoders-portfolio",
   "version": "1.0.0",
+  "description": "Personal portfolio — Ankit Kumar, Full Stack Developer",
   "type": "module",
   "license": "MIT",
   "scripts": {
