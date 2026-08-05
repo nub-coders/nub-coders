@@ -56,7 +56,7 @@ Building production web apps and API services with **TypeScript, React, Node.js,
 
 <div align="center">
 
-<img src="https://nubcoders.com/api/github/streak-stats.svg" width="70%" alt="GitHub streak stats" />
+<img src="https://nubcoders.com/api/github/streak-stats.svg" width="95%" alt="GitHub streak stats" />
 
 <img src="https://nubcoders.com/api/github/contribution-graph.svg" width="95%" alt="GitHub contribution graph" />
 
