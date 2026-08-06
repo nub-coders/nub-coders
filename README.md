@@ -54,6 +54,40 @@ Building production web apps and API services with **TypeScript, React, Node.js,
 
 ---
 
+## Local Development
+
+Want to run this portfolio locally or contribute?
+
+```bash
+# Clone the repository
+git clone https://github.com/nub-coders/nub-coders.git
+cd nub-coders
+
+# Install dependencies
+npm install
+
+# Copy environment template
+cp .env.example .env
+# Edit .env and add your GITHUB_TOKEN (requires `repo`, `read:user`, `user:email` scopes)
+
+# Start development server
+npm run dev
+# Visit http://localhost:5173
+
+# Build for production
+npm run build
+npm start
+```
+
+The portfolio is a full-stack TypeScript app:
+- **Client:** React + Vite + Tailwind
+- **Server:** Express API (GitHub stats, contact form)
+- **Database:** None (in-memory caching only)
+
+See `server/index.ts` for API routes and `client/src/` for components.
+
+---
+
 <div align="center">
 
 <img src="https://nubcoders.com/api/github/streak-stats.svg" width="95%" alt="GitHub streak stats" />
