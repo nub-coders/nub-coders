@@ -5,11 +5,10 @@ let cached: { svg: string; at: number } | null = null;
 
 const GRAPH_DAYS = 31;
 
-const BG = "#0d1117";
-const TEXT_COLOR = "#a78bfa";
-const LINE_COLOR = "#6e40c9";
-const POINT_COLOR = "#f87171";
-const AREA_COLOR = "#6e40c9";
+const TEXT_COLOR = "#ffffff";
+const LINE_COLOR = "#ffffff";
+const POINT_COLOR = "#ffffff";
+const AREA_COLOR = "#ffffff";
 const GRID_COLOR = "#21262d";
 const AXIS_COLOR = "#30363d";
 
@@ -19,7 +18,7 @@ const PADDING = { top: 50, right: 30, bottom: 50, left: 50 };
 const CHART_W = WIDTH - PADDING.left - PADDING.right;
 const CHART_H = HEIGHT - PADDING.top - PADDING.bottom;
 
-function generateGraphSVG(days: ContributionDay[], displayName: string): string {
+function generateGraphSVG(days: ContributionDay[]): string {
   const sorted = [...days]
     .sort((a, b) => a.date.localeCompare(b.date))
     .slice(-GRAPH_DAYS);
@@ -63,7 +62,7 @@ function generateGraphSVG(days: ContributionDay[], displayName: string): string 
     }).join("\n    ");
 
   const dots = points.map(p =>
-    `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3.5" fill="${POINT_COLOR}" stroke="${BG}" stroke-width="1.5"/>`
+    `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3.5" fill="${POINT_COLOR}"/>`
   ).join("\n    ");
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${HEIGHT}" viewBox="0 0 ${WIDTH} ${HEIGHT}">
@@ -72,18 +71,16 @@ function generateGraphSVG(days: ContributionDay[], displayName: string): string 
       <stop offset="0%" stop-color="${AREA_COLOR}" stop-opacity="0.35"/>
       <stop offset="100%" stop-color="${AREA_COLOR}" stop-opacity="0.02"/>
     </linearGradient>
+    <filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
   </defs>
 
   <style>
-    .title { font: 600 14px 'Segoe UI', Ubuntu, sans-serif; fill: ${TEXT_COLOR}; }
     .axis-text { font: 400 10px 'Segoe UI', Ubuntu, sans-serif; fill: ${TEXT_COLOR}; opacity: 0.7; }
     .axis-label { font: 500 11px 'Segoe UI', Ubuntu, sans-serif; fill: ${TEXT_COLOR}; opacity: 0.5; }
   </style>
-
-  <rect width="${WIDTH}" height="${HEIGHT}" rx="6" fill="${BG}"/>
-
-  <!-- Title -->
-  <text x="${WIDTH / 2}" y="30" text-anchor="middle" class="title">${displayName}'s Contribution Graph</text>
 
   <!-- Y axis -->
   <line x1="${PADDING.left}" y1="${PADDING.top}" x2="${PADDING.left}" y2="${PADDING.top + CHART_H}" stroke="${AXIS_COLOR}" stroke-width="1"/>
@@ -107,6 +104,12 @@ function generateGraphSVG(days: ContributionDay[], displayName: string): string 
 
   <!-- Points -->
   ${dots}
+
+  <!-- Moving glow tracing the line -->
+  <circle r="4" fill="#ffffff" filter="url(#glow)">
+    <animateMotion path="${linePath}" dur="3s" repeatCount="indefinite" rotate="auto"/>
+    <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.05;0.95;1" dur="3s" repeatCount="indefinite"/>
+  </circle>
 </svg>`;
 }
 
@@ -119,10 +122,8 @@ export async function getContributionGraphSVG(): Promise<string> {
   if (!token) throw new Error("GITHUB_TOKEN environment variable is not set.");
 
   const username = process.env.GITHUB_USERNAME || "nub-coders";
-  const displayName = process.env.GITHUB_DISPLAY_NAME || "ANKIT KUMAR";
-
   const days = await fetchContributions(token, username);
-  const svg = generateGraphSVG(days, displayName);
+  const svg = generateGraphSVG(days);
 
   cached = { svg, at: Date.now() };
   return svg;

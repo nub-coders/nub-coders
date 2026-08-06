@@ -2,7 +2,7 @@ import type { Express, Request, Response } from "express";
 import { createServer, type Server } from "http";
 import contactRouter from './contact';
 import { fetchGitHubStats } from './github';
-import { getStreakStatsSVG } from './streak-stats';
+import { getStreakStatsSVG, getStreakCapsulesSVG } from './streak-stats';
 import { getContributionGraphSVG } from './contribution-graph';
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -51,6 +51,24 @@ export async function registerRoutes(app: Express): Promise<Server> {
         `<svg xmlns="http://www.w3.org/2000/svg" width="495" height="195" viewBox="0 0 495 195">
           <rect width="495" height="195" rx="4.5" fill="#0d1117" stroke="#6e40c9" stroke-opacity="0.4"/>
           <text x="247.5" y="105" text-anchor="middle" fill="#8b949e" font-family="Segoe UI, sans-serif" font-size="14">Streak stats temporarily unavailable</text>
+        </svg>`
+      );
+    }
+  });
+
+  // ── Streak Capsules SVG ─────────────────────────────────────────────────────
+  app.get("/api/github/streak-capsules.svg", async (_req: Request, res: Response) => {
+    try {
+      const svg = await getStreakCapsulesSVG();
+      res.setHeader("Content-Type", "image/svg+xml");
+      res.setHeader("Cache-Control", "public, max-age=600");
+      res.send(svg);
+    } catch (err: any) {
+      console.error("[Streak Capsules]", err?.message ?? err);
+      res.status(503).setHeader("Content-Type", "image/svg+xml").send(
+        `<svg xmlns="http://www.w3.org/2000/svg" width="620" height="28" viewBox="0 0 620 28">
+          <rect x="0.5" y="0.5" width="619" height="27" fill="#1a1a1f" stroke="#2a2a3a"/>
+          <text x="310" y="14.5" text-anchor="middle" dominant-baseline="middle" fill="#c9c9d4" font-family="JetBrains Mono, monospace" font-size="11">Streak stats temporarily unavailable</text>
         </svg>`
       );
     }
