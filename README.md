@@ -68,7 +68,7 @@ npm install
 
 # Copy environment template
 cp .env.example .env
-# Edit .env and add your GITHUB_TOKEN (requires `repo`, `read:user`, `user:email` scopes)
+# Edit .env and add your GITHUB_TOKEN (requires `repo`, `read:user` scopes)
 
 # Start development server
 npm run dev
