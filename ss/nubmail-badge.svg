@@ -1,0 +1,15 @@
+<svg viewBox="0 0 168 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="NubMail">
+  <rect x="0" y="0" width="50" height="40" rx="0" fill="#14171A"/>
+  <rect x="50" y="0" width="118" height="40" rx="0" fill="#3D6B94"/>
+  <g transform="translate(5,0) scale(0.2)" stroke-linecap="round">
+    <circle cx="100" cy="100" r="76" fill="none" stroke="#3D6B94" stroke-width="7"/>
+    <circle cx="100" cy="100" r="60" fill="none" stroke="#3D6B94" stroke-width="7" opacity="0.85"/>
+    <g stroke="#3D6B94" stroke-width="8">
+      <line x1="14" y1="105.9" x2="186" y2="50.1"/>
+      <line x1="14" y1="127.9" x2="186" y2="72.1"/>
+      <line x1="14" y1="149.9" x2="186" y2="94.1"/>
+      <line x1="25" y1="90" x2="25" y2="155"/>
+    </g>
+  </g>
+  <text x="58" y="27" font-family="'DM Mono','JetBrains Mono',ui-monospace,monospace" font-size="24" font-weight="500" letter-spacing="-0.5" fill="#F2F0EA">nubmail</text>
+</svg>

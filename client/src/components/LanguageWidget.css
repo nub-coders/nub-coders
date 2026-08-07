@@ -1,0 +1,135 @@
+.lang-widget {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  min-height: 320px;
+}
+
+.lang-cards {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+}
+
+.lang-card-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  user-select: none;
+  touch-action: pan-x;
+}
+.lang-card-container:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+.lang-card {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* extra right padding keeps content clear of the dots */
+  padding: 2.5rem 3.5rem 2.5rem 2.75rem;
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.45s ease;
+  will-change: transform, opacity;
+}
+
+/* ── Slide 1: language list ─────────────────────────────── */
+.lang-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.lang-row-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 0.4rem;
+}
+
+.lang-row-name {
+  font-family: "Syne", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.lang-row-pct {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.lang-bar {
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+.lang-bar-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: var(--accent-grad);
+}
+
+/* ── Slides 2 & 3: paired stats ─────────────────────────── */
+.stat-slide {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.stat-slide-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.stat-slide-num {
+  font-family: "Syne", sans-serif;
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--text);
+}
+
+.stat-slide-label {
+  font-family: "Syne", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* ── Dots ───────────────────────────────────────────────── */
+.lang-dots {
+  position: absolute;
+  top: 50%;
+  right: 1rem;
+  transform: translateY(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.lang-dot {
+  width: 8px;
+  border: none;
+  border-radius: 999px;
+  padding: 0;
+  cursor: default;
+  transition: height 0.3s ease, background-color 0.3s ease;
+}
+.lang-dot:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .lang-card { transition: none; }
+}

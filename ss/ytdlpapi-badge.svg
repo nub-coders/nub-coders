@@ -1,0 +1,8 @@
+<svg viewBox="0 0 180 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="YTDLP API">
+  <rect x="0" y="0" width="48" height="40" rx="0" fill="#14171A"/>
+  <rect x="48" y="0" width="132" height="40" rx="0" fill="#2F8F7E"/>
+  <polyline points="18,10 8,20 18,30" fill="none" stroke="#2F8F7E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="30,10 40,20 30,30" fill="none" stroke="#2F8F7E" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <polygon points="21,13 21,27 28,20" fill="#2F8F7E"/>
+  <text x="56" y="27" font-family="'DM Mono','JetBrains Mono',ui-monospace,monospace" font-size="24" font-weight="500" letter-spacing="-0.5" fill="#F2F0EA">ytdlpapi</text>
+</svg>

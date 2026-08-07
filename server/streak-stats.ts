@@ -1,7 +1,6 @@
 import { fetchContributions, type ContributionDay } from './github-contributions';
 
 const CACHE_TTL_MS = 10 * 60 * 1000;
-let cached: { svg: string; at: number } | null = null;
 let capsuleCached: { svg: string; at: number } | null = null;
 
 interface StreakData {
@@ -74,85 +73,6 @@ function calculateStreaks(days: ContributionDay[]): StreakData {
     longestStreakStart: longestStart,
     longestStreakEnd: longestEnd,
   };
-}
-
-function formatDateRange(start: string, end: string): string {
-  if (!start || !end) return "N/A";
-  const fmt = (d: string) => {
-    const date = new Date(d + "T00:00:00Z");
-    return date.toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
-  };
-  if (start === end) return fmt(start);
-  return `${fmt(start)} – ${fmt(end)}`;
-}
-
-function generateSVG(data: StreakData): string {
-  const labelColor = "#8b949e";
-  const valueColor = "#e6edf3";
-  const streakColor = "#4ade80";
-  const ringColor = "#6e40c9";
-
-  const longestRange = formatDateRange(data.longestStreakStart, data.longestStreakEnd);
-  const currentRange = formatDateRange(data.currentStreakStart, data.currentStreakEnd);
-
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="495" height="195" viewBox="0 0 495 195" fill="none">
-  <style>
-    .stat-value { font: 700 28px 'Segoe UI', Ubuntu, sans-serif; fill: ${valueColor}; }
-    .stat-label { font: 600 12px 'Segoe UI', Ubuntu, sans-serif; fill: ${labelColor}; text-transform: uppercase; }
-    .stat-range { font: 400 11px 'Segoe UI', Ubuntu, sans-serif; fill: ${labelColor}; }
-    .streak-value { fill: ${streakColor}; }
-    .fire { font-size: 18px; }
-  </style>
-
-  <!-- Total Contributions -->
-  <g transform="translate(82.5, 48)">
-    <text class="stat-value" text-anchor="middle" y="0">${data.totalContributions.toLocaleString()}</text>
-    <text class="stat-label" text-anchor="middle" y="26">Total Contributions</text>
-    <text class="stat-range" text-anchor="middle" y="44">Past Year</text>
-  </g>
-
-  <!-- Divider 1 -->
-  <line x1="165" y1="18" x2="165" y2="170" stroke="${ringColor}" stroke-opacity="0.3" stroke-width="1"/>
-
-  <!-- Current Streak -->
-  <g transform="translate(247.5, 48)">
-    <text class="fire" text-anchor="middle" y="-18">🔥</text>
-    <text class="stat-value streak-value" text-anchor="middle" y="0">${data.currentStreak}</text>
-    <text class="stat-label" text-anchor="middle" y="26">Current Streak</text>
-    <text class="stat-range" text-anchor="middle" y="44">${currentRange}</text>
-  </g>
-
-  <!-- Divider 2 -->
-  <line x1="330" y1="18" x2="330" y2="170" stroke="${ringColor}" stroke-opacity="0.3" stroke-width="1"/>
-
-  <!-- Longest Streak -->
-  <g transform="translate(412.5, 48)">
-    <text class="stat-value" text-anchor="middle" y="0">${data.longestStreak}</text>
-    <text class="stat-label" text-anchor="middle" y="26">Longest Streak</text>
-    <text class="stat-range" text-anchor="middle" y="44">${longestRange}</text>
-  </g>
-
-  <!-- Bottom ring accent -->
-  <rect x="0.5" y="165" width="494" height="30" rx="0" ry="0" fill="transparent"/>
-  <rect x="0" y="190" width="495" height="5" rx="0 0 4.5 4.5" fill="${ringColor}" fill-opacity="0.15"/>
-</svg>`;
-}
-
-export async function getStreakStatsSVG(): Promise<string> {
-  if (cached && Date.now() - cached.at < CACHE_TTL_MS) {
-    return cached.svg;
-  }
-
-  const token = process.env.GITHUB_TOKEN;
-  if (!token) throw new Error("GITHUB_TOKEN environment variable is not set.");
-
-  const username = process.env.GITHUB_USERNAME || "nub-coders";
-  const days = await fetchContributions(token, username);
-  const streaks = calculateStreaks(days);
-  const svg = generateSVG(streaks);
-
-  cached = { svg, at: Date.now() };
-  return svg;
 }
 
 function generateCapsulesSVG(data: StreakData): string {

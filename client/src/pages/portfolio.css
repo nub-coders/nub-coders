@@ -471,14 +471,6 @@ body.menu-open { overflow: hidden; }
 .gh-name { font-family: "Syne", sans-serif; font-size: 1.25rem; font-weight: 700; color: var(--text); }
 .gh-username { font-family: "JetBrains Mono", monospace; font-size: 12px; color: var(--text-muted); }
 
-.top-langs { padding: 1.25rem; display: flex; flex-direction: column; gap: 0.6rem; }
-.lang-item { display: flex; justify-content: space-between; align-items: center; padding: 0.45rem 0; }
-.lang-link { text-decoration: none; color: inherit; transition: color 0.2s, transform 0.2s; }
-.lang-link:hover { color: var(--text); transform: translateX(2px); }
-.lang-link:hover .lang-pct { color: var(--text); }
-.lang-name { color: var(--text); font-weight: 500; }
-.lang-pct { color: var(--text); font-family: "JetBrains Mono", monospace; font-size: 12px; }
-
 .skeleton { background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.04)); border-radius: 4px; height: 3.5rem; }
 
 /* Ensure cards align nicely on narrow screens */

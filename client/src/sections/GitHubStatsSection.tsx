@@ -1,10 +1,8 @@
 import { useGitHubStats } from "@/hooks/useGitHubStats";
+import { LanguageWidget } from "@/components/LanguageWidget";
 
 export default function GitHubStatsSection() {
   const { data, isLoading, isError } = useGitHubStats();
-
-  const getLanguageHref = (language: string) =>
-    `https://github.com/search?q=${encodeURIComponent(`language:${language}`)}&type=repositories`;
 
   return (
     <section id="stats">
@@ -30,34 +28,13 @@ export default function GitHubStatsSection() {
 
           <div className="stats-card">
             {isLoading ? (
-              <div className="skeleton" role="status" aria-label="Loading top languages" />
+              <div className="skeleton" role="status" aria-label="Loading GitHub stats" />
             ) : data ? (
-              <div className="top-langs">
-                {data.topLanguages.slice(0, 6).map((l) => (
-                  <a
-                    key={l.name}
-                    href={getLanguageHref(l.name)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="lang-item lang-link"
-                    aria-label={`Open GitHub search for ${l.name}`}
-                  >
-                    <span className="lang-name">{l.name}</span>
-                    <span className="lang-pct">{l.percentage}%</span>
-                  </a>
-                ))}
-              </div>
+              <LanguageWidget data={data} />
             ) : (
               <div className="gh-error">Failed to load languages.</div>
             )}
           </div>
-        </div>
-
-        <div className="stats-row reveal">
-          <div className="stat-box"><span className="stat-box-num">{data ? data.totalStars : "—"}</span><span className="stat-box-label">⭐ Stars</span></div>
-          <div className="stat-box"><span className="stat-box-num">{data ? data.totalCommits : "—"}</span><span className="stat-box-label">🔥 Commits</span></div>
-          <div className="stat-box"><span className="stat-box-num">{data ? data.prsMerged : "—"}</span><span className="stat-box-label">✅ PRs Merged</span></div>
-          <div className="stat-box"><span className="stat-box-num">{data ? data.issuesOpen : "—"}</span><span className="stat-box-label">🐞 Open Issues</span></div>
         </div>
 
         {isError && !data && (
