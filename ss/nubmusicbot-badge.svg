@@ -1,0 +1,11 @@
+<svg viewBox="0 0 217 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Nub Music Bot">
+  <rect x="0" y="0" width="42" height="40" rx="0" fill="#14171A"/>
+  <rect x="42" y="0" width="175" height="40" rx="0" fill="#A63B5A"/>
+  <g stroke="#A63B5A" stroke-width="6" stroke-linecap="round">
+    <line x1="10" y1="14" x2="10" y2="26"/>
+    <line x1="17" y1="9"  x2="17" y2="31"/>
+    <line x1="24" y1="12" x2="24" y2="28"/>
+    <line x1="31" y1="7"  x2="31" y2="33"/>
+  </g>
+  <text x="50" y="27" font-family="'DM Mono','JetBrains Mono',ui-monospace,monospace" font-size="24" font-weight="500" letter-spacing="-0.5" fill="#F2F0EA">nubmusicbot</text>
+</svg>

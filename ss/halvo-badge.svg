@@ -1,0 +1,10 @@
+<svg viewBox="0 0 130 40" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Halvo">
+  <rect x="0" y="0" width="42" height="40" rx="0" fill="#14171A"/>
+  <rect x="42" y="0" width="88" height="40" rx="0" fill="#C75D32"/>
+  <rect x="4" y="4" width="32" height="32" rx="8" fill="#C75D32"/>
+  <rect x="8.5" y="8.5" width="10.2" height="10.2" rx="2.6" fill="#F5EDE7"/>
+  <rect x="21.3" y="8.5" width="10.2" height="10.2" rx="2.6" fill="#F5EDE7"/>
+  <rect x="8.5" y="21.3" width="10.2" height="10.2" rx="2.6" fill="#F5EDE7"/>
+  <rect x="22.6" y="22.6" width="7.7" height="7.7" rx="1.9" fill="#F5EDE7"/>
+  <text x="50" y="27" font-family="'DM Mono','JetBrains Mono',ui-monospace,monospace" font-size="24" font-weight="500" letter-spacing="-0.5" fill="#F2F0EA">halvo</text>
+</svg>
