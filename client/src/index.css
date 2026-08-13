@@ -4,12 +4,10 @@
    shell + scroll-progress bar. */
 
 :root {
+  /* Document shell only — the full palette (surface, text, muted, border,
+     accents) is defined once in portfolio.css. */
   --bg-primary: #0d1117;
-  --bg-secondary: #161a20;
   --text-primary: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --text-muted: rgba(255, 255, 255, 0.6);
-  --border: rgba(93, 106, 129, 0.2);
 }
 
 * {
@@ -21,7 +19,7 @@
 }
 
 body {
-  font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  font-family: "Archivo", ui-sans-serif, system-ui, sans-serif;
   background: #0d1117;
   color: var(--text-primary);
   line-height: 1.7;
@@ -29,7 +27,7 @@ body {
   position: relative;
 }
 
-/* PyTgCalls uses a flat dark surface — the animated mesh + particle layers are
+/* Uses a flat dark surface — the animated mesh + particle layers are
    retired to match. Kept as no-ops so the reduced-motion block below stays valid. */
 body::before,
 body::after { content: none; }

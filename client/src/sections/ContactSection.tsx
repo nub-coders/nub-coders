@@ -70,7 +70,7 @@ export default function ContactSection() {
 
   return (
     <section id="contact">
-      <div className="section-head reveal"><span className="section-num">06</span><div className="section-line" /><h2 className="section-title">Contact</h2></div>
+      <div className="section-head reveal"><h2 className="section-title">Contact</h2></div>
       <div className="contact-new">
         <div className="reveal">
           <p className="contact-headline">Let&apos;s build<br />something<br /><em>real.</em></p>
@@ -78,10 +78,10 @@ export default function ContactSection() {
         </div>
         <div className="reveal">
           <form id="contact-form" onSubmit={handleSubmit} noValidate>
-            <div className="form-group"><label className="form-label" htmlFor="cf-name">Name</label><input className="form-input" type="text" id="cf-name" name="name" placeholder="Your name" required autoComplete="name" value={formData.name} onChange={handleChange} /></div>
-            <div className="form-group"><label className="form-label" htmlFor="cf-email">Email</label><input className="form-input" type="email" id="cf-email" name="email" placeholder="you@example.com" required autoComplete="email" value={formData.email} onChange={handleChange} /></div>
-            <div className="form-group"><label className="form-label" htmlFor="cf-subject">Subject</label><input className="form-input" type="text" id="cf-subject" name="subject" placeholder="Project idea, collab, anything..." value={formData.subject} onChange={handleChange} /></div>
-            <div className="form-group"><label className="form-label" htmlFor="cf-msg">Message</label><textarea className="form-textarea" id="cf-msg" name="message" placeholder="Tell me what you're working on..." required value={formData.message} onChange={handleChange} /></div>
+            <div className="form-group"><label className="form-label" htmlFor="cf-name">Name</label><input className="form-input" type="text" id="cf-name" name="name" placeholder="Your name" required maxLength={100} autoComplete="name" value={formData.name} onChange={handleChange} /></div>
+            <div className="form-group"><label className="form-label" htmlFor="cf-email">Email</label><input className="form-input" type="email" id="cf-email" name="email" placeholder="you@example.com" required maxLength={200} autoComplete="email" value={formData.email} onChange={handleChange} /></div>
+            <div className="form-group"><label className="form-label" htmlFor="cf-subject">Subject</label><input className="form-input" type="text" id="cf-subject" name="subject" placeholder="Project idea, collab, anything..." maxLength={200} value={formData.subject} onChange={handleChange} /></div>
+            <div className="form-group"><label className="form-label" htmlFor="cf-msg">Message</label><textarea className="form-textarea" id="cf-msg" name="message" placeholder="Tell me what you're working on..." required maxLength={5000} value={formData.message} onChange={handleChange} /></div>
             <button type="submit" className={`form-btn ${isSubmitting ? "sending" : ""}`} id="cf-btn" disabled={isSubmitting}>{isSubmitting ? "Sending…" : "Send Message →"}</button>
             {showSuccess && <div className="form-success" role="status">✓ Message sent — I&apos;ll get back to you soon.</div>}
             {fieldError && <div className="form-error" role="alert">{fieldError}</div>}

@@ -2,6 +2,7 @@ import { fetchContributions, type ContributionDay } from './github-contributions
 
 const CACHE_TTL_MS = 10 * 60 * 1000;
 let cached: { svg: string; at: number } | null = null;
+let inflightSVG: Promise<string> | null = null;
 
 const GRAPH_DAYS = 31;
 
@@ -18,12 +19,12 @@ const PADDING = { top: 50, right: 30, bottom: 50, left: 50 };
 const CHART_W = WIDTH - PADDING.left - PADDING.right;
 const CHART_H = HEIGHT - PADDING.top - PADDING.bottom;
 
-function generateGraphSVG(days: ContributionDay[]): string {
+export function generateGraphSVG(days: ContributionDay[]): string {
   const sorted = [...days]
     .sort((a, b) => a.date.localeCompare(b.date))
     .slice(-GRAPH_DAYS);
 
-  const counts = sorted.map(d => d.contributionCount);
+  const counts = sorted.map((d) => d.contributionCount);
   const maxVal = Math.max(...counts, 1);
   const yMax = Math.ceil(maxVal / 2) * 2;
   const yStep = Math.max(1, Math.ceil(yMax / 5));
@@ -46,7 +47,7 @@ function generateGraphSVG(days: ContributionDay[]): string {
     + ` L ${points[points.length - 1].x.toFixed(1)} ${(PADDING.top + CHART_H).toFixed(1)}`
     + ` L ${points[0].x.toFixed(1)} ${(PADDING.top + CHART_H).toFixed(1)} Z`;
 
-  const gridLines = yTicks.map(v => {
+  const gridLines = yTicks.map((v) => {
     const y = PADDING.top + CHART_H - (v / yMax) * CHART_H;
     return `<line x1="${PADDING.left}" y1="${y.toFixed(1)}" x2="${PADDING.left + CHART_W}" y2="${y.toFixed(1)}" stroke="${GRID_COLOR}" stroke-width="0.5" stroke-dasharray="4,4"/>
     <text x="${PADDING.left - 12}" y="${(y + 4).toFixed(1)}" text-anchor="end" class="axis-text">${v}</text>`;
@@ -55,13 +56,13 @@ function generateGraphSVG(days: ContributionDay[]): string {
   const labelInterval = Math.max(1, Math.floor(sorted.length / 10));
   const xLabels = points
     .filter((_, i) => i % labelInterval === 0 || i === points.length - 1)
-    .map(p => {
+    .map((p) => {
       const d = new Date(p.date + "T00:00:00Z");
       const label = d.toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" });
       return `<text x="${p.x.toFixed(1)}" y="${(PADDING.top + CHART_H + 24).toFixed(1)}" text-anchor="middle" class="axis-text">${label}</text>`;
     }).join("\n    ");
 
-  const dots = points.map(p =>
+  const dots = points.map((p) =>
     `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3.5" fill="${POINT_COLOR}"/>`
   ).join("\n    ");
 
@@ -71,20 +72,20 @@ function generateGraphSVG(days: ContributionDay[]): string {
       <stop offset="0%" stop-color="${AREA_COLOR}" stop-opacity="0.35"/>
       <stop offset="100%" stop-color="${AREA_COLOR}" stop-opacity="0.02"/>
     </linearGradient>
-    <filter id="glow" x="-100%" y="-100%" width="300%" height="300%">
-      <feGaussianBlur stdDeviation="3" result="blur"/>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="blur"/>
       <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
     </filter>
   </defs>
 
   <style>
-    .axis-text { font: 400 10px 'Segoe UI', Ubuntu, sans-serif; fill: ${TEXT_COLOR}; opacity: 0.7; }
-    .axis-label { font: 500 11px 'Segoe UI', Ubuntu, sans-serif; fill: ${TEXT_COLOR}; opacity: 0.5; }
+    .axis-text { font: 400 10px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; fill: ${TEXT_COLOR}; opacity: 0.7; }
+    .axis-label { font: 500 11px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; fill: ${TEXT_COLOR}; opacity: 0.5; }
   </style>
 
   <!-- Y axis -->
   <line x1="${PADDING.left}" y1="${PADDING.top}" x2="${PADDING.left}" y2="${PADDING.top + CHART_H}" stroke="${AXIS_COLOR}" stroke-width="1"/>
-  <text x="${14}" y="${PADDING.top + CHART_H / 2}" text-anchor="middle" class="axis-label" transform="rotate(-90, 14, ${PADDING.top + CHART_H / 2})">Contributions</text>
+  <text x="14" y="${PADDING.top + CHART_H / 2}" text-anchor="middle" class="axis-label" transform="rotate(-90, 14, ${PADDING.top + CHART_H / 2})">Contributions</text>
 
   <!-- X axis -->
   <line x1="${PADDING.left}" y1="${PADDING.top + CHART_H}" x2="${PADDING.left + CHART_W}" y2="${PADDING.top + CHART_H}" stroke="${AXIS_COLOR}" stroke-width="1"/>
@@ -113,18 +114,58 @@ function generateGraphSVG(days: ContributionDay[]): string {
 </svg>`;
 }
 
-export async function getContributionGraphSVG(): Promise<string> {
-  if (cached && Date.now() - cached.at < CACHE_TTL_MS) {
+export async function getContributionGraphSVG(force = false): Promise<string> {
+  // Fresh cache hit
+  if (!force && cached && Date.now() - cached.at < CACHE_TTL_MS) {
     return cached.svg;
   }
 
-  const token = process.env.GITHUB_TOKEN;
-  if (!token) throw new Error("GITHUB_TOKEN environment variable is not set.");
+  // In-flight coalescing
+  if (inflightSVG) {
+    if (!force && cached) return cached.svg;
+    return inflightSVG;
+  }
 
-  const username = process.env.GITHUB_USERNAME || "nub-coders";
-  const days = await fetchContributions(token, username);
-  const svg = generateGraphSVG(days);
+  // Stale-While-Revalidate: Return stale SVG immediately while revalidating
+  if (!force && cached) {
+    inflightSVG = (async () => {
+      try {
+        const days = await fetchContributions(undefined, undefined, false);
+        const svg = generateGraphSVG(days);
+        cached = { svg, at: Date.now() };
+        return svg;
+      } catch (err: any) {
+        console.error("[Contribution Graph Background Refresh Error]", err?.message ?? err);
+        return cached!.svg;
+      } finally {
+        inflightSVG = null;
+      }
+    })();
+    return cached.svg;
+  }
 
-  cached = { svg, at: Date.now() };
-  return svg;
+  // Cold fetch
+  inflightSVG = (async () => {
+    try {
+      const days = await fetchContributions(undefined, undefined, force);
+      const svg = generateGraphSVG(days);
+      cached = { svg, at: Date.now() };
+      return svg;
+    } catch (err: any) {
+      if (cached?.svg) {
+        console.warn("[Contribution Graph] Fetch failed, serving stale SVG:", err?.message ?? err);
+        return cached.svg;
+      }
+      throw err;
+    } finally {
+      inflightSVG = null;
+    }
+  })();
+
+  return inflightSVG;
 }
+
+export async function refreshContributionGraphSVG(): Promise<string> {
+  return getContributionGraphSVG(true);
+}
+

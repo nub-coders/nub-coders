@@ -3,7 +3,7 @@ import { focusCards } from "@/data/focusCards";
 export default function NowSection() {
   return (
     <section id="now">
-      <div className="section-head reveal"><span className="section-num">04</span><div className="section-line" /><h2 className="section-title">Now</h2></div>
+      <div className="section-head reveal"><h2 className="section-title">Now</h2></div>
       <div className="focus-grid">
         {focusCards.map((card) => (
           <div key={card.title} className="focus-card reveal">

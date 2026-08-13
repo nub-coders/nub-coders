@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-10T11:20:28Z",
+  "title": "Design System: nubcoders",
+  "extensions": {
+    "colorMeta": {
+      "signal-violet": {
+        "role": "primary",
+        "displayName": "Signal Violet",
+        "canonical": "oklch(58% 0.24 291)",
+        "tonalRamp": ["oklch(20% 0.09 291)", "oklch(30% 0.14 291)", "oklch(40% 0.19 291)", "oklch(50% 0.23 291)", "oklch(58% 0.24 291)", "oklch(70% 0.19 291)", "oklch(82% 0.12 291)", "oklch(93% 0.05 291)"]
+      },
+      "signal-indigo": {
+        "role": "primary",
+        "displayName": "Signal Indigo",
+        "canonical": "oklch(50% 0.27 272)",
+        "tonalRamp": ["oklch(18% 0.10 272)", "oklch(28% 0.16 272)", "oklch(38% 0.22 272)", "oklch(50% 0.27 272)", "oklch(60% 0.24 272)", "oklch(72% 0.18 272)", "oklch(84% 0.11 272)", "oklch(94% 0.04 272)"]
+      },
+      "signal-teal": {
+        "role": "tertiary",
+        "displayName": "Signal Teal",
+        "canonical": "oklch(74% 0.14 168)",
+        "tonalRamp": ["oklch(24% 0.06 168)", "oklch(34% 0.08 168)", "oklch(44% 0.10 168)", "oklch(54% 0.12 168)", "oklch(64% 0.13 168)", "oklch(74% 0.14 168)", "oklch(84% 0.10 168)", "oklch(93% 0.05 168)"]
+      },
+      "console-bg": {
+        "role": "neutral",
+        "displayName": "Console",
+        "canonical": "oklch(19% 0.014 258)",
+        "tonalRamp": ["oklch(15% 0.012 258)", "oklch(19% 0.014 258)", "oklch(24% 0.016 258)", "oklch(32% 0.018 258)", "oklch(45% 0.018 258)", "oklch(60% 0.016 258)", "oklch(75% 0.012 258)", "oklch(90% 0.008 258)"]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Surface",
+        "canonical": "oklch(23% 0.014 258)",
+        "tonalRamp": ["oklch(17% 0.012 258)", "oklch(23% 0.014 258)", "oklch(29% 0.016 258)", "oklch(37% 0.018 258)", "oklch(48% 0.018 258)", "oklch(62% 0.016 258)", "oklch(77% 0.012 258)", "oklch(91% 0.008 258)"]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "canonical": "oklch(100% 0 0)",
+        "tonalRamp": ["oklch(20% 0 0)", "oklch(32% 0 0)", "oklch(44% 0 0)", "oklch(56% 0 0)", "oklch(68% 0 0)", "oklch(80% 0 0)", "oklch(92% 0 0)", "oklch(100% 0 0)"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero name and contact headline only. Archivo 800, clamp ceiling 6rem." },
+      "headline": { "displayName": "Headline", "purpose": "Section titles. Archivo 700, balanced wrap." },
+      "title": { "displayName": "Title", "purpose": "Project names and 404 title; carries the hover underline wipe." },
+      "body": { "displayName": "Body", "purpose": "Running copy and descriptions, line-height 1.7, ~34rem measure." },
+      "label": { "displayName": "Label", "purpose": "The instrumentation layer — nav, eyebrows, pills, terminal, form labels. JetBrains Mono, uppercase, tracked." }
+    },
+    "shadows": [
+      { "name": "card-hover", "value": "0 14px 40px rgba(0, 0, 0, 0.45)", "purpose": "Lift under Now feature cards on hover. The only ambient drop shadow in the system." },
+      { "name": "avatar-ground", "value": "0 8px 24px rgba(0, 0, 0, 0.6)", "purpose": "Grounding shadow under the circular GitHub avatar." },
+      { "name": "inset-hairline", "value": "inset 0 0 0 1px rgba(255, 255, 255, 0.1)", "purpose": "Recessed-panel edge on dark feature cards instead of an outer shadow." }
+    ],
+    "motion": [
+      { "name": "ease-out-expo", "value": "cubic-bezier(0.19, 1, 0.22, 1)", "purpose": "Primary curve — accent bars, underline wipes, per-card reveals. Loads like a meter, no overshoot." },
+      { "name": "ease-out-quint", "value": "cubic-bezier(0.22, 1, 0.36, 1)", "purpose": "Language-widget card slides." },
+      { "name": "state-fast", "value": "0.2s ease", "purpose": "Default state transitions — border/color/background on hover and focus." }
+    ],
+    "breakpoints": [
+      { "name": "mobile", "value": "768px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The contact form's Send Message CTA — solid Signal Violet, the one saturated fill.",
+      "html": "<button class=\"ds-btn-primary\">Send Message</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; gap: 0.75rem; background: #8750fd; color: #fff; border: none; border-radius: 3px; padding: 0.9rem 2rem; font-family: 'Archivo', sans-serif; font-size: 1rem; font-weight: 700; letter-spacing: 0.01em; cursor: pointer; transition: background 0.2s, transform 0.15s; } .ds-btn-primary:hover { background: #9d6bff; } .ds-btn-primary:active { transform: scale(0.98); } .ds-btn-primary:focus-visible { outline: 2px solid #8750fd; outline-offset: 2px; }"
+    },
+    {
+      "name": "Input Field",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Contact form text field — surface fill, hairline border, focus lifts the background and warms the border.",
+      "html": "<input class=\"ds-input\" type=\"text\" placeholder=\"Your name\" />",
+      "css": ".ds-input { background: #161a20; border: 1px solid rgba(93, 106, 129, 0.2); border-radius: 3px; color: #fff; font-family: 'Archivo', sans-serif; font-size: 1rem; font-weight: 400; padding: 0.85rem 1rem; width: 100%; outline: none; transition: border-color 0.2s, background 0.2s; -webkit-appearance: none; } .ds-input::placeholder { color: rgba(255, 255, 255, 0.6); opacity: 1; } .ds-input:focus { border-color: #8750fd; background: #1c2430; }"
+    },
+    {
+      "name": "Pill / Tag",
+      "kind": "chip",
+      "refersTo": "pill",
+      "description": "Tech pill and project tag — console fill, muted ink, hairline that warms to violet on hover.",
+      "html": "<span class=\"ds-pill\">TypeScript</span>",
+      "css": ".ds-pill { display: inline-flex; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 400; padding: 0.35rem 0.75rem; border: 1px solid rgba(93, 106, 129, 0.2); border-radius: 2px; color: rgba(255, 255, 255, 0.6); background: #0d1117; transition: border-color 0.2s, color 0.2s; cursor: default; } .ds-pill:hover { border-color: rgba(135, 80, 253, 0.5); color: #fff; }"
+    },
+    {
+      "name": "Code Link Chip",
+      "kind": "button",
+      "refersTo": "code-link",
+      "description": "Circular source-code link on a project row — surface fill, hairline ring, lifts on hover.",
+      "html": "<a class=\"ds-code-link\" href=\"#\" aria-label=\"View source\"><svg viewBox=\"0 0 16 16\" width=\"15\" height=\"15\" fill=\"currentColor\"><path d=\"M4.72 3.22a.75.75 0 0 1 0 1.06L1.06 8l3.66 3.72a.75.75 0 1 1-1.06 1.06L-.34 8.53a.75.75 0 0 1 0-1.06l4-4.25a.75.75 0 0 1 1.06 0Zm6.56 0a.75.75 0 0 1 1.06 0l4 4.25a.75.75 0 0 1 0 1.06l-4 4.25a.75.75 0 1 1-1.06-1.06L14.94 8l-3.66-3.72a.75.75 0 0 1 0-1.06Z\"/></svg></a>",
+      "css": ".ds-code-link { width: 2rem; height: 2rem; display: inline-flex; align-items: center; justify-content: center; border: 1px solid rgba(93, 106, 129, 0.2); border-radius: 999px; color: rgba(255, 255, 255, 0.6); background: #161a20; transition: border-color 0.2s, color 0.2s, transform 0.2s, background 0.2s; } .ds-code-link:hover { border-color: rgba(135, 80, 253, 0.5); color: #fff; background: rgba(135, 80, 253, 0.04); transform: translateY(-1px); } .ds-code-link:focus-visible { outline: 2px solid #8750fd; outline-offset: 2px; }"
+    },
+    {
+      "name": "Navigation",
+      "kind": "nav",
+      "refersTo": null,
+      "description": "Fixed top bar — transparent at rest, frosted on scroll; mono uppercase links.",
+      "html": "<nav class=\"ds-nav ds-nav--scrolled\"><a class=\"ds-nav-logo\" href=\"#\">nubcoders</a><ul class=\"ds-nav-links\"><li><a href=\"#\" aria-current=\"true\">Work</a></li><li><a href=\"#\">Now</a></li><li><a href=\"#\">Contact</a></li></ul></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 2rem; border-bottom: 1px solid transparent; } .ds-nav--scrolled { background: rgba(8, 8, 8, 0.92); border-bottom-color: rgba(93, 106, 129, 0.2); backdrop-filter: blur(12px); } .ds-nav-logo { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: #fff; letter-spacing: 0.05em; text-decoration: none; } .ds-nav-links { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; } .ds-nav-links a { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: rgba(255, 255, 255, 0.6); text-decoration: none; letter-spacing: 0.08em; text-transform: uppercase; transition: color 0.2s; } .ds-nav-links a:hover, .ds-nav-links a[aria-current=\"true\"] { color: #fff; }"
+    },
+    {
+      "name": "Project Row (Terminal Signature)",
+      "kind": "custom",
+      "refersTo": null,
+      "description": "A project list row with the 001 terminal motif — index, content, actions rail, a bottom hairline divider, an accent underline that wipes in on hover, and a monospace deploy prompt.",
+      "html": "<article class=\"ds-project\"><span class=\"ds-project-idx\">001</span><div class=\"ds-project-content\"><h3 class=\"ds-project-name\">Halvo</h3><p class=\"ds-project-desc\">Self-hosted deployment platform. Push to deploy, live in seconds.</p></div><div class=\"ds-project-actions\"><span class=\"ds-sig-terminal\"><span class=\"ds-sig-dot\"></span>$ deploy</span></div></article>",
+      "css": ".ds-project { display: grid; grid-template-columns: 80px 1fr auto; gap: 1.5rem; align-items: start; padding: 2rem 1.25rem 2rem 1.5rem; border-bottom: 1px solid rgba(93, 106, 129, 0.2); position: relative; } .ds-project-idx { font-family: 'JetBrains Mono', monospace; font-size: 0.6875rem; color: #fff; padding-top: 6px; letter-spacing: 0.05em; } .ds-project-name { font-family: 'Archivo', sans-serif; font-size: 1.5rem; font-weight: 700; color: #fff; letter-spacing: -0.01em; margin: 0 0 0.5rem; position: relative; display: inline-block; } .ds-project-name::after { content: ''; position: absolute; left: 0; bottom: -4px; width: 100%; height: 1px; background: #8750fd; transform: scaleX(0); transform-origin: left; transition: transform 0.45s cubic-bezier(0.19, 1, 0.22, 1); } .ds-project:hover .ds-project-name::after { transform: scaleX(1); } .ds-project-desc { font-family: 'Archivo', sans-serif; font-size: 1rem; color: rgba(255, 255, 255, 0.6); line-height: 1.65; max-width: 34rem; margin: 0; } .ds-sig-terminal { display: inline-flex; align-items: center; gap: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.6875rem; color: rgba(255, 255, 255, 0.6); border: 1px solid rgba(93, 106, 129, 0.2); padding: 5px 9px; border-radius: 3px; white-space: nowrap; } .ds-sig-dot { width: 5px; height: 5px; border-radius: 50%; background: #3ecf6e; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Running System",
+    "overview": "This portfolio doesn't describe infrastructure — it behaves like it. The organizing idea is that every surface reads as a live readout of something that is actually up: a terminal deploy prompt with a blinking cursor, a pulsing 'live' status ring, a request/response packet pinging between a client node and a server node, an envelope that breathes. The design's job is to make one claim self-evident before a word is read — this developer ships real, self-hosted systems, not demos — so the motifs are instruments, not ornaments. The material is a GitHub-dark console: a near-black #0d1117 field, faintly grained, with white type and monospace instrumentation labels. Restraint is load-bearing: the palette is disciplined specifically so the violet→indigo→teal Signal Gradient can carry meaning wherever it appears. This system explicitly rejects the generic AI developer-portfolio template — no purple-gradient card wall, no numbered section eyebrows, no reflex sans pairing. Motion is confirmation, never flourish: each project has its own signature entrance and ambient loop tied to what that project does.",
+    "keyCharacteristics": [
+      "A dark console surface (#0d1117) where a single violet→teal Signal Gradient is the only saturated voice.",
+      "Instrument-grade components: hairline borders, tight radii, accent only on state, motion that confirms.",
+      "Per-project signature motifs (terminal, mail, audio, download) — the identity is the through-line, never a repeated card.",
+      "Two-family type system: Archivo (display + body) over JetBrains Mono (labels + code), paired on contrast.",
+      "Production-grade by construction: reduced-motion aware, keyboard-navigable, WCAG 2.1 AA."
+    ],
+    "rules": [
+      { "name": "The One Signal Rule", "body": "The Signal Gradient (and saturated violet/teal generally) is the only saturated color on any screen, and it appears sparingly — the logo, the primary CTA, accent bars, status lights. Its rarity is what lets it mean 'live.'", "section": "colors" },
+      { "name": "The Ink Ladder Rule", "body": "Text is white at exactly two opacities: #fff for primary and rgba(255,255,255,0.6) for secondary. Don't introduce intermediate grays. On a saturated gradient card the muted step is invalid — switch to full white.", "section": "colors" },
+      { "name": "The Instrument Layer Rule", "body": "If text labels, indexes, tags, or narrates the machine (nav, kickers, pills, the deploy prompt, comments, the copyright), it is JetBrains Mono, uppercase, tracked. If text speaks (headings, prose), it is Archivo. The two never trade jobs.", "section": "typography" },
+      { "name": "The One Sequence Rule", "body": "Numbered markers (001–004) appear on exactly one surface — the projects list — because those projects are an ordered set. Numbers never become per-section scaffolding elsewhere.", "section": "typography" },
+      { "name": "The Flat-Board Rule", "body": "Surfaces are flat at rest; elevation is a response to state (hover lift, focus fill), never a decorative default. If you reach for a resting drop shadow, use a tonal step or the hairline instead.", "section": "elevation" },
+      { "name": "The Meter, Not the Sweep Rule", "body": "Bars and reveals animate with GPU transforms (scaleX/scaleY from an origin, translate), easing out on cubic-bezier(0.19, 1, 0.22, 1) — they load like a meter. Never animate width/height, never bounce or overshoot with elastic.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do treat the Signal Gradient (linear-gradient(45deg, #8750fd 20%, #3735f1 40%, #2ec594 90%)) as the one saturated voice — logo, primary CTA, accent bars, scroll progress. Keep it rare.",
+      "Do route every label, index, kicker, and machine-narration through JetBrains Mono uppercase; keep headings and prose in Archivo.",
+      "Do give each project its own signature motif tied to what it does, and give every animation a prefers-reduced-motion rest state.",
+      "Do force body text to full white on the bright gradient feature cards; the rgba(255,255,255,0.6) muted step fails there.",
+      "Do convey depth with the console→surface→surface-raised tonal ramp and the hairline border; reserve shadows for hover/elevation state.",
+      "Do animate with transform/opacity on ease-out curves; use scaleX/scaleY for bars."
+    ],
+    "donts": [
+      "Don't add a second saturated color competing with the Signal Gradient, or spend the gradient on large fills where it stops meaning 'live.'",
+      "Don't introduce intermediate gray text tones; ink is white at exactly two opacities (#fff, 0.6).",
+      "Don't put numbered markers or tracked eyebrows on every section — the 001–004 sequence lives on the projects list alone because it's a real ordered set.",
+      "Don't use side-stripe borders, gradient text, decorative glassmorphism, or resting drop shadows — all are off-system here.",
+      "Don't animate layout properties (width, height, top) for the bars or reveals; transform only.",
+      "Don't gate content visibility behind hover alone — mirror every hover affordance for touch (@media (hover: none)) and keyboard focus."
+    ]
+  }
+}

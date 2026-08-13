@@ -98,7 +98,7 @@ export default function ProjectsSection() {
 
   return (
     <section id="work">
-      <div className="section-head reveal"><span className="section-num">03</span><div className="section-line" /><h2 className="section-title">Selected Work</h2></div>
+      <div className="section-head reveal"><h2 className="section-title">Selected Work</h2></div>
       <div className="projects-list">
         {projects.map((project) => (
           <div

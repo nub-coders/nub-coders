@@ -2,8 +2,9 @@ import { fetchContributions, type ContributionDay } from './github-contributions
 
 const CACHE_TTL_MS = 10 * 60 * 1000;
 let capsuleCached: { svg: string; at: number } | null = null;
+let inflightSVG: Promise<string> | null = null;
 
-interface StreakData {
+export interface StreakData {
   totalContributions: number;
   currentStreak: number;
   longestStreak: number;
@@ -13,7 +14,7 @@ interface StreakData {
   longestStreakEnd: string;
 }
 
-function calculateStreaks(days: ContributionDay[]): StreakData {
+export function calculateStreaks(days: ContributionDay[]): StreakData {
   const sorted = [...days].sort((a, b) => a.date.localeCompare(b.date));
 
   const totalContributions = sorted.reduce((sum, d) => sum + d.contributionCount, 0);
@@ -75,7 +76,7 @@ function calculateStreaks(days: ContributionDay[]): StreakData {
   };
 }
 
-function generateCapsulesSVG(data: StreakData): string {
+export function generateCapsulesSVG(data: StreakData): string {
   const bgDark = "#1a1a1f";
   const border = "#2a2a3a";
   const textLight = "#c9c9d4";
@@ -83,8 +84,8 @@ function generateCapsulesSVG(data: StreakData): string {
   const green = "#4ade80";
   const orange = "#fb923c";
   const cyan = "#22d3ee";
+  const font = "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace";
 
-  // Three capsules stacked or side-by-side - I'll do side-by-side with small gaps
   const gap = 10;
   const c1Width = 240; // total contributions
   const c2Width = 180; // current streak
@@ -92,55 +93,98 @@ function generateCapsulesSVG(data: StreakData): string {
   const height = 28;
   const totalWidth = c1Width + c2Width + c3Width + 2 * gap;
 
-  return `<svg width="${totalWidth}" height="${height}" viewBox="0 0 ${totalWidth} ${height}" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <clipPath id="clip1"><rect x="0" y="0" width="${c1Width}" height="${height}" rx="0"/></clipPath>
-    <clipPath id="clip2"><rect x="${c1Width + gap}" y="0" width="${c2Width}" height="${height}" rx="0"/></clipPath>
-    <clipPath id="clip3"><rect x="${c1Width + c2Width + 2 * gap}" y="0" width="${c3Width}" height="${height}" rx="0"/></clipPath>
-  </defs>
+  const c2X = c1Width + gap;
+  const c3X = c1Width + c2Width + 2 * gap;
 
-  <!-- Total Contributions -->
-  <g clip-path="url(#clip1)">
+  return `<svg width="${totalWidth}" height="${height}" viewBox="0 0 ${totalWidth} ${height}" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .label { font-family: ${font}; font-size: 11px; letter-spacing: 1px; fill: ${textLight}; text-anchor: middle; dominant-baseline: middle; }
+    .val { font-family: ${font}; font-size: 12px; font-weight: 700; fill: ${textDark}; text-anchor: middle; dominant-baseline: middle; }
+  </style>
+
+  <!-- Capsule 1: Total Contributions -->
+  <g>
     <rect x="0" y="0" width="170" height="${height}" fill="${bgDark}"/>
     <rect x="170" y="0" width="70" height="${height}" fill="${green}"/>
+    <rect x="0.5" y="0.5" width="${c1Width - 1}" height="${height - 1}" fill="none" stroke="${border}" stroke-width="1"/>
+    <text x="85" y="14.5" class="label">TOTAL CONTRIBUTIONS</text>
+    <text x="205" y="14.5" class="val">${data.totalContributions.toLocaleString()}</text>
   </g>
-  <rect x="0.5" y="0.5" width="${c1Width - 1}" height="${height - 1}" rx="0" fill="none" stroke="${border}" stroke-width="1"/>
-  <text x="85" y="14.5" text-anchor="middle" dominant-baseline="middle" font-family="JetBrains Mono, Consolas, monospace" font-size="11" letter-spacing="1" fill="${textLight}">TOTAL CONTRIBUTIONS</text>
-  <text x="205" y="14.5" text-anchor="middle" dominant-baseline="middle" font-family="JetBrains Mono, Consolas, monospace" font-size="12" font-weight="700" fill="${textDark}">${data.totalContributions.toLocaleString()}</text>
 
-  <!-- Current Streak -->
-  <g clip-path="url(#clip2)">
-    <rect x="${c1Width + gap}" y="0" width="130" height="${height}" fill="${bgDark}"/>
-    <rect x="${c1Width + gap + 130}" y="0" width="50" height="${height}" fill="${orange}"/>
+  <!-- Capsule 2: Current Streak -->
+  <g transform="translate(${c2X}, 0)">
+    <rect x="0" y="0" width="130" height="${height}" fill="${bgDark}"/>
+    <rect x="130" y="0" width="50" height="${height}" fill="${orange}"/>
+    <rect x="0.5" y="0.5" width="${c2Width - 1}" height="${height - 1}" fill="none" stroke="${border}" stroke-width="1"/>
+    <text x="65" y="14.5" class="label">CURRENT STREAK</text>
+    <text x="155" y="14.5" class="val">${data.currentStreak}d</text>
   </g>
-  <rect x="${c1Width + gap + 0.5}" y="0.5" width="${c2Width - 1}" height="${height - 1}" rx="0" fill="none" stroke="${border}" stroke-width="1"/>
-  <text x="${c1Width + gap + 65}" y="14.5" text-anchor="middle" dominant-baseline="middle" font-family="JetBrains Mono, Consolas, monospace" font-size="11" letter-spacing="1" fill="${textLight}">CURRENT STREAK</text>
-  <text x="${c1Width + gap + 155}" y="14.5" text-anchor="middle" dominant-baseline="middle" font-family="JetBrains Mono, Consolas, monospace" font-size="12" font-weight="700" fill="${textDark}">${data.currentStreak}d</text>
 
-  <!-- Longest Streak -->
-  <g clip-path="url(#clip3)">
-    <rect x="${c1Width + c2Width + 2 * gap}" y="0" width="130" height="${height}" fill="${bgDark}"/>
-    <rect x="${c1Width + c2Width + 2 * gap + 130}" y="0" width="50" height="${height}" fill="${cyan}"/>
+  <!-- Capsule 3: Longest Streak -->
+  <g transform="translate(${c3X}, 0)">
+    <rect x="0" y="0" width="130" height="${height}" fill="${bgDark}"/>
+    <rect x="130" y="0" width="50" height="${height}" fill="${cyan}"/>
+    <rect x="0.5" y="0.5" width="${c3Width - 1}" height="${height - 1}" fill="none" stroke="${border}" stroke-width="1"/>
+    <text x="65" y="14.5" class="label">LONGEST STREAK</text>
+    <text x="155" y="14.5" class="val">${data.longestStreak}d</text>
   </g>
-  <rect x="${c1Width + c2Width + 2 * gap + 0.5}" y="0.5" width="${c3Width - 1}" height="${height - 1}" rx="0" fill="none" stroke="${border}" stroke-width="1"/>
-  <text x="${c1Width + c2Width + 2 * gap + 65}" y="14.5" text-anchor="middle" dominant-baseline="middle" font-family="JetBrains Mono, Consolas, monospace" font-size="11" letter-spacing="1" fill="${textLight}">LONGEST STREAK</text>
-  <text x="${c1Width + c2Width + 2 * gap + 155}" y="14.5" text-anchor="middle" dominant-baseline="middle" font-family="JetBrains Mono, Consolas, monospace" font-size="12" font-weight="700" fill="${textDark}">${data.longestStreak}d</text>
 </svg>`;
 }
 
-export async function getStreakCapsulesSVG(): Promise<string> {
-  if (capsuleCached && Date.now() - capsuleCached.at < CACHE_TTL_MS) {
+export async function getStreakCapsulesSVG(force = false): Promise<string> {
+  // Return fresh cache
+  if (!force && capsuleCached && Date.now() - capsuleCached.at < CACHE_TTL_MS) {
     return capsuleCached.svg;
   }
 
-  const token = process.env.GITHUB_TOKEN;
-  if (!token) throw new Error("GITHUB_TOKEN environment variable is not set.");
+  // In-flight coalescing
+  if (inflightSVG) {
+    if (!force && capsuleCached) return capsuleCached.svg;
+    return inflightSVG;
+  }
 
-  const username = process.env.GITHUB_USERNAME || "nub-coders";
-  const days = await fetchContributions(token, username);
-  const streaks = calculateStreaks(days);
-  const svg = generateCapsulesSVG(streaks);
+  // Stale-While-Revalidate: Return stale SVG immediately while revalidating
+  if (!force && capsuleCached) {
+    inflightSVG = (async () => {
+      try {
+        const days = await fetchContributions(undefined, undefined, false);
+        const streaks = calculateStreaks(days);
+        const svg = generateCapsulesSVG(streaks);
+        capsuleCached = { svg, at: Date.now() };
+        return svg;
+      } catch (err: any) {
+        console.error("[Streak Capsules Background Refresh Error]", err?.message ?? err);
+        return capsuleCached!.svg;
+      } finally {
+        inflightSVG = null;
+      }
+    })();
+    return capsuleCached.svg;
+  }
 
-  capsuleCached = { svg, at: Date.now() };
-  return svg;
+  // Cold fetch
+  inflightSVG = (async () => {
+    try {
+      const days = await fetchContributions(undefined, undefined, force);
+      const streaks = calculateStreaks(days);
+      const svg = generateCapsulesSVG(streaks);
+      capsuleCached = { svg, at: Date.now() };
+      return svg;
+    } catch (err: any) {
+      if (capsuleCached?.svg) {
+        console.warn("[Streak Capsules] Fetch failed, serving stale SVG:", err?.message ?? err);
+        return capsuleCached.svg;
+      }
+      throw err;
+    } finally {
+      inflightSVG = null;
+    }
+  })();
+
+  return inflightSVG;
 }
+
+export async function refreshStreakCapsulesSVG(): Promise<string> {
+  return getStreakCapsulesSVG(true);
+}
+

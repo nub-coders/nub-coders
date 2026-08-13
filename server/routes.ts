@@ -39,19 +39,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.use(contactRouter);
 
 
+  const SVG_CACHE_CONTROL = "public, max-age=1800, s-maxage=3600, stale-while-revalidate=86400";
+
   // ── Streak Capsules SVG ─────────────────────────────────────────────────────
   app.get("/api/github/streak-capsules.svg", async (_req: Request, res: Response) => {
     try {
       const svg = await getStreakCapsulesSVG();
-      res.setHeader("Content-Type", "image/svg+xml");
-      res.setHeader("Cache-Control", "public, max-age=600");
+      res.setHeader("Content-Type", "image/svg+xml; charset=utf-8");
+      res.setHeader("Cache-Control", SVG_CACHE_CONTROL);
       res.send(svg);
     } catch (err: any) {
       console.error("[Streak Capsules]", err?.message ?? err);
-      res.status(503).setHeader("Content-Type", "image/svg+xml").send(
+      res.status(503).setHeader("Content-Type", "image/svg+xml; charset=utf-8").setHeader("Cache-Control", "no-cache").send(
         `<svg xmlns="http://www.w3.org/2000/svg" width="620" height="28" viewBox="0 0 620 28">
           <rect x="0.5" y="0.5" width="619" height="27" fill="#1a1a1f" stroke="#2a2a3a"/>
-          <text x="310" y="14.5" text-anchor="middle" dominant-baseline="middle" fill="#c9c9d4" font-family="JetBrains Mono, monospace" font-size="11">Streak stats temporarily unavailable</text>
+          <text x="310" y="14.5" text-anchor="middle" dominant-baseline="middle" fill="#c9c9d4" font-family="ui-monospace, monospace" font-size="11">Streak stats temporarily unavailable</text>
         </svg>`
       );
     }
@@ -61,19 +63,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/github/contribution-graph.svg", async (_req: Request, res: Response) => {
     try {
       const svg = await getContributionGraphSVG();
-      res.setHeader("Content-Type", "image/svg+xml");
-      res.setHeader("Cache-Control", "public, max-age=600");
+      res.setHeader("Content-Type", "image/svg+xml; charset=utf-8");
+      res.setHeader("Cache-Control", SVG_CACHE_CONTROL);
       res.send(svg);
     } catch (err: any) {
       console.error("[Contribution Graph]", err?.message ?? err);
-      res.status(503).setHeader("Content-Type", "image/svg+xml").send(
+      res.status(503).setHeader("Content-Type", "image/svg+xml; charset=utf-8").setHeader("Cache-Control", "no-cache").send(
         `<svg xmlns="http://www.w3.org/2000/svg" width="850" height="320" viewBox="0 0 850 320">
           <rect width="850" height="320" rx="6" fill="#0d1117"/>
-          <text x="425" y="165" text-anchor="middle" fill="#8b949e" font-family="Segoe UI, sans-serif" font-size="14">Contribution graph temporarily unavailable</text>
+          <text x="425" y="165" text-anchor="middle" fill="#8b949e" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14">Contribution graph temporarily unavailable</text>
         </svg>`
       );
     }
   });
+
 
   const httpServer = createServer(app);
   return httpServer;

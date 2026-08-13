@@ -6,7 +6,7 @@ export default function GitHubStatsSection() {
 
   return (
     <section id="stats">
-      <div className="section-head reveal"><span className="section-num">05</span><div className="section-line" /><h2 className="section-title">GitHub Stats</h2></div>
+      <div className="section-head reveal"><h2 className="section-title">GitHub Stats</h2></div>
 
       <div aria-live="polite" aria-busy={isLoading}>
         <div className="stats-grid reveal">

@@ -3,7 +3,7 @@ import { principles } from "@/data/principles";
 export default function AboutSection() {
   return (
     <section id="about">
-      <div className="section-head reveal"><span className="section-num">01</span><div className="section-line" /><h2 className="section-title">About</h2></div>
+      <div className="section-head reveal"><h2 className="section-title">About</h2></div>
       <div className="about-grid">
         <div className="reveal">
           <p className="about-text">

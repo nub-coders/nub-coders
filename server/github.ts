@@ -10,6 +10,10 @@
  *   • In-memory cache so repeated page loads don't hammer the API
  */
 
+import { refreshStreakCapsulesSVG } from './streak-stats';
+import { refreshContributionGraphSVG } from './contribution-graph';
+import { refreshContributionsCache } from './github-contributions';
+
 const BASE = "https://api.github.com";
 
 // ── Cache ─────────────────────────────────────────────────────────────────────
@@ -22,6 +26,7 @@ export interface LanguageStat {
   bytes: number;
   percentage: number;
 }
+
 
 export interface SkillEntry {
   name: string;
@@ -375,7 +380,8 @@ let refresher: NodeJS.Timeout | null = null;
 
 /**
  * Start a periodic background refresher that updates the in-memory cache
- * every `minutes` minutes. Returns a stop function to cancel the refresher.
+ * for GitHub stats, contribution calendar, and pre-rendered SVGs every `minutes` minutes.
+ * Returns a stop function to cancel the refresher.
  */
 export function startGitHubRefresher(minutes = Math.round(CACHE_TTL_MS / 60000)) {
   const ms = Math.max(1, minutes) * 60 * 1000;
@@ -383,8 +389,17 @@ export function startGitHubRefresher(minutes = Math.round(CACHE_TTL_MS / 60000))
 
   const run = async () => {
     try {
-      await fetchGitHubStats();
-      console.log(`[GitHub Refresher] cache refreshed at ${new Date().toISOString()}`);
+      await Promise.allSettled([
+        fetchGitHubStats(),
+        (async () => {
+          await refreshContributionsCache();
+          await Promise.allSettled([
+            refreshStreakCapsulesSVG(),
+            refreshContributionGraphSVG(),
+          ]);
+        })(),
+      ]);
+      console.log(`[GitHub Refresher] stats & SVG caches pre-warmed at ${new Date().toISOString()}`);
     } catch (err: any) {
       console.error("[GitHub Refresher] failed to refresh cache:", err?.message ?? err);
     }
@@ -407,3 +422,4 @@ export function startGitHubRefresher(minutes = Math.round(CACHE_TTL_MS / 60000))
 
   return stop;
 }
+
