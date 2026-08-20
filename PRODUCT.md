@@ -14,7 +14,7 @@ Freelance clients and collaborators evaluating whether this developer can build 
 
 ## Product Purpose
 
-A personal developer portfolio for Ankit Kumar (nubcoders) that turns a visit into a qualified contact — a message from someone who understood the work. The projects (Halvo deployment platform, NubMail email platform, Nub Music Bot, YT-DLP API) are real, running, self-hosted systems; the page's job is to make that evident fast, then make reaching out frictionless. Success is a qualified inbound message, not raw traffic.
+A personal developer portfolio for Ankit Kumar (nubcoders) that turns a visit into a qualified contact — a message from someone who understood the work. The projects (Halvo deployment platform, NubMail email platform, Nub Music Bot, Ytube API) are real, running, self-hosted systems; the page's job is to make that evident fast, then make reaching out frictionless. Success is a qualified inbound message, not raw traffic.
 
 ## Positioning
 
@@ -26,7 +26,7 @@ Most full-stack developers ship *to* a platform — this one runs the platform t
 - Secondary fallback: direct email to dev@nubcoders.com, surfaced in the contact section and again in the form's submit-failure path so a broken send never costs the lead.
 - The line a visitor should remember after 10 seconds: this developer ships real, self-hosted infrastructure, not demos.
 - Belief ladder, in order: (1) this person builds real, running systems, not templates or tutorials; (2) they own the whole stack, infrastructure included; (3) they are precise and their work is maintainable; (4) so reaching out is low-risk and likely to reach someone capable.
-- Proof on hand: the four shipped products, each live — Halvo (deployment platform), NubMail (email platform), Nub Music Bot (open-source Telegram bot), YT-DLP API (media extraction) — presented as the site's own project rows, alongside live GitHub activity. No testimonials or client logos are collected yet; the running products carry the proof.
+- Proof on hand: the four shipped products, each live — Halvo (deployment platform), NubMail (email platform), Nub Music Bot (open-source Telegram bot), Ytube API (media extraction) — presented as the site's own project rows, alongside live GitHub activity. No testimonials or client logos are collected yet; the running products carry the proof.
 
 ## Brand Personality
 
