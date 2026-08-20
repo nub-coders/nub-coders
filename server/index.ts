@@ -35,10 +35,11 @@ app.use((_req, res, next) => {
 
   // 'strict-dynamic' lets a nonce'd script (e.g. gtag loader) pull its own
   // children without host allowlists; 'https:' is the fallback older browsers
-  // use when they ignore strict-dynamic.
+  // use when they ignore strict-dynamic. Dev has no strict-dynamic, so the
+  // Turnstile host is listed explicitly there.
   const scriptSrc = isProd
     ? `script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https:`
-    : "script-src 'self' 'unsafe-inline' 'unsafe-eval' www.googletagmanager.com";
+    : "script-src 'self' 'unsafe-inline' 'unsafe-eval' www.googletagmanager.com challenges.cloudflare.com";
 
   // Content Security Policy — origins match what the page actually loads
   // (Google Analytics, Google Fonts, cdnjs Font Awesome fallback).
@@ -53,6 +54,9 @@ app.use((_req, res, next) => {
       "font-src 'self' fonts.gstatic.com cdnjs.cloudflare.com",
       "img-src 'self' data: https:",
       "connect-src 'self' https: www.google-analytics.com",
+      // Turnstile renders its challenge in an iframe from this host; without an
+      // explicit frame-src it would fall back to default-src 'self' and break.
+      "frame-src challenges.cloudflare.com",
       "frame-ancestors 'self'",
       "form-action 'self'",
     ].join("; ") + ";"

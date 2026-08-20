@@ -2,6 +2,7 @@ import express, { type Express, type Response } from "express";
 import fs from "fs";
 import path from "path";
 import { fetchGitHubStats } from "./github";
+import { clientConfigScript } from "./client-config";
 
 function escapeJsonForHtml(value: unknown) {
   return JSON.stringify(value).replace(/</g, "\\u003c");
@@ -65,7 +66,8 @@ export function serveStatic(app: Express) {
       const template = await fs.promises.readFile(indexPath, "utf-8");
       const nonce = res.locals.cspNonce as string;
       const withStats = await injectGitHubStats(template, nonce);
-      const html = applyNonce(withStats, nonce);
+      const withConfig = withStats.replace("</head>", `${clientConfigScript(nonce)}</head>`);
+      const html = applyNonce(withConfig, nonce);
       // Real assets are served by express.static above; anything else reaching
       // here is a client route. Only "/" exists — everything else renders the
       // NotFound page, so send a real 404 (not a soft-200) for crawlers.

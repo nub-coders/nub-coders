@@ -6,6 +6,7 @@ import { type Server } from "http";
 import viteConfig from "../vite.config";
 import { nanoid } from "nanoid";
 import { fetchGitHubStats } from "./github";
+import { clientConfigScript } from "./client-config";
 
 const viteLogger = createLogger();
 
@@ -66,6 +67,7 @@ export async function setupVite(app: Express, server: Server) {
         `src="/src/main.tsx?v=${nanoid()}"`,
       );
       template = await injectGitHubStats(template);
+      template = template.replace("</head>", `${clientConfigScript()}</head>`);
       const page = await vite.transformIndexHtml(url, template);
       res.status(200).set({ "Content-Type": "text/html" }).end(page);
     } catch (e) {

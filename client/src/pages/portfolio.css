@@ -514,6 +514,9 @@ body.menu-open { overflow: hidden; }
 .form-btn:active { transform: scale(0.98); }
 .form-btn.sending { opacity: 0.7; pointer-events: none; }
 .form-btn:disabled { cursor: wait; }
+/* Turnstile renders a fixed-size iframe; cap it so narrow viewports don't overflow. */
+.turnstile-widget { min-height: 65px; }
+.turnstile-widget iframe { max-width: 100%; }
 .form-success { padding: 1rem 1.25rem; border: 1px solid var(--accent-dim); border-radius: 3px; background: rgba(135, 80, 253, 0.06); font-size: var(--fs-label); color: var(--text); letter-spacing: 0.05em; margin-top: 1rem; }
 .form-error { padding: 1rem 1.25rem; border: 1px solid #7f1d1d; border-radius: 3px; background: rgba(127, 29, 29, 0.14); font-size: var(--fs-label); color: var(--text); letter-spacing: 0.03em; margin-top: 1rem; }
 /* ── Footer — Custom style: brand block + link column ── */

@@ -1,4 +1,5 @@
 import express, { type Request, type Response } from "express";
+import { verifyTurnstile } from "./turnstile";
 
 const router = express.Router();
 
@@ -53,6 +54,20 @@ router.post("/api/contact", async (req: Request, res: Response) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(email)) {
     return res.status(400).json({ success: false, error: "Invalid email format" });
+  }
+
+  // Bot check runs after the cheap local validation but before any outbound
+  // email, so a failed challenge never costs an API call.
+  const captcha = await verifyTurnstile(req.body?.turnstileToken, ip);
+  if (!captcha.ok) {
+    console.warn("[Contact] Turnstile", captcha.reason, captcha.codes?.join(",") ?? "");
+    const transient = captcha.reason === "timeout" || captcha.reason === "network-error";
+    return res.status(transient ? 503 : 403).json({
+      success: false,
+      error: transient
+        ? "Could not reach the verification service. Please try again."
+        : "Verification failed. Please retry the challenge.",
+    });
   }
 
   try {

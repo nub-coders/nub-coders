@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useCallback, useRef, useState } from "react";
+import Turnstile, { type TurnstileHandle } from "@/components/Turnstile";
+import { appConfig } from "@/lib/appConfig";
 
 type ContactFormState = {
   name: string;
@@ -10,11 +12,24 @@ type ContactFormState = {
 const initialFormState: ContactFormState = { name: "", email: "", subject: "", message: "" };
 
 export default function ContactSection() {
+  const siteKey = appConfig.turnstileSiteKey;
   const [formData, setFormData] = useState<ContactFormState>(initialFormState);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [fieldError, setFieldError] = useState<string | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const turnstileRef = useRef<TurnstileHandle>(null);
+
+  // Stable identity: a new function each render would remount the widget.
+  const handleTurnstileToken = useCallback((token: string | null) => {
+    setTurnstileToken(token);
+    if (token) setFieldError(null);
+  }, []);
+
+  const handleTurnstileError = useCallback(() => {
+    setFieldError("Verification failed to load. Please refresh and try again.");
+  }, []);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
@@ -40,6 +55,11 @@ export default function ContactSection() {
       return;
     }
 
+    if (siteKey && !turnstileToken) {
+      setFieldError("Please complete the verification challenge.");
+      return;
+    }
+
     setFieldError(null);
     setIsSubmitting(true);
     setShowSuccess(false);
@@ -49,7 +69,7 @@ export default function ContactSection() {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, subject, message }),
+        body: JSON.stringify({ name, email, subject, message, turnstileToken }),
       });
 
       const result = await response.json().catch(() => ({} as { success?: boolean; error?: string }));
@@ -64,6 +84,8 @@ export default function ContactSection() {
       const messageText = error instanceof Error ? error.message : "Failed to send message.";
       setSubmitError(messageText);
     } finally {
+      // Turnstile tokens are single-use — always re-arm, success or failure.
+      turnstileRef.current?.reset();
       setIsSubmitting(false);
     }
   };
@@ -82,6 +104,17 @@ export default function ContactSection() {
             <div className="form-group"><label className="form-label" htmlFor="cf-email">Email</label><input className="form-input" type="email" id="cf-email" name="email" placeholder="you@example.com" required maxLength={200} autoComplete="email" value={formData.email} onChange={handleChange} /></div>
             <div className="form-group"><label className="form-label" htmlFor="cf-subject">Subject</label><input className="form-input" type="text" id="cf-subject" name="subject" placeholder="Project idea, collab, anything..." maxLength={200} value={formData.subject} onChange={handleChange} /></div>
             <div className="form-group"><label className="form-label" htmlFor="cf-msg">Message</label><textarea className="form-textarea" id="cf-msg" name="message" placeholder="Tell me what you're working on..." required maxLength={5000} value={formData.message} onChange={handleChange} /></div>
+            {siteKey && (
+              <div className="form-group">
+                <Turnstile
+                  ref={turnstileRef}
+                  siteKey={siteKey}
+                  action="contact"
+                  onToken={handleTurnstileToken}
+                  onError={handleTurnstileError}
+                />
+              </div>
+            )}
             <button type="submit" className={`form-btn ${isSubmitting ? "sending" : ""}`} id="cf-btn" disabled={isSubmitting}>{isSubmitting ? "Sending…" : "Send Message →"}</button>
             {showSuccess && <div className="form-success" role="status">✓ Message sent — I&apos;ll get back to you soon.</div>}
             {fieldError && <div className="form-error" role="alert">{fieldError}</div>}
