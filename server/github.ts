@@ -67,9 +67,29 @@ export interface GitHubStats {
 // ── Config ────────────────────────────────────────────────────────────────────
 const TIMEOUT_MS = 15_000;   // 15 s per request
 const MAX_RETRIES = 3;
-const RATE_LIMIT_FLOOR = 10; // abort if remaining calls drop below this
+const RATE_LIMIT_FLOOR = 10; // stop crawling while this many calls are still left
+// Hard ceiling on pagination: 100 items/page x 10 = 1 000, far beyond any
+// personal account's repo or gist count. Without it, termination depends purely
+// on GitHub's Link header, and every extra repo page fans out into two more
+// requests per repo downstream.
+const MAX_PAGES = 10;
 
 // ── Helpers ───────────────────────────────────────────────────────────────────
+
+/**
+ * Thrown when the remaining API budget drops under `RATE_LIMIT_FLOOR`.
+ *
+ * A distinct type because several helpers below deliberately swallow their own
+ * failures and degrade to 0 or {}. Swallowing this one would cache a crawl that
+ * silently under-reports commits and languages as if it were real data, which is
+ * worse than having no fresh data at all — so those handlers re-throw it.
+ */
+export class RateLimitFloorError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "RateLimitFloorError";
+  }
+}
 
 function authHeaders(token: string) {
   return {
@@ -110,9 +130,13 @@ async function ghFetch(
   const remaining = parseInt(res.headers.get("x-ratelimit-remaining") ?? "999", 10);
   const resetEpoch = parseInt(res.headers.get("x-ratelimit-reset") ?? "0", 10);
 
-  if (remaining < RATE_LIMIT_FLOOR && res.status !== 200) {
+  // No `res.status === 200` qualifier: a 200 is exactly when this needs to fire.
+  // Waiting for GitHub to start rejecting meant the budget was already spent and
+  // the guard only reported history. Reserving the last few calls leaves room for
+  // the rest of the app (and the next crawl's cheap paths) to work.
+  if (remaining < RATE_LIMIT_FLOOR) {
     const resetIn = Math.max(0, resetEpoch * 1000 - Date.now());
-    throw new Error(
+    throw new RateLimitFloorError(
       `GitHub rate limit critically low (${remaining} remaining). Resets in ${Math.ceil(resetIn / 1000)}s.`
     );
   }
@@ -142,27 +166,42 @@ function sleep(ms: number) {
   return new Promise((r) => setTimeout(r, ms));
 }
 
-/** Paginate through all pages of a GitHub API endpoint */
-async function paginate<T = any>(
+/**
+ * Paginate through all pages of a GitHub API endpoint.
+ *
+ * Exported for unit tests — not part of the module's public surface.
+ */
+export async function paginate<T = any>(
   url: string,
   headers: Record<string, string>
 ): Promise<T[]> {
   const results: T[] = [];
-  const nextUrl: string | null = url + (url.includes("?") ? "&" : "?") + "per_page=100&page=1";
-  let page = 1;
+  const separator = url.includes("?") ? "&" : "?";
 
-  while (nextUrl) {
-    const pageUrl = url + (url.includes("?") ? "&" : "?") + `per_page=100&page=${page}`;
-    const res = await ghFetch(pageUrl, headers);
+  // A bounded loop, deliberately. This used to be `while (nextUrl)` over a const
+  // that was never reassigned and never read in the body — i.e. `while (true)`
+  // with three breaks — so a Link header that always claimed rel="next" would
+  // have spun forever, burning the API quota.
+  for (let page = 1; page <= MAX_PAGES; page++) {
+    const res = await ghFetch(`${url}${separator}per_page=100&page=${page}`, headers);
     if (!res.ok) break;
-    const data: T[] = await res.json();
-    if (!data.length) break;
-    results.push(...data);
-    // Check for next page via Link header
-    const link = res.headers.get("link") ?? "";
-    if (!link.includes('rel="next"')) break;
-    page++;
+
+    const data = await res.json();
+    // The body is type-asserted, never validated: an error object here would
+    // throw inside the spread below rather than degrading to an empty result.
+    if (!Array.isArray(data) || data.length === 0) break;
+    results.push(...(data as T[]));
+
+    // No further page advertised — a clean finish, not a truncation.
+    if (!(res.headers.get("link") ?? "").includes('rel="next"')) return results;
+
+    if (page === MAX_PAGES) {
+      console.warn(
+        `[GitHub] pagination cap of ${MAX_PAGES} pages hit for ${url} — results truncated at ${results.length} items.`,
+      );
+    }
   }
+
   return results;
 }
 
@@ -183,7 +222,9 @@ async function countCommits(
     if (match) return parseInt(match[1], 10);
     const data = await res.json();
     return Array.isArray(data) ? data.length : 0;
-  } catch {
+  } catch (err) {
+    // A spent budget must not be reported as "0 commits".
+    if (err instanceof RateLimitFloorError) throw err;
     return 0;
   }
 }
@@ -197,7 +238,9 @@ async function repoLanguages(
     const res = await ghFetch(`${BASE}/repos/${repoFullName}/languages`, headers);
     if (!res.ok) return {};
     return res.json();
-  } catch {
+  } catch (err) {
+    // A spent budget must not be reported as "no languages".
+    if (err instanceof RateLimitFloorError) throw err;
     return {};
   }
 }
@@ -215,24 +258,24 @@ async function searchCount(
     if (!res.ok) return 0;
     const data = await res.json();
     return data.total_count ?? 0;
-  } catch {
+  } catch (err) {
+    // A spent budget must not be reported as "0 results".
+    if (err instanceof RateLimitFloorError) throw err;
     return 0;
   }
 }
 
 // ── Main export ───────────────────────────────────────────────────────────────
 
-export async function fetchGitHubStats(): Promise<GitHubStats> {
-  // Serve from cache if fresh
-  if (cached && Date.now() - cached.at < CACHE_TTL_MS) {
-    return cached.data;
-  }
+let inflight: Promise<GitHubStats> | null = null;
 
-  const token = process.env.GITHUB_TOKEN;
-  if (!token) {
-    throw new Error("GITHUB_TOKEN environment variable is not set.");
-  }
-
+/**
+ * The full crawl: profile, repo list, then ~2 requests per public repo, plus
+ * four search calls and the gist list. Tens of requests and potentially tens of
+ * seconds. Never call this directly — `fetchGitHubStats` owns the cache and
+ * guarantees only one crawl runs at a time.
+ */
+async function crawlGitHubStats(token: string): Promise<GitHubStats> {
   const hdrs = authHeaders(token);
 
   // ── 1. User profile ────────────────────────────────────────────────────────
@@ -290,7 +333,14 @@ export async function fetchGitHubStats(): Promise<GitHubStats> {
       searchCount(`type:pr author:${user.login} is:open`, hdrs),
       searchCount(`type:issue author:${user.login} is:open`, hdrs),
       searchCount(`type:issue author:${user.login} is:closed`, hdrs),
-      paginate(`${BASE}/gists`, hdrs).then((g) => g.length).catch(() => 0),
+      // Same reasoning as the helpers above: a missing gist list is fine to
+      // shrug off, a spent budget is not.
+      paginate(`${BASE}/gists`, hdrs)
+        .then((g) => g.length)
+        .catch((err) => {
+          if (err instanceof RateLimitFloorError) throw err;
+          return 0;
+        }),
     ]);
 
   // ── 4. Top languages ──────────────────────────────────────────────────────
@@ -372,8 +422,70 @@ export async function fetchGitHubStats(): Promise<GitHubStats> {
     fetchedAt: new Date().toISOString(),
   };
 
-  cached = { data: stats, at: Date.now() };
+  // No cache write here on purpose: `fetchGitHubStats` owns the cache entry so
+  // there is exactly one place that decides what "fresh" means.
   return stats;
+}
+
+/**
+ * Cache-aware entry point for GitHub stats:
+ *  - fresh cache hit → return immediately
+ *  - crawl already running → join it instead of starting a second one
+ *  - stale cache → serve stale now, revalidate in the background (SWR)
+ *  - cold or forced → await the crawl, falling back to stale on failure
+ *
+ * The coalescing matters because the cache is only written after the whole crawl
+ * finishes: without it, every request arriving at the TTL boundary kicked off its
+ * own ~2-per-repo fan-out and they all raced to overwrite the same cache entry.
+ */
+export async function fetchGitHubStats(force = false): Promise<GitHubStats> {
+  const token = process.env.GITHUB_TOKEN;
+  if (!token) {
+    if (cached) return cached.data;
+    throw new Error("GITHUB_TOKEN environment variable is not set.");
+  }
+
+  if (!force && cached && Date.now() - cached.at < CACHE_TTL_MS) {
+    return cached.data;
+  }
+
+  if (inflight) {
+    // Someone is already paying for the crawl. Prefer stale data over waiting.
+    if (!force && cached) return cached.data;
+    return inflight;
+  }
+
+  const crawl = () => {
+    inflight = crawlGitHubStats(token)
+      .then((stats) => {
+        cached = { data: stats, at: Date.now() };
+        return stats;
+      })
+      .finally(() => {
+        inflight = null;
+      });
+    return inflight;
+  };
+
+  if (!force && cached) {
+    const stale = cached.data;
+    // The .catch also marks `inflight` as handled, so a failed background
+    // revalidation can't surface as an unhandled rejection.
+    crawl().catch((err: any) => {
+      console.error("[GitHub Stats] background revalidation failed:", err?.message ?? err);
+    });
+    return stale;
+  }
+
+  try {
+    return await crawl();
+  } catch (err: any) {
+    if (cached) {
+      console.warn("[GitHub Stats] crawl failed, serving stale cache:", err?.message ?? err);
+      return cached.data;
+    }
+    throw err;
+  }
 }
 
 let refresher: NodeJS.Timeout | null = null;
@@ -390,7 +502,10 @@ export function startGitHubRefresher(minutes = Math.round(CACHE_TTL_MS / 60000))
   const run = async () => {
     try {
       await Promise.allSettled([
-        fetchGitHubStats(),
+        // force: the refresher exists to guarantee a real crawl on its schedule.
+        // Without it the stale-while-revalidate path would hand back the old
+        // cache and log "pre-warmed" before the refresh had actually finished.
+        fetchGitHubStats(true),
         (async () => {
           await refreshContributionsCache();
           await Promise.allSettled([
@@ -416,10 +531,10 @@ export function startGitHubRefresher(minutes = Math.round(CACHE_TTL_MS / 60000))
     }
   };
 
-  process.on("exit", stop);
-  process.on("SIGINT", stop);
-  process.on("SIGTERM", stop);
-
+  // No signal handlers here on purpose. Registering SIGINT/SIGTERM listeners
+  // overrides Node's default terminate action, and clearing an interval doesn't
+  // release the listening socket — so the process would never exit. Lifecycle is
+  // owned by server/index.ts, which calls this `stop` and then server.close().
   return stop;
 }
 
