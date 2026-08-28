@@ -1,5 +1,11 @@
 const GRAPHQL = "https://api.github.com/graphql";
 
+// Matches the REST client's per-request budget in github.ts. Without it this
+// fetch could hang indefinitely, and because the promise below is shared as the
+// single-flight for every contributions consumer, one stalled connection would
+// hang both SVG endpoints and the refresher with it.
+const TIMEOUT_MS = 15_000;
+
 export interface ContributionDay {
   contributionCount: number;
   date: string;
@@ -30,15 +36,29 @@ async function fetchContributionsFromAPI(token: string, username: string): Promi
     }
   }`;
 
-  const res = await fetch(GRAPHQL, {
-    method: "POST",
-    headers: {
-      Authorization: `bearer ${token}`,
-      "Content-Type": "application/json",
-      "User-Agent": "nub-coders-portfolio",
-    },
-    body: JSON.stringify({ query }),
-  });
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
+
+  let res: Response;
+  try {
+    res = await fetch(GRAPHQL, {
+      method: "POST",
+      headers: {
+        Authorization: `bearer ${token}`,
+        "Content-Type": "application/json",
+        "User-Agent": "nub-coders-portfolio",
+      },
+      body: JSON.stringify({ query }),
+      signal: controller.signal,
+    });
+  } catch (err: any) {
+    if (err?.name === "AbortError") {
+      throw new Error(`GitHub GraphQL API timeout after ${TIMEOUT_MS}ms`);
+    }
+    throw err;
+  } finally {
+    clearTimeout(timer);
+  }
 
   if (!res.ok) {
     throw new Error(`GitHub GraphQL API error: ${res.status}`);

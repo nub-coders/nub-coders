@@ -19,7 +19,25 @@ const PADDING = { top: 50, right: 30, bottom: 50, left: 50 };
 const CHART_W = WIDTH - PADDING.left - PADDING.right;
 const CHART_H = HEIGHT - PADDING.top - PADDING.bottom;
 
+/**
+ * Chart frame with no series, for when GitHub returns an empty calendar.
+ * `generateGraphSVG` used to reach `points[points.length - 1].x` on an empty
+ * array and throw, turning a thin upstream response into a 500 on the SVG route.
+ */
+function emptyGraphSVG(): string {
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${HEIGHT}" viewBox="0 0 ${WIDTH} ${HEIGHT}" role="img" aria-label="No contribution data available">
+  <style>
+    .axis-label { font: 500 11px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; fill: ${TEXT_COLOR}; opacity: 0.5; }
+  </style>
+  <line x1="${PADDING.left}" y1="${PADDING.top}" x2="${PADDING.left}" y2="${PADDING.top + CHART_H}" stroke="${AXIS_COLOR}" stroke-width="1"/>
+  <line x1="${PADDING.left}" y1="${PADDING.top + CHART_H}" x2="${PADDING.left + CHART_W}" y2="${PADDING.top + CHART_H}" stroke="${AXIS_COLOR}" stroke-width="1"/>
+  <text x="${PADDING.left + CHART_W / 2}" y="${PADDING.top + CHART_H / 2}" text-anchor="middle" class="axis-label">No contribution data available</text>
+</svg>`;
+}
+
 export function generateGraphSVG(days: ContributionDay[]): string {
+  if (!days.length) return emptyGraphSVG();
+
   const sorted = [...days]
     .sort((a, b) => a.date.localeCompare(b.date))
     .slice(-GRAPH_DAYS);

@@ -51,13 +51,36 @@ export function serveStatic(app: Express) {
     );
   }
 
-  // `index: false` — never let express.static serve index.html directly. It
-  // must fall through to the catch-all below so every response gets the stats
-  // injection and a fresh per-request CSP nonce on its <script> tags.
+  // `index: false` below only disables directory-index resolution for "/" — an
+  // explicit GET /index.html still matches the file on disk and would be served
+  // raw by express.static: no stats injection, no window.__APP_CONFIG__ (so the
+  // contact form's Turnstile widget never renders and every submission is
+  // rejected server-side), and no CSP nonce on its <script> tags. Under the
+  // production policy that last one is fatal rather than cosmetic: CSP3 makes
+  // 'strict-dynamic' suppress host sources like 'self', so an un-nonced bundle
+  // tag is blocked and the page renders blank.
+  //
+  // Redirecting also consolidates SEO onto the canonical URL the document
+  // already declares (<link rel="canonical" href="https://nubcoders.com/">)
+  // instead of serving the same page under two addresses.
+  app.get("/index.html", (req, res) => {
+    const query = req.originalUrl.split("?")[1];
+    res.redirect(301, query ? `/?${query}` : "/");
+  });
+
   app.use(express.static(distPath, {
     maxAge: '1y',
     etag: true,
     index: false,
+    setHeaders(res, filePath) {
+      // Vite fingerprints asset filenames, so a year is safe for them — but it is
+      // never safe for HTML. public/ ships a Google site-verification document,
+      // and a long max-age there would pin a stale copy across deploys with no
+      // way to bust it.
+      if (filePath.endsWith(".html")) {
+        res.setHeader("Cache-Control", "no-cache");
+      }
+    },
   }));
 
   app.use("*", async (req, res: Response, next) => {
