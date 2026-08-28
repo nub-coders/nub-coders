@@ -2,8 +2,8 @@ import { techCategories, getTechLink } from "@/data/techStack";
 
 export default function TechStackSection() {
   return (
-    <section id="tech">
-      <div className="section-head reveal"><h2 className="section-title">Stack</h2></div>
+    <section id="tech" aria-labelledby="tech-title">
+      <div className="section-head reveal"><h2 className="section-title" id="tech-title">Stack</h2></div>
       <div className="tech-categories reveal">
         {techCategories.map((category) => (
           <div key={category.title} className="tech-category">

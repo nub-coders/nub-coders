@@ -9,9 +9,16 @@
   --text: #ffffff;
   --text-muted: rgba(255, 255, 255, 0.6);
   --border: rgba(93, 106, 129, 0.2);
+  /* Form-control boundary. Kept separate from --border on purpose: --border is
+     decorative (dividers, cards, pills) and exempt from contrast rules, but a
+     field boundary identifies a UI component, so WCAG 1.4.11 demands 3:1. The
+     old shared token measured 1.21:1 on --surface; this is 3.57:1. */
+  --border-input: rgba(255, 255, 255, 0.38);
   --accent: #8750fd;
   --accent-teal: #2ec594;
-  --accent-hover: #9d6bff;
+  /* Hover DARKENS rather than lightens: white-on-#9d6bff was 3.51:1, failing
+     1.4.3 for 16px/700 text (not "large" until 18.66px bold). This is 6.30:1. */
+  --accent-hover: #7038e0;
   --accent-dim: rgba(135, 80, 253, 0.5);
   --accent-grad: linear-gradient(45deg, #8750fd 20%, #3735f1 40%, #2ec594 90%);
 
@@ -26,6 +33,12 @@
   --fs-h4: 1.25rem;         /* 20px — focus / gh / lang card titles */
   --fs-label: 0.75rem;      /* 12px — eyebrows, nav, pills, labels */
   --fs-label-sm: 0.6875rem; /* 11px — micro labels */
+
+  /* Height of a GitHub stats card. The language widget's six language rows set
+     the floor, and both cards share one grid row — so the loading skeletons must
+     reserve the same box. When this was a bare literal the skeletons didn't know
+     about it and the row collapsed to 3.5rem, then jumped ~300px on data arrival. */
+  --stats-card-h: 360px;
 
   /* ── z-index scale (fixed-position chrome). Bottom → top. Intra-component
      layers (bg 0, content 1, raised 2) stay local literals — not on the scale.
@@ -141,7 +154,9 @@
 }
 
 .nav-links a:hover { color: var(--text); }
-.nav-links a[aria-current="true"] { color: var(--text); }
+/* Attribute-presence selector, not [aria-current="true"]: the value is
+   "location" and only the active link carries the attribute at all. */
+.nav-links a[aria-current] { color: var(--text); }
 
 /* Hamburger toggle — hidden on desktop, shown ≤768px */
 .nav-toggle {
@@ -302,7 +317,7 @@ body.menu-open { overflow: hidden; }
 .about-text { font-size: var(--fs-lead); font-weight: 400; line-height: 1.65; color: var(--text-muted); }
 .about-text strong, .principle-text strong { color: var(--text); font-weight: 600; }
 .principles { display: flex; flex-direction: column; gap: 1.25rem; }
-.principle, .contact-link, .form-input, .form-textarea, .project-tag, .pill, .project-item { border: 1px solid var(--border); }
+.principle, .contact-link, .project-tag, .pill, .project-item { border: 1px solid var(--border); }
 .principle { display: flex; gap: 1rem; align-items: flex-start; padding: 1.25rem; border-radius: 4px; transition: border-color 0.2s, background 0.2s; }
 .principle:hover, .contact-link:hover, .project-item:hover { border-color: var(--accent-dim); }
 .principle:hover { background: rgba(135, 80, 253, 0.03); }
@@ -325,6 +340,10 @@ body.menu-open { overflow: hidden; }
 .projects-list { display: flex; flex-direction: column; }
 .project-item { display: grid; grid-template-columns: 80px 1fr auto; gap: 1.5rem; align-items: start; padding: 2rem 1.25rem 2rem 1.5rem; border-left: none; border-right: none; border-top: none; border-radius: 0; transition: background 0.2s; position: relative; overflow: hidden; }
 .project-live-link { position: absolute; inset: 0; z-index: 1; }
+/* Negative offset: the ring must paint INSIDE the card, because .project-item
+   clips overflow and this link's border box is exactly the card's padding box.
+   A positive offset (the global default) would be clipped away entirely. */
+.portfolio-skin .project-live-link:focus-visible { outline: 2px solid var(--accent); outline-offset: -3px; border-radius: 0; }
 /* Cursor-tracking radial glow (coords fed from JS via --mx/--my). */
 .project-item::before { content: ""; position: absolute; inset: 0; background: radial-gradient(280px circle at var(--mx, 50%) var(--my, 50%), rgba(135, 80, 253, 0.10), transparent 70%); opacity: 0; transition: opacity 0.5s ease; pointer-events: none; z-index: 0; }
 .project-item:hover::before { opacity: 1; }
@@ -472,7 +491,7 @@ body.menu-open { overflow: hidden; }
 .focus-title { font-family: var(--font-display); font-size: var(--fs-h4); font-weight: 600; color: var(--text); margin-bottom: 0.5rem; position: relative; }
 .focus-body { font-size: var(--fs-body); color: var(--text-muted); font-weight: 400; line-height: 1.6; position: relative; }
 .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
-.stats-card { border-radius: 4px; overflow: hidden; background: var(--surface); }
+.stats-card { border-radius: 4px; overflow: hidden; background: var(--surface); min-height: var(--stats-card-h); }
 .stats-card img { width: 100%; height: auto; display: block; filter: saturate(0.9); transition: filter 0.2s; }
 .stats-card:hover img { filter: saturate(1.1); }
 
@@ -483,7 +502,7 @@ body.menu-open { overflow: hidden; }
 .gh-name { font-family: var(--font-display); font-size: var(--fs-h4); font-weight: 600; color: var(--text); }
 .gh-username { font-family: "JetBrains Mono", monospace; font-size: var(--fs-label); color: var(--text-muted); }
 
-.skeleton { background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.04)); border-radius: 4px; height: 3.5rem; }
+.skeleton { background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.04)); border-radius: 4px; min-height: var(--stats-card-h); }
 
 /* Ensure cards align nicely on narrow screens */
 @media (max-width: 768px) {
@@ -502,7 +521,7 @@ body.menu-open { overflow: hidden; }
 .contact-link:hover .contact-link-arrow { color: var(--text); transform: translate(3px, -3px); }
 .form-group { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.25rem; }
 .form-label { font-size: var(--fs-label-sm); color: var(--text); letter-spacing: 0.1em; text-transform: uppercase; }
-.form-input, .form-textarea { background: var(--surface); border-radius: 3px; color: var(--text); font-family: var(--font-body); font-size: var(--fs-body); font-weight: 400; padding: 0.85rem 1rem; width: 100%; outline: none; transition: border-color 0.2s, background 0.2s; -webkit-appearance: none; }
+.form-input, .form-textarea { background: var(--surface); border: 1px solid var(--border-input); border-radius: 3px; color: var(--text); font-family: var(--font-body); font-size: var(--fs-body); font-weight: 400; padding: 0.85rem 1rem; width: 100%; outline: none; transition: border-color 0.2s, background 0.2s; -webkit-appearance: none; }
 .form-input::placeholder, .form-textarea::placeholder { color: var(--text-muted); opacity: 1; }
 .form-input:focus, .form-textarea:focus { border-color: var(--accent); background: var(--surface-2); }
 /* Single-border focus for form fields — drop the offset outline so it doesn't

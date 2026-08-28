@@ -8,7 +8,9 @@ export default function Footer() {
     <footer className="site-footer">
       <div className="footer-cols">
         <div className="footer-brand">
-          <a href="#main" className="footer-logo" aria-label="Back to top">nub-coders</a>
+          {/* The accessible name must CONTAIN the visible text (SC 2.5.3), or a
+              speech-input user saying "click nub-coders" can't activate it. */}
+          <a href="#main" className="footer-logo" aria-label="nub-coders, back to top">nub-coders</a>
           <p className="footer-blurb">Full-stack developer building infrastructure, automation, and SaaS workflows — shipped clean, built to last.</p>
         </div>
 

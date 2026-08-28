@@ -23,7 +23,7 @@ export default function Home() {
     <>
       <a href="#main" className="skip-link">Skip to content</a>
       <Nav />
-      <main id="main">
+      <main id="main" tabIndex={-1}>
         <HeroSection />
         <div className="divider" />
         <AboutSection />

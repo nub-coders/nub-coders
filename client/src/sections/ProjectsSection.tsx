@@ -97,8 +97,8 @@ export default function ProjectsSection() {
   }
 
   return (
-    <section id="work">
-      <div className="section-head reveal"><h2 className="section-title">Selected Work</h2></div>
+    <section id="work" aria-labelledby="work-title">
+      <div className="section-head reveal"><h2 className="section-title" id="work-title">Selected Work</h2></div>
       <div className="projects-list">
         {projects.map((project) => (
           <div

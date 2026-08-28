@@ -91,8 +91,8 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact">
-      <div className="section-head reveal"><h2 className="section-title">Contact</h2></div>
+    <section id="contact" aria-labelledby="contact-title">
+      <div className="section-head reveal"><h2 className="section-title" id="contact-title">Contact</h2></div>
       <div className="contact-new">
         <div className="reveal">
           <p className="contact-headline">Let&apos;s build<br />something<br /><em>real.</em></p>

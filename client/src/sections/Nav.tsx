@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const NAV_LINKS = [
   { id: "about", label: "about" },
@@ -11,6 +11,8 @@ export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState<string>("");
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const wasOpen = useRef(false);
 
   // Toggle the `scrolled` background once the page moves past the hero.
   useEffect(() => {
@@ -39,20 +41,52 @@ export default function Nav() {
     return () => observer.disconnect();
   }, []);
 
-  // Lock body scroll while the mobile overlay is open.
+  // While the fullscreen overlay is open: lock body scroll, take the page behind
+  // it out of the tab order, and close on Escape. `overflow: hidden` alone only
+  // blocks scrolling — without `inert`, tabbing past the last nav link lands on
+  // links hidden behind an opaque overlay, so focus effectively disappears.
   useEffect(() => {
     document.body.classList.toggle("menu-open", menuOpen);
-    return () => document.body.classList.remove("menu-open");
+
+    // Nav is a sibling of both, so neither contains the menu it would disable.
+    const behind = [
+      document.getElementById("main"),
+      document.querySelector("footer"),
+    ].filter((el): el is HTMLElement => Boolean(el));
+
+    if (menuOpen) {
+      behind.forEach((el) => el.setAttribute("inert", ""));
+    } else if (wasOpen.current) {
+      // Only reclaim focus when closing a menu the user actually opened, so the
+      // first mount doesn't yank focus away from the top of the page.
+      toggleRef.current?.focus();
+    }
+    wasOpen.current = menuOpen;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+    if (menuOpen) document.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.classList.remove("menu-open");
+      behind.forEach((el) => el.removeAttribute("inert"));
+    };
   }, [menuOpen]);
 
   const closeMenu = () => setMenuOpen(false);
 
   return (
     <nav id="nav" className={scrolled ? "scrolled" : ""}>
-      <a href="#" className="nav-logo" onClick={closeMenu}>nub-coders</a>
+      {/* #main, not "#": a bare fragment leaves a stray "#" in the URL and moves
+          nothing, while #main matches the footer's back-to-top link and lands on
+          the main landmark's tabIndex={-1}. */}
+      <a href="#main" className="nav-logo" aria-label="nub-coders, back to top" onClick={closeMenu}>nub-coders</a>
 
       <button
         type="button"
+        ref={toggleRef}
         className={`nav-toggle ${menuOpen ? "open" : ""}`}
         aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
         aria-expanded={menuOpen}
@@ -70,7 +104,9 @@ export default function Nav() {
             <a
               href={`#${link.id}`}
               onClick={closeMenu}
-              aria-current={active === link.id ? "true" : undefined}
+              // "location" is the token for the current spot within a page;
+              // "page" would claim this is the current page in a set of pages.
+              aria-current={active === link.id ? "location" : undefined}
             >
               {link.label}
             </a>
