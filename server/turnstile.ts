@@ -30,7 +30,17 @@ type SiteVerifyResponse = {
  */
 export async function verifyTurnstile(token: unknown, remoteIp?: string): Promise<TurnstileResult> {
   const secret = secretKey();
-  if (!secret) return { ok: true };
+  if (!secret) {
+    // Fail CLOSED in production. A missing or typo'd TURNSTILE_SECRET_KEY must
+    // never silently downgrade the contact endpoint to unauthenticated — the
+    // client only hides the widget, it can't stop a direct POST.
+    if (process.env.NODE_ENV === "production") {
+      console.error("[Turnstile] TURNSTILE_SECRET_KEY is not set — refusing to accept submissions.");
+      return { ok: false, reason: "not-configured" };
+    }
+    // Development keeps the bypass so the form works without Cloudflare creds.
+    return { ok: true };
+  }
 
   if (typeof token !== "string" || !token || token.length > 2048) {
     return { ok: false, reason: "missing-token" };
