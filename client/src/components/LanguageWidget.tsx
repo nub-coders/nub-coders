@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState } from 'react';
 import type { GitHubStats } from '@/hooks/useGitHubStats';
 import './LanguageWidget.css';
 
@@ -38,60 +38,53 @@ const StatSlide = ({ items }: { items: StatItem[] }) => (
   </div>
 );
 
+const SWIPE_THRESHOLD_PX = 40;
+const NEXT_KEYS = ['ArrowRight', 'ArrowDown'];
+const PREV_KEYS = ['ArrowLeft', 'ArrowUp'];
+
 export const LanguageWidget: React.FC<LanguageWidgetProps> = ({ data }) => {
   const [index, setIndex] = useState(0);
 
   const slides = [
-    { key: 'langs', node: <LangSlide languages={data.topLanguages} /> },
-    { key: 'engagement', node: <StatSlide items={[{ label: '⭐ Stars', value: data.totalStars }, { label: '🔥 Commits', value: data.totalCommits }]} /> },
-    { key: 'contrib', node: <StatSlide items={[{ label: '✅ PRs Merged', value: data.prsMerged }, { label: '🐞 Open Issues', value: data.issuesOpen }]} /> },
+    { key: 'langs', label: 'Top languages', node: <LangSlide languages={data.topLanguages} /> },
+    { key: 'engagement', label: 'Stars and commits', node: <StatSlide items={[{ label: '⭐ Stars', value: data.totalStars }, { label: '🔥 Commits', value: data.totalCommits }]} /> },
+    { key: 'contrib', label: 'Pull requests and issues', node: <StatSlide items={[{ label: '✅ PRs Merged', value: data.prsMerged }, { label: '🐞 Open Issues', value: data.issuesOpen }]} /> },
   ];
   const last = slides.length - 1;
 
   const clamp = (n: number) => Math.max(0, Math.min(last, n));
-  const touchY = useRef<number | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const indexRef = useRef(0);
-  const lockedRef = useRef(false);
+  const touchX = useRef<number | null>(null);
 
-  // keep the ref in sync so the stable wheel listener reads the live index
-  useEffect(() => { indexRef.current = index; }, [index]);
+  // The wheel is deliberately NOT handled. An earlier version called
+  // preventDefault() on wheel to advance one slide per gesture, which stopped the
+  // page dead for ~1.5s whenever the pointer happened to cross this card. The
+  // dots, arrow keys, and horizontal swipe cover every input modality without
+  // taking scrolling away from the user.
 
-  // Trap the wheel: advance one slide per gesture, then lock for the transition
-  // so momentum bursts don't fly through every slide. Release at the ends so the
-  // page can scroll. Native non-passive listener — React onWheel can't preventDefault.
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-
-    const onWheel = (e: WheelEvent) => {
-      const down = e.deltaY > 0;
-      const i = indexRef.current;
-      if (down ? i >= last : i <= 0) return; // release to the page at the ends
-
-      e.preventDefault();
-      if (lockedRef.current || Math.abs(e.deltaY) < 4) return; // swallow momentum
-      lockedRef.current = true;
-      setIndex(clamp(i + (down ? 1 : -1)));
-      window.setTimeout(() => { lockedRef.current = false; }, 520);
-    };
-
-    el.addEventListener('wheel', onWheel, { passive: false });
-    return () => el.removeEventListener('wheel', onWheel);
-  }, [last]);
-
+  // Horizontal swipe, not vertical: a vertical gesture is how you scroll a page
+  // on touch, so claiming it here would be the mobile equivalent of the wheel
+  // trap. Paired with `touch-action: pan-y` so the browser keeps vertical pans.
   const onTouchStart = (e: React.TouchEvent) => {
-    touchY.current = e.touches[0].clientY;
+    touchX.current = e.touches[0].clientX;
   };
   const onTouchEnd = (e: React.TouchEvent) => {
-    if (touchY.current === null) return;
-    const dy = e.changedTouches[0].clientY - touchY.current;
-    if (Math.abs(dy) > 40) setIndex((prev) => clamp(prev + (dy < 0 ? 1 : -1)));
-    touchY.current = null;
+    if (touchX.current === null) return;
+    const dx = e.changedTouches[0].clientX - touchX.current;
+    if (Math.abs(dx) > SWIPE_THRESHOLD_PX) setIndex((prev) => clamp(prev + (dx < 0 ? 1 : -1)));
+    touchX.current = null;
   };
+
   const onKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'ArrowDown') { e.preventDefault(); setIndex((p) => clamp(p + 1)); }
-    if (e.key === 'ArrowUp') { e.preventDefault(); setIndex((p) => clamp(p - 1)); }
+    const step = NEXT_KEYS.includes(e.key) ? 1 : PREV_KEYS.includes(e.key) ? -1 : 0;
+    if (step === 0) return;
+
+    const target = clamp(index + step);
+    // At either end the key isn't ours: let it through so ArrowDown scrolls the
+    // page as usual instead of dead-ending on the last slide.
+    if (target === index) return;
+
+    e.preventDefault();
+    setIndex(target);
   };
 
   return (
@@ -99,7 +92,6 @@ export const LanguageWidget: React.FC<LanguageWidgetProps> = ({ data }) => {
       <div className="lang-cards">
         <div
           className="lang-card-container"
-          ref={containerRef}
           role="group"
           aria-roledescription="carousel"
           aria-label="GitHub stats"
@@ -112,6 +104,9 @@ export const LanguageWidget: React.FC<LanguageWidgetProps> = ({ data }) => {
             <div
               key={slide.key}
               className="lang-card"
+              role="group"
+              aria-roledescription="slide"
+              aria-label={`${slide.label} (${i + 1} of ${slides.length})`}
               aria-hidden={i !== index}
               style={{
                 transform: `translateY(${(i - index) * 100}%)`,
@@ -130,7 +125,7 @@ export const LanguageWidget: React.FC<LanguageWidgetProps> = ({ data }) => {
               key={slide.key}
               onClick={() => setIndex(i)}
               className="lang-dot"
-              aria-label={`View slide ${i + 1}`}
+              aria-label={slide.label}
               aria-current={i === index}
               style={{
                 height: i === index ? '42px' : '10px',

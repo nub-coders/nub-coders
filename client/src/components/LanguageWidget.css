@@ -1,18 +1,18 @@
-/* ponytail: min-height must clear slide 1's 6 language rows (~350px);
+/* The shared --stats-card-h must clear slide 1's 6 language rows;
    the shorter stat slides just center in the extra space. */
 .lang-widget {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
-  min-height: 360px;
+  min-height: var(--stats-card-h);
 }
 
 .lang-cards {
   position: relative;
   width: 100%;
   height: 100%;
-  min-height: 360px;
+  min-height: var(--stats-card-h);
 }
 
 .lang-card-container {
@@ -22,9 +22,14 @@
   height: 100%;
   overflow: hidden;
   user-select: none;
-  touch-action: pan-x;
+  /* pan-y, never pan-x: the browser keeps vertical panning (page scroll) and the
+     carousel takes horizontal swipes, which do nothing on a vertical page.
+     `pan-x` here used to swallow vertical scroll gestures over the card. */
+  touch-action: pan-y;
 }
-.lang-card-container:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+/* Negative offset so the ring paints inside the container — .stats-card clips
+   overflow, and this div is the only keyboard route to slides 2 and 3. */
+.lang-card-container:focus-visible { outline: 2px solid var(--accent); outline-offset: -3px; }
 
 .lang-card {
   position: absolute;
