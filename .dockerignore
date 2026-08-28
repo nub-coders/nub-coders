@@ -4,11 +4,13 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Development files
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+# Environment files — never copy real secrets into a build layer.
+# `COPY . .` runs in the builder stage, so an un-ignored .env would be baked
+# into that layer's filesystem and persist in the local/CI build cache.
+.env
+*.env
+.env.*
+!.env.example
 
 # Build output
 dist
