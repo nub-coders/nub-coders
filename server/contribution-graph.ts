@@ -26,6 +26,7 @@ const CHART_H = HEIGHT - PADDING.top - PADDING.bottom;
  */
 function emptyGraphSVG(): string {
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${WIDTH}" height="${HEIGHT}" viewBox="0 0 ${WIDTH} ${HEIGHT}" role="img" aria-label="No contribution data available">
+  <rect x="0.5" y="0.5" width="${WIDTH - 1}" height="${HEIGHT - 1}" rx="6" fill="#0d1117" stroke="#30363d" stroke-width="1"/>
   <style>
     .axis-label { font: 500 11px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; fill: ${TEXT_COLOR}; opacity: 0.5; }
   </style>
@@ -100,6 +101,9 @@ export function generateGraphSVG(days: ContributionDay[]): string {
     .axis-text { font: 400 10px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; fill: ${TEXT_COLOR}; opacity: 0.7; }
     .axis-label { font: 500 11px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; fill: ${TEXT_COLOR}; opacity: 0.5; }
   </style>
+
+  <!-- Background card -->
+  <rect x="0.5" y="0.5" width="${WIDTH - 1}" height="${HEIGHT - 1}" rx="6" fill="#0d1117" stroke="#30363d" stroke-width="1"/>
 
   <!-- Y axis -->
   <line x1="${PADDING.left}" y1="${PADDING.top}" x2="${PADDING.left}" y2="${PADDING.top + CHART_H}" stroke="${AXIS_COLOR}" stroke-width="1"/>
