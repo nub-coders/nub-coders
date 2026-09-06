@@ -7,9 +7,9 @@ export default function AboutSection() {
       <div className="about-grid">
         <div className="reveal">
           <p className="about-text">
-            <strong>Nub Coders</strong> is an independent software organization and engineering collective focused on building reliable cloud infrastructure, developer tools, and open-source platforms that power real workloads.
+            <strong>Nub Coders</strong> is an independent software organization and engineering studio focused on building reliable cloud infrastructure, developer platforms, and open-source tools that power real workloads.
             <br /><br />
-            Founded by <strong>Ankit Kumar</strong>, our mission is turning rough ideas into <strong>production-ready systems</strong> — from containerized microservices and automated TLS deployments to messaging clients, media engines, and SaaS backends. Self-hosted infrastructure and clean architecture are at our core.
+            Founded by <strong>Ankit Kumar</strong>, our mission is turning rough ideas into <strong>production-ready systems</strong> — from proprietary developer platforms and containerized microservices to self-hosted email infrastructure, media engines, and open-source libraries. Self-hosted infrastructure and clean architecture are at our core.
             <br /><br />
             We actively contribute to the open-source ecosystem, sharing our discoveries and engineering practices on YouTube and GitHub to help developers ship better software faster.
           </p>
