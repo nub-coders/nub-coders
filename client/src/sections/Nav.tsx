@@ -14,15 +14,13 @@ export default function Nav() {
   const toggleRef = useRef<HTMLButtonElement>(null);
   const wasOpen = useRef(false);
 
-  // Toggle the `scrolled` background once the page moves past the hero.
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
+    const onScroll = () => setScrolled(window.scrollY > 30);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Scroll-spy: highlight the nav link for the section currently in view.
   useEffect(() => {
     const sections = NAV_LINKS.map((link) => document.getElementById(link.id)).filter(
       (el): el is HTMLElement => Boolean(el),
@@ -41,8 +39,6 @@ export default function Nav() {
     return () => observer.disconnect();
   }, []);
 
-  // While the fullscreen overlay is open: lock body scroll, take the page behind
-  // it out of the tab order, and close on Escape.
   useEffect(() => {
     document.body.classList.toggle("menu-open", menuOpen);
 
@@ -74,16 +70,9 @@ export default function Nav() {
 
   return (
     <nav id="nav" className={scrolled ? "scrolled" : ""}>
-      <div className="nav-left">
-        <a href="#main" className="nav-logo" aria-label="nub-coders, back to top" onClick={closeMenu}>
-          <span className="nav-logo-symbol" aria-hidden="true" />
-          nub-coders
-        </a>
-        <div className="nav-status" aria-hidden="true">
-          <span className="nav-status-dot" />
-          <span>Operational</span>
-        </div>
-      </div>
+      <a href="#main" className="nav-logo" aria-label="nub-coders, back to top" onClick={closeMenu}>
+        nub-coders
+      </a>
 
       <button
         type="button"

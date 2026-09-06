@@ -9,31 +9,12 @@ export default function AboutSection() {
       <div className="about-grid">
         <div className="reveal">
           <p className="about-text">
-            <strong>Nub Coders</strong> is an independent software organization and engineering studio focused on building reliable cloud infrastructure, developer platforms, and open-source tools that power real workloads.
+            <strong>Nub Coders</strong> is an independent software organization focused on building reliable cloud infrastructure, developer platforms, and open-source tools that power real workloads.
             <br /><br />
-            Founded by <strong>Ankit Kumar</strong>, our mission is turning rough ideas into <strong>production-ready systems</strong> — from proprietary developer platforms and containerized microservices to self-hosted email infrastructure, media engines, and open-source libraries. Self-hosted infrastructure and clean architecture are at our core.
+            Founded by <strong>Ankit Kumar</strong>, our focus is turning complex ideas into maintainable, production-ready systems — from containerized microservices and automated DNS-01 wildcard TLS to self-hosted email infrastructure and media engines.
             <br /><br />
-            We actively contribute to the open-source ecosystem, sharing our discoveries and engineering practices on YouTube and GitHub to help developers ship better software faster.
+            We actively contribute to the open-source ecosystem, sharing our discoveries and engineering practices on YouTube and GitHub.
           </p>
-
-          <div className="about-highlights" aria-label="Studio Highlights">
-            <div className="about-highlight-card">
-              <div className="about-highlight-val">100%</div>
-              <div className="about-highlight-label">Self-Hosted Stack</div>
-            </div>
-            <div className="about-highlight-card">
-              <div className="about-highlight-val">0%</div>
-              <div className="about-highlight-label">Demo Bloat</div>
-            </div>
-            <div className="about-highlight-card">
-              <div className="about-highlight-val">Automated</div>
-              <div className="about-highlight-label">Wildcard SSL / TLS</div>
-            </div>
-            <div className="about-highlight-card">
-              <div className="about-highlight-val">Full Stack</div>
-              <div className="about-highlight-label">DevOps to React UI</div>
-            </div>
-          </div>
         </div>
 
         <div className="principles reveal">

@@ -7,7 +7,6 @@ import AboutSection from "@/sections/AboutSection";
 import TechStackSection from "@/sections/TechStackSection";
 import ProjectsSection from "@/sections/ProjectsSection";
 import NowSection from "@/sections/NowSection";
-import GitHubStatsSection from "@/sections/GitHubStatsSection";
 import ContactSection from "@/sections/ContactSection";
 import Footer from "@/sections/Footer";
 
@@ -33,8 +32,6 @@ export default function Home() {
         <ProjectsSection />
         <div className="divider" />
         <NowSection />
-        <div className="divider" />
-        <GitHubStatsSection />
         <div className="divider" />
         <ContactSection />
       </main>

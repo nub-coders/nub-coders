@@ -24,9 +24,6 @@ function AmbientBackground({ kind }: { kind: ProjectSignature }) {
         <div className="card-bg bg-mail" aria-hidden="true">
           <div className="envelope">
             <div className="env-body" />
-            <svg className="env-seam" viewBox="0 0 64 42" preserveAspectRatio="none">
-              <polyline className="seam-line" points="6,6 32,24 58,6" />
-            </svg>
           </div>
         </div>
       );
@@ -34,20 +31,12 @@ function AmbientBackground({ kind }: { kind: ProjectSignature }) {
       return (
         <div className="card-bg bg-audio" aria-hidden="true">
           <span className="note n1">&#9834;</span>
-          <span className="note n2">&#9835;</span>
-          <span className="note n3">&#9834;</span>
-          <span className="note n4">&#9835;</span>
-          <span className="note n5">&#9834;</span>
         </div>
       );
     case "download":
       return (
         <div className="card-bg bg-download" aria-hidden="true">
-          <span className="brace">{"{ }"}</span>
-          <span className="link" />
           <span className="node client" />
-          <span className="node server" />
-          <span className="packet" />
         </div>
       );
   }
@@ -67,7 +56,6 @@ function SignatureGlyph({ kind }: { kind: ProjectSignature }) {
       return (
         <div className="sig sig-mail" aria-hidden="true">
           <span className="sig-flap" />
-          <span className="sig-ping" />
         </div>
       );
     case "audio":

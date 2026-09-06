@@ -2,7 +2,7 @@
 
 # ⚡ NUB CODERS
 
-**Engineering Studio · Cloud Platforms & Developer Systems**
+**Software Organization · Cloud Platforms & Developer Systems**
 
 *Building production cloud infrastructure, self-hosted developer platforms, and high-performance open-source tools.*
 
@@ -22,7 +22,7 @@
 
 **🌐 ABOUT NUB CODERS**
 
-**Nub Coders** is an independent software organization and engineering studio founded by **[Ankit Kumar](https://github.com/nub-coders)**. We engineer production-ready systems from the ground up — prioritizing self-hosted infrastructure, low overhead, and long-term maintainability.
+**Nub Coders** is an independent software organization founded by **[Ankit Kumar](https://github.com/nub-coders)**. We engineer production-ready systems from the ground up — prioritizing self-hosted infrastructure, low overhead, and long-term maintainability.
 
 Our work spans proprietary cloud platforms, container orchestration, automated TLS infrastructures, media engines, and actively maintained open-source libraries.
 

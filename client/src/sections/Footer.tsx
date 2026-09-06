@@ -9,7 +9,6 @@ export default function Footer() {
       <div className="footer-cols">
         <div className="footer-brand">
           <a href="#main" className="footer-logo" aria-label="nub-coders, back to top">
-            <span className="nav-logo-symbol" aria-hidden="true" />
             nub-coders
           </a>
           <p className="footer-blurb">

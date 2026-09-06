@@ -102,7 +102,7 @@ export default function ContactSection() {
             <em>real.</em>
           </p>
           <p className="contact-sub">
-            Open to freelance projects, architecture consulting, and high-performance collaborations. Fill the form or reach out directly — I reply fast.
+            Open to freelance systems engineering, developer tools collaborations, and infrastructure consulting. Fill the form or reach out directly.
           </p>
 
           <div className="contact-channels" aria-label="Direct channels">
@@ -114,11 +114,8 @@ export default function ContactSection() {
                 rel={item.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
                 className="contact-channel-card"
               >
-                <div>
-                  <div className="contact-channel-title">{item.label}</div>
-                  <div className="contact-channel-val">{item.value}</div>
-                </div>
-                <span className="contact-channel-icon" aria-hidden="true">↗</span>
+                <div className="contact-channel-title">{item.label}</div>
+                <div className="contact-channel-val">{item.value}</div>
               </a>
             ))}
           </div>
@@ -163,7 +160,7 @@ export default function ContactSection() {
                 type="text"
                 id="cf-subject"
                 name="subject"
-                placeholder="Project idea, cloud infrastructure, collab..."
+                placeholder="Project idea, collaboration..."
                 maxLength={200}
                 value={formData.subject}
                 onChange={handleChange}
@@ -175,7 +172,7 @@ export default function ContactSection() {
                 className="form-textarea"
                 id="cf-msg"
                 name="message"
-                placeholder="Tell me what you're working on and how we can collaborate..."
+                placeholder="Tell me what you're working on..."
                 required
                 maxLength={5000}
                 value={formData.message}
@@ -201,12 +198,12 @@ export default function ContactSection() {
               id="cf-btn"
               disabled={isSubmitting}
             >
-              {isSubmitting ? "Sending message…" : "Send Message →"}
+              {isSubmitting ? "Sending…" : "Send Message →"}
             </button>
             
             {showSuccess && (
               <div className="form-success" role="status">
-                ✓ Message sent successfully — I&apos;ll get back to you soon.
+                ✓ Message sent — I&apos;ll get back to you soon.
               </div>
             )}
             
@@ -218,7 +215,7 @@ export default function ContactSection() {
             
             {submitError && (
               <div className="form-error" role="alert">
-                {submitError} — or email me directly at{" "}
+                {submitError} — or email directly at{" "}
                 <a href="mailto:dev@nubcoders.com">dev@nubcoders.com</a>.
               </div>
             )}
