@@ -3,7 +3,9 @@ import { principles } from "@/data/principles";
 export default function AboutSection() {
   return (
     <section id="about" aria-labelledby="about-title">
-      <div className="section-head reveal"><h2 className="section-title" id="about-title">About</h2></div>
+      <div className="section-head reveal">
+        <h2 className="section-title" id="about-title">About</h2>
+      </div>
       <div className="about-grid">
         <div className="reveal">
           <p className="about-text">
@@ -13,12 +15,34 @@ export default function AboutSection() {
             <br /><br />
             We actively contribute to the open-source ecosystem, sharing our discoveries and engineering practices on YouTube and GitHub to help developers ship better software faster.
           </p>
+
+          <div className="about-highlights" aria-label="Studio Highlights">
+            <div className="about-highlight-card">
+              <div className="about-highlight-val">100%</div>
+              <div className="about-highlight-label">Self-Hosted Stack</div>
+            </div>
+            <div className="about-highlight-card">
+              <div className="about-highlight-val">0%</div>
+              <div className="about-highlight-label">Demo Bloat</div>
+            </div>
+            <div className="about-highlight-card">
+              <div className="about-highlight-val">Automated</div>
+              <div className="about-highlight-label">Wildcard SSL / TLS</div>
+            </div>
+            <div className="about-highlight-card">
+              <div className="about-highlight-val">Full Stack</div>
+              <div className="about-highlight-label">DevOps to React UI</div>
+            </div>
+          </div>
         </div>
+
         <div className="principles reveal">
           {principles.map((principle) => (
             <div key={principle.num} className="principle">
               <span className="principle-num">{principle.num}</span>
-              <p className="principle-text"><strong>{principle.title}</strong> — {principle.body}</p>
+              <p className="principle-text">
+                <strong>{principle.title}</strong> — {principle.body}
+              </p>
             </div>
           ))}
         </div>

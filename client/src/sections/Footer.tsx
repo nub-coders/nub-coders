@@ -8,10 +8,13 @@ export default function Footer() {
     <footer className="site-footer">
       <div className="footer-cols">
         <div className="footer-brand">
-          {/* The accessible name must CONTAIN the visible text (SC 2.5.3), or a
-              speech-input user saying "click nub-coders" can't activate it. */}
-          <a href="#main" className="footer-logo" aria-label="nub-coders, back to top">nub-coders</a>
-          <p className="footer-blurb">Software engineering organization building self-hosted infrastructure, developer platforms, and automation systems — shipped clean, built to last.</p>
+          <a href="#main" className="footer-logo" aria-label="nub-coders, back to top">
+            <span className="nav-logo-symbol" aria-hidden="true" />
+            nub-coders
+          </a>
+          <p className="footer-blurb">
+            Software engineering organization building self-hosted infrastructure, developer platforms, and automation systems — shipped clean, built to last.
+          </p>
         </div>
 
         <nav className="footer-col" aria-label="Connect">
@@ -32,6 +35,9 @@ export default function Footer() {
 
       <div className="footer-bottom">
         <span className="footer-copy">© {yearRange} Nub Coders · nubcoders.com</span>
+        <a href="#main" className="footer-back-top" aria-label="Back to top">
+          Back to top ↑
+        </a>
       </div>
     </footer>
   );

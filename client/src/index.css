@@ -1,16 +1,17 @@
 /* ── Global base + decorative background ─────────────────────────────────────
    Plain CSS (no Tailwind). Palette lives in portfolio.css; this file owns the
-   document-level background, the animated mesh/particle layers, and the app
-   shell + scroll-progress bar. */
+   document-level background, root styles, selection, scrollbars, and app shell. */
 
 :root {
-  /* Document shell only — the full palette (surface, text, muted, border,
-     accents) is defined once in portfolio.css. */
   --bg-primary: #0d1117;
   --text-primary: #ffffff;
+  --accent-violet: #8750fd;
+  --accent-teal: #2ec594;
 }
 
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -18,50 +19,77 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
+}
+
 body {
-  font-family: "Archivo", ui-sans-serif, system-ui, sans-serif;
-  background: #0d1117;
+  font-family: "Archivo", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg-primary);
   color: var(--text-primary);
   line-height: 1.7;
   overflow-x: hidden;
   position: relative;
+  min-height: 100vh;
 }
 
-/* Uses a flat dark surface — the animated mesh + particle layers are
-   retired to match. Kept as no-ops so the reduced-motion block below stays valid. */
-body::before,
-body::after { content: none; }
+/* Custom modern scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #090c10;
+}
+::-webkit-scrollbar-thumb {
+  background: #21262d;
+  border-radius: 4px;
+  border: 2px solid #090c10;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #30363d;
+}
+
+/* Selection highlight */
+::selection {
+  background: rgba(135, 80, 253, 0.35);
+  color: #ffffff;
+}
 
 img {
   max-width: 100%;
   height: auto;
+  display: block;
 }
 
-/* ── App shell + scroll-progress bar (moved off Tailwind utilities) ── */
+/* ── App shell + scroll-progress bar ── */
 .app-shell {
   position: relative;
   min-height: 100vh;
   background: var(--bg-primary);
 }
+
 .app-content {
   position: relative;
   z-index: 10;
 }
+
 .scroll-progress {
   position: fixed;
   top: 0;
   left: 0;
-  height: 4px;
+  height: 3px;
   width: 100%;
   transform: scaleX(0);
   transform-origin: left;
-  z-index: 50;
-  background: linear-gradient(to right, #8750fd 20%, #3735f1 40%, #2ec594 90%);
+  z-index: 120;
+  background: var(--accent-violet);
+  box-shadow: 0 0 10px rgba(135, 80, 253, 0.4);
   will-change: transform;
 }
 
 /* Respect users who prefer reduced motion: neutralize all transitions and
-   animations across the app. (The splash intro is also gated on this in JS.) */
+   animations across the app. */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

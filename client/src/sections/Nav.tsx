@@ -42,13 +42,10 @@ export default function Nav() {
   }, []);
 
   // While the fullscreen overlay is open: lock body scroll, take the page behind
-  // it out of the tab order, and close on Escape. `overflow: hidden` alone only
-  // blocks scrolling — without `inert`, tabbing past the last nav link lands on
-  // links hidden behind an opaque overlay, so focus effectively disappears.
+  // it out of the tab order, and close on Escape.
   useEffect(() => {
     document.body.classList.toggle("menu-open", menuOpen);
 
-    // Nav is a sibling of both, so neither contains the menu it would disable.
     const behind = [
       document.getElementById("main"),
       document.querySelector("footer"),
@@ -57,8 +54,6 @@ export default function Nav() {
     if (menuOpen) {
       behind.forEach((el) => el.setAttribute("inert", ""));
     } else if (wasOpen.current) {
-      // Only reclaim focus when closing a menu the user actually opened, so the
-      // first mount doesn't yank focus away from the top of the page.
       toggleRef.current?.focus();
     }
     wasOpen.current = menuOpen;
@@ -79,10 +74,16 @@ export default function Nav() {
 
   return (
     <nav id="nav" className={scrolled ? "scrolled" : ""}>
-      {/* #main, not "#": a bare fragment leaves a stray "#" in the URL and moves
-          nothing, while #main matches the footer's back-to-top link and lands on
-          the main landmark's tabIndex={-1}. */}
-      <a href="#main" className="nav-logo" aria-label="nub-coders, back to top" onClick={closeMenu}>nub-coders</a>
+      <div className="nav-left">
+        <a href="#main" className="nav-logo" aria-label="nub-coders, back to top" onClick={closeMenu}>
+          <span className="nav-logo-symbol" aria-hidden="true" />
+          nub-coders
+        </a>
+        <div className="nav-status" aria-hidden="true">
+          <span className="nav-status-dot" />
+          <span>Operational</span>
+        </div>
+      </div>
 
       <button
         type="button"
@@ -104,8 +105,6 @@ export default function Nav() {
             <a
               href={`#${link.id}`}
               onClick={closeMenu}
-              // "location" is the token for the current spot within a page;
-              // "page" would claim this is the current page in a set of pages.
               aria-current={active === link.id ? "location" : undefined}
             >
               {link.label}

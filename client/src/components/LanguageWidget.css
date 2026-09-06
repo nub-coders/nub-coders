@@ -78,14 +78,14 @@
 .lang-bar {
   height: 6px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.08);
   overflow: hidden;
 }
 
 .lang-bar-fill {
   height: 100%;
   border-radius: 999px;
-  background: var(--accent-grad);
+  background: var(--accent);
 }
 
 /* ── Slides 2 & 3: paired stats ─────────────────────────── */

@@ -11,11 +11,6 @@ function GitHubIcon() {
   );
 }
 
-/**
- * Ambient, always-on background motif that fills the card behind its content
- * and intensifies on hover. Purely presentational — hidden from assistive
- * tech; all motion is gated behind `prefers-reduced-motion` in portfolio.css.
- */
 function AmbientBackground({ kind }: { kind: ProjectSignature }) {
   switch (kind) {
     case "terminal":
@@ -58,11 +53,6 @@ function AmbientBackground({ kind }: { kind: ProjectSignature }) {
   }
 }
 
-/**
- * Decorative per-project motif shown in the card's title row. Purely
- * presentational — hidden from assistive tech; all motion is gated behind
- * `prefers-reduced-motion` in portfolio.css.
- */
 function SignatureGlyph({ kind }: { kind: ProjectSignature }) {
   switch (kind) {
     case "terminal":
@@ -87,8 +77,6 @@ function SignatureGlyph({ kind }: { kind: ProjectSignature }) {
 }
 
 export default function ProjectsSection() {
-  // Feed the cursor position into CSS custom props so the radial hover glow
-  // tracks the pointer. Direct style writes — no React state on mousemove.
   function handleMouseMove(event: MouseEvent<HTMLDivElement>) {
     const el = event.currentTarget;
     const rect = el.getBoundingClientRect();
@@ -98,7 +86,9 @@ export default function ProjectsSection() {
 
   return (
     <section id="work" aria-labelledby="work-title">
-      <div className="section-head reveal"><h2 className="section-title" id="work-title">Selected Work</h2></div>
+      <div className="section-head reveal">
+        <h2 className="section-title" id="work-title">Selected Work</h2>
+      </div>
       <div className="projects-list">
         {projects.map((project) => (
           <div
