@@ -1,10 +1,10 @@
 <div align="center">
 
-# ⚡ Nub Coders
+# ⚡ NUB CODERS
 
-### Engineering Studio · Cloud Platforms & Developer Systems
+**Engineering Studio · Cloud Platforms & Developer Systems**
 
-**Building production cloud infrastructure, self-hosted developer platforms, and high-performance open-source tools.**
+*Building production cloud infrastructure, self-hosted developer platforms, and high-performance open-source tools.*
 
 <br />
 
@@ -20,7 +20,7 @@
 
 ---
 
-### 🌐 About Nub Coders
+**🌐 ABOUT NUB CODERS**
 
 **Nub Coders** is an independent software organization and engineering studio founded by **[Ankit Kumar](https://github.com/nub-coders)**. We engineer production-ready systems from the ground up — prioritizing self-hosted infrastructure, low overhead, and long-term maintainability.
 
@@ -28,7 +28,7 @@ Our work spans proprietary cloud platforms, container orchestration, automated T
 
 ---
 
-### 🚀 Live Platforms & Products
+**🚀 LIVE PLATFORMS & PRODUCTS**
 
 Production-grade platforms and managed cloud services developed and operated by Nub Coders:
 
@@ -40,7 +40,7 @@ Production-grade platforms and managed cloud services developed and operated by 
 
 ---
 
-### 🐙 Open Source Projects
+**🐙 OPEN SOURCE PROJECTS**
 
 Actively maintained open-source tools, bots, and libraries for developers and communities:
 
@@ -52,7 +52,7 @@ Actively maintained open-source tools, bots, and libraries for developers and co
 
 ---
 
-### 🛠️ Technology & Architecture Matrix
+**🛠️ TECHNOLOGY & ARCHITECTURE MATRIX**
 
 Our core stack for building resilient, high-throughput cloud software:
 
@@ -77,7 +77,7 @@ Our core stack for building resilient, high-throughput cloud software:
 
 ---
 
-### 📊 Live Activity & Contributions
+**📊 LIVE ACTIVITY & CONTRIBUTIONS**
 
 <div align="center">
 
@@ -94,7 +94,7 @@ Our core stack for building resilient, high-throughput cloud software:
 
 ---
 
-### 📬 Connect with Nub Coders
+**📬 CONNECT WITH NUB CODERS**
 
 - 🌐 **Website**: [nubcoders.com](https://nubcoders.com)
 - ✉️ **Inquiries**: [dev@nubcoders.com](mailto:dev@nubcoders.com)
