@@ -118,13 +118,13 @@ describe("floor guard inside the crawl fan-out", () => {
       const url = String(input);
       const remaining = lowQuota.value ? 1 : 500;
 
-      if (url.includes("/user?") || url.endsWith("/user")) {
+      if (url.endsWith("/orgs/nub-coders") || url.includes("/orgs/nub-coders?") || url.includes("/user?") || url.endsWith("/user")) {
         return ghResponse(
           { login: "nub-coders", avatar_url: "a", html_url: "h" },
           { remaining: 500 },
         );
       }
-      if (url.includes("/user/repos")) {
+      if (url.includes("/orgs/nub-coders/repos") || url.includes("/user/repos")) {
         return ghResponse([{ full_name: "nub-coders/one", private: false }], { remaining: 500 });
       }
       if (url.includes("/commits")) {

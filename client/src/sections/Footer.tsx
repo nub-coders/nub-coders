@@ -11,7 +11,7 @@ export default function Footer() {
           {/* The accessible name must CONTAIN the visible text (SC 2.5.3), or a
               speech-input user saying "click nub-coders" can't activate it. */}
           <a href="#main" className="footer-logo" aria-label="nub-coders, back to top">nub-coders</a>
-          <p className="footer-blurb">Full-stack developer building infrastructure, automation, and SaaS workflows — shipped clean, built to last.</p>
+          <p className="footer-blurb">Software engineering organization building self-hosted infrastructure, developer platforms, and automation systems — shipped clean, built to last.</p>
         </div>
 
         <nav className="footer-col" aria-label="Connect">
@@ -31,7 +31,7 @@ export default function Footer() {
       </div>
 
       <div className="footer-bottom">
-        <span className="footer-copy">© {yearRange} Ankit Kumar · nubcoders.com</span>
+        <span className="footer-copy">© {yearRange} Nub Coders · nubcoders.com</span>
       </div>
     </footer>
   );

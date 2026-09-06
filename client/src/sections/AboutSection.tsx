@@ -7,11 +7,11 @@ export default function AboutSection() {
       <div className="about-grid">
         <div className="reveal">
           <p className="about-text">
-            I&apos;m a <strong>full-stack developer</strong> with a strong backend and systems focus, currently studying Mechanical Engineering while running <strong>Nub Coder</strong> — my software venture building tools, infrastructure, and products that actually matter.
+            <strong>Nub Coders</strong> is an independent software organization and engineering collective focused on building reliable cloud infrastructure, developer tools, and open-source platforms that power real workloads.
             <br /><br />
-            I enjoy turning rough ideas into <strong>production-ready systems</strong>, especially when the challenge involves reliability, clean architecture, and developer experience. Self-hosted infra is my playground.
+            Founded by <strong>Ankit Kumar</strong>, our mission is turning rough ideas into <strong>production-ready systems</strong> — from containerized microservices and automated TLS deployments to messaging clients, media engines, and SaaS backends. Self-hosted infrastructure and clean architecture are at our core.
             <br /><br />
-            When I&apos;m not shipping code, I&apos;m sharing what I learn on YouTube and open-sourcing things that might help other developers move faster.
+            We actively contribute to the open-source ecosystem, sharing our discoveries and engineering practices on YouTube and GitHub to help developers ship better software faster.
           </p>
         </div>
         <div className="principles reveal">

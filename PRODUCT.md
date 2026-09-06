@@ -14,11 +14,11 @@ Freelance clients and collaborators evaluating whether this developer can build 
 
 ## Product Purpose
 
-A personal developer portfolio for Ankit Kumar (nubcoders) that turns a visit into a qualified contact — a message from someone who understood the work. The projects (Halvo deployment platform, NubMail email platform, Nub Music Bot, Ytube API) are real, running, self-hosted systems; the page's job is to make that evident fast, then make reaching out frictionless. Success is a qualified inbound message, not raw traffic.
+The official live organization website for **Nub Coders** (`nubcoders.com`) that turns a visit into a qualified contact, partnership, or collaboration. The systems (Halvo deployment platform, NubMail email platform, Nub Music Bot, Ytube API) are real, running, self-hosted systems; the page's job is to showcase the organization's engineering depth and make reaching out frictionless.
 
 ## Positioning
 
-Most full-stack developers ship *to* a platform — this one runs the platform too. The site proves ownership of the whole stack, from the React UI down to Docker, nginx, wildcard SSL, and DNS, and makes contact feel low-risk.
+Nub Coders builds and runs production-grade self-hosted infrastructure, developer platforms, automation APIs, and high-performance open-source tools. We own the entire stack, from frontend interfaces down to Docker, reverse proxies, automated wildcard SSL, and container orchestration.
 
 ## Conversion & proof
 

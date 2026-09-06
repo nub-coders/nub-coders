@@ -3,12 +3,12 @@ networks:
     external: true
 
 services:
-  portfolio:
-    container_name: portfolio
+  nubcoders:
+    container_name: nubcoders
     build:
       context: .
       dockerfile: Dockerfile
-    image: portfolio:latest
+    image: nubcoders:latest
     restart: unless-stopped
     env_file:
       - .env
@@ -16,10 +16,10 @@ services:
       NODE_ENV: production
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.portfolio.rule=Host(`nubcoders.com`) || Host(`www.nubcoders.com`)"
-      - "traefik.http.routers.portfolio.entrypoints=websecure"
-      - "traefik.http.routers.portfolio.tls.certresolver=letsencrypt"
-      - "traefik.http.services.portfolio.loadbalancer.server.port=8080"
+      - "traefik.http.routers.nubcoders.rule=Host(`nubcoders.com`) || Host(`www.nubcoders.com`)"
+      - "traefik.http.routers.nubcoders.entrypoints=websecure"
+      - "traefik.http.routers.nubcoders.tls.certresolver=letsencrypt"
+      - "traefik.http.services.nubcoders.loadbalancer.server.port=8080"
     expose:
       - "8080"
     networks:

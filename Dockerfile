@@ -19,16 +19,16 @@ ENV NODE_ENV=production
 
 # Non-root user for security
 RUN addgroup -g 1001 -S nodejs && \
-    adduser -S portfolio -u 1001 -G nodejs
+    adduser -S nubcoders -u 1001 -G nodejs
 
 # Production dependencies only
-COPY --chown=portfolio:nodejs package*.json ./
+COPY --chown=nubcoders:nodejs package*.json ./
 RUN npm ci --omit=dev && npm cache clean --force
 
 # Built artifacts from the builder stage
-COPY --chown=portfolio:nodejs --from=builder /app/dist ./dist
+COPY --chown=nubcoders:nodejs --from=builder /app/dist ./dist
 
-USER portfolio
+USER nubcoders
 
 EXPOSE 8080
 

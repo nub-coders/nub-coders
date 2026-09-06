@@ -1,7 +1,7 @@
 {
-  "name": "nubcoders-portfolio",
+  "name": "nubcoders",
   "version": "1.0.0",
-  "description": "Personal portfolio — Ankit Kumar, Full Stack Developer",
+  "description": "Nub Coders — Official organization website",
   "type": "module",
   "license": "MIT",
   "scripts": {

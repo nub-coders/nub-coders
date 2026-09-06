@@ -24,11 +24,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
       const message: string = (() => {
         const m: string = err?.message ?? "";
-        if (m.includes("GITHUB_TOKEN")) return "GitHub token is not configured.";
-        if (m.includes("invalid or expired")) return "GitHub token is invalid or expired.";
         if (m.includes("rate limit")) return "GitHub rate limit reached. Try again later.";
         if (m.includes("timeout")) return "GitHub API timed out. Try again shortly.";
-        if (m.includes("scopes")) return "GitHub token is missing required scopes.";
         return "Failed to fetch GitHub stats. Please try again later.";
       })();
 

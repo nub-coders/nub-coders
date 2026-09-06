@@ -47,15 +47,15 @@ function mockGitHubAPI(gate?: Deferred) {
   const fetchMock = vi.fn(async (input: unknown) => {
     const url = String(input);
 
-    if (url.includes("/user?") || url.endsWith("/user")) {
-      if (gate) await gate.promise;
-      return json({ login: "nub-coders", name: "Ankit", avatar_url: "a", html_url: "h", followers: 1, following: 2 });
-    }
-    if (url.includes("/user/repos")) {
+    if (url.includes("/orgs/nub-coders/repos") || url.includes("/user/repos")) {
       return json([
         { full_name: "nub-coders/one", private: false, stargazers_count: 3, forks_count: 1 },
         { full_name: "nub-coders/secret", private: true },
       ]);
+    }
+    if (url.includes("/orgs/nub-coders") || url.includes("/user?") || url.endsWith("/user")) {
+      if (gate) await gate.promise;
+      return json({ login: "nub-coders", name: "Ankit", avatar_url: "a", html_url: "h", followers: 1, following: 2 });
     }
     if (url.includes("/commits")) {
       return json([{ sha: "x" }], '<https://api.github.com/x?page=7>; rel="last"');
@@ -77,14 +77,14 @@ function mockGitHubAPI(gate?: Deferred) {
   return {
     fetchMock,
     /**
-     * How many crawls started — /user is a crawl's first request. Counted off the
+     * How many crawls started — /orgs or /user is a crawl's first request. Counted off the
      * mock's own call log, not the router above, so a `mockImplementationOnce`
      * that bypasses the router is still counted.
      */
     crawlCount: () =>
       fetchMock.mock.calls.filter((call) => {
         const url = String(call[0]);
-        return url.includes("/user?") || url.endsWith("/user");
+        return url.endsWith("/orgs/nub-coders") || url.includes("/orgs/nub-coders?") || url.includes("/user?") || url.endsWith("/user");
       }).length,
   };
 }
@@ -244,12 +244,13 @@ describe("fetchGitHubStats stale-while-revalidate", () => {
 });
 
 describe("fetchGitHubStats without a token", () => {
-  it("throws when there is nothing cached", async () => {
+  it("fetches stats without requiring GITHUB_TOKEN", async () => {
     mockGitHubAPI();
     delete process.env.GITHUB_TOKEN;
     const { fetchGitHubStats } = await loadModule();
 
-    await expect(fetchGitHubStats()).rejects.toThrow(/GITHUB_TOKEN/);
+    const stats = await fetchGitHubStats();
+    expect(stats.username).toBe("nub-coders");
   });
 
   it("serves the cache if the token disappears after a successful crawl", async () => {
