@@ -47,7 +47,7 @@ Actively maintained open-source tools, bots, and libraries for developers and co
 | Project | Description | Tech Stack | Repository |
 | :--- | :--- | :--- | :--- |
 | [**Ytube API**](https://github.com/nub-coders/ytube_api) | Open-source media extraction and streaming REST API backend with token authentication, rate limiting, and containerized deployment. | `Python` `yt-dlp` `Docker` `Nginx` | [**GitHub Repo ↗**](https://github.com/nub-coders/ytube_api) · [**Live API ↗**](https://api.nubcoders.com) |
-| [**Kurigram**](https://github.com/nub-coders/kurigram) | Actively maintained Pyrogram fork featuring support for Telegram Gifts, Stories, Topics, Business APIs, and modern MTProto updates. | `Python` `Telegram MTProto` `AsyncIO` | [**GitHub Repo ↗**](https://github.com/nub-coders/kurigram) |
+| [**CppGram**](https://github.com/nub-coders/CppGram) | High-performance open-source Telegram client framework and MTProto library written in modern C++20. | `C++20` `Telegram MTProto` `Async` | [**GitHub Repo ↗**](https://github.com/nub-coders/CppGram) |
 | [**Nub Music Bot**](https://github.com/nub-coders/nub-music-bot) | Open-source Telegram voice chat streaming bot with queue management, low latency playback, and multi-source streaming support. | `Python` `Pyrogram` `pytgcalls` | [**GitHub Repo ↗**](https://github.com/nub-coders/nub-music-bot) |
 | [**Nub Coders Hub**](https://github.com/nub-coders/nub-coders) | The live source behind nubcoders.com featuring unauthenticated GitHub analytics, dynamic SVG streak generators, and React 18 frontend. | `TypeScript` `React` `Express` `Vite` | [**GitHub Repo ↗**](https://github.com/nub-coders/nub-coders) |
 

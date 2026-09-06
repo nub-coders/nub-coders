@@ -33,6 +33,7 @@ export const techLinks: Record<string, TechLink> = {
   "yt-dlp": { label: "yt-dlp", href: "https://github.com/yt-dlp/yt-dlp" },
   "REST API": { label: "REST", href: "https://developer.mozilla.org/en-US/docs/Glossary/REST" },
   "Self-hosted": { label: "Self-hosted", href: "https://selfhosted.org/" },
+  "C++": { label: "C++", href: "https://isocpp.org/" },
 };
 
 export const getTechLink = (label: string): TechLink | null => techLinks[label] ?? null;
