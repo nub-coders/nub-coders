@@ -30,8 +30,9 @@ export const projects: Project[] = [
     idx: "004",
     name: "Ytube API",
     desc: "High-performance media extraction API with token-based auth, rate limiting, and production-grade nginx-proxy and SSL automation for containerized deployments.",
-    tags: ["Python", "yt-dlp", "Docker", "Nginx", "REST API"],
+    tags: ["Python", "yt-dlp", "Docker", "Nginx", "REST API", "Open Source"],
     liveUrl: "https://api.nubcoders.com",
+    codeUrl: "https://github.com/nub-coders/ytube_api",
     signature: "download",
   },
 ];
