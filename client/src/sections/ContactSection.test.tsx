@@ -35,6 +35,11 @@ describe("ContactSection", () => {
       screen.getByText(/fill in your name, email, and a message/i),
     ).toBeInTheDocument();
     expect(fetchSpy).not.toHaveBeenCalled();
+    expect(screen.getByLabelText("Name")).toHaveFocus();
+    for (const label of ["Name", "Email", "Message"]) {
+      expect(screen.getByLabelText(label)).toHaveAttribute("aria-invalid", "true");
+      expect(screen.getByLabelText(label)).toHaveAttribute("aria-describedby");
+    }
   });
 
   test("rejects an invalid email before submitting", async () => {
@@ -51,6 +56,8 @@ describe("ContactSection", () => {
       screen.getByText(/valid email address/i),
     ).toBeInTheDocument();
     expect(fetchSpy).not.toHaveBeenCalled();
+    expect(screen.getByLabelText("Email")).toHaveFocus();
+    expect(screen.getByLabelText("Email")).toHaveAttribute("aria-invalid", "true");
   });
 
   test("shows success feedback and clears the form on a 200 response", async () => {
@@ -85,6 +92,8 @@ describe("ContactSection", () => {
 
     const alert = await screen.findByRole("alert");
     expect(alert).toHaveTextContent(/too many messages/i);
+    expect(screen.getByLabelText("Name")).toHaveValue("Jane Recruiter");
+    expect(screen.getByLabelText("Message")).toHaveValue("Let's talk about a role.");
     expect(
       screen.getByRole("link", { name: "dev@nubcoders.com" }),
     ).toHaveAttribute("href", "mailto:dev@nubcoders.com");

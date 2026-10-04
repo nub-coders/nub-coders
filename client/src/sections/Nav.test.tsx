@@ -118,6 +118,54 @@ describe("Nav mobile menu", () => {
     );
     expect(document.getElementById("main")).not.toHaveAttribute("inert");
   });
+
+  test("moves focus into the menu and wraps keyboard focus within the header", async () => {
+    const user = userEvent.setup();
+    renderNav();
+    const toggle = await openMenu(user);
+    expect(screen.getByRole("link", { name: "about" })).toHaveFocus();
+
+    toggle.focus();
+    await user.tab();
+    const brand = screen.getByRole("link", { name: "nub-coders, back to top" });
+    expect(brand).toHaveFocus();
+    await user.tab({ shift: true });
+    expect(toggle).toHaveFocus();
+    await user.keyboard("{Escape}");
+  });
+
+  test("unlocks the page and moves focus to a visible control on desktop resize", async () => {
+    const originalWidth = window.innerWidth;
+    Object.defineProperty(window, "innerWidth", { configurable: true, value: 375 });
+    try {
+      const user = userEvent.setup();
+      renderNav();
+      await openMenu(user);
+      expect(document.body.style.overflow).toBe("hidden");
+
+      act(() => {
+        Object.defineProperty(window, "innerWidth", { configurable: true, value: 1024 });
+        window.dispatchEvent(new Event("resize"));
+      });
+
+      expect(screen.getByRole("button", { name: "Open navigation menu" })).toHaveAttribute("aria-expanded", "false");
+      expect(document.getElementById("main")).not.toHaveAttribute("inert");
+      expect(document.body).not.toHaveClass("menu-open");
+      expect(document.body.style.overflow).not.toBe("hidden");
+      expect(screen.getByRole("link", { name: "nub-coders, back to top" })).toHaveFocus();
+    } finally {
+      Object.defineProperty(window, "innerWidth", { configurable: true, value: originalWidth });
+    }
+  });
+
+  test("cleans up page locking when the open menu unmounts", async () => {
+    const user = userEvent.setup();
+    const { unmount } = renderNav();
+    await openMenu(user);
+    unmount();
+    expect(document.body).not.toHaveClass("menu-open");
+    expect(document.body.style.overflow).not.toBe("hidden");
+  });
 });
 
 describe("Nav links", () => {

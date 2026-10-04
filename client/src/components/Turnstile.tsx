@@ -103,7 +103,7 @@ const Turnstile = forwardRef<TurnstileHandle, Props>(function Turnstile(
           window.turnstile.render(containerRef.current, {
             sitekey: siteKey,
             action,
-            theme: "dark",
+            theme: "light",
             callback: (token) => callbacksRef.current.onToken(token),
             "error-callback": () => {
               callbacksRef.current.onToken(null);

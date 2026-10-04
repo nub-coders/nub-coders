@@ -1,0 +1,180 @@
+.diagram-svg {
+  touch-action: none;
+  overflow: visible;
+}
+
+.diagram-svg .diagram-layers {
+  outline: none;
+}
+
+.diagram-svg .diagram-part {
+  cursor: grab;
+  outline: none;
+  pointer-events: visiblePainted;
+}
+
+.diagram-svg .diagram-part:active,
+.diagram-svg[data-dragging],
+.diagram-svg[data-dragging] .diagram-part {
+  cursor: grabbing;
+}
+
+.diagram-svg .diagram-part-hit {
+  fill: transparent;
+  stroke: none;
+  pointer-events: none;
+}
+
+.diagram-svg .diagram-part:focus-visible > .diagram-part-hit {
+  fill: color-mix(in srgb, var(--product-accent, var(--accent)) 10%, transparent);
+}
+
+.diagram-svg .diagram-packet,
+.diagram-svg .diagram-circuit,
+.diagram-svg .diagram-stage,
+.diagram-svg .diagram-deploy-scan,
+.diagram-svg .diagram-mail-letter,
+.diagram-svg .diagram-playhead,
+.diagram-svg .diagram-record,
+.diagram-svg .diagram-api-scan {
+  pointer-events: none;
+  animation-delay: var(--diagram-delay, 0s);
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-play-state: paused;
+}
+
+.diagram-svg .diagram-packet,
+.diagram-svg .diagram-circuit {
+  fill: none;
+  stroke: var(--product-accent, var(--accent));
+  stroke-linecap: round;
+  stroke-dashoffset: 0;
+  animation-name: diagram-trace;
+}
+
+.diagram-svg .diagram-packet {
+  stroke-width: 2.8;
+  stroke-dasharray: 3 97;
+  animation-duration: 3.2s;
+}
+
+.diagram-svg .diagram-circuit {
+  stroke-width: 1.8;
+  stroke-dasharray: 8 92;
+  animation-duration: 5s;
+}
+
+.diagram-svg .diagram-stage {
+  fill: var(--product-accent, var(--accent));
+  opacity: 1;
+  animation-name: diagram-stage;
+  animation-duration: 4.8s;
+  animation-timing-function: ease-in-out;
+}
+
+.diagram-svg .diagram-deploy-scan,
+.diagram-svg .diagram-playhead,
+.diagram-svg .diagram-api-scan {
+  fill: none;
+  stroke: var(--product-accent, var(--accent));
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  opacity: 0;
+}
+
+.diagram-svg .diagram-deploy-scan {
+  animation-name: diagram-deploy-scan;
+  animation-duration: 3.2s;
+}
+
+.diagram-svg .diagram-mail-letter {
+  opacity: 0;
+  transform: translateY(8px);
+  animation-name: diagram-mail-letter;
+  animation-duration: 3.8s;
+}
+
+.diagram-svg .diagram-playhead {
+  animation-name: diagram-playhead;
+  animation-duration: 3.6s;
+}
+
+.diagram-svg .diagram-record {
+  fill: none;
+  stroke: var(--product-accent, var(--accent));
+  stroke-width: 1.8;
+  stroke-dasharray: 3 8;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation-name: diagram-record;
+  animation-duration: 12s;
+}
+
+.diagram-svg .diagram-api-scan {
+  animation-name: diagram-api-scan;
+  animation-duration: 3.6s;
+}
+
+.diagram-svg[data-playing="true"] .diagram-packet,
+.diagram-svg[data-playing="true"] .diagram-circuit,
+.diagram-svg[data-playing="true"] .diagram-stage,
+.diagram-svg[data-playing="true"] .diagram-deploy-scan,
+.diagram-svg[data-playing="true"] .diagram-mail-letter,
+.diagram-svg[data-playing="true"] .diagram-playhead,
+.diagram-svg[data-playing="true"] .diagram-record,
+.diagram-svg[data-playing="true"] .diagram-api-scan {
+  animation-play-state: running;
+}
+
+@keyframes diagram-trace {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: -100; }
+}
+
+@keyframes diagram-stage {
+  0%, 15% { fill: var(--product-accent, var(--accent)); opacity: 1; }
+  25%, 100% { fill: var(--product-route, var(--muted)); opacity: 0.35; }
+}
+
+@keyframes diagram-deploy-scan {
+  0% { transform: translateX(0); opacity: 0; }
+  12%, 88% { opacity: 1; }
+  100% { transform: translateX(120px); opacity: 0; }
+}
+
+@keyframes diagram-mail-letter {
+  0% { transform: translateY(8px); opacity: 0; }
+  18%, 70% { opacity: 1; }
+  100% { transform: translateY(-10px); opacity: 0; }
+}
+
+@keyframes diagram-playhead {
+  0% { transform: translateX(0); opacity: 0; }
+  12%, 88% { opacity: 1; }
+  100% { transform: translateX(124px); opacity: 0; }
+}
+
+@keyframes diagram-record {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes diagram-api-scan {
+  0% { transform: translateY(0); opacity: 0; }
+  12%, 88% { opacity: 1; }
+  100% { transform: translateY(70px); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .diagram-svg .diagram-packet,
+  .diagram-svg .diagram-circuit,
+  .diagram-svg .diagram-stage,
+  .diagram-svg .diagram-deploy-scan,
+  .diagram-svg .diagram-mail-letter,
+  .diagram-svg .diagram-playhead,
+  .diagram-svg .diagram-record,
+  .diagram-svg .diagram-api-scan {
+    animation: none !important;
+  }
+}

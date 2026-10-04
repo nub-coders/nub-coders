@@ -2,6 +2,7 @@ import { useCallback, useRef, useState } from "react";
 import Turnstile, { type TurnstileHandle } from "@/components/Turnstile";
 import { appConfig } from "@/lib/appConfig";
 import { contactLinks } from "@/data/contactLinks";
+import "./contact.css";
 
 type ContactFormState = {
   name: string;
@@ -9,6 +10,8 @@ type ContactFormState = {
   subject: string;
   message: string;
 };
+
+type FieldErrors = Partial<Record<"name" | "email" | "message", string>>;
 
 const initialFormState: ContactFormState = { name: "", email: "", subject: "", message: "" };
 
@@ -19,25 +22,45 @@ export default function ContactSection() {
   const [showSuccess, setShowSuccess] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [fieldError, setFieldError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
+  const [verificationError, setVerificationError] = useState<string | null>(null);
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const turnstileRef = useRef<TurnstileHandle>(null);
+  const verificationRef = useRef<HTMLDivElement>(null);
 
   const handleTurnstileToken = useCallback((token: string | null) => {
     setTurnstileToken(token);
-    if (token) setFieldError(null);
+    if (token) setVerificationError(null);
   }, []);
 
   const handleTurnstileError = useCallback(() => {
-    setFieldError("Verification failed to load. Please refresh and try again.");
+    setTurnstileToken(null);
+    setVerificationError("Verification failed to load. Please refresh and try again.");
   }, []);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = event.target;
     setFormData((previous) => ({ ...previous, [name]: value }));
+    setFieldError(null);
+    setShowSuccess(false);
+    if (name === "name" || name === "email" || name === "message") {
+      setFieldErrors((previous) => ({ ...previous, [name]: undefined }));
+    }
   };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (isSubmitting) return;
+    setSubmitError(null);
+    setShowSuccess(false);
+
+    const form = event.currentTarget;
+    const focusField = (field: keyof ContactFormState) => {
+      const input = form.elements.namedItem(field);
+      if (input instanceof HTMLInputElement || input instanceof HTMLTextAreaElement) {
+        input.focus();
+      }
+    };
 
     const name = formData.name.trim();
     const email = formData.email.trim();
@@ -45,22 +68,34 @@ export default function ContactSection() {
     const message = formData.message.trim();
 
     if (!name || !email || !message) {
+      setFieldErrors({
+        ...(!name && { name: "Enter your name." }),
+        ...(!email && { email: "Enter your email address." }),
+        ...(!message && { message: "Add a message to continue." }),
+      });
       setFieldError("Please fill in your name, email, and a message.");
+      focusField(!name ? "name" : !email ? "email" : "message");
       return;
     }
 
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(email)) {
+      setFieldErrors({ email: "Use the format you@example.com." });
       setFieldError("Please enter a valid email address.");
+      focusField("email");
       return;
     }
+
+    setFieldErrors({});
+    setFieldError(null);
 
     if (siteKey && !turnstileToken) {
-      setFieldError("Please complete the verification challenge.");
+      setVerificationError("Please complete the verification challenge.");
+      verificationRef.current?.focus();
       return;
     }
 
-    setFieldError(null);
+    setVerificationError(null);
     setIsSubmitting(true);
     setShowSuccess(false);
     setSubmitError(null);
@@ -85,103 +120,141 @@ export default function ContactSection() {
       setSubmitError(messageText);
     } finally {
       turnstileRef.current?.reset();
+      setTurnstileToken(null);
       setIsSubmitting(false);
     }
   };
 
   return (
-    <section id="contact" aria-labelledby="contact-title">
-      <div className="section-head reveal">
-        <h2 className="section-title" id="contact-title">Contact</h2>
-      </div>
-      <div className="contact-new">
-        <div className="reveal">
-          <p className="contact-headline">
-            Let&apos;s build<br />
-            something<br />
-            <em>real.</em>
-          </p>
-          <p className="contact-sub">
-            Open to freelance systems engineering, developer tools collaborations, and infrastructure consulting. Fill the form or reach out directly.
-          </p>
+    <section className="contact-section" id="contact" aria-labelledby="contact-title">
+      <div className="section-shell">
+        <div className="contact-panel">
+          <div className="contact-copy">
+            <h2 className="contact-eyebrow" id="contact-title">Contact</h2>
+            <p className="contact-headline">Have something <span>in mind?</span></p>
+            <p className="contact-intro">
+              A system to build, a tool to rethink, or an idea worth exploring.
+              Let&apos;s find a good way forward.
+            </p>
+            <p className="contact-scope">
+              Systems engineering, developer tools, and infrastructure consulting.
+            </p>
 
-          <div className="contact-channels" aria-label="Direct channels">
-            {contactLinks.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                target={item.href.startsWith("mailto:") ? undefined : "_blank"}
-                rel={item.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-                className="contact-channel-card"
-              >
-                <div className="contact-channel-title">{item.label}</div>
-                <div className="contact-channel-val">{item.value}</div>
-              </a>
-            ))}
+            <div className="contact-direct">
+              <p className="contact-direct-title">Prefer a direct line?</p>
+              <nav className="contact-channels" aria-label="Direct channels">
+                {contactLinks.map((item) => (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    target={item.href.startsWith("mailto:") ? undefined : "_blank"}
+                    rel={item.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                    className="contact-channel"
+                  >
+                    <span className="contact-channel-title">
+                      {item.label}<span aria-hidden="true">↗</span>
+                    </span>
+                    <span className="contact-channel-value">{item.value}</span>
+                  </a>
+                ))}
+              </nav>
+            </div>
           </div>
-        </div>
 
-        <div className="reveal">
-          <form id="contact-form" onSubmit={handleSubmit} noValidate>
-            <div className="form-group">
-              <label className="form-label" htmlFor="cf-name">Name</label>
-              <input
-                className="form-input"
-                type="text"
-                id="cf-name"
-                name="name"
-                placeholder="Your name"
-                required
-                maxLength={100}
-                autoComplete="name"
-                value={formData.name}
-                onChange={handleChange}
-              />
+          <form className="contact-form" id="contact-form" onSubmit={handleSubmit} aria-busy={isSubmitting} noValidate>
+            <div className="contact-form-header">
+              <span className="contact-form-kicker">A new conversation</span>
+              <h3 className="contact-form-title">Tell us about it.</h3>
+              <p>Name, email, and message are required.</p>
             </div>
-            <div className="form-group">
-              <label className="form-label" htmlFor="cf-email">Email</label>
-              <input
-                className="form-input"
-                type="email"
-                id="cf-email"
-                name="email"
-                placeholder="you@example.com"
-                required
-                maxLength={200}
-                autoComplete="email"
-                value={formData.email}
-                onChange={handleChange}
-              />
+
+            <div className="contact-field-pair">
+              <div className="contact-field">
+                <label className="contact-label" htmlFor="cf-name">Name</label>
+                <input
+                  className="contact-input"
+                  type="text"
+                  id="cf-name"
+                  name="name"
+                  placeholder="Your name"
+                  required
+                  maxLength={100}
+                  autoComplete="name"
+                  disabled={isSubmitting}
+                  aria-invalid={Boolean(fieldErrors.name)}
+                  aria-describedby={fieldErrors.name ? "cf-name-error" : undefined}
+                  value={formData.name}
+                  onChange={handleChange}
+                />
+                {fieldErrors.name && <p className="contact-field-error" id="cf-name-error">{fieldErrors.name}</p>}
+              </div>
+              <div className="contact-field">
+                <label className="contact-label" htmlFor="cf-email">Email</label>
+                <input
+                  className="contact-input"
+                  type="email"
+                  id="cf-email"
+                  name="email"
+                  placeholder="you@example.com"
+                  required
+                  maxLength={200}
+                  autoComplete="email"
+                  disabled={isSubmitting}
+                  aria-invalid={Boolean(fieldErrors.email)}
+                  aria-describedby={fieldErrors.email ? "cf-email-error" : undefined}
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+                {fieldErrors.email && <p className="contact-field-error" id="cf-email-error">{fieldErrors.email}</p>}
+              </div>
             </div>
-            <div className="form-group">
-              <label className="form-label" htmlFor="cf-subject">Subject</label>
+            <div className="contact-field">
+              <div className="contact-label-row">
+                <label className="contact-label" htmlFor="cf-subject">Subject</label>
+                <span className="contact-field-note" id="cf-subject-note">Optional</span>
+              </div>
               <input
-                className="form-input"
+                className="contact-input"
                 type="text"
                 id="cf-subject"
                 name="subject"
                 placeholder="Project idea, collaboration..."
                 maxLength={200}
+                disabled={isSubmitting}
+                aria-describedby="cf-subject-note"
                 value={formData.subject}
                 onChange={handleChange}
               />
             </div>
-            <div className="form-group">
-              <label className="form-label" htmlFor="cf-msg">Message</label>
+            <div className="contact-field">
+              <label className="contact-label" htmlFor="cf-msg">Message</label>
               <textarea
-                className="form-textarea"
+                className="contact-input contact-textarea"
                 id="cf-msg"
                 name="message"
-                placeholder="Tell me what you're working on..."
+                placeholder="What are you working on? What would you like to build?"
                 required
                 maxLength={5000}
+                rows={5}
+                disabled={isSubmitting}
+                aria-invalid={Boolean(fieldErrors.message)}
+                aria-describedby={fieldErrors.message ? "cf-msg-note cf-msg-error" : "cf-msg-note"}
                 value={formData.message}
                 onChange={handleChange}
               />
+              <p className="contact-field-note" id="cf-msg-note">A little context is a great place to start.</p>
+              {fieldErrors.message && <p className="contact-field-error" id="cf-msg-error">{fieldErrors.message}</p>}
             </div>
             
             {siteKey && (
-              <div className="form-group">
+              <div
+                className="contact-verification"
+                ref={verificationRef}
+                tabIndex={-1}
+                role="group"
+                aria-label="Verification challenge"
+                aria-describedby={verificationError ? "cf-verification-error" : undefined}
+              >
                 <Turnstile
                   ref={turnstileRef}
                   siteKey={siteKey}
@@ -191,30 +264,37 @@ export default function ContactSection() {
                 />
               </div>
             )}
-            
+
+            {fieldError && (
+              <div className="contact-feedback contact-feedback-error" role="alert">
+                {fieldError}
+              </div>
+            )}
+
+            {verificationError && (
+              <div className="contact-feedback contact-feedback-error" id="cf-verification-error" role="alert">
+                {verificationError}
+              </div>
+            )}
+
             <button
               type="submit"
-              className={`form-btn ${isSubmitting ? "sending" : ""}`}
+              className="contact-submit"
               id="cf-btn"
               disabled={isSubmitting}
             >
-              {isSubmitting ? "Sending…" : "Send Message →"}
+              <span>{isSubmitting ? "Sending…" : "Send Message"}</span>
+              <span aria-hidden="true">{isSubmitting ? "···" : "↗"}</span>
             </button>
             
             {showSuccess && (
-              <div className="form-success" role="status">
-                ✓ Message sent — I&apos;ll get back to you soon.
-              </div>
-            )}
-            
-            {fieldError && (
-              <div className="form-error" role="alert">
-                {fieldError}
+              <div className="contact-feedback contact-feedback-success" role="status">
+                <strong>Message sent.</strong> Thanks for getting in touch.
               </div>
             )}
             
             {submitError && (
-              <div className="form-error" role="alert">
+              <div className="contact-feedback contact-feedback-error" role="alert">
                 {submitError} — or email directly at{" "}
                 <a href="mailto:dev@nubcoders.com">dev@nubcoders.com</a>.
               </div>

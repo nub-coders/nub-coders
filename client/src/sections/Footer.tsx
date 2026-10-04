@@ -1,42 +1,58 @@
 import { contactLinks } from "@/data/contactLinks";
+import { BRAND_LOGO_URL } from "@/lib/brand";
+import "./contact.css";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
   const yearRange = `2023–${currentYear}`;
 
   return (
-    <footer className="site-footer">
-      <div className="footer-cols">
-        <div className="footer-brand">
-          <a href="#main" className="footer-logo" aria-label="nub-coders, back to top">
-            nub-coders
-          </a>
-          <p className="footer-blurb">
-            Software engineering organization building self-hosted infrastructure, developer platforms, and automation systems — shipped clean, built to last.
-          </p>
+    <footer className="footer-section">
+      <div className="section-shell">
+        <div className="footer-top">
+          <div className="footer-about">
+            <p className="footer-kicker">Independent software engineering</p>
+            <p className="footer-statement">Good software. <br />Built with care.</p>
+            <p className="footer-description">
+              Self-hosted infrastructure, developer platforms, and the tools that connect them.
+            </p>
+          </div>
+
+          <nav className="footer-nav" aria-label="Explore">
+            <h3 className="footer-nav-title">Explore</h3>
+            <a className="footer-link" href="#about">About</a>
+            <a className="footer-link" href="#tech">Stack</a>
+            <a className="footer-link" href="#work">Work</a>
+            <a className="footer-link" href="#contact">Contact</a>
+          </nav>
+
+          <nav className="footer-nav" aria-label="Connect">
+            <h3 className="footer-nav-title">Elsewhere</h3>
+            {contactLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target={link.href.startsWith("mailto:") ? undefined : "_blank"}
+                rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                className="footer-link"
+              >
+                {link.label}<span aria-hidden="true">↗</span>
+              </a>
+            ))}
+          </nav>
         </div>
 
-        <nav className="footer-col" aria-label="Connect">
-          <h3 className="footer-col-title">Connect</h3>
-          {contactLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              target={link.href.startsWith("mailto:") ? undefined : "_blank"}
-              rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-              className="footer-link"
-            >
-              {link.label}
-            </a>
-          ))}
-        </nav>
-      </div>
-
-      <div className="footer-bottom">
-        <span className="footer-copy">© {yearRange} Nub Coders · nubcoders.com</span>
-        <a href="#main" className="footer-back-top" aria-label="Back to top">
-          Back to top ↑
+        <a className="footer-wordmark" href="#main" aria-label="Nub Coders, back to top">
+          <img className="footer-brand-logo" src={BRAND_LOGO_URL} alt="" width="48" height="48" />
+          <span>Nub Coders</span>
         </a>
+
+        <div className="footer-bottom">
+          <span className="footer-copy">© {yearRange} Nub Coders · nubcoders.com</span>
+          <a href="#main" className="footer-back-top" aria-label="Back to top">
+            Back to top <span aria-hidden="true">↑</span>
+          </a>
+        </div>
       </div>
     </footer>
   );

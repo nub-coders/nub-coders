@@ -6,7 +6,7 @@ type State = { hasError: boolean };
 /**
  * Top-level error boundary. If any descendant throws during render, we show a
  * minimal recovery UI instead of white-screening the whole page. Kept
- * dependency-free and styled with the site's existing not-found classes.
+ * dependency-free and styled with the site's recovery classes.
  */
 export default class ErrorBoundary extends Component<Props, State> {
   state: State = { hasError: false };
@@ -23,16 +23,16 @@ export default class ErrorBoundary extends Component<Props, State> {
     if (this.state.hasError) {
       if (this.props.fallback) return this.props.fallback;
       return (
-        <div className="portfolio-skin not-found">
-          <div className="not-found-inner">
-            <span className="not-found-code">Oops</span>
-            <h1 className="not-found-title">Something went wrong</h1>
-            <p className="not-found-text">
+        <main className="recovery-page" aria-labelledby="recovery-title">
+          <div className="recovery-card">
+            <p className="eyebrow">A small interruption</p>
+            <h1 className="section-title" id="recovery-title">Something went wrong.</h1>
+            <p className="section-intro">
               An unexpected error occurred while rendering this page.
             </p>
-            <a href="/" className="not-found-link">← Reload home</a>
+            <a href="/" className="button button-primary">← Reload home</a>
           </div>
-        </div>
+        </main>
       );
     }
 
