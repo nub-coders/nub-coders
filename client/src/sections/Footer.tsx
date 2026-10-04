@@ -42,16 +42,13 @@ export default function Footer() {
           </nav>
         </div>
 
-        <a className="footer-wordmark" href="#main" aria-label="Nub Coders, back to top">
+        <div className="footer-wordmark">
           <img className="footer-brand-logo" src={BRAND_LOGO_URL} alt="" width="48" height="48" />
           <span>Nub Coders</span>
-        </a>
+        </div>
 
         <div className="footer-bottom">
           <span className="footer-copy">© {yearRange} Nub Coders · nubcoders.com</span>
-          <a href="#main" className="footer-back-top" aria-label="Back to top">
-            Back to top <span aria-hidden="true">↑</span>
-          </a>
         </div>
       </div>
     </footer>
